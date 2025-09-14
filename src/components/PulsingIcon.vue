@@ -1,77 +1,77 @@
 <script setup lang="ts">
-import { StreamState } from '@/interface/voiceChat';
-import { computed, onUnmounted, ref, watch } from 'vue';
+import { StreamState } from '@/interface/voiceChat'
+import { computed, onUnmounted, ref, watch } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    streamState: StreamState;
-    audioSourceCallback: () => MediaStream | null;
-    icon: string;
-    iconButtonColor: string;
-    pulseColor: string;
-    iconRadius: number;
+    streamState: StreamState
+    audioSourceCallback: () => MediaStream | null
+    icon: string
+    iconButtonColor: string
+    pulseColor: string
+    iconRadius: number
   }>(),
   {
     streamState: StreamState.closed,
     iconButtonColor: 'var(--color-accent)',
     pulseColor: 'var(--color-accent)',
     iconRadius: 50,
-  },
-);
+  }
+)
 
-let audioContext: AudioContext;
-let analyser: AnalyserNode;
-let dataArray: Uint8Array;
-let animationId: number;
-let pulseScale = ref(1);
-let pulseIntensity = ref(0);
+let audioContext: AudioContext
+let analyser: AnalyserNode
+let dataArray: Uint8Array
+let animationId: number
+let pulseScale = ref(1)
+let pulseIntensity = ref(0)
 
 watch(
   () => props.streamState,
   () => {
-    if (props.streamState === 'open') setupAudioContext();
-  },
-);
+    if (props.streamState === 'open') setupAudioContext()
+  }
+)
 
 onUnmounted(() => {
   if (animationId) {
-    cancelAnimationFrame(animationId);
+    cancelAnimationFrame(animationId)
   }
   if (audioContext) {
-    audioContext.close();
+    audioContext.close()
   }
-});
+})
 
 function setupAudioContext() {
   // @ts-ignore
-  audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  analyser = audioContext.createAnalyser();
-  const mediaStream = props.audioSourceCallback();
+  audioContext = new (window.AudioContext || window.webkitAudioContext)()
+  analyser = audioContext.createAnalyser()
+  const mediaStream = props.audioSourceCallback()
   if (mediaStream) {
-    const source = audioContext.createMediaStreamSource(mediaStream);
+    const source = audioContext.createMediaStreamSource(mediaStream)
 
-    source.connect(analyser);
+    source.connect(analyser)
 
-    analyser.fftSize = 64;
-    analyser.smoothingTimeConstant = 0.8;
-    dataArray = new Uint8Array(analyser.frequencyBinCount);
+    analyser.fftSize = 64
+    analyser.smoothingTimeConstant = 0.8
+    dataArray = new Uint8Array(analyser.frequencyBinCount)
 
-    updateVisualization();
+    updateVisualization()
   }
 }
 
 function updateVisualization() {
-  analyser.getByteFrequencyData(dataArray);
+  analyser.getByteFrequencyData(dataArray as Uint8Array)
 
   // Calculate average amplitude for pulse effect
-  const average = Array.from(dataArray).reduce((a, b) => a + b, 0) / dataArray.length;
-  const normalizedAverage = average / 255;
-  pulseScale.value = 1 + normalizedAverage * 0.15;
-  pulseIntensity.value = normalizedAverage;
-  animationId = requestAnimationFrame(updateVisualization);
+  const average = Array.from(dataArray).reduce((a, b) => a + b, 0) / dataArray.length
+  const normalizedAverage = average / 255
+  pulseScale.value = 1 + normalizedAverage * 0.15
+  pulseIntensity.value = normalizedAverage
+  animationId = requestAnimationFrame(updateVisualization)
 }
 
-const maxPulseScale = computed(() => 1 + pulseIntensity.value * 10); // Scale from 1x to 3x based on intensity
+const maxPulseScale = computed(() => 1 + pulseIntensity.value * 10) // Scale from 1x to 3x based on intensity
 </script>
 
 <template>

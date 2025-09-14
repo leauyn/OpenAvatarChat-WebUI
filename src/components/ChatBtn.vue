@@ -9,26 +9,26 @@
       @click="onStartChat"
     >
       <template v-if="streamState === StreamState.closed">
-        <span>点击开始对话</span>
+        <span>Please点击开始对话</span>
       </template>
       <template v-else-if="streamState === StreamState.waiting">
         <div class="waiting-icon-text">
           <div class="icon" title="spinner">
-            <Spin wrapperClassName="spin-icon"></Spin>
+            <Spin wrapper-class-name="spin-icon" />
           </div>
           <span>等待中</span>
         </div>
       </template>
       <template v-else>
-        <div class="stop-chat-inner"></div>
+        <div class="stop-chat-inner" />
       </template>
     </div>
     <template v-if="streamState === StreamState.open">
       <div class="input-audio-wave">
         <AudioWave
-          :audioSourceCallback="audioSourceCallback"
-          :streamState="streamState"
-          :waveColor="waveColor"
+          :audio-source-callback="audioSourceCallback"
+          :stream-state="streamState"
+          :wave-color="waveColor"
         />
       </div>
     </template>
@@ -36,23 +36,35 @@
 </template>
 
 <script setup lang="ts">
-import { Spin } from 'ant-design-vue';
-import { StreamState } from '@/interface/voiceChat';
-import AudioWave from '@/components/AudioWave.vue';
+import { Spin } from 'ant-design-vue'
+import { StreamState } from '@/interface/voiceChat'
+import AudioWave from '@/components/AudioWave.vue'
 
 const props = withDefaults(
-  defineProps<{
-    streamState: StreamState;
-    onStartChat: any;
-    audioSourceCallback: () => MediaStream | null;
-    waveColor: string;
-  }>(),
+  defineProps({
+    streamState: {
+      type: Object,
+      default: () => StreamState.closed,
+    },
+    onStartChat: {
+      type: Function,
+      required: true,
+    },
+    audioSourceCallback: {
+      type: Function,
+      required: true,
+    },
+    waveColor: {
+      type: String,
+      required: true,
+    },
+  }),
   {
     streamState: StreamState.closed,
-  },
-);
+  }
+)
 
-const emit = defineEmits([]);
+const emit = defineEmits([])
 </script>
 
 <style scoped lang="less"></style>

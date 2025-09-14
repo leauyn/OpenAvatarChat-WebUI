@@ -25,4 +25,4 @@ dist-ssr
 *.sw?
 .ci
 
-#package-lock.json
+package-lock.json

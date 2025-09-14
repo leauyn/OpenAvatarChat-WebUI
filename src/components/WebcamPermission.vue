@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { useVideoChatStore } from '@/store';
-import { useVisionStore } from '@/store/vision';
-import { VideoCameraOutlined } from '@ant-design/icons-vue';
-import { onMounted } from 'vue';
+import { useVideoChatStore } from '@/store'
+import { useVisionStore } from '@/store/vision'
+import { VideoCameraOutlined } from '@ant-design/icons-vue'
+import { onMounted } from 'vue'
 
-const emits = defineEmits(['click']);
-const videoChatState = useVideoChatStore();
-const visionState = useVisionStore();
+const emits = defineEmits(['click'])
+const videoChatState = useVideoChatStore()
+const visionState = useVisionStore()
 const accessClick = async () => {
-  videoChatState.accessDevice();
-};
+  videoChatState.accessDevice()
+}
 onMounted(() => {
   // accessClick(); //自动获取权限
-});
+})
 
-const text = '点击允许访问摄像头和麦克风';
+const text = '点击允许访问摄像头和麦克风'
 </script>
 
 <template>
