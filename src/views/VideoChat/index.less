@@ -4,23 +4,23 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0 16px;
+  padding: 8px 16px 16px 16px;
   transition: width 0.1s ease;
   
   @media (max-width: 1024px) and (min-width: 769px) {
-    padding: 0 14px;
+    padding: 6px 14px 14px 14px;
   }
   
   @media (max-width: 768px) {
-    padding: 0 12px;
+    padding: 4px 12px 12px 12px;
   }
   
   @media (max-width: 480px) {
-    padding: 0 10px;
+    padding: 4px 10px 10px 10px;
   }
 
   @media (max-width: 360px) {
-    padding: 0 8px;
+    padding: 2px 8px 8px 8px;
   }
 }
 .page-container {
@@ -85,7 +85,7 @@
     position: absolute;
     top: auto;
     left: 0;
-    bottom: calc(27.5% + 10px);
+    bottom: calc(27.5% + 20px);
     width: 25%;
     height: auto;
     border-radius: 16px;
@@ -142,6 +142,7 @@
     height: 27.5%;
     min-height: 132px;
     max-height: 220px;
+    margin: 0 16px 0 16px;
     overflow: auto;
     background: linear-gradient(
       to bottom,
@@ -149,9 +150,9 @@
       rgba(255, 255, 255, 0.08) 100%
     );
     backdrop-filter: blur(15px);
-    border-radius: 0 0 32px 32px;
+    border-radius: 16px 16px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px;
+    padding: 16px;
     box-sizing: border-box;
     z-index: 50;
     
@@ -162,32 +163,36 @@
       height: 28%;
       min-height: 140px;
       max-height: 220px;
+      margin: 0 14px 0 14px;
       padding: 14px;
-      border-radius: 0 0 28px 28px;
+      border-radius: 16px 16px 0 0;
     }
     
     @media (max-width: 768px) {
       height: 30%;
       min-height: 120px;
       max-height: 200px;
+      margin: 0 12px 0 12px;
       padding: 12px;
-      border-radius: 0 0 20px 20px;
+      border-radius: 14px 14px 0 0;
     }
     
     @media (max-width: 480px) {
       height: 35%;
       min-height: 100px;
       max-height: 180px;
+      margin: 0 10px 0 10px;
       padding: 10px;
-      border-radius: 0 0 16px 16px;
+      border-radius: 12px 12px 0 0;
     }
 
     @media (max-width: 360px) {
       height: 40%;
       min-height: 90px;
       max-height: 160px;
+      margin: 0 8px 0 8px;
       padding: 8px;
-      border-radius: 0 0 12px 12px;
+      border-radius: 10px 10px 0 0;
     }
   }
   
