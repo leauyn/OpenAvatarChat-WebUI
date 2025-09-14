@@ -66,12 +66,43 @@ const emit = defineEmits([])
 
 <style scoped lang="less">
 .player-controls {
-  height: 15%;
+  flex: 0 0 auto;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 84px;
+  min-height: 100px;
+  max-height: 150px;
+  margin: 20px auto;
+  padding: 0 20px;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    min-height: 95px;
+    max-height: 140px;
+    margin: 18px auto;
+    padding: 0 18px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 90px;
+    max-height: 130px;
+    margin: 16px auto;
+    padding: 0 16px;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 85px;
+    max-height: 120px;
+    margin: 14px auto;
+    padding: 0 14px;
+  }
+
+  @media (max-width: 360px) {
+    min-height: 80px;
+    max-height: 110px;
+    margin: 12px auto;
+    padding: 0 12px;
+  }
 
   .chat-btn {
     height: 64px;
@@ -85,6 +116,26 @@ const emit = defineEmits([])
     transition: all 0.3s;
     z-index: 2;
     cursor: pointer;
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      height: 60px;
+      width: 280px;
+    }
+
+    @media (max-width: 768px) {
+      height: 56px;
+      width: 260px;
+    }
+
+    @media (max-width: 480px) {
+      height: 52px;
+      width: 240px;
+    }
+
+    @media (max-width: 360px) {
+      height: 48px;
+      width: 220px;
+    }
   }
 
   .start-chat {
@@ -92,6 +143,22 @@ const emit = defineEmits([])
     font-weight: 500;
     text-align: center;
     color: #ffffff;
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      font-size: 15px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 13px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 12px;
+    }
   }
 
   .waiting-icon-text {
@@ -105,12 +172,52 @@ const emit = defineEmits([])
     justify-content: space-evenly;
     gap: var(--size-1);
 
+    @media (max-width: 1024px) and (min-width: 769px) {
+      font-size: 15px;
+      width: 75px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+      width: 70px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 13px;
+      width: 65px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 12px;
+      width: 60px;
+    }
+
     .icon {
       width: 25px;
       height: 25px;
       fill: #ffffff;
       stroke: #ffffff;
       color: #ffffff;
+
+      @media (max-width: 1024px) and (min-width: 769px) {
+        width: 23px;
+        height: 23px;
+      }
+
+      @media (max-width: 768px) {
+        width: 21px;
+        height: 21px;
+      }
+
+      @media (max-width: 480px) {
+        width: 19px;
+        height: 19px;
+      }
+
+      @media (max-width: 360px) {
+        width: 17px;
+        height: 17px;
+      }
     }
     .spin-icon {
       color: #fff;
@@ -123,11 +230,51 @@ const emit = defineEmits([])
   .stop-chat {
     width: 64px;
 
+    @media (max-width: 1024px) and (min-width: 769px) {
+      width: 60px;
+    }
+
+    @media (max-width: 768px) {
+      width: 56px;
+    }
+
+    @media (max-width: 480px) {
+      width: 52px;
+    }
+
+    @media (max-width: 360px) {
+      width: 48px;
+    }
+
     .stop-chat-inner {
       width: 25px;
       height: 25px;
       border-radius: 6.25px;
       background: #fafafa;
+
+      @media (max-width: 1024px) and (min-width: 769px) {
+        width: 23px;
+        height: 23px;
+        border-radius: 5.75px;
+      }
+
+      @media (max-width: 768px) {
+        width: 21px;
+        height: 21px;
+        border-radius: 5.25px;
+      }
+
+      @media (max-width: 480px) {
+        width: 19px;
+        height: 19px;
+        border-radius: 4.75px;
+      }
+
+      @media (max-width: 360px) {
+        width: 17px;
+        height: 17px;
+        border-radius: 4.25px;
+      }
     }
   }
 

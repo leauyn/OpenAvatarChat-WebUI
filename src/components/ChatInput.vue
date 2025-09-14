@@ -84,29 +84,53 @@ function onInterrupt() {
 
 <style scoped lang="less">
 .chat-input-container {
-  height: 8%;
+  flex: 0 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 60px;
+  min-height: 80px;
+  max-height: 120px;
   width: 90%;
   max-width: 400px;
-  margin: auto;
+  margin: 16px auto;
+  padding: 0 16px;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    min-height: 75px;
+    max-height: 110px;
+    width: 92%;
+    max-width: 380px;
+    margin: 14px auto;
+    padding: 0 14px;
+  }
 
   @media (max-width: 768px) {
-    height: 10%;
+    min-height: 70px;
+    max-height: 100px;
     width: 95%;
-    max-width: 350px;
-    min-height: 56px;
+    max-width: 360px;
+    margin: 12px auto;
+    padding: 0 12px;
   }
 
   @media (max-width: 480px) {
-    height: 12%;
+    min-height: 65px;
+    max-height: 90px;
     width: 98%;
+    max-width: 340px;
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+
+  @media (max-width: 360px) {
+    min-height: 60px;
+    max-height: 80px;
+    width: 100%;
     max-width: 320px;
-    min-height: 52px;
+    margin: 8px auto;
+    padding: 0 8px;
   }
 
   .chat-input-inner {

@@ -1037,11 +1037,11 @@ class ZR {
 function JR(n) {
   n.dep && n.dep.trigger()
 }
-function Xe(n) {
+function Ke(n) {
   return bn(n) ? n.value : n
 }
 const e8 = {
-  get: (n, e, t) => (e === '__v_raw' ? n : Xe(Reflect.get(n, e, t))),
+  get: (n, e, t) => (e === '__v_raw' ? n : Ke(Reflect.get(n, e, t))),
   set: (n, e, t, i) => {
     const r = n[e]
     return bn(r) && !bn(t) ? ((r.value = t), !0) : Reflect.set(n, e, t, i)
@@ -23177,7 +23177,7 @@ function mB(n, e, t, i, r, s, o) {
       Ze = z && !!w.thicknessMap,
       Ce = !!w.gradientMap,
       De = !!w.alphaMap,
-      Ke = w.alphaTest > 0,
+      Xe = w.alphaTest > 0,
       et = !!w.alphaHash,
       _t = !!w.extensions
     let hn = _s
@@ -23240,7 +23240,7 @@ function mB(n, e, t, i, r, s, o) {
       gradientMap: Ce,
       opaque: w.transparent === !1 && w.blending === zo && w.alphaToCoverage === !1,
       alphaMap: De,
-      alphaTest: Ke,
+      alphaTest: Xe,
       alphaHash: et,
       combine: w.combine,
       mapUv: it && g(w.map.channel),
@@ -24184,16 +24184,16 @@ function IB(n, e) {
     let Ce = null
     const De = new Mt(0, 0, 0, 0)
     return {
-      setMask: function (Ke) {
-        Ce !== Ke && !pe && (n.colorMask(Ke, Ke, Ke, Ke), (Ce = Ke))
+      setMask: function (Xe) {
+        Ce !== Xe && !pe && (n.colorMask(Xe, Xe, Xe, Xe), (Ce = Xe))
       },
-      setLocked: function (Ke) {
-        pe = Ke
+      setLocked: function (Xe) {
+        pe = Xe
       },
-      setClear: function (Ke, et, _t, hn, bi) {
-        ;(bi === !0 && ((Ke *= hn), (et *= hn), (_t *= hn)),
-          Ze.set(Ke, et, _t, hn),
-          De.equals(Ze) === !1 && (n.clearColor(Ke, et, _t, hn), De.copy(Ze)))
+      setClear: function (Xe, et, _t, hn, bi) {
+        ;(bi === !0 && ((Xe *= hn), (et *= hn), (_t *= hn)),
+          Ze.set(Xe, et, _t, hn),
+          De.equals(Ze) === !1 && (n.clearColor(Xe, et, _t, hn), De.copy(Ze)))
       },
       reset: function () {
         ;((pe = !1), (Ce = null), De.set(-1, 0, 0, 0))
@@ -24205,7 +24205,7 @@ function IB(n, e) {
       Ze = !1,
       Ce = null,
       De = null,
-      Ke = null
+      Xe = null
     return {
       setReversed: function (et) {
         if (Ze !== et) {
@@ -24213,8 +24213,8 @@ function IB(n, e) {
           Ze
             ? _t.clipControlEXT(_t.LOWER_LEFT_EXT, _t.ZERO_TO_ONE_EXT)
             : _t.clipControlEXT(_t.LOWER_LEFT_EXT, _t.NEGATIVE_ONE_TO_ONE_EXT)
-          const hn = Ke
-          ;((Ke = null), this.setClear(hn))
+          const hn = Xe
+          ;((Xe = null), this.setClear(hn))
         }
         Ze = et
       },
@@ -24264,10 +24264,10 @@ function IB(n, e) {
         pe = et
       },
       setClear: function (et) {
-        Ke !== et && (Ze && (et = 1 - et), n.clearDepth(et), (Ke = et))
+        Xe !== et && (Ze && (et = 1 - et), n.clearDepth(et), (Xe = et))
       },
       reset: function () {
-        ;((pe = !1), (Ce = null), (De = null), (Ke = null), (Ze = !1))
+        ;((pe = !1), (Ce = null), (De = null), (Xe = null), (Ze = !1))
       },
     }
   }
@@ -24276,7 +24276,7 @@ function IB(n, e) {
       Ze = null,
       Ce = null,
       De = null,
-      Ke = null,
+      Xe = null,
       et = null,
       _t = null,
       hn = null,
@@ -24289,8 +24289,8 @@ function IB(n, e) {
         Ze !== on && !pe && (n.stencilMask(on), (Ze = on))
       },
       setFunc: function (on, ss, ho) {
-        ;(Ce !== on || De !== ss || Ke !== ho) &&
-          (n.stencilFunc(on, ss, ho), (Ce = on), (De = ss), (Ke = ho))
+        ;(Ce !== on || De !== ss || Xe !== ho) &&
+          (n.stencilFunc(on, ss, ho), (Ce = on), (De = ss), (Xe = ho))
       },
       setOp: function (on, ss, ho) {
         ;(et !== on || _t !== ss || hn !== ho) &&
@@ -24307,7 +24307,7 @@ function IB(n, e) {
           (Ze = null),
           (Ce = null),
           (De = null),
-          (Ke = null),
+          (Xe = null),
           (et = null),
           (_t = null),
           (hn = null),
@@ -24356,15 +24356,15 @@ function IB(n, e) {
     be = new Mt().fromArray(ne),
     le = new Mt().fromArray(ie)
   function fe(pe, Ze, Ce, De) {
-    const Ke = new Uint8Array(4),
+    const Xe = new Uint8Array(4),
       et = n.createTexture()
     ;(n.bindTexture(pe, et),
       n.texParameteri(pe, n.TEXTURE_MIN_FILTER, n.NEAREST),
       n.texParameteri(pe, n.TEXTURE_MAG_FILTER, n.NEAREST))
     for (let _t = 0; _t < Ce; _t++)
       pe === n.TEXTURE_3D || pe === n.TEXTURE_2D_ARRAY
-        ? n.texImage3D(Ze, 0, n.RGBA, 1, 1, De, 0, n.RGBA, n.UNSIGNED_BYTE, Ke)
-        : n.texImage2D(Ze + _t, 0, n.RGBA, 1, 1, 0, n.RGBA, n.UNSIGNED_BYTE, Ke)
+        ? n.texImage3D(Ze, 0, n.RGBA, 1, 1, De, 0, n.RGBA, n.UNSIGNED_BYTE, Xe)
+        : n.texImage2D(Ze + _t, 0, n.RGBA, 1, 1, 0, n.RGBA, n.UNSIGNED_BYTE, Xe)
     return et
   }
   const we = {}
@@ -24401,10 +24401,10 @@ function IB(n, e) {
       De = !1
     if (pe) {
       ;((Ce = h.get(Ze)), Ce === void 0 && ((Ce = []), h.set(Ze, Ce)))
-      const Ke = pe.textures
-      if (Ce.length !== Ke.length || Ce[0] !== n.COLOR_ATTACHMENT0) {
-        for (let et = 0, _t = Ke.length; et < _t; et++) Ce[et] = n.COLOR_ATTACHMENT0 + et
-        ;((Ce.length = Ke.length), (De = !0))
+      const Xe = pe.textures
+      if (Ce.length !== Xe.length || Ce[0] !== n.COLOR_ATTACHMENT0) {
+        for (let et = 0, _t = Xe.length; et < _t; et++) Ce[et] = n.COLOR_ATTACHMENT0 + et
+        ;((Ce.length = Xe.length), (De = !0))
       }
     } else Ce[0] !== n.BACK && ((Ce[0] = n.BACK), (De = !0))
     De && n.drawBuffers(Ce)
@@ -24431,7 +24431,7 @@ function IB(n, e) {
     [jN]: n.CONSTANT_ALPHA,
     [qN]: n.ONE_MINUS_CONSTANT_ALPHA,
   }
-  function b(pe, Ze, Ce, De, Ke, et, _t, hn, bi, on) {
+  function b(pe, Ze, Ce, De, Xe, et, _t, hn, bi, on) {
     if (pe === La) {
       g === !0 && (Re(n.BLEND), (g = !1))
       return
@@ -24485,10 +24485,10 @@ function IB(n, e) {
       }
       return
     }
-    ;((Ke = Ke || Ze),
+    ;((Xe = Xe || Ze),
       (et = et || Ce),
       (_t = _t || De),
-      (Ze !== m || Ke !== _) && (n.blendEquationSeparate(te[Ze], te[Ke]), (m = Ze), (_ = Ke)),
+      (Ze !== m || Xe !== _) && (n.blendEquationSeparate(te[Ze], te[Xe]), (m = Ze), (_ = Xe)),
       (Ce !== v || De !== x || et !== S || _t !== C) &&
         (n.blendFuncSeparate(re[Ce], re[De], re[et], re[_t]),
         (v = Ce),
@@ -25211,11 +25211,11 @@ function RB(n, e, t, i, r, s, o) {
                 if (Je) {
                   if (pe)
                     if (D.layerUpdates.size > 0) {
-                      const Ke = uA(Le.width, Le.height, D.format, D.type)
+                      const Xe = uA(Le.width, Le.height, D.format, D.type)
                       for (const et of D.layerUpdates) {
                         const _t = Le.data.subarray(
-                          (et * Ke) / Le.data.BYTES_PER_ELEMENT,
-                          ((et + 1) * Ke) / Le.data.BYTES_PER_ELEMENT
+                          (et * Xe) / Le.data.BYTES_PER_ELEMENT,
+                          ((et + 1) * Xe) / Le.data.BYTES_PER_ELEMENT
                         )
                         t.compressedTexSubImage3D(
                           n.TEXTURE_2D_ARRAY,
@@ -25322,11 +25322,11 @@ function RB(n, e, t, i, r, s, o) {
             if (D.layerUpdates.size > 0) {
               const Ce = uA(Z.width, Z.height, D.format, D.type)
               for (const De of D.layerUpdates) {
-                const Ke = Z.data.subarray(
+                const Xe = Z.data.subarray(
                   (De * Ce) / Z.data.BYTES_PER_ELEMENT,
                   ((De + 1) * Ce) / Z.data.BYTES_PER_ELEMENT
                 )
-                t.texSubImage3D(n.TEXTURE_2D_ARRAY, 0, 0, 0, De, Z.width, Z.height, 1, $, ae, Ke)
+                t.texSubImage3D(n.TEXTURE_2D_ARRAY, 0, 0, 0, De, Z.width, Z.height, 1, $, ae, Xe)
               }
               D.clearLayerUpdates()
             } else
@@ -25356,8 +25356,8 @@ function RB(n, e, t, i, r, s, o) {
           else {
             let Ce = Z.width,
               De = Z.height
-            for (let Ke = 0; Ke < Ze; Ke++)
-              (t.texImage2D(n.TEXTURE_2D, Ke, Ue, Ce, De, 0, $, ae, null), (Ce >>= 1), (De >>= 1))
+            for (let Xe = 0; Xe < Ze; Xe++)
+              (t.texImage2D(n.TEXTURE_2D, Xe, Ue, Ce, De, 0, $, ae, null), (Ce >>= 1), (De >>= 1))
           }
       } else if (Ve.length > 0) {
         if (Je && rt) {
@@ -25418,15 +25418,15 @@ function RB(n, e, t, i, r, s, o) {
         Je && rt && t.texStorage2D(n.TEXTURE_CUBE_MAP, Ze, Ve, ae.width, ae.height)
         for (let De = 0; De < 6; De++) {
           Ce = $[De].mipmaps
-          for (let Ke = 0; Ke < Ce.length; Ke++) {
-            const et = Ce[Ke]
+          for (let Xe = 0; Xe < Ce.length; Xe++) {
+            const et = Ce[Xe]
             D.format !== Fi
               ? Ue !== null
                 ? Je
                   ? pe &&
                     t.compressedTexSubImage2D(
                       n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                      Ke,
+                      Xe,
                       0,
                       0,
                       et.width,
@@ -25436,7 +25436,7 @@ function RB(n, e, t, i, r, s, o) {
                     )
                   : t.compressedTexImage2D(
                       n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                      Ke,
+                      Xe,
                       Ve,
                       et.width,
                       et.height,
@@ -25450,7 +25450,7 @@ function RB(n, e, t, i, r, s, o) {
                 ? pe &&
                   t.texSubImage2D(
                     n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                    Ke,
+                    Xe,
                     0,
                     0,
                     et.width,
@@ -25461,7 +25461,7 @@ function RB(n, e, t, i, r, s, o) {
                   )
                 : t.texImage2D(
                     n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                    Ke,
+                    Xe,
                     Ve,
                     et.width,
                     et.height,
@@ -25504,13 +25504,13 @@ function RB(n, e, t, i, r, s, o) {
                   Le,
                   $[De].data
                 )
-            for (let Ke = 0; Ke < Ce.length; Ke++) {
-              const _t = Ce[Ke].image[De].image
+            for (let Xe = 0; Xe < Ce.length; Xe++) {
+              const _t = Ce[Xe].image[De].image
               Je
                 ? pe &&
                   t.texSubImage2D(
                     n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                    Ke + 1,
+                    Xe + 1,
                     0,
                     0,
                     _t.width,
@@ -25521,7 +25521,7 @@ function RB(n, e, t, i, r, s, o) {
                   )
                 : t.texImage2D(
                     n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                    Ke + 1,
+                    Xe + 1,
                     Ve,
                     _t.width,
                     _t.height,
@@ -25535,20 +25535,20 @@ function RB(n, e, t, i, r, s, o) {
             Je
               ? pe && t.texSubImage2D(n.TEXTURE_CUBE_MAP_POSITIVE_X + De, 0, 0, 0, Ue, Le, $[De])
               : t.texImage2D(n.TEXTURE_CUBE_MAP_POSITIVE_X + De, 0, Ve, Ue, Le, $[De])
-            for (let Ke = 0; Ke < Ce.length; Ke++) {
-              const et = Ce[Ke]
+            for (let Xe = 0; Xe < Ce.length; Xe++) {
+              const et = Ce[Xe]
               Je
                 ? pe &&
                   t.texSubImage2D(
                     n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
-                    Ke + 1,
+                    Xe + 1,
                     0,
                     0,
                     Ue,
                     Le,
                     et.image[De]
                   )
-                : t.texImage2D(n.TEXTURE_CUBE_MAP_POSITIVE_X + De, Ke + 1, Ve, Ue, Le, et.image[De])
+                : t.texImage2D(n.TEXTURE_CUBE_MAP_POSITIVE_X + De, Xe + 1, Ve, Ue, Le, et.image[De])
             }
           }
       }
@@ -26951,7 +26951,7 @@ class UB {
       if (
         ('setAttribute' in t && t.setAttribute('data-engine', 'three.js r'.concat(g_)),
         t.addEventListener('webglcontextlost', De, !1),
-        t.addEventListener('webglcontextrestored', Ke, !1),
+        t.addEventListener('webglcontextrestored', Xe, !1),
         t.addEventListener('webglcontextcreationerror', et, !1),
         b === null)
       ) {
@@ -27131,7 +27131,7 @@ class UB {
       }),
       (this.dispose = function () {
         ;(t.removeEventListener('webglcontextlost', De, !1),
-          t.removeEventListener('webglcontextrestored', Ke, !1),
+          t.removeEventListener('webglcontextrestored', Xe, !1),
           t.removeEventListener('webglcontextcreationerror', et, !1),
           ae.dispose(),
           N.dispose(),
@@ -27151,7 +27151,7 @@ class UB {
     function De(K) {
       ;(K.preventDefault(), console.log('THREE.WebGLRenderer: Context Lost.'), (S = !0))
     }
-    function Ke() {
+    function Xe() {
       ;(console.log('THREE.WebGLRenderer: Context Restored.'), (S = !1))
       const K = k.autoReset,
         ge = $.enabled,
@@ -31029,7 +31029,7 @@ class Zf extends so {
                 (l.phi *= 1 - i.dampingFactor),
                 u.multiplyScalar(1 - i.dampingFactor))
               : (l.set(0, 0, 0), u.set(0, 0, 0)))
-          let Ke = !1
+          let Xe = !1
           if (i.zoomToCursor && C) {
             let et = null
             if (i.object.isPerspectiveCamera) {
@@ -31042,7 +31042,7 @@ class Zf extends so {
               ;(_t.unproject(i.object),
                 (i.object.zoom = Math.max(i.minZoom, Math.min(i.maxZoom, i.object.zoom / c))),
                 i.object.updateProjectionMatrix(),
-                (Ke = !0))
+                (Xe = !0))
               const hn = new Y(S.x, S.y, 0)
               ;(hn.unproject(i.object),
                 i.object.position.sub(hn).add(_t),
@@ -31070,11 +31070,11 @@ class Zf extends so {
             i.object.isOrthographicCamera &&
               ((i.object.zoom = Math.max(i.minZoom, Math.min(i.maxZoom, i.object.zoom / c))),
               i.object.updateProjectionMatrix(),
-              (Ke = !0))
+              (Xe = !0))
           return (
             (c = 1),
             (C = !1),
-            Ke ||
+            Xe ||
             Le.distanceToSquared(i.object.position) > o ||
             8 * (1 - Ve.dot(i.object.quaternion)) > o ||
             Je.distanceToSquared(i.target) > 0
@@ -31082,7 +31082,7 @@ class Zf extends so {
                 Le.copy(i.object.position),
                 Ve.copy(i.object.quaternion),
                 Je.copy(i.target),
-                (Ke = !1),
+                (Xe = !1),
                 !0)
               : !1
           )
@@ -54586,11 +54586,11 @@ function Iq() {
                           Ze = N.stat_desc.extra_bits,
                           Ce = N.stat_desc.extra_base,
                           De = N.stat_desc.max_length,
-                          Ke = 0
+                          Xe = 0
                         for (ae = 0; ae <= y; ae++) E.bl_count[ae] = 0
                         for (Ve[2 * E.heap[E.heap_max] + 1] = 0, q = E.heap_max + 1; q < g; q++)
                           (De < (ae = Ve[2 * Ve[2 * (Z = E.heap[q]) + 1] + 1] + 1) &&
-                            ((ae = De), Ke++),
+                            ((ae = De), Xe++),
                             (Ve[2 * Z + 1] = ae),
                             Je < Z ||
                               (E.bl_count[ae]++,
@@ -54599,14 +54599,14 @@ function Iq() {
                               (Le = Ve[2 * Z]),
                               (E.opt_len += Le * (ae + Ue)),
                               pe && (E.static_len += Le * (rt[2 * Z + 1] + Ue))))
-                        if (Ke !== 0) {
+                        if (Xe !== 0) {
                           do {
                             for (ae = De - 1; E.bl_count[ae] === 0; ) ae--
                             ;(E.bl_count[ae]--,
                               (E.bl_count[ae + 1] += 2),
                               E.bl_count[De]--,
-                              (Ke -= 2))
-                          } while (0 < Ke)
+                              (Xe -= 2))
+                          } while (0 < Xe)
                           for (ae = De; ae !== 0; ae--)
                             for (Z = E.bl_count[ae]; Z !== 0; )
                               Je < ($ = E.heap[--q]) ||
@@ -59397,10 +59397,10 @@ const x6 = Symbol('StyleContextKey'),
       t = ar(ke(ke({}, S6), { cache: Ah() }))
     return (
       Jn(
-        [() => Xe(n), e],
+        [() => Ke(n), e],
         () => {
           const i = ke({}, e.value),
-            r = Xe(n)
+            r = Ke(n)
           Object.keys(r).forEach((o) => {
             const a = r[o]
             r[o] !== void 0 && (i[o] = a)
@@ -61727,7 +61727,7 @@ const UY = R6(RY),
       Jn(
         n,
         () => {
-          ;((Ev.value = Xe(n)), JR(Ev))
+          ;((Ev.value = Ke(n)), JR(Ev))
         },
         { immediate: !0, deep: !0 }
       ))
@@ -66324,7 +66324,7 @@ const ba = o5('visionStore', {
         (r, s) => (
           yt(),
           Ct('div', { class: 'access-wrap', onClick: i }, [
-            kt('span', Eee, [Te(Xe(s2))]),
+            kt('span', Eee, [Te(Ke(s2))]),
             om(' ' + su(Mee)),
           ])
         )
@@ -66336,7 +66336,7 @@ const ba = o5('visionStore', {
     for (const [i, r] of e) t[i] = r
     return t
   },
-  Ree = si(Iee, [['__scopeId', 'data-v-dbceed4a']])
+  Ree = si(Iee, [['__scopeId', 'data-v-5eaa6082']])
 /*!
  * shared v11.1.12
  * (c) 2025 kazuya kawaguchi
@@ -69853,7 +69853,7 @@ const bie = si(xie, [['render', Aie]]),
         return (
           yt(),
           Ct('div', Tie, [
-            Xe(i)
+            Ke(i)
               ? Pc(
                   (yt(),
                   Ct(
@@ -69861,11 +69861,11 @@ const bie = si(xie, [['render', Aie]]),
                     {
                       key: 0,
                       class: 'action',
-                      onClick: I[1] || (I[1] = (...M) => Xe(p) && Xe(p)(...M)),
+                      onClick: I[1] || (I[1] = (...M) => Ke(p) && Ke(p)(...M)),
                     },
                     [
-                      Te(Xe(Ed), { icon: Xe(s) ? Xe(Hne) : Xe(Qne) }, null, 8, ['icon']),
-                      Xe(c) === 'closed'
+                      Te(Ke(Ed), { icon: Ke(s) ? Ke(Hne) : Ke(Qne) }, null, 8, ['icon']),
+                      Ke(c) === 'closed'
                         ? (yt(),
                           Ct(
                             'div',
@@ -69882,14 +69882,14 @@ const bie = si(xie, [['render', Aie]]),
                       Pc(
                         kt(
                           'div',
-                          { class: Wo(['selectors', { left: Xe(_) }]) },
+                          { class: Wo(['selectors', { left: Ke(_) }]) },
                           [
                             (yt(!0),
                             Ct(
                               Hn,
                               null,
                               th(
-                                Xe(f),
+                                Ke(f),
                                 (M) => (
                                   yt(),
                                   Ct(
@@ -69898,13 +69898,13 @@ const bie = si(xie, [['render', Aie]]),
                                       key: M.deviceId,
                                       class: 'selector',
                                       onClick: vf(() => {
-                                        ;(Xe(m)(M.deviceId), (C.value = !1))
+                                        ;(Ke(m)(M.deviceId), (C.value = !1))
                                       }, ['stop']),
                                     },
                                     [
                                       om(su(M.label) + ' ', 1),
-                                      Xe(d) && M.deviceId === Xe(d).deviceId
-                                        ? (yt(), Ct('div', Cie, [Te(Xe(DT))]))
+                                      Ke(d) && M.deviceId === Ke(d).deviceId
+                                        ? (yt(), Ct('div', Cie, [Te(Ke(DT))]))
                                         : hs('', !0),
                                     ],
                                     8,
@@ -69917,14 +69917,14 @@ const bie = si(xie, [['render', Aie]]),
                           ],
                           2
                         ),
-                        [[cm, C.value && Xe(c) === 'closed']]
+                        [[cm, C.value && Ke(c) === 'closed']]
                       ),
                     ]
                   )),
                   [[w, () => (C.value = !1)]]
                 )
               : hs('', !0),
-            Xe(r)
+            Ke(r)
               ? Pc(
                   (yt(),
                   Ct(
@@ -69932,11 +69932,11 @@ const bie = si(xie, [['render', Aie]]),
                     {
                       key: 1,
                       class: 'action',
-                      onClick: I[3] || (I[3] = (...M) => Xe(g) && Xe(g)(...M)),
+                      onClick: I[3] || (I[3] = (...M) => Ke(g) && Ke(g)(...M)),
                     },
                     [
-                      Te(Xe(Ed), { icon: Xe(o) ? Xe(Jne) : Xe(iie) }, null, 8, ['icon']),
-                      Xe(c) === 'closed'
+                      Te(Ke(Ed), { icon: Ke(o) ? Ke(Jne) : Ke(iie) }, null, 8, ['icon']),
+                      Ke(c) === 'closed'
                         ? (yt(),
                           Ct(
                             'div',
@@ -69953,14 +69953,14 @@ const bie = si(xie, [['render', Aie]]),
                       Pc(
                         kt(
                           'div',
-                          { class: Wo(['selectors', { left: Xe(_) }]) },
+                          { class: Wo(['selectors', { left: Ke(_) }]) },
                           [
                             (yt(!0),
                             Ct(
                               Hn,
                               null,
                               th(
-                                Xe(h),
+                                Ke(h),
                                 (M) => (
                                   yt(),
                                   Ct(
@@ -69970,15 +69970,15 @@ const bie = si(xie, [['render', Aie]]),
                                       class: 'selector',
                                       onClick: vf(
                                         (R) => {
-                                          ;(Xe(m)(M.deviceId), (S.value = !1))
+                                          ;(Ke(m)(M.deviceId), (S.value = !1))
                                         },
                                         ['stop']
                                       ),
                                     },
                                     [
                                       om(su(M.label) + ' ', 1),
-                                      Xe(u) && M.deviceId === Xe(u).deviceId
-                                        ? (yt(), Ct('div', Mie, [Te(Xe(DT))]))
+                                      Ke(u) && M.deviceId === Ke(u).deviceId
+                                        ? (yt(), Ct('div', Mie, [Te(Ke(DT))]))
                                         : hs('', !0),
                                     ],
                                     8,
@@ -69991,7 +69991,7 @@ const bie = si(xie, [['render', Aie]]),
                           ],
                           2
                         ),
-                        [[cm, S.value && Xe(c) === 'closed']]
+                        [[cm, S.value && Ke(c) === 'closed']]
                       ),
                     ]
                   )),
@@ -70000,19 +70000,19 @@ const bie = si(xie, [['render', Aie]]),
               : hs('', !0),
             kt(
               'div',
-              { class: 'action', onClick: I[4] || (I[4] = (...M) => Xe(y) && Xe(y)(...M)) },
-              [Te(Xe(Ed), { icon: Xe(a) ? Xe(die) : Xe(mie) }, null, 8, ['icon'])]
+              { class: 'action', onClick: I[4] || (I[4] = (...M) => Ke(y) && Ke(y)(...M)) },
+              [Te(Ke(Ed), { icon: Ke(a) ? Ke(die) : Ke(mie) }, null, 8, ['icon'])]
             ),
-            Xe(x).width > 300
+            Ke(x).width > 300
               ? (yt(),
                 Ct(
                   'div',
                   {
                     key: 2,
                     class: 'action',
-                    onClick: I[5] || (I[5] = (...M) => Xe(v) && Xe(v)(...M)),
+                    onClick: I[5] || (I[5] = (...M) => Ke(v) && Ke(v)(...M)),
                   },
-                  [Te(Xe(Ed), { icon: Xe(l) ? Xe(bie) : Xe(_ie) }, null, 8, ['icon'])]
+                  [Te(Ke(Ed), { icon: Ke(l) ? Ke(bie) : Ke(_ie) }, null, 8, ['icon'])]
                 ))
               : hs('', !0),
           ])
@@ -70020,7 +70020,7 @@ const bie = si(xie, [['render', Aie]]),
       }
     },
   }),
-  Rie = si(Iie, [['__scopeId', 'data-v-9ec5a9f2']]),
+  Rie = si(Iie, [['__scopeId', 'data-v-f5429897']]),
   Nie = { class: 'gradio-webrtc-waveContainer' },
   Pie = qt({
     __name: 'AudioWave',
@@ -70138,25 +70138,25 @@ const bie = si(xie, [['render', Aie]]),
             {
               class: Wo([
                 'chat-btn',
-                n.streamState === Xe(qi).closed && 'start-chat',
-                n.streamState === Xe(qi).open && 'stop-chat',
+                n.streamState === Ke(qi).closed && 'start-chat',
+                n.streamState === Ke(qi).open && 'stop-chat',
               ]),
               onClick: i[0] || (i[0] = (...r) => n.onStartChat && n.onStartChat(...r)),
             },
             [
-              n.streamState === Xe(qi).closed
+              n.streamState === Ke(qi).closed
                 ? (yt(), Ct('span', Fie, 'Please点击开始对话'))
-                : n.streamState === Xe(qi).waiting
+                : n.streamState === Ke(qi).waiting
                   ? (yt(),
                     Ct('div', Oie, [
-                      kt('div', Bie, [Te(Xe(qd), { 'wrapper-class-name': 'spin-icon' })]),
+                      kt('div', Bie, [Te(Ke(qd), { 'wrapper-class-name': 'spin-icon' })]),
                       i[1] || (i[1] = kt('span', null, '等待中', -1)),
                     ]))
                   : (yt(), Ct('div', Uie)),
             ],
             2
           ),
-          n.streamState === Xe(qi).open
+          n.streamState === Ke(qi).open
             ? (yt(),
               Ct('div', kie, [
                 Te(
@@ -70176,7 +70176,7 @@ const bie = si(xie, [['render', Aie]]),
       )
     },
   }),
-  Vie = si(zie, [['__scopeId', 'data-v-8a83fff7']])
+  Vie = si(zie, [['__scopeId', 'data-v-b1b2b976']])
 function Hie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
@@ -70231,18 +70231,18 @@ const $ie = { class: 'chat-input-container' },
                   ref: s,
                   onKeydown: a,
                   onInput: c,
-                  style: Go('height:'.concat(Xe(i), 'px')),
+                  style: Go('height:'.concat(Ke(i), 'px')),
                 },
                 null,
                 36
               ),
-              kt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Xe(o)), 513),
+              kt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Ke(o)), 513),
             ]),
             h.replying
               ? (yt(), Ct('button', { key: 0, class: 'interrupt-btn', onClick: d }))
               : (yt(),
                 Ct('button', { key: 1, class: 'send-btn', onClick: l }, [
-                  Te(Xe(Ed), { icon: Xe(aie), color: '#fff' }, null, 8, ['icon']),
+                  Te(Ke(Ed), { icon: Ke(aie), color: '#fff' }, null, 8, ['icon']),
                 ])),
           ]),
           f[0] || (f[0] = kt('div', { class: 'ai-generate-hint' }, '内容内 AI生成', -1)),
@@ -70250,7 +70250,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  jie = si(Qie, [['__scopeId', 'data-v-16f85393']]),
+  jie = si(Qie, [['__scopeId', 'data-v-b3b30470']]),
   qie = { class: 'answer-message-text' },
   Xie = qt({
     __name: 'ChatMessage',
@@ -70267,7 +70267,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  Kie = si(Xie, [['__scopeId', 'data-v-b135492b']]),
+  Kie = si(Xie, [['__scopeId', 'data-v-4a9aef19']]),
   Yie = { class: 'chat-records-inner' },
   Zie = qt({
     __name: 'ChatRecords',
@@ -70419,10 +70419,7 @@ const $ie = { class: 'chat-input-container' },
             kt('div', Jie, [
               kt(
                 'div',
-                {
-                  class: 'video-container',
-                  style: Go({ visibility: Xe(g) ? 'visible' : 'hidden', aspectRatio: l.value }),
-                },
+                { class: 'video-container', style: Go({ aspectRatio: l.value }) },
                 [
                   kt('div', ere, [Te(Rie)]),
                   Pc(
@@ -70430,7 +70427,7 @@ const $ie = { class: 'chat-input-container' },
                       'div',
                       {
                         class: Wo(
-                          'local-video-container '.concat(Xe(y) === 'open' ? 'scaled' : '')
+                          'local-video-container '.concat(Ke(y) === 'open' ? 'scaled' : '')
                         ),
                         ref_key: 'localVideoContainerRef',
                         ref: r,
@@ -70446,8 +70443,8 @@ const $ie = { class: 'chat-input-container' },
                             muted: '',
                             playsinline: '',
                             style: Go({
-                              visibility: Xe(p) ? 'hidden' : 'visible',
-                              display: !Xe(d) || Xe(p) ? 'none' : 'block',
+                              visibility: Ke(p) ? 'hidden' : 'visible',
+                              display: !Ke(d) || Ke(p) ? 'none' : 'block',
                             }),
                           },
                           null,
@@ -70456,13 +70453,13 @@ const $ie = { class: 'chat-input-container' },
                       ],
                       2
                     ),
-                    [[cm, Xe(d) && !Xe(p)]]
+                    [[cm, Ke(d) && !Ke(p)]]
                   ),
                   kt(
                     'div',
                     { class: 'remote-video-container', ref_key: 'remoteVideoContainerRef', ref: s },
                     [
-                      Xe(m)
+                      Ke(m)
                         ? hs('', !0)
                         : Pc(
                             (yt(),
@@ -70476,13 +70473,13 @@ const $ie = { class: 'chat-input-container' },
                                 ref: a,
                                 autoplay: '',
                                 playsinline: '',
-                                muted: Xe(v),
+                                muted: Ke(v),
                               },
                               null,
                               40,
                               tre
                             )),
-                            [[cm, Xe(y) === 'open']]
+                            [[cm, Ke(y) === 'open']]
                           ),
                     ],
                     512
@@ -70490,7 +70487,7 @@ const $ie = { class: 'chat-input-container' },
                   kt('div', nre, [
                     Te(
                       Zie,
-                      { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
+                      { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Ke(S) },
                       null,
                       8,
                       ['chatRecords']
@@ -70499,22 +70496,22 @@ const $ie = { class: 'chat-input-container' },
                 ],
                 4
               ),
-              (!Xe(h) || Xe(f)) && Xe(y) === 'open'
+              (!Ke(h) || Ke(f)) && Ke(y) === 'open'
                 ? (yt(),
                   ou(
                     jie,
                     {
                       key: 0,
-                      replying: Xe(x),
+                      replying: Ke(x),
                       onInterrupt: M,
                       onSend: L,
-                      onStop: Xe(t).startWebRTC,
+                      onStop: Ke(t).startWebRTC,
                     },
                     null,
                     8,
                     ['replying', 'onStop']
                   ))
-                : Xe(g)
+                : Ke(g)
                   ? (yt(),
                     ou(
                       Vie,
@@ -70522,7 +70519,7 @@ const $ie = { class: 'chat-input-container' },
                         key: 1,
                         onStartChat: I,
                         'audio-source-callback': u,
-                        streamState: Xe(y),
+                        streamState: Ke(y),
                         'wave-color': '#7873F6',
                       },
                       null,
@@ -70537,7 +70534,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  rre = si(ire, [['__scopeId', 'data-v-628a3381']]),
+  rre = si(ire, [['__scopeId', 'data-v-92aac294']]),
   sre = { class: 'wrap' },
   ore = qt({
     __name: 'App',
@@ -70548,12 +70545,12 @@ const $ie = { class: 'chat-input-container' },
         (t, i) => (
           yt(),
           ou(
-            Xe(Jc),
-            { locale: Xe(Fne)[Xe(uR)] },
+            Ke(Jc),
+            { locale: Ke(Fne)[Ke(uR)] },
             {
               default: gw(() => [
                 kt('div', sre, [
-                  Xe(e).webcamAccessed ? hs('', !0) : (yt(), ou(Ree, { key: 0 })),
+                  Ke(e).webcamAccessed ? hs('', !0) : (yt(), ou(Ree, { key: 0 })),
                   Te(rre),
                 ]),
               ]),
@@ -70566,7 +70563,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  are = si(ore, [['__scopeId', 'data-v-45f9c857']])
+  are = si(ore, [['__scopeId', 'data-v-ab895659']])
 var Kp = { exports: {} },
   lre = Kp.exports,
   FT

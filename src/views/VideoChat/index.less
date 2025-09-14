@@ -1,23 +1,36 @@
 .chat-input-wrapper {
-  // position: absolute;
-  margin: 0 16px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
   transition: width 0.1s ease;
   
+  @media (max-width: 1024px) and (min-width: 769px) {
+    padding: 0 14px;
+  }
+  
   @media (max-width: 768px) {
-    margin: 0 12px;
+    padding: 0 12px;
   }
   
   @media (max-width: 480px) {
-    margin: 0 8px;
+    padding: 0 10px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 0 8px;
   }
 }
 .page-container {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   padding: 0;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   
   @media (max-width: 768px) {
@@ -30,22 +43,26 @@
 }
 .content-container {
   height: 100%;
-  max-width: calc(100%);
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 .video-container {
   position: relative;
   width: 100%;
-  height: 85%;
+  flex: 1;
+  min-height: 0;
   margin: 0;
   
+  // 确保在移动端有足够的最小高度
   @media (max-width: 768px) {
-    height: 70%;
-    margin: 0;
+    min-height: 60vh;
   }
   
   @media (max-width: 480px) {
-    height: 65%;
-    margin: 0;
+    min-height: 55vh;
   }
   
   .local-video-container {
@@ -105,7 +122,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 30%;
+    height: 25%;
+    min-height: 120px;
+    max-height: 200px;
     overflow: auto;
     background: linear-gradient(
       to bottom,
@@ -122,14 +141,34 @@
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
     
+    @media (max-width: 1024px) and (min-width: 769px) {
+      height: 28%;
+      min-height: 140px;
+      max-height: 220px;
+      padding: 14px;
+      border-radius: 0 0 28px 28px;
+    }
+    
     @media (max-width: 768px) {
       height: 30%;
-      padding: 12px;
-      border-radius: 0 0 20px 20px;
+      min-height: 150px;
+      max-height: 250px;
+      padding: 16px;
+      border-radius: 0 0 24px 24px;
     }
     
     @media (max-width: 480px) {
       height: 35%;
+      min-height: 160px;
+      max-height: 280px;
+      padding: 18px;
+      border-radius: 0 0 20px 20px;
+    }
+
+    @media (max-width: 360px) {
+      height: 40%;
+      min-height: 140px;
+      max-height: 300px;
       padding: 16px;
       border-radius: 0 0 16px 16px;
     }

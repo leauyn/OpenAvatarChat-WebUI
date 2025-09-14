@@ -21,7 +21,8 @@ videoChatState.init()
 <style lang="less" scoped>
 .wrap {
   background-image: url(@/assets/background.png);
-  height: calc(max(80vh, 100%));
+  height: 100vh;
+  width: 100vw;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;

@@ -4,7 +4,6 @@
       <div
         class="video-container"
         :style="{
-          visibility: webcamAccessed ? 'visible' : 'hidden',
           aspectRatio: remoteAspectRatio,
         }"
       >
