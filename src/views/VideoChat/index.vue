@@ -42,7 +42,7 @@
           />
         </div>
 
-        <div class="chat-records-container">
+        <div v-if="shouldShowChatRecords" class="chat-records-container">
           <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
         </div>
       </div>
@@ -59,7 +59,7 @@
         <ChatBtn
           @start-chat="onStartChat"
           :audio-source-callback="audioSourceCallback"
-          :streamState="streamState"
+          :streamState="streamState as string"
           wave-color="#7873F6"
         />
       </template>
@@ -75,7 +75,7 @@ import ChatRecords from '@/components/ChatRecords.vue'
 import { useVideoChatStore } from '@/store'
 import { useVisionStore } from '@/store/vision'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 const visionState = useVisionStore()
 const videoChatState = useVideoChatStore()
 const wrapRef = ref<HTMLDivElement>()
@@ -124,6 +124,20 @@ const {
   chatRecords,
 } = storeToRefs(videoChatState)
 const { wrapperRect, isLandscape } = storeToRefs(visionState)
+
+// 计算是否应该显示聊天记录
+const shouldShowChatRecords = computed(() => {
+  // 如果有聊天记录，则显示
+  if (chatRecords.value && chatRecords.value.length > 0) {
+    return true
+  }
+  // 如果会话正在进行中，也显示（即使没有聊天记录）
+  if (streamState.value === 'open') {
+    return true
+  }
+  // 其他情况不显示（初始启动页面）
+  return false
+})
 
 function onStartChat() {
   videoChatState.startWebRTC().then(() => {

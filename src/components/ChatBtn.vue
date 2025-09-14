@@ -42,8 +42,8 @@ import AudioWave from '@/components/AudioWave.vue'
 
 const props = defineProps({
   streamState: {
-    type: Object,
-    default: () => StreamState.closed,
+    type: String,
+    default: StreamState.closed,
   },
   onStartChat: {
     type: Function,
