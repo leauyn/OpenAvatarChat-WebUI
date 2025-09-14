@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import Iconfont, { Send } from '@/components/Iconfont';
-import { insertStringAt } from '@/utils/utils';
-import { useTemplateRef } from 'vue';
+import Iconfont, { Send } from '@/components/Iconfont'
+import { insertStringAt } from '@/utils/utils'
+import { useTemplateRef } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    replying: boolean;
+    replying: boolean
   }>(),
-  {},
-);
-const emit = defineEmits(['send', 'stop', 'interrupt']);
+  {}
+)
+const emit = defineEmits(['send', 'stop', 'interrupt'])
 
-let inputHeight = 24;
-let rowsDivRef = useTemplateRef<HTMLDivElement>('rowsDivRef');
-let chatInputRef = useTemplateRef<HTMLInputElement>('chatInputRef');
-let inputValue = '';
+let inputHeight = 24
+let rowsDivRef = useTemplateRef<HTMLDivElement>('rowsDivRef')
+let chatInputRef = useTemplateRef<HTMLInputElement>('chatInputRef')
+let inputValue = ''
 function on_chat_input_keydown(event: KeyboardEvent) {
   if (event.key === 'Enter') {
     if (event.altKey) {
@@ -22,34 +22,34 @@ function on_chat_input_keydown(event: KeyboardEvent) {
         chatInputRef.value.value = insertStringAt(
           chatInputRef.value.value,
           '\n',
-          chatInputRef.value.selectionStart || 0,
-        );
-        chatInputRef.value.dispatchEvent(new InputEvent('input'));
+          chatInputRef.value.selectionStart || 0
+        )
+        chatInputRef.value.dispatchEvent(new InputEvent('input'))
       }
     } else {
-      event.preventDefault();
-      on_send();
+      event.preventDefault()
+      on_send()
     }
   }
 }
 async function on_send() {
   if (chatInputRef.value) {
-    emit('send', chatInputRef.value.value);
-    chatInputRef.value.value = '';
+    emit('send', chatInputRef.value.value)
+    chatInputRef.value.value = ''
   }
 }
 function on_chat_input(event: Event) {
   if (rowsDivRef.value) {
-    rowsDivRef.value.textContent = (event.target as any).value.replace(/\n$/, '\n\n');
-    inputHeight = rowsDivRef.value.offsetHeight;
+    rowsDivRef.value.textContent = (event.target as any).value.replace(/\n$/, '\n\n')
+    inputHeight = rowsDivRef.value.offsetHeight
   }
 }
 
 function onStop() {
-  emit('stop');
+  emit('stop')
 }
 function onInterrupt() {
-  emit('interrupt');
+  emit('interrupt')
 }
 </script>
 
@@ -77,35 +77,63 @@ function onInterrupt() {
         </button>
       </template>
     </div>
+
+    <div class="ai-generate-hint">内容内 AI生成</div>
   </div>
 </template>
 
 <style scoped lang="less">
 .chat-input-container {
-  height: 15%;
+  height: 8%;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 84px;
-  width: calc(100% - 140px);
+  min-height: 60px;
+  width: 90%;
+  max-width: 400px;
   margin: auto;
-  // padding: 0 12px;
+
+  @media (max-width: 768px) {
+    height: 10%;
+    width: 95%;
+    max-width: 350px;
+    min-height: 56px;
+  }
+
+  @media (max-width: 480px) {
+    height: 12%;
+    width: 98%;
+    max-width: 320px;
+    min-height: 52px;
+  }
 
   .chat-input-inner {
     padding: 0 12px;
     background-color: #fff;
-    height: 64px;
-    flex: 1;
+    height: 44px;
+    width: 100%;
     display: flex;
     align-items: center;
     border: 1px solid #e8eaf2;
-    border-radius: 12px;
-    border-radius: 20px;
+    border-radius: 22px;
     box-shadow:
-      0 12px 24px -16px rgba(54, 54, 73, 0.04),
-      0 12px 40px 0 rgba(51, 51, 71, 0.08),
+      0 4px 12px -4px rgba(54, 54, 73, 0.04),
+      0 4px 16px 0 rgba(51, 51, 71, 0.08),
       0 0 1px 0 rgba(44, 44, 54, 0.02);
+
+    @media (max-width: 768px) {
+      height: 40px;
+      border-radius: 20px;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 480px) {
+      height: 36px;
+      border-radius: 18px;
+      padding: 0 8px;
+    }
 
     .chat-input-wrapper {
       flex: 1;
@@ -118,14 +146,26 @@ function onInterrupt() {
         border: none;
         outline: none;
         color: #26244c;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 400;
         resize: none;
         padding: 0;
-        margin: 8px 0;
-        line-height: 24px;
-        max-height: 48px;
-        min-height: 24px;
+        margin: 6px 0;
+        line-height: 20px;
+        max-height: 32px;
+        min-height: 20px;
+
+        @media (max-width: 768px) {
+          font-size: 13px;
+          line-height: 18px;
+          margin: 4px 0;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 12px;
+          line-height: 16px;
+          margin: 3px 0;
+        }
       }
 
       .rowsDiv {
@@ -147,14 +187,34 @@ function onInterrupt() {
       border: none;
       flex: 0 0 auto;
       background: #615ced;
-      border-radius: 20px;
+      border-radius: 18px;
       height: 28px;
       width: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 16px;
+      margin-left: 8px;
       cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #524de1;
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        height: 24px;
+        width: 24px;
+        border-radius: 12px;
+        margin-left: 6px;
+      }
+
+      @media (max-width: 480px) {
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        margin-left: 4px;
+      }
     }
 
     .interrupt-btn {
@@ -170,22 +230,59 @@ function onInterrupt() {
 
   .stop-chat-btn {
     cursor: pointer;
-    margin-right: 12px;
+    margin-right: 8px;
     height: 28px;
     width: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 999px;
+    border-radius: 14px;
     opacity: 1;
     background: linear-gradient(180deg, #7873f6 0%, #524de1 100%);
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
 
     &::after {
       content: ' ';
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 2px;
       background: #fafafa;
+    }
+
+    @media (max-width: 768px) {
+      height: 24px;
+      width: 24px;
+      border-radius: 12px;
+      margin-right: 6px;
+    }
+
+    @media (max-width: 480px) {
+      height: 20px;
+      width: 20px;
+      border-radius: 10px;
+      margin-right: 4px;
+    }
+  }
+
+  .ai-generate-hint {
+    margin-top: 4px;
+    font-size: 11px;
+    color: #8e8ea0;
+    text-align: center;
+    opacity: 0.7;
+
+    @media (max-width: 768px) {
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 9px;
+      margin-top: 2px;
     }
   }
 }

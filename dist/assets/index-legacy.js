@@ -719,7 +719,7 @@
             }
           }
           ;((x.textContent =
-            'body{margin:0;overflow-y:auto}*{box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent!important}img{pointer-events:none}#app{width:100vw;height:100vh}.access-wrap[data-v-dbceed4a]{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}.icon-wrap[data-v-dbceed4a]{width:30px;font-size:40px}.icon[data-v-91f3cb32]{width:1em;height:1em;vertical-align:-.15em;fill:currentColor;overflow:hidden;color:inherit;font-size:inherit}.action-group[data-v-76b8fe8f]{display:flex;align-items:center;gap:8px;border-radius:16px;background:rgba(0,0,0,.6);padding:8px 12px;backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.3)}.action-group .action-wrapper[data-v-76b8fe8f]{position:relative}.action-group .action[data-v-76b8fe8f]{cursor:pointer;width:48px;height:48px;border-radius:12px;font-size:20px;display:flex;align-items:center;justify-content:center;position:relative;color:#fff;transition:all .2s ease;background:rgba(255,255,255,.05)}.action-group .action[data-v-76b8fe8f]:hover{background:rgba(255,255,255,.15);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}.action-group .action[data-v-76b8fe8f]:active{transform:translateY(0)}.action-group .action .corner[data-v-76b8fe8f]{position:absolute;right:2px;bottom:2px;padding:2px}.action-group .action .corner .corner-inner[data-v-76b8fe8f]{width:6px;height:6px;border-top:2px transparent solid;border-left:2px transparent solid;border-bottom:2px #fff solid;border-right:2px #fff solid}.action-group .action .selectors[data-v-76b8fe8f]{position:absolute;top:0;left:calc(100% + 8px);margin-top:0;max-height:200px;min-width:200px;border-radius:12px;width:max-content;overflow:hidden;overflow-y:auto;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:1000}.action-group .action .selectors.left[data-v-76b8fe8f]{left:auto;right:calc(100% + 8px);transform:none}.action-group .action .selectors .selector[data-v-76b8fe8f]{max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:relative;cursor:pointer;height:48px;line-height:48px;color:#fff;font-size:14px;padding:0 16px;transition:background-color .2s ease}.action-group .action .selectors .selector[data-v-76b8fe8f]:hover{background:rgba(255,255,255,.1)}.action-group .action .selectors .selector .active-icon[data-v-76b8fe8f]{position:absolute;right:12px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;top:50%;transform:translateY(-50%)}@media (max-width: 768px){.action-group[data-v-76b8fe8f]{gap:6px;padding:6px 10px}.action-group .action[data-v-76b8fe8f]{width:44px;height:44px;font-size:18px}}@media (max-width: 480px){.action-group[data-v-76b8fe8f]{gap:4px;padding:4px 8px}.action-group .action[data-v-76b8fe8f]{width:40px;height:40px;font-size:16px}}.gradio-webrtc-waveContainer[data-v-d7e47480]{position:relative;display:flex;min-height:100px;max-height:128px;justify-content:center;align-items:center}.gradio-webrtc-boxContainer[data-v-d7e47480]{display:flex;justify-content:space-between;height:64px;--boxSize: 4px;--gutter: 4px}.split-container[data-v-d7e47480]{width:80px}.gradio-webrtc-box[data-v-d7e47480]{height:100%;width:var(--boxSize);background:var(--color-accent);border-radius:8px;transition:transform .05s ease}.gradio-webrtc-icon-container[data-v-d7e47480]{position:relative;width:128px;height:128px;display:flex;justify-content:center;align-items:center}.gradio-webrtc-icon[data-v-d7e47480]{position:relative;width:48px;height:48px;border-radius:50%;transition:transform .1s ease;display:flex;justify-content:center;align-items:center;z-index:2}.icon-image[data-v-d7e47480]{width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1)}.pulse-ring[data-v-d7e47480]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;animation:pulse-d7e47480 2s cubic-bezier(.4,0,.6,1) infinite;opacity:.5}@keyframes pulse-d7e47480{0%{transform:translate(-50%,-50%) scale(1);opacity:.5}to{transform:translate(-50%,-50%) scale(var(--max-scale, 3));opacity:0}}.dots[data-v-d7e47480]{display:flex;gap:8px;align-items:center;height:64px}.dot[data-v-d7e47480]{width:12px;height:12px;border-radius:50%;opacity:.5;animation:pulse-d7e47480 1.5s infinite}.dot[data-v-d7e47480]:nth-child(2){animation-delay:.2s}.dot[data-v-d7e47480]:nth-child(3){animation-delay:.4s}@keyframes pulse-d7e47480{0%,to{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}.player-controls[data-v-8a83fff7]{height:15%;position:relative;display:flex;justify-content:center;align-items:center;min-height:84px}.player-controls .chat-btn[data-v-8a83fff7]{height:64px;width:296px;display:flex;justify-content:center;align-items:center;border-radius:999px;opacity:1;background:linear-gradient(180deg,#7873f6,#524de1);transition:all .3s;z-index:2;cursor:pointer}.player-controls .start-chat[data-v-8a83fff7]{font-size:16px;font-weight:500;text-align:center;color:#fff}.player-controls .waiting-icon-text[data-v-8a83fff7]{width:80px;align-items:center;font-size:16px;font-weight:500;color:#fff;margin:0 var(--spacing-sm);display:flex;justify-content:space-evenly;gap:var(--size-1)}.player-controls .waiting-icon-text .icon[data-v-8a83fff7]{width:25px;height:25px;fill:#fff;stroke:#fff;color:#fff}.player-controls .waiting-icon-text .spin-icon[data-v-8a83fff7]{color:#fff}.ant-spin-dot-item{background-color:#fff!important}.player-controls .stop-chat[data-v-8a83fff7]{width:64px}.player-controls .stop-chat .stop-chat-inner[data-v-8a83fff7]{width:25px;height:25px;border-radius:6.25px;background:#fafafa}.player-controls .input-audio-wave[data-v-8a83fff7]{position:absolute}.chat-input-container[data-v-32a58abc]{height:15%;position:relative;display:flex;justify-content:center;align-items:center;min-height:84px;width:calc(100% - 140px);margin:auto}.chat-input-container .chat-input-inner[data-v-32a58abc]{padding:0 12px;background-color:#fff;height:64px;flex:1;display:flex;align-items:center;border:1px solid #e8eaf2;border-radius:20px;box-shadow:0 12px 24px -16px rgba(54,54,73,.04),0 12px 40px rgba(51,51,71,.08),0 0 1px rgba(44,44,54,.02)}.chat-input-container .chat-input-inner .chat-input-wrapper[data-v-32a58abc]{flex:1;position:relative;display:flex;align-items:center}.chat-input-container .chat-input-inner .chat-input-wrapper .chat-input[data-v-32a58abc]{width:100%;border:none;outline:none;color:#26244c;font-size:16px;font-weight:400;resize:none;padding:0;margin:8px 0;line-height:24px;max-height:48px;min-height:24px}.chat-input-container .chat-input-inner .chat-input-wrapper .rowsDiv[data-v-32a58abc]{position:absolute;left:0;right:0;z-index:-1;visibility:hidden;font-size:16px;font-weight:400;line-height:24px;white-space:pre-wrap;word-wrap:break-word}.chat-input-container .chat-input-inner .send-btn[data-v-32a58abc],.chat-input-container .chat-input-inner .interrupt-btn[data-v-32a58abc]{border:none;flex:0 0 auto;background:#615ced;border-radius:20px;height:28px;width:28px;display:flex;align-items:center;justify-content:center;margin-left:16px;cursor:pointer}.chat-input-container .chat-input-inner .interrupt-btn[data-v-32a58abc]:after{content:" ";width:12px;height:12px;border-radius:2px;background:#fafafa}.chat-input-container .stop-chat-btn[data-v-32a58abc]{cursor:pointer;margin-right:12px;height:28px;width:28px;display:flex;justify-content:center;align-items:center;border-radius:999px;opacity:1;background:linear-gradient(180deg,#7873f6,#524de1)}.chat-input-container .stop-chat-btn[data-v-32a58abc]:after{content:" ";width:12px;height:12px;border-radius:2px;background:#fafafa}.answer-message-container[data-v-dde1c5d3]{padding:6px 12px;background:rgba(255,255,255,.8);border-radius:12px;color:#26244c}.answer-message-container.human[data-v-dde1c5d3]{background:rgba(221,221,221,.6);margin-right:0}.answer-message-container.avatar[data-v-dde1c5d3]{background:#9189fa;color:#fff}.chat-records{width:100%;height:100%;overflow-y:auto}.chat-records::-webkit-scrollbar{display:none}.chat-records-inner{display:flex;flex-direction:column;align-items:flex-end;justify-content:end;width:100%;height:auto;min-height:100%}.chat-records-inner .chat-message{margin-bottom:12px;max-width:80%}.chat-records-inner .chat-message.human{align-self:flex-end}.chat-records-inner .chat-message.avatar{align-self:flex-start}.chat-records-inner .chat-message:last-child{margin-bottom:0}.chat-input-wrapper[data-v-628a3381]{margin:0 70px;transition:width .1s ease}.page-container[data-v-628a3381]{height:100%;width:100%;padding:32px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center}.content-container[data-v-628a3381]{height:100%;max-width:100%}.video-container[data-v-628a3381]{position:relative;max-width:calc(100% - 134px);height:85%;margin:0 70px}.video-container .local-video-container[data-v-628a3381]{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:32px;overflow:hidden;display:flex;align-items:center;justify-content:center;z-index:1;background:#fff;transition:all .3s ease}.video-container .local-video-container.scaled[data-v-628a3381]{top:auto;left:0;bottom:30%;width:25%;height:auto;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.3);border:2px solid rgba(255,255,255,.2);z-index:100}.video-container .remote-video-container[data-v-628a3381]{width:100%;height:100%;overflow:hidden;border-radius:32px;transition:all .3s linear;background:#fff;position:relative}.video-container .chat-records-container[data-v-628a3381]{position:absolute;bottom:0;left:0;right:0;height:30%;overflow:auto;background:linear-gradient(to bottom,rgba(255,255,255,.12),rgba(255,255,255,.08));backdrop-filter:blur(15px);border-radius:0 0 32px 32px;border:1px solid rgba(255,255,255,.1);padding:12px;box-sizing:border-box;z-index:99;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 30%);mask-image:linear-gradient(to bottom,transparent 0%,black 30%)}.video-container .local-video[data-v-628a3381]{width:100%;height:auto;object-fit:contain;object-position:center center}.video-container .remote-video[data-v-628a3381]{width:101%;height:100%;object-fit:cover}.video-container .remote-canvas[data-v-628a3381]{width:100%;height:100%}.top-actions[data-v-628a3381]{position:absolute;top:16px;left:50%;transform:translate(-50%);z-index:10;display:flex;justify-content:center;align-items:center}@media (max-width: 768px){.top-actions[data-v-628a3381]{top:12px}}@media (max-width: 480px){.top-actions[data-v-628a3381]{top:8px}}.wrap[data-v-45f9c857]{background-image:url(' +
+            'body{margin:0;overflow-y:auto}*{box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent!important}img{pointer-events:none}#app{width:100vw;height:100vh}.access-wrap[data-v-dbceed4a]{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}.icon-wrap[data-v-dbceed4a]{width:30px;font-size:40px}.icon[data-v-91f3cb32]{width:1em;height:1em;vertical-align:-.15em;fill:currentColor;overflow:hidden;color:inherit;font-size:inherit}.action-group[data-v-b28f9260]{border-radius:20px;background:rgba(88,87,87,.5);padding:8px;backdrop-filter:blur(8px);display:flex;align-items:center;gap:8px;flex-shrink:0}.action-group .action[data-v-b28f9260]{cursor:pointer;width:70px!important;height:70px!important;border-radius:16px!important;font-size:34px!important;display:flex;align-items:center;justify-content:center;position:relative;color:#fff;transition:background-color .2s ease;flex-shrink:0}.action-group .action[data-v-b28f9260]:hover{background:#67666a}.action-group .action .corner[data-v-b28f9260]{position:absolute;right:0;bottom:0;padding:3px}.action-group .action .corner .corner-inner[data-v-b28f9260]{width:6px;height:6px;border-top:3px transparent solid;border-left:3px transparent solid;border-bottom:3px #fff solid;border-right:3px #fff solid}.action-group .action .selectors[data-v-b28f9260]{position:absolute;top:0;left:100%;margin-left:3px;max-height:150px;min-width:200px;border-radius:12px;width:max-content;overflow:hidden;overflow-y:auto;background:rgba(90,90,90,.5);backdrop-filter:blur(8px);z-index:1000}.action-group .action .selectors.left[data-v-b28f9260]{left:0;margin-left:-3px;transform:translate(-100%)}.action-group .action .selectors .selector[data-v-b28f9260]{max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:relative;cursor:pointer;height:42px;line-height:42px;color:#fff;font-size:14px;padding-left:15px;padding-right:50px;transition:background-color .2s ease}.action-group .action .selectors .selector[data-v-b28f9260]:hover{background:#67666a}.action-group .action .selectors .selector .active-icon[data-v-b28f9260]{position:absolute;right:10px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;top:0}.action-group .selectors .selector[data-v-b28f9260]{height:70px;line-height:70px;font-size:18px;padding-left:22px;padding-right:70px}.action-group .selectors .selector .active-icon[data-v-b28f9260]{width:60px;height:60px;right:18px}@media screen and (max-width: 1024px){.action-group .action[data-v-b28f9260]{width:70px!important;height:70px!important;font-size:34px!important;border-radius:16px!important}}@media screen and (max-device-width: 1024px){.action-group .action[data-v-b28f9260]{width:70px!important;height:70px!important;font-size:34px!important;border-radius:16px!important}}.gradio-webrtc-waveContainer[data-v-d7e47480]{position:relative;display:flex;min-height:100px;max-height:128px;justify-content:center;align-items:center}.gradio-webrtc-boxContainer[data-v-d7e47480]{display:flex;justify-content:space-between;height:64px;--boxSize: 4px;--gutter: 4px}.split-container[data-v-d7e47480]{width:80px}.gradio-webrtc-box[data-v-d7e47480]{height:100%;width:var(--boxSize);background:var(--color-accent);border-radius:8px;transition:transform .05s ease}.gradio-webrtc-icon-container[data-v-d7e47480]{position:relative;width:128px;height:128px;display:flex;justify-content:center;align-items:center}.gradio-webrtc-icon[data-v-d7e47480]{position:relative;width:48px;height:48px;border-radius:50%;transition:transform .1s ease;display:flex;justify-content:center;align-items:center;z-index:2}.icon-image[data-v-d7e47480]{width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1)}.pulse-ring[data-v-d7e47480]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;animation:pulse-d7e47480 2s cubic-bezier(.4,0,.6,1) infinite;opacity:.5}@keyframes pulse-d7e47480{0%{transform:translate(-50%,-50%) scale(1);opacity:.5}to{transform:translate(-50%,-50%) scale(var(--max-scale, 3));opacity:0}}.dots[data-v-d7e47480]{display:flex;gap:8px;align-items:center;height:64px}.dot[data-v-d7e47480]{width:12px;height:12px;border-radius:50%;opacity:.5;animation:pulse-d7e47480 1.5s infinite}.dot[data-v-d7e47480]:nth-child(2){animation-delay:.2s}.dot[data-v-d7e47480]:nth-child(3){animation-delay:.4s}@keyframes pulse-d7e47480{0%,to{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}.player-controls[data-v-8a83fff7]{height:15%;position:relative;display:flex;justify-content:center;align-items:center;min-height:84px}.player-controls .chat-btn[data-v-8a83fff7]{height:64px;width:296px;display:flex;justify-content:center;align-items:center;border-radius:999px;opacity:1;background:linear-gradient(180deg,#7873f6,#524de1);transition:all .3s;z-index:2;cursor:pointer}.player-controls .start-chat[data-v-8a83fff7]{font-size:16px;font-weight:500;text-align:center;color:#fff}.player-controls .waiting-icon-text[data-v-8a83fff7]{width:80px;align-items:center;font-size:16px;font-weight:500;color:#fff;margin:0 var(--spacing-sm);display:flex;justify-content:space-evenly;gap:var(--size-1)}.player-controls .waiting-icon-text .icon[data-v-8a83fff7]{width:25px;height:25px;fill:#fff;stroke:#fff;color:#fff}.player-controls .waiting-icon-text .spin-icon[data-v-8a83fff7]{color:#fff}.ant-spin-dot-item{background-color:#fff!important}.player-controls .stop-chat[data-v-8a83fff7]{width:64px}.player-controls .stop-chat .stop-chat-inner[data-v-8a83fff7]{width:25px;height:25px;border-radius:6.25px;background:#fafafa}.player-controls .input-audio-wave[data-v-8a83fff7]{position:absolute}.chat-input-container[data-v-422c1d19]{height:8%;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:60px;width:90%;max-width:400px;margin:auto}@media (max-width: 768px){.chat-input-container[data-v-422c1d19]{height:10%;width:95%;max-width:350px;min-height:56px}}@media (max-width: 480px){.chat-input-container[data-v-422c1d19]{height:12%;width:98%;max-width:320px;min-height:52px}}.chat-input-container .chat-input-inner[data-v-422c1d19]{padding:0 12px;background-color:#fff;height:44px;width:100%;display:flex;align-items:center;border:1px solid #e8eaf2;border-radius:22px;box-shadow:0 4px 12px -4px rgba(54,54,73,.04),0 4px 16px rgba(51,51,71,.08),0 0 1px rgba(44,44,54,.02)}@media (max-width: 768px){.chat-input-container .chat-input-inner[data-v-422c1d19]{height:40px;border-radius:20px;padding:0 10px}}@media (max-width: 480px){.chat-input-container .chat-input-inner[data-v-422c1d19]{height:36px;border-radius:18px;padding:0 8px}}.chat-input-container .chat-input-inner .chat-input-wrapper[data-v-422c1d19]{flex:1;position:relative;display:flex;align-items:center}.chat-input-container .chat-input-inner .chat-input-wrapper .chat-input[data-v-422c1d19]{width:100%;border:none;outline:none;color:#26244c;font-size:14px;font-weight:400;resize:none;padding:0;margin:6px 0;line-height:20px;max-height:32px;min-height:20px}@media (max-width: 768px){.chat-input-container .chat-input-inner .chat-input-wrapper .chat-input[data-v-422c1d19]{font-size:13px;line-height:18px;margin:4px 0}}@media (max-width: 480px){.chat-input-container .chat-input-inner .chat-input-wrapper .chat-input[data-v-422c1d19]{font-size:12px;line-height:16px;margin:3px 0}}.chat-input-container .chat-input-inner .chat-input-wrapper .rowsDiv[data-v-422c1d19]{position:absolute;left:0;right:0;z-index:-1;visibility:hidden;font-size:16px;font-weight:400;line-height:24px;white-space:pre-wrap;word-wrap:break-word}.chat-input-container .chat-input-inner .send-btn[data-v-422c1d19],.chat-input-container .chat-input-inner .interrupt-btn[data-v-422c1d19]{border:none;flex:0 0 auto;background:#615ced;border-radius:18px;height:28px;width:28px;display:flex;align-items:center;justify-content:center;margin-left:8px;cursor:pointer;transition:all .2s ease}.chat-input-container .chat-input-inner .send-btn[data-v-422c1d19]:hover,.chat-input-container .chat-input-inner .interrupt-btn[data-v-422c1d19]:hover{background:#524de1;transform:scale(1.05)}@media (max-width: 768px){.chat-input-container .chat-input-inner .send-btn[data-v-422c1d19],.chat-input-container .chat-input-inner .interrupt-btn[data-v-422c1d19]{height:24px;width:24px;border-radius:12px;margin-left:6px}}@media (max-width: 480px){.chat-input-container .chat-input-inner .send-btn[data-v-422c1d19],.chat-input-container .chat-input-inner .interrupt-btn[data-v-422c1d19]{height:20px;width:20px;border-radius:10px;margin-left:4px}}.chat-input-container .chat-input-inner .interrupt-btn[data-v-422c1d19]:after{content:" ";width:12px;height:12px;border-radius:2px;background:#fafafa}.chat-input-container .stop-chat-btn[data-v-422c1d19]{cursor:pointer;margin-right:8px;height:28px;width:28px;display:flex;justify-content:center;align-items:center;border-radius:14px;opacity:1;background:linear-gradient(180deg,#7873f6,#524de1);transition:all .2s ease}.chat-input-container .stop-chat-btn[data-v-422c1d19]:hover{transform:scale(1.05)}.chat-input-container .stop-chat-btn[data-v-422c1d19]:after{content:" ";width:10px;height:10px;border-radius:2px;background:#fafafa}@media (max-width: 768px){.chat-input-container .stop-chat-btn[data-v-422c1d19]{height:24px;width:24px;border-radius:12px;margin-right:6px}}@media (max-width: 480px){.chat-input-container .stop-chat-btn[data-v-422c1d19]{height:20px;width:20px;border-radius:10px;margin-right:4px}}.chat-input-container .ai-generate-hint[data-v-422c1d19]{margin-top:4px;font-size:11px;color:#8e8ea0;text-align:center;opacity:.7}@media (max-width: 768px){.chat-input-container .ai-generate-hint[data-v-422c1d19]{font-size:10px;margin-top:3px}}@media (max-width: 480px){.chat-input-container .ai-generate-hint[data-v-422c1d19]{font-size:9px;margin-top:2px}}.answer-message-container[data-v-dde1c5d3]{padding:6px 12px;background:rgba(255,255,255,.8);border-radius:12px;color:#26244c}.answer-message-container.human[data-v-dde1c5d3]{background:rgba(221,221,221,.6);margin-right:0}.answer-message-container.avatar[data-v-dde1c5d3]{background:#9189fa;color:#fff}.chat-records{width:100%;height:100%;overflow-y:auto}.chat-records::-webkit-scrollbar{display:none}.chat-records-inner{display:flex;flex-direction:column;align-items:flex-end;justify-content:end;width:100%;height:auto;min-height:100%}.chat-records-inner .chat-message{margin-bottom:12px;max-width:80%}.chat-records-inner .chat-message.human{align-self:flex-end}.chat-records-inner .chat-message.avatar{align-self:flex-start}.chat-records-inner .chat-message:last-child{margin-bottom:0}.chat-input-wrapper[data-v-628a3381]{margin:0 16px;transition:width .1s ease}@media (max-width: 768px){.chat-input-wrapper[data-v-628a3381]{margin:0 12px}}@media (max-width: 480px){.chat-input-wrapper[data-v-628a3381]{margin:0 8px}}.page-container[data-v-628a3381]{height:100%;width:100%;padding:0;overflow:hidden;display:flex;align-items:flex-start;justify-content:center}@media (max-width: 768px){.page-container[data-v-628a3381]{padding:0}}@media (max-width: 480px){.page-container[data-v-628a3381]{padding:0}}.content-container[data-v-628a3381]{height:100%;max-width:100%}.video-container[data-v-628a3381]{position:relative;width:100%;height:85%;margin:0}@media (max-width: 768px){.video-container[data-v-628a3381]{height:70%;margin:0}}@media (max-width: 480px){.video-container[data-v-628a3381]{height:65%;margin:0}}.video-container .local-video-container[data-v-628a3381]{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:32px;overflow:hidden;display:flex;align-items:center;justify-content:center;z-index:1;background:#fff;transition:all .3s ease}.video-container .local-video-container.scaled[data-v-628a3381]{top:auto;left:0;bottom:30%;width:25%;height:auto;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.3);border:2px solid rgba(255,255,255,.2);z-index:100}@media (max-width: 768px){.video-container .local-video-container.scaled[data-v-628a3381]{width:30%;border-radius:12px;border:1px solid rgba(255,255,255,.3);box-shadow:0 2px 8px rgba(0,0,0,.2)}}@media (max-width: 480px){.video-container .local-video-container.scaled[data-v-628a3381]{width:35%;border-radius:8px;border:1px solid rgba(255,255,255,.4);box-shadow:0 1px 4px rgba(0,0,0,.1)}}.video-container .remote-video-container[data-v-628a3381]{width:100%;height:100%;overflow:hidden;border-radius:0;transition:all .3s linear;background:#fff;position:relative}.video-container .chat-records-container[data-v-628a3381]{position:absolute;bottom:0;left:0;right:0;height:30%;overflow:auto;background:linear-gradient(to bottom,rgba(255,255,255,.12),rgba(255,255,255,.08));backdrop-filter:blur(15px);border-radius:0 0 32px 32px;border:1px solid rgba(255,255,255,.1);padding:12px;box-sizing:border-box;z-index:99;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 30%);mask-image:linear-gradient(to bottom,transparent 0%,black 30%)}@media (max-width: 768px){.video-container .chat-records-container[data-v-628a3381]{height:30%;padding:12px;border-radius:0 0 20px 20px}}@media (max-width: 480px){.video-container .chat-records-container[data-v-628a3381]{height:35%;padding:16px;border-radius:0 0 16px 16px}}.video-container .local-video[data-v-628a3381]{width:100%;height:auto;object-fit:contain;object-position:center center}.video-container .remote-video[data-v-628a3381]{width:101%;height:100%;object-fit:cover}.video-container .remote-canvas[data-v-628a3381]{width:100%;height:100%}.top-actions[data-v-628a3381]{position:absolute;top:12px;left:50%;transform:translate(-50%);z-index:10;display:flex;justify-content:center;align-items:center}@media (max-width: 768px){.top-actions[data-v-628a3381]{top:8px;left:50%;transform:translate(-50%)}}@media (max-width: 480px){.top-actions[data-v-628a3381]{top:6px;left:50%;transform:translate(-50%);width:auto;max-width:none}}.wrap[data-v-45f9c857]{background-image:url(' +
             new URL('background.png', o.meta.url).href +
             ');height:max(80vh,100%);background-size:100% 100%;background-repeat:no-repeat;position:relative}.wrap[data-v-45f9c857] *::-webkit-scrollbar{display:none}\n/*$vite$:1*/'),
             document.head.appendChild(x))
@@ -5248,7 +5248,7 @@
                   return e
                 },
               })
-            } catch (n$) {}
+            } catch (JJ) {}
           var Da = Pa
               ? function (e) {
                   return Pa.createHTML(e)
@@ -5658,7 +5658,7 @@
               }
               try {
                 e[t] = n
-              } catch (n$) {}
+              } catch (JJ) {}
               u && e.removeAttribute(i || t)
             } else null != n && (e[t] = 'innerHTML' === t ? Da(n) : n)
           }
@@ -7841,7 +7841,7 @@
                           Object.setPrototypeOf(e, t),
                           42 === e.foo()
                         )
-                      } catch (n$) {
+                      } catch (JJ) {
                         return !1
                       }
                     })()),
@@ -8900,7 +8900,7 @@
                     ),
                     {}
                   ).exports
-                } catch (n$) {}
+                } catch (JJ) {}
                 function t(e, t, n) {
                   ;((this.low = 0 | e), (this.high = 0 | t), (this.unsigned = !!n))
                 }
@@ -25449,7 +25449,7 @@
                         t += String.fromCharCode(e[n])
                       try {
                         return decodeURIComponent(escape(t))
-                      } catch (n$) {
+                      } catch (JJ) {
                         return t
                       }
                     },
@@ -63069,10 +63069,10 @@
                             this.sphericalHarmonicsDegree,
                             o
                           )
-                      } catch (n$) {
-                        throw n$ instanceof Xx
+                      } catch (JJ) {
+                        throw JJ instanceof Xx
                           ? new Error('File type or server does not support progressive loading.')
-                          : n$
+                          : JJ
                       }
                       throw new Error(
                         'Viewer::downloadSplatSceneToSplatBuffer -> File format not supported: '.concat(
@@ -63766,15 +63766,15 @@
               function o(e) {
                 try {
                   u(r.next(e))
-                } catch (n$) {
-                  a(n$)
+                } catch (JJ) {
+                  a(JJ)
                 }
               }
               function s(e) {
                 try {
                   u(r.throw(e))
-                } catch (n$) {
-                  a(n$)
+                } catch (JJ) {
+                  a(JJ)
                 }
               }
               function u(e) {
@@ -64566,8 +64566,8 @@
                       if (DF.isString(e))
                         try {
                           return ((t || JSON.parse)(e), DF.trim(e))
-                        } catch (n$) {
-                          if ('SyntaxError' !== n$.name) throw n$
+                        } catch (JJ) {
+                          if ('SyntaxError' !== JJ.name) throw JJ
                         }
                       return (n || JSON.stringify)(e)
                     })(e))
@@ -64584,11 +64584,11 @@
                   var i = !(t && t.silentJSONParsing) && r
                   try {
                     return JSON.parse(e)
-                  } catch (n$) {
+                  } catch (JJ) {
                     if (i) {
-                      if ('SyntaxError' === n$.name)
-                        throw OF.from(n$, OF.ERR_BAD_RESPONSE, this, null, this.response)
-                      throw n$
+                      if ('SyntaxError' === JJ.name)
+                        throw OF.from(JJ, OF.ERR_BAD_RESPONSE, this, null, this.response)
+                      throw JJ
                     }
                   }
                 }
@@ -65600,7 +65600,7 @@
                 for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), r = 1; r < t; r++)
                   n[r - 1] = arguments[r]
                 return !!e.apply(void 0, n)
-              } catch (n$) {
+              } catch (JJ) {
                 return !1
               }
             },
@@ -65910,7 +65910,7 @@
             if (e) {
               try {
                 Object.defineProperty(e, 'name', { value: t })
-              } catch (n$) {}
+              } catch (JJ) {}
               Object.defineProperty(e, 'adapterName', { value: t })
             }
           })
@@ -66073,7 +66073,7 @@
                                             !String(a.stack).endsWith(i.replace(/^.+\n.+\n/, '')) &&
                                             (a.stack += '\n' + i)
                                           : (a.stack = i)
-                                      } catch (n$) {}
+                                      } catch (JJ) {}
                                     }
                                     throw a
                                   case 3:
@@ -72476,14 +72476,14 @@
                   function t(e) {
                     try {
                       return decodeURIComponent(e.replace(/\+/g, ' '))
-                    } catch (n$) {
+                    } catch (JJ) {
                       return null
                     }
                   }
                   function n(e) {
                     try {
                       return encodeURIComponent(e)
-                    } catch (n$) {
+                    } catch (JJ) {
                       return null
                     }
                   }
@@ -73754,8 +73754,8 @@
                               },
                               s
                             )
-                          } catch (n$) {
-                            s(n$)
+                          } catch (JJ) {
+                            s(JJ)
                           }
                         },
                         n,
@@ -90223,15 +90223,11 @@
               ],
             ]),
             sJ = { class: 'action-group' },
-            uJ = { key: 0, class: 'action-wrapper' },
-            lJ = ['onClick'],
-            cJ = { key: 0, class: 'active-icon' },
-            dJ = { key: 1, class: 'action-wrapper' },
-            hJ = ['onClick'],
-            fJ = { key: 0, class: 'active-icon' },
-            pJ = { class: 'action-wrapper' },
-            vJ = { key: 2, class: 'action-wrapper' },
-            mJ = ar({
+            uJ = ['onClick'],
+            lJ = { key: 0, class: 'active-icon' },
+            cJ = ['onClick'],
+            dJ = { key: 0, class: 'active-icon' },
+            hJ = ar({
               __name: 'ActionGroup',
               setup: function (e) {
                 var t = Zq(),
@@ -90266,236 +90262,225 @@
                     qi(),
                     Zi('div', sJ, [
                       on(i)
-                        ? (qi(),
-                          Zi('div', uJ, [
-                            Un(
-                              (qi(),
-                              Zi(
-                                'div',
-                                {
-                                  class: 'action',
-                                  onClick:
-                                    t[1] ||
-                                    (t[1] = function () {
-                                      return on(v) && on(v).apply(void 0, arguments)
-                                    }),
-                                },
-                                [
-                                  ia(on(zZ), { icon: on(o) ? on(HZ) : on(GZ) }, null, 8, ['icon']),
-                                  'closed' === on(c)
-                                    ? (qi(),
-                                      Zi(
-                                        'div',
-                                        {
-                                          key: 0,
-                                          class: 'corner',
-                                          onClick:
-                                            t[0] ||
-                                            (t[0] = Fo(
-                                              function () {
-                                                return (w.value = !w.value)
-                                              },
-                                              ['stop', 'prevent']
-                                            )),
-                                        },
-                                        I(
-                                          t[6] ||
-                                            (t[6] = [
-                                              ra('div', { class: 'corner-inner' }, null, -1),
-                                            ])
-                                        )
-                                      ))
-                                    : ua('', !0),
-                                  Un(
-                                    ra(
-                                      'div',
-                                      { class: Te(['selectors', { left: on(S) }]) },
-                                      [
-                                        (qi(!0),
-                                        Zi(
-                                          Vi,
-                                          null,
-                                          Pr(on(p), function (e) {
-                                            return (
-                                              qi(),
-                                              Zi(
-                                                'div',
-                                                {
-                                                  key: e.deviceId,
-                                                  class: 'selector',
-                                                  onClick: Fo(
-                                                    function () {
-                                                      ;(on(y)(e.deviceId), (w.value = !1))
-                                                    },
-                                                    ['stop']
-                                                  ),
-                                                },
-                                                [
-                                                  oa(Ie(e.label) + ' ', 1),
-                                                  on(h) && e.deviceId === on(h).deviceId
-                                                    ? (qi(), Zi('div', cJ, [ia(on(QZ))]))
-                                                    : ua('', !0),
-                                                ],
-                                                8,
-                                                lJ
-                                              )
-                                            )
-                                          }),
-                                          128
-                                        )),
-                                      ],
-                                      2
-                                    ),
-                                    [[ao, w.value && 'closed' === on(c)]]
-                                  ),
-                                ]
-                              )),
-                              [
-                                [
-                                  n,
-                                  function () {
-                                    return (w.value = !1)
-                                  },
-                                ],
-                              ]
-                            ),
-                          ]))
-                        : ua('', !0),
-                      on(a)
-                        ? (qi(),
-                          Zi('div', dJ, [
-                            Un(
-                              (qi(),
-                              Zi(
-                                'div',
-                                {
-                                  class: 'action',
-                                  onClick:
-                                    t[3] ||
-                                    (t[3] = function () {
-                                      return on(m) && on(m).apply(void 0, arguments)
-                                    }),
-                                },
-                                [
-                                  ia(on(zZ), { icon: on(s) ? on(XZ) : on(KZ) }, null, 8, ['icon']),
-                                  'closed' === on(c)
-                                    ? (qi(),
-                                      Zi(
-                                        'div',
-                                        {
-                                          key: 0,
-                                          class: 'corner',
-                                          onClick:
-                                            t[2] ||
-                                            (t[2] = Fo(
-                                              function () {
-                                                return (A.value = !A.value)
-                                              },
-                                              ['stop', 'prevent']
-                                            )),
-                                        },
-                                        I(
-                                          t[7] ||
-                                            (t[7] = [
-                                              ra('div', { class: 'corner-inner' }, null, -1),
-                                            ])
-                                        )
-                                      ))
-                                    : ua('', !0),
-                                  Un(
-                                    ra(
-                                      'div',
-                                      { class: Te(['selectors', { left: on(S) }]) },
-                                      [
-                                        (qi(!0),
-                                        Zi(
-                                          Vi,
-                                          null,
-                                          Pr(on(f), function (e) {
-                                            return (
-                                              qi(),
-                                              Zi(
-                                                'div',
-                                                {
-                                                  key: e.deviceId,
-                                                  class: 'selector',
-                                                  onClick: Fo(
-                                                    function (t) {
-                                                      ;(on(y)(e.deviceId), (A.value = !1))
-                                                    },
-                                                    ['stop']
-                                                  ),
-                                                },
-                                                [
-                                                  oa(Ie(e.label) + ' ', 1),
-                                                  on(d) && e.deviceId === on(d).deviceId
-                                                    ? (qi(), Zi('div', fJ, [ia(on(QZ))]))
-                                                    : ua('', !0),
-                                                ],
-                                                8,
-                                                hJ
-                                              )
-                                            )
-                                          }),
-                                          128
-                                        )),
-                                      ],
-                                      2
-                                    ),
-                                    [[ao, A.value && 'closed' === on(c)]]
-                                  ),
-                                ]
-                              )),
-                              [
-                                [
-                                  n,
-                                  function () {
-                                    return (A.value = !1)
-                                  },
-                                ],
-                              ]
-                            ),
-                          ]))
-                        : ua('', !0),
-                      ra('div', pJ, [
-                        ra(
-                          'div',
-                          {
-                            class: 'action',
-                            onClick:
-                              t[4] ||
-                              (t[4] = function () {
-                                return on(g) && on(g).apply(void 0, arguments)
-                              }),
-                          },
-                          [ia(on(zZ), { icon: on(u) ? on(eJ) : on(nJ) }, null, 8, ['icon'])]
-                        ),
-                      ]),
-                      on(b).width > 300
-                        ? (qi(),
-                          Zi('div', vJ, [
-                            ra(
+                        ? Un(
+                            (qi(),
+                            Zi(
                               'div',
                               {
+                                key: 0,
                                 class: 'action',
                                 onClick:
-                                  t[5] ||
-                                  (t[5] = function () {
-                                    return on(_) && on(_).apply(void 0, arguments)
+                                  t[1] ||
+                                  (t[1] = function () {
+                                    return on(v) && on(v).apply(void 0, arguments)
                                   }),
                               },
-                              [ia(on(zZ), { icon: on(l) ? on(oJ) : on(iJ) }, null, 8, ['icon'])]
-                            ),
-                          ]))
+                              [
+                                ia(on(zZ), { icon: on(o) ? on(HZ) : on(GZ) }, null, 8, ['icon']),
+                                'closed' === on(c)
+                                  ? (qi(),
+                                    Zi(
+                                      'div',
+                                      {
+                                        key: 0,
+                                        class: 'corner',
+                                        onClick:
+                                          t[0] ||
+                                          (t[0] = Fo(
+                                            function () {
+                                              return (w.value = !w.value)
+                                            },
+                                            ['stop', 'prevent']
+                                          )),
+                                      },
+                                      I(
+                                        t[6] ||
+                                          (t[6] = [ra('div', { class: 'corner-inner' }, null, -1)])
+                                      )
+                                    ))
+                                  : ua('', !0),
+                                Un(
+                                  ra(
+                                    'div',
+                                    { class: Te(['selectors', { left: on(S) }]) },
+                                    [
+                                      (qi(!0),
+                                      Zi(
+                                        Vi,
+                                        null,
+                                        Pr(on(p), function (e) {
+                                          return (
+                                            qi(),
+                                            Zi(
+                                              'div',
+                                              {
+                                                key: e.deviceId,
+                                                class: 'selector',
+                                                onClick: Fo(
+                                                  function () {
+                                                    ;(on(y)(e.deviceId), (w.value = !1))
+                                                  },
+                                                  ['stop']
+                                                ),
+                                              },
+                                              [
+                                                oa(Ie(e.label) + ' ', 1),
+                                                on(h) && e.deviceId === on(h).deviceId
+                                                  ? (qi(), Zi('div', lJ, [ia(on(QZ))]))
+                                                  : ua('', !0),
+                                              ],
+                                              8,
+                                              uJ
+                                            )
+                                          )
+                                        }),
+                                        128
+                                      )),
+                                    ],
+                                    2
+                                  ),
+                                  [[ao, w.value && 'closed' === on(c)]]
+                                ),
+                              ]
+                            )),
+                            [
+                              [
+                                n,
+                                function () {
+                                  return (w.value = !1)
+                                },
+                              ],
+                            ]
+                          )
+                        : ua('', !0),
+                      on(a)
+                        ? Un(
+                            (qi(),
+                            Zi(
+                              'div',
+                              {
+                                key: 1,
+                                class: 'action',
+                                onClick:
+                                  t[3] ||
+                                  (t[3] = function () {
+                                    return on(m) && on(m).apply(void 0, arguments)
+                                  }),
+                              },
+                              [
+                                ia(on(zZ), { icon: on(s) ? on(XZ) : on(KZ) }, null, 8, ['icon']),
+                                'closed' === on(c)
+                                  ? (qi(),
+                                    Zi(
+                                      'div',
+                                      {
+                                        key: 0,
+                                        class: 'corner',
+                                        onClick:
+                                          t[2] ||
+                                          (t[2] = Fo(
+                                            function () {
+                                              return (A.value = !A.value)
+                                            },
+                                            ['stop', 'prevent']
+                                          )),
+                                      },
+                                      I(
+                                        t[7] ||
+                                          (t[7] = [ra('div', { class: 'corner-inner' }, null, -1)])
+                                      )
+                                    ))
+                                  : ua('', !0),
+                                Un(
+                                  ra(
+                                    'div',
+                                    { class: Te(['selectors', { left: on(S) }]) },
+                                    [
+                                      (qi(!0),
+                                      Zi(
+                                        Vi,
+                                        null,
+                                        Pr(on(f), function (e) {
+                                          return (
+                                            qi(),
+                                            Zi(
+                                              'div',
+                                              {
+                                                key: e.deviceId,
+                                                class: 'selector',
+                                                onClick: Fo(
+                                                  function (t) {
+                                                    ;(on(y)(e.deviceId), (A.value = !1))
+                                                  },
+                                                  ['stop']
+                                                ),
+                                              },
+                                              [
+                                                oa(Ie(e.label) + ' ', 1),
+                                                on(d) && e.deviceId === on(d).deviceId
+                                                  ? (qi(), Zi('div', dJ, [ia(on(QZ))]))
+                                                  : ua('', !0),
+                                              ],
+                                              8,
+                                              cJ
+                                            )
+                                          )
+                                        }),
+                                        128
+                                      )),
+                                    ],
+                                    2
+                                  ),
+                                  [[ao, A.value && 'closed' === on(c)]]
+                                ),
+                              ]
+                            )),
+                            [
+                              [
+                                n,
+                                function () {
+                                  return (A.value = !1)
+                                },
+                              ],
+                            ]
+                          )
+                        : ua('', !0),
+                      ra(
+                        'div',
+                        {
+                          class: 'action',
+                          onClick:
+                            t[4] ||
+                            (t[4] = function () {
+                              return on(g) && on(g).apply(void 0, arguments)
+                            }),
+                        },
+                        [ia(on(zZ), { icon: on(u) ? on(eJ) : on(nJ) }, null, 8, ['icon'])]
+                      ),
+                      on(b).width > 300
+                        ? (qi(),
+                          Zi(
+                            'div',
+                            {
+                              key: 2,
+                              class: 'action',
+                              onClick:
+                                t[5] ||
+                                (t[5] = function () {
+                                  return on(_) && on(_).apply(void 0, arguments)
+                                }),
+                            },
+                            [ia(on(zZ), { icon: on(l) ? on(oJ) : on(iJ) }, null, 8, ['icon'])]
+                          ))
                         : ua('', !0),
                     ])
                   )
                 }
               },
             }),
-            gJ = eX(mJ, [['__scopeId', 'data-v-76b8fe8f']]),
-            yJ = { class: 'gradio-webrtc-waveContainer' },
-            _J = ar({
+            fJ = eX(hJ, [['__scopeId', 'data-v-b28f9260']]),
+            pJ = { class: 'gradio-webrtc-waveContainer' },
+            vJ = ar({
               __name: 'AudioWave',
               props: {
                 streamState: { default: _s.closed },
@@ -90571,7 +90556,7 @@
                   function (e, t) {
                     return (
                       qi(),
-                      Zi('div', yJ, [
+                      Zi('div', pJ, [
                         ra(
                           'div',
                           { class: 'gradio-webrtc-boxContainer', style: xe({ width: s.value }) },
@@ -90604,14 +90589,14 @@
                 )
               },
             }),
-            xJ = eX(_J, [['__scopeId', 'data-v-d7e47480']]),
-            bJ = { class: 'player-controls' },
-            SJ = { key: 0 },
-            AJ = { key: 1, class: 'waiting-icon-text' },
-            wJ = { class: 'icon', title: 'spinner' },
-            TJ = { key: 2, class: 'stop-chat-inner' },
-            MJ = { key: 0, class: 'input-audio-wave' },
-            EJ = ar({
+            mJ = eX(vJ, [['__scopeId', 'data-v-d7e47480']]),
+            gJ = { class: 'player-controls' },
+            yJ = { key: 0 },
+            _J = { key: 1, class: 'waiting-icon-text' },
+            xJ = { class: 'icon', title: 'spinner' },
+            bJ = { key: 2, class: 'stop-chat-inner' },
+            SJ = { key: 0, class: 'input-audio-wave' },
+            AJ = ar({
               __name: 'ChatBtn',
               props: {
                 streamState: {
@@ -90630,7 +90615,7 @@
                 return function (t, n) {
                   return (
                     qi(),
-                    Zi('div', bJ, [
+                    Zi('div', gJ, [
                       ra(
                         'div',
                         {
@@ -90647,24 +90632,24 @@
                         },
                         [
                           e.streamState === on(_s).closed
-                            ? (qi(), Zi('span', SJ, 'Please点击开始对话'))
+                            ? (qi(), Zi('span', yJ, 'Please点击开始对话'))
                             : e.streamState === on(_s).waiting
                               ? (qi(),
-                                Zi('div', AJ, [
-                                  ra('div', wJ, [
+                                Zi('div', _J, [
+                                  ra('div', xJ, [
                                     ia(on(Gq), { 'wrapper-class-name': 'spin-icon' }),
                                   ]),
                                   n[1] || (n[1] = ra('span', null, '等待中', -1)),
                                 ]))
-                              : (qi(), Zi('div', TJ)),
+                              : (qi(), Zi('div', bJ)),
                         ],
                         2
                       ),
                       e.streamState === on(_s).open
                         ? (qi(),
-                          Zi('div', MJ, [
+                          Zi('div', SJ, [
                             ia(
-                              xJ,
+                              mJ,
                               {
                                 'audio-source-callback': e.audioSourceCallback,
                                 'stream-state': e.streamState,
@@ -90681,12 +90666,12 @@
                 }
               },
             }),
-            CJ = eX(EJ, [['__scopeId', 'data-v-8a83fff7']])
-          var kJ,
-            RJ = { class: 'chat-input-container' },
-            IJ = { class: 'chat-input-inner' },
-            NJ = { class: 'chat-input-wrapper' },
-            PJ = ar({
+            wJ = eX(AJ, [['__scopeId', 'data-v-8a83fff7']])
+          var TJ,
+            MJ = { class: 'chat-input-container' },
+            EJ = { class: 'chat-input-inner' },
+            CJ = { class: 'chat-input-wrapper' },
+            kJ = ar({
               __name: 'ChatInput',
               props: { replying: { type: Boolean } },
               emits: ['send', 'stop', 'interrupt'],
@@ -90741,10 +90726,10 @@
                 return function (e, t) {
                   return (
                     qi(),
-                    Zi('div', RJ, [
+                    Zi('div', MJ, [
                       ra('div', { class: 'stop-chat-btn', onClick: c }),
-                      ra('div', IJ, [
-                        ra('div', NJ, [
+                      ra('div', EJ, [
+                        ra('div', CJ, [
                           ra(
                             'textarea',
                             {
@@ -90772,14 +90757,16 @@
                               ia(on(zZ), { icon: on(JZ), color: '#fff' }, null, 8, ['icon']),
                             ])),
                       ]),
+                      t[0] ||
+                        (t[0] = ra('div', { class: 'ai-generate-hint' }, ' 内容内 AI生成 ', -1)),
                     ])
                   )
                 }
               },
             }),
-            LJ = eX(PJ, [['__scopeId', 'data-v-32a58abc']]),
-            DJ = { class: 'answer-message-text' },
-            OJ = eX(
+            RJ = eX(kJ, [['__scopeId', 'data-v-422c1d19']]),
+            IJ = { class: 'answer-message-text' },
+            NJ = eX(
               ar({
                 __name: 'ChatMessage',
                 props: { message: {}, role: {}, style: {} },
@@ -90790,7 +90777,7 @@
                       Zi(
                         'div',
                         { class: Te(['answer-message-container', e.role]), style: xe(e.style) },
-                        [ra('div', DJ, Ie(e.message), 1)],
+                        [ra('div', IJ, Ie(e.message), 1)],
                         6
                       )
                     )
@@ -90799,8 +90786,8 @@
               }),
               [['__scopeId', 'data-v-dde1c5d3']]
             ),
-            FJ = { class: 'chat-records-inner' },
-            BJ = ar({
+            PJ = { class: 'chat-records-inner' },
+            LJ = ar({
               __name: 'ChatRecords',
               props: { chatRecords: {} },
               setup: function (e, t) {
@@ -90830,7 +90817,7 @@
                         'div',
                         { class: 'chat-records', ref_key: 'containerRef', ref: i },
                         [
-                          ra('div', FJ, [
+                          ra('div', PJ, [
                             (qi(!0),
                             Zi(
                               Vi,
@@ -90842,7 +90829,7 @@
                                     'div',
                                     { key: e.id, class: Te('chat-message '.concat(e.role)) },
                                     [
-                                      ia(OJ, { message: e.message, role: e.role }, null, 8, [
+                                      ia(NJ, { message: e.message, role: e.role }, null, 8, [
                                         'message',
                                         'role',
                                       ]),
@@ -90862,11 +90849,11 @@
                 )
               },
             }),
-            UJ = { class: 'content-container' },
-            zJ = { class: 'top-actions' },
-            VJ = ['muted'],
-            HJ = { class: 'chat-records-container' },
-            WJ = eX(
+            DJ = { class: 'content-container' },
+            OJ = { class: 'top-actions' },
+            FJ = ['muted'],
+            BJ = { class: 'chat-records-container' },
+            UJ = eX(
               ar({
                 __name: 'index',
                 setup: function (e) {
@@ -90957,7 +90944,7 @@
                         'div',
                         { class: 'page-container', ref_key: 'wrapRef', ref: r },
                         [
-                          ra('div', UJ, [
+                          ra('div', DJ, [
                             ra(
                               'div',
                               {
@@ -90968,7 +90955,7 @@
                                 }),
                               },
                               [
-                                ra('div', zJ, [ia(gJ)]),
+                                ra('div', OJ, [ia(fJ)]),
                                 Un(
                                   ra(
                                     'div',
@@ -91030,16 +91017,16 @@
                                             },
                                             null,
                                             40,
-                                            VJ
+                                            FJ
                                           )),
                                           [[ao, 'open' === on(g)]]
                                         ),
                                   ],
                                   512
                                 ),
-                                ra('div', HJ, [
+                                ra('div', BJ, [
                                   ia(
-                                    BJ,
+                                    LJ,
                                     {
                                       ref_key: 'chatRecordsInstanceRef',
                                       ref: M,
@@ -91057,7 +91044,7 @@
                               ? on(m)
                                 ? (qi(),
                                   Ji(
-                                    CJ,
+                                    wJ,
                                     {
                                       key: 1,
                                       onStartChat: w,
@@ -91072,7 +91059,7 @@
                                 : ua('', !0)
                               : (qi(),
                                 Ji(
-                                  LJ,
+                                  RJ,
                                   {
                                     key: 0,
                                     replying: on(x),
@@ -91094,8 +91081,8 @@
               }),
               [['__scopeId', 'data-v-628a3381']]
             ),
-            GJ = { class: 'wrap' },
-            jJ = eX(
+            zJ = { class: 'wrap' },
+            VJ = eX(
               ar({
                 __name: 'App',
                 setup: function (e) {
@@ -91111,9 +91098,9 @@
                           {
                             default: Bn(function () {
                               return [
-                                ra('div', GJ, [
+                                ra('div', zJ, [
                                   on(t).webcamAccessed ? ua('', !0) : (qi(), Ji(tX, { key: 0 })),
-                                  ia(WJ),
+                                  ia(UJ),
                                 ]),
                               ]
                             }),
@@ -91129,15 +91116,15 @@
               }),
               [['__scopeId', 'data-v-45f9c857']]
             ),
-            QJ = { exports: {} }
-          var qJ,
-            XJ,
-            YJ,
-            KJ,
-            ZJ,
-            JJ =
-              (kJ ||
-                ((kJ = 1),
+            HJ = { exports: {} }
+          var WJ,
+            GJ,
+            jJ,
+            QJ,
+            qJ,
+            XJ =
+              (TJ ||
+                ((TJ = 1),
                 (function (e) {
                   e.exports = (function () {
                     var e = '__v-click-outside',
@@ -91254,10 +91241,10 @@
                       directive: s,
                     }
                   })()
-                })(QJ)),
-              QJ.exports),
-            $J = us(JJ),
-            e$ = (function () {
+                })(HJ)),
+              HJ.exports),
+            YJ = us(XJ),
+            KJ = (function () {
               var e,
                 t = (e = Uo()).createApp.apply(e, arguments),
                 n = t.mount
@@ -91297,35 +91284,35 @@
                 }),
                 t
               )
-            })(jJ),
-            t$ =
-              ((qJ = De(!0)),
-              (XJ = qJ.run(function () {
+            })(VJ),
+            ZJ =
+              ((WJ = De(!0)),
+              (GJ = WJ.run(function () {
                 return tn({})
               })),
-              (KJ = []),
-              (ZJ = Zt({
+              (QJ = []),
+              (qJ = Zt({
                 install: function (e) {
-                  ;(Go(ZJ),
-                    (ZJ._a = e),
-                    e.provide(jo, ZJ),
-                    (e.config.globalProperties.$pinia = ZJ),
-                    KJ.forEach(function (e) {
-                      return YJ.push(e)
+                  ;(Go(qJ),
+                    (qJ._a = e),
+                    e.provide(jo, qJ),
+                    (e.config.globalProperties.$pinia = qJ),
+                    QJ.forEach(function (e) {
+                      return jJ.push(e)
                     }),
-                    (KJ = []))
+                    (QJ = []))
                 },
                 use: function (e) {
-                  return (this._a ? YJ.push(e) : KJ.push(e), this)
+                  return (this._a ? jJ.push(e) : QJ.push(e), this)
                 },
-                _p: (YJ = []),
+                _p: (jJ = []),
                 _a: null,
-                _e: qJ,
+                _e: WJ,
                 _s: new Map(),
-                state: XJ,
+                state: GJ,
               })),
-              ZJ)
-          ;(e$.use(t$), e$.use(UZ), e$.use($J), e$.mount('#app'))
+              qJ)
+          ;(KJ.use(ZJ), KJ.use(UZ), KJ.use(YJ), KJ.mount('#app'))
         },
       }
     }))

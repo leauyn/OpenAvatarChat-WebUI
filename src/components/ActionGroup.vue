@@ -1,89 +1,91 @@
 <template>
   <div class="action-group">
-    <div v-if="hasCamera" class="action-wrapper">
-      <div v-click-outside="() => (cameraListShow = false)" class="action" @click="handleCameraOff">
-        <Iconfont :icon="cameraOff ? CameraOff : CameraOn" />
+    <div
+      v-if="hasCamera"
+      v-click-outside="() => (cameraListShow = false)"
+      class="action"
+      @click="handleCameraOff"
+    >
+      <Iconfont :icon="cameraOff ? CameraOff : CameraOn" />
+      <div
+        v-if="streamState === 'closed'"
+        class="corner"
+        @click.stop.prevent="() => (cameraListShow = !cameraListShow)"
+      >
+        <div class="corner-inner" />
+      </div>
+      <div
+        v-show="cameraListShow && streamState === 'closed'"
+        class="selectors"
+        :class="{ left: isLandscape }"
+      >
         <div
-          v-if="streamState === 'closed'"
-          class="corner"
-          @click.stop.prevent="() => (cameraListShow = !cameraListShow)"
+          v-for="device in availableVideoDevices"
+          :key="device.deviceId"
+          class="selector"
+          @click.stop="
+            () => {
+              handleDeviceChange(device.deviceId)
+              cameraListShow = false
+            }
+          "
         >
-          <div class="corner-inner" />
-        </div>
-        <div
-          v-show="cameraListShow && streamState === 'closed'"
-          class="selectors"
-          :class="{ left: isLandscape }"
-        >
+          {{ device.label }}
           <div
-            v-for="device in availableVideoDevices"
-            :key="device.deviceId"
-            class="selector"
-            @click.stop="
-              () => {
-                handleDeviceChange(device.deviceId)
-                cameraListShow = false
-              }
-            "
+            v-if="selectedVideoDevice && device.deviceId === selectedVideoDevice.deviceId"
+            class="active-icon"
           >
-            {{ device.label }}
-            <div
-              v-if="selectedVideoDevice && device.deviceId === selectedVideoDevice.deviceId"
-              class="active-icon"
-            >
-              <CheckIcon />
-            </div>
+            <CheckIcon />
           </div>
         </div>
       </div>
     </div>
-    <div v-if="hasMic" class="action-wrapper">
-      <div v-click-outside="() => (micListShow = false)" class="action" @click="handleMicMuted">
-        <Iconfont :icon="micMuted ? MicOff : MicOn" />
+    <div
+      v-if="hasMic"
+      v-click-outside="() => (micListShow = false)"
+      class="action"
+      @click="handleMicMuted"
+    >
+      <Iconfont :icon="micMuted ? MicOff : MicOn" />
+      <div
+        v-if="streamState === 'closed'"
+        class="corner"
+        @click.stop.prevent="() => (micListShow = !micListShow)"
+      >
+        <div class="corner-inner" />
+      </div>
+      <div
+        v-show="micListShow && streamState === 'closed'"
+        class="selectors"
+        :class="{ left: isLandscape }"
+      >
         <div
-          v-if="streamState === 'closed'"
-          class="corner"
-          @click.stop.prevent="() => (micListShow = !micListShow)"
+          v-for="device in availableAudioDevices"
+          :key="device.deviceId"
+          class="selector"
+          @click.stop="
+            (e) => {
+              handleDeviceChange(device.deviceId)
+              micListShow = false
+            }
+          "
         >
-          <div class="corner-inner" />
-        </div>
-        <div
-          v-show="micListShow && streamState === 'closed'"
-          class="selectors"
-          :class="{ left: isLandscape }"
-        >
+          {{ device.label }}
           <div
-            v-for="device in availableAudioDevices"
-            :key="device.deviceId"
-            class="selector"
-            @click.stop="
-              (e) => {
-                handleDeviceChange(device.deviceId)
-                micListShow = false
-              }
-            "
+            v-if="selectedAudioDevice && device.deviceId === selectedAudioDevice.deviceId"
+            class="active-icon"
           >
-            {{ device.label }}
-            <div
-              v-if="selectedAudioDevice && device.deviceId === selectedAudioDevice.deviceId"
-              class="active-icon"
-            >
-              <CheckIcon />
-            </div>
+            <CheckIcon />
           </div>
         </div>
       </div>
     </div>
 
-    <div class="action-wrapper">
-      <div class="action" @click="handleVolumeMute">
-        <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" />
-      </div>
+    <div class="action" @click="handleVolumeMute">
+      <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" />
     </div>
-    <div v-if="wrapperRect.width > 300" class="action-wrapper">
-      <div class="action" @click="handleSubtitleToggle">
-        <Iconfont :icon="showChatRecords ? SubtitleOn : SubtitleOff" />
-      </div>
+    <div v-if="wrapperRect.width > 300" class="action" @click="handleSubtitleToggle">
+      <Iconfont :icon="showChatRecords ? SubtitleOn : SubtitleOff" />
     </div>
   </div>
 </template>
@@ -134,82 +136,69 @@ const cameraListShow = ref(false)
 
 <style lang="less" scoped>
 .action-group {
+  border-radius: 20px;
+  background: rgba(88, 87, 87, 0.5);
+  padding: 8px;
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   gap: 8px;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 8px 12px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-
-  .action-wrapper {
-    position: relative;
-  }
+  flex-shrink: 0;
 
   .action {
     cursor: pointer;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    font-size: 20px;
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 16px !important;
+    font-size: 34px !important;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     color: #fff;
-    transition: all 0.2s ease;
-    background: rgba(255, 255, 255, 0.05);
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    &:active {
-      transform: translateY(0);
+      background: #67666a;
     }
 
     .corner {
       position: absolute;
-      right: 2px;
-      bottom: 2px;
-      padding: 2px;
+      right: 0px;
+      bottom: 0px;
+      padding: 3px;
 
       .corner-inner {
         width: 6px;
         height: 6px;
-        border-top: 2px transparent solid;
-        border-left: 2px transparent solid;
-        border-bottom: 2px #fff solid;
-        border-right: 2px #fff solid;
+        border-top: 3px transparent solid;
+        border-left: 3px transparent solid;
+        border-bottom: 3px #fff solid;
+        border-right: 3px #fff solid;
       }
     }
 
     .selectors {
       position: absolute;
       top: 0;
-      left: calc(100% + 8px);
-      margin-top: 0;
-      max-height: 200px;
+      left: calc(100%);
+      margin-left: 3px;
+      max-height: 150px;
       min-width: 200px;
 
       &.left {
-        left: auto;
-        right: calc(100% + 8px);
-        transform: none;
+        left: 0;
+        margin-left: -3px;
+        transform: translateX(-100%);
       }
 
       border-radius: 12px;
       width: max-content;
       overflow: hidden;
       overflow-y: auto;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      background: rgba(90, 90, 90, 0.5);
+      backdrop-filter: blur(8px);
       z-index: 1000;
 
       .selector {
@@ -219,52 +208,66 @@ const cameraListShow = ref(false)
         white-space: nowrap;
         position: relative;
         cursor: pointer;
-        height: 48px;
-        line-height: 48px;
+        height: 42px;
+        line-height: 42px;
         color: #fff;
         font-size: 14px;
-        padding: 0 16px;
+        padding-left: 15px;
+        padding-right: 50px;
         transition: background-color 0.2s ease;
 
         &:hover {
-          background: rgba(255, 255, 255, 0.1);
+          background: #67666a;
         }
 
         .active-icon {
           position: absolute;
-          right: 12px;
-          width: 24px;
-          height: 24px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
-          top: 50%;
-          transform: translateY(-50%);
+          top: 0;
         }
       }
     }
   }
 
-  // 响应式设计
-  @media (max-width: 768px) {
-    gap: 6px;
-    padding: 6px 10px;
-
-    .action {
-      width: 44px;
-      height: 44px;
+  // 移动端固定尺寸 - 无需响应式
+  .selectors {
+    .selector {
+      height: 70px;
+      line-height: 70px;
       font-size: 18px;
+      padding-left: 22px;
+      padding-right: 70px;
+
+      .active-icon {
+        width: 60px;
+        height: 60px;
+        right: 18px;
+      }
     }
   }
 
-  @media (max-width: 480px) {
-    gap: 4px;
-    padding: 4px 8px;
-
+  // 移动端强制样式 - 确保在所有移动设备上生效
+  @media screen and (max-width: 1024px) {
     .action {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
+      width: 70px !important;
+      height: 70px !important;
+      font-size: 34px !important;
+      border-radius: 16px !important;
+    }
+  }
+
+  // 移动设备特定样式
+  @media screen and (max-device-width: 1024px) {
+    .action {
+      width: 70px !important;
+      height: 70px !important;
+      font-size: 34px !important;
+      border-radius: 16px !important;
     }
   }
 }

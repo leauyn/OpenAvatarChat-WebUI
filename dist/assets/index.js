@@ -23,7 +23,7 @@ var Yu = (n, e, t, i) => ({
     return dt(n, e, i)
   },
 })
-function vre() {
+function pre() {
   ;(import.meta.url, import('_').catch(() => 1), (async function* () {})().next())
 }
 ;(function () {
@@ -83,11 +83,11 @@ const un = {},
   vt = Array.isArray,
   Hc = (n) => jm(n) === '[object Map]',
   BT = (n) => jm(n) === '[object Set]',
-  Ct = (n) => typeof n == 'function',
+  wt = (n) => typeof n == 'function',
   wn = (n) => typeof n == 'string',
   za = (n) => typeof n == 'symbol',
   gn = (n) => n !== null && typeof n == 'object',
-  UT = (n) => (gn(n) || Ct(n)) && Ct(n.then) && Ct(n.catch),
+  UT = (n) => (gn(n) || wt(n)) && wt(n.then) && wt(n.catch),
   kT = Object.prototype.toString,
   jm = (n) => kT.call(n),
   xR = (n) => jm(n).slice(8, -1),
@@ -185,7 +185,7 @@ const $T = (n) => !!(n && n.__v_isRef === !0),
       ? n
       : n == null
         ? ''
-        : vt(n) || (gn(n) && (n.toString === kT || !Ct(n.toString)))
+        : vt(n) || (gn(n) && (n.toString === kT || !wt(n.toString)))
           ? $T(n)
             ? su(n.value)
             : JSON.stringify(n, GT, 2)
@@ -1083,7 +1083,7 @@ class i8 {
   }
 }
 function r8(n, e, t) {
-  return bn(n) ? n : Ct(n) ? new i8(n) : gn(n) && arguments.length > 1 ? uw(n, e, t) : Dn(n)
+  return bn(n) ? n : wt(n) ? new i8(n) : gn(n) && arguments.length > 1 ? uw(n, e, t) : Dn(n)
 }
 function uw(n, e, t) {
   const i = n[e]
@@ -1118,7 +1118,7 @@ class s8 {
 }
 function o8(n, e, t = !1) {
   let i, r
-  return (Ct(n) ? (i = n) : ((i = n.get), (r = n.set)), new s8(i, r, t))
+  return (wt(n) ? (i = n) : ((i = n.get), (r = n.set)), new s8(i, r, t))
 }
 const mf = {},
   Jp = new WeakMap()
@@ -1150,9 +1150,9 @@ function l8(n, e, t = un) {
               n.map((_) => {
                 if (bn(_)) return _.value
                 if (ko(_)) return c(_)
-                if (Ct(_)) return l ? l(_, 2) : _()
+                if (wt(_)) return l ? l(_, 2) : _()
               })))
-          : Ct(n)
+          : wt(n)
             ? e
               ? (d = l ? () => l(n, 2) : n)
               : (d = () => {
@@ -1255,7 +1255,7 @@ function Lo(n, e = 1 / 0, t) {
   }
 }
 function As(n, e, t, i) {
-  if (Ct(n)) {
+  if (wt(n)) {
     const r = Lh(n, e, t, i)
     return (
       r &&
@@ -1407,7 +1407,7 @@ function Pc(n, e) {
   for (let r = 0; r < e.length; r++) {
     let [s, o, a, l = un] = e[r]
     s &&
-      (Ct(s) && (s = { mounted: s, updated: s }),
+      (wt(s) && (s = { mounted: s, updated: s }),
       s.deep && Lo(o),
       i.push({ dir: s, instance: t, value: o, oldValue: void 0, arg: a, modifiers: l }))
   }
@@ -1715,7 +1715,7 @@ function Sw(n, e = !1, t) {
   return i
 }
 function qt(n, e) {
-  return Ct(n) ? ti({ name: n.name }, e, { setup: n }) : n
+  return wt(n) ? ti({ name: n.name }, e, { setup: n }) : n
 }
 function Aw(n) {
   n.ids = [n.ids[0] + n.ids[2]++ + '-', 0, 0]
@@ -1758,7 +1758,7 @@ function Pd(n, e, t, i, r = !1) {
       p.k && (u[p.k] = null)
     }
   }
-  if (Ct(l)) Lh(l, a, 12, [o, u])
+  if (wt(l)) Lh(l, a, 12, [o, u])
   else {
     const p = wn(l),
       g = bn(l)
@@ -2042,7 +2042,7 @@ function I8(n) {
   if ((c && R8(c, i, null), o))
     for (const Q in o) {
       const ee = o[Q]
-      Ct(ee) && (i[Q] = ee.bind(t))
+      wt(ee) && (i[Q] = ee.bind(t))
     }
   if (r) {
     const Q = r.call(t, t)
@@ -2051,8 +2051,8 @@ function I8(n) {
   if (((Q1 = !0), s))
     for (const Q in s) {
       const ee = s[Q],
-        se = Ct(ee) ? ee.bind(t, t) : Ct(ee.get) ? ee.get.bind(t, t) : qs,
-        he = !Ct(ee) && Ct(ee.set) ? ee.set.bind(t) : qs,
+        se = wt(ee) ? ee.bind(t, t) : wt(ee.get) ? ee.get.bind(t, t) : qs,
+        he = !wt(ee) && wt(ee.set) ? ee.set.bind(t) : qs,
         ne = Ge({ get: se, set: he })
       Object.defineProperty(i, Q, {
         enumerable: !0,
@@ -2063,7 +2063,7 @@ function I8(n) {
     }
   if (a) for (const Q in a) Iw(a[Q], i, t, Q)
   if (l) {
-    const Q = Ct(l) ? l.call(t) : l
+    const Q = wt(l) ? l.call(t) : l
     Reflect.ownKeys(Q).forEach((ee) => {
       ra(ee, Q[ee])
     })
@@ -2130,13 +2130,13 @@ function Iw(n, e, t, i) {
   let r = i.includes('.') ? Vw(t, i) : () => t[i]
   if (wn(n)) {
     const s = e[n]
-    Ct(s) && Jn(r, s)
-  } else if (Ct(n)) Jn(r, n.bind(t))
+    wt(s) && Jn(r, s)
+  } else if (wt(n)) Jn(r, n.bind(t))
   else if (gn(n))
     if (vt(n)) n.forEach((s) => Iw(s, e, t, i))
     else {
-      const s = Ct(n.handler) ? n.handler.bind(t) : e[n.handler]
-      Ct(s) && Jn(r, s, n)
+      const s = wt(n.handler) ? n.handler.bind(t) : e[n.handler]
+      wt(s) && Jn(r, s, n)
     }
 }
 function Rw(n) {
@@ -2199,7 +2199,7 @@ function F2(n, e) {
   return e
     ? n
       ? function () {
-          return ti(Ct(n) ? n.call(this, this) : n, Ct(e) ? e.call(this, this) : e)
+          return ti(wt(n) ? n.call(this, this) : n, wt(e) ? e.call(this, this) : e)
         }
       : e
     : n
@@ -2259,7 +2259,7 @@ function Nw() {
 let D8 = 0
 function F8(n, e) {
   return function (i, r = null) {
-    ;(Ct(i) || (i = ti({}, i)), r != null && !gn(r) && (r = null))
+    ;(wt(i) || (i = ti({}, i)), r != null && !gn(r) && (r = null))
     const s = Nw(),
       o = new WeakSet(),
       a = []
@@ -2279,7 +2279,7 @@ function F8(n, e) {
       use(u, ...d) {
         return (
           o.has(u) ||
-            (u && Ct(u.install) ? (o.add(u), u.install(c, ...d)) : Ct(u) && (o.add(u), u(c, ...d))),
+            (u && wt(u.install) ? (o.add(u), u.install(c, ...d)) : wt(u) && (o.add(u), u(c, ...d))),
           c
         )
       },
@@ -2347,7 +2347,7 @@ function Zi(n, e, t = !1) {
           : i.parent.provides
         : void 0
     if (r && n in r) return r[n]
-    if (arguments.length > 1) return t && Ct(e) ? e.call(i && i.proxy) : e
+    if (arguments.length > 1) return t && wt(e) ? e.call(i && i.proxy) : e
   }
 }
 function O8() {
@@ -2431,7 +2431,7 @@ function q1(n, e, t, i, r, s) {
     const a = tn(o, 'default')
     if (a && i === void 0) {
       const l = o.default
-      if (o.type !== Function && !o.skipFactory && Ct(l)) {
+      if (o.type !== Function && !o.skipFactory && wt(l)) {
         const { propsDefaults: c } = r
         if (t in c) i = c[t]
         else {
@@ -2454,7 +2454,7 @@ function Ow(n, e, t = !1) {
     o = {},
     a = []
   let l = !1
-  if (!Ct(n)) {
+  if (!wt(n)) {
     const u = (d) => {
       l = !0
       const [h, f] = Ow(d, e, !0)
@@ -2475,20 +2475,20 @@ function Ow(n, e, t = !1) {
       const d = ts(u)
       if (B2(d)) {
         const h = s[u],
-          f = (o[d] = vt(h) || Ct(h) ? { type: h } : ti({}, h)),
+          f = (o[d] = vt(h) || wt(h) ? { type: h } : ti({}, h)),
           p = f.type
         let g = !1,
           y = !0
         if (vt(p))
           for (let m = 0; m < p.length; ++m) {
             const v = p[m],
-              x = Ct(v) && v.name
+              x = wt(v) && v.name
             if (x === 'Boolean') {
               g = !0
               break
             } else x === 'String' && (y = !1)
           }
-        else g = Ct(p) && p.name === 'Boolean'
+        else g = wt(p) && p.name === 'Boolean'
         ;((f[0] = g), (f[1] = y), (g || tn(f, 'default')) && a.push(d))
       }
     }
@@ -2510,7 +2510,7 @@ const s_ = (n) => n === '_' || n === '_ctx' || n === '$stable',
     for (const r in n) {
       if (s_(r)) continue
       const s = n[r]
-      if (Ct(s)) e[r] = z8(r, s, i)
+      if (wt(s)) e[r] = z8(r, s, i)
       else if (s != null) {
         const o = o_(s)
         e[r] = () => o
@@ -3184,7 +3184,7 @@ function X8(n, e, t) {
   const i = this.proxy,
     r = wn(n) ? (n.includes('.') ? Vw(i, n) : () => i[n]) : n.bind(i, i)
   let s
-  Ct(e) ? (s = e) : ((s = e.handler), (t = e))
+  wt(e) ? (s = e) : ((s = e.handler), (t = e))
   const o = Oh(this),
     a = l_(r, s.bind(i), t)
   return (o(), a)
@@ -3228,7 +3228,7 @@ function Hw(n, e, t = !1) {
   const s = n.emits
   let o = {},
     a = !1
-  if (!Ct(n)) {
+  if (!wt(n)) {
     const l = (c) => {
       const u = Hw(c, e, !0)
       u && ((a = !0), ti(o, u))
@@ -3350,7 +3350,7 @@ const Hn = Symbol.for('v-fgt'),
   xp = Symbol.for('v-stc'),
   Fd = []
 let Mr = null
-function mt(n = !1) {
+function yt(n = !1) {
   Fd.push((Mr = n ? null : []))
 }
 function r9() {
@@ -3363,8 +3363,8 @@ function sm(n, e = !1) {
 function Gw(n) {
   return ((n.dynamicChildren = nh > 0 ? Mr || Vc : null), r9(), nh > 0 && Mr && Mr.push(n), n)
 }
-function Tt(n, e, t, i, r, s) {
-  return Gw(Bt(n, e, t, i, r, s, !0))
+function Ct(n, e, t, i, r, s) {
+  return Gw(kt(n, e, t, i, r, s, !0))
 }
 function ou(n, e, t, i, r) {
   return Gw(Te(n, e, t, i, r, !0))
@@ -3378,9 +3378,9 @@ function wc(n, e) {
 const Ww = ({ key: n }) => (n != null ? n : null),
   Sp = ({ ref: n, ref_key: e, ref_for: t }) => (
     typeof n == 'number' && (n = '' + n),
-    n != null ? (wn(n) || bn(n) || Ct(n) ? { i: Er, r: n, k: e, f: !!t } : n) : null
+    n != null ? (wn(n) || bn(n) || wt(n) ? { i: Er, r: n, k: e, f: !!t } : n) : null
   )
-function Bt(n, e = null, t = null, i = 0, r = null, s = n === Hn ? 0 : 1, o = !1, a = !1) {
+function kt(n, e = null, t = null, i = 0, r = null, s = n === Hn ? 0 : 1, o = !1, a = !1) {
   const l = {
     __v_isVNode: !0,
     __v_skip: !0,
@@ -3433,8 +3433,8 @@ function s9(n, e = null, t = null, i = 0, r = null, s = !1) {
     ;(a && !wn(a) && (e.class = Wo(a)),
       gn(l) && (t_(l) && !vt(l) && (l = ti({}, l)), (e.style = Go(l))))
   }
-  const o = wn(n) ? 1 : $w(n) ? 128 : h8(n) ? 64 : gn(n) ? 4 : Ct(n) ? 2 : 0
-  return Bt(n, e, t, i, r, o, s, !0)
+  const o = wn(n) ? 1 : $w(n) ? 128 : h8(n) ? 64 : gn(n) ? 4 : wt(n) ? 2 : 0
+  return kt(n, e, t, i, r, o, s, !0)
 }
 function o9(n) {
   return n ? (t_(n) || Dw(n) ? ti({}, n) : n) : null
@@ -3483,7 +3483,7 @@ function Pu(n, e) {
   return ((t.staticCount = e), t)
 }
 function hs(n = '', e = !1) {
-  return e ? (mt(), ou(Js, null, n)) : Te(Js, null, n)
+  return e ? (yt(), ou(Js, null, n)) : Te(Js, null, n)
 }
 function zs(n) {
   return n == null || typeof n == 'boolean'
@@ -3515,7 +3515,7 @@ function c_(n, e) {
         : r === 3 && Er && (Er.slots._ === 1 ? (e._ = 1) : ((e._ = 2), (n.patchFlag |= 1024)))
     }
   else
-    Ct(e)
+    wt(e)
       ? ((e = { default: e, _ctx: Er }), (t = 32))
       : ((e = String(e)), i & 64 ? ((t = 16), (e = [om(e)])) : (t = 8))
   ;((n.children = e), (n.shapeFlag |= t))
@@ -3678,7 +3678,7 @@ function h9(n, e) {
   } else jw(n)
 }
 function H2(n, e, t) {
-  ;(Ct(e)
+  ;(wt(e)
     ? n.type.__ssrInlineRender
       ? (n.ssrRender = e)
       : (n.render = e)
@@ -3724,10 +3724,10 @@ function i0(n) {
     : n.proxy
 }
 function m9(n, e = !0) {
-  return Ct(n) ? n.displayName || n.name : n.name || (e && n.__name)
+  return wt(n) ? n.displayName || n.name : n.name || (e && n.__name)
 }
 function g9(n) {
-  return Ct(n) && '__vccOpts' in n
+  return wt(n) && '__vccOpts' in n
 }
 const Ge = (n, e) => o8(n, e, ih)
 function Ba(n, e, t) {
@@ -4201,7 +4201,7 @@ const iS = (n) =>
                 J2(n, e, i, o))
   }
 function k9(n, e, t, i) {
-  if (i) return !!(e === 'innerHTML' || e === 'textContent' || (e in n && iS(e) && Ct(t)))
+  if (i) return !!(e === 'innerHTML' || e === 'textContent' || (e in n && iS(e) && wt(t)))
   if (
     e === 'spellcheck' ||
     e === 'draggable' ||
@@ -4355,7 +4355,7 @@ const oS = (...n) => {
         const r = Y9(i)
         if (!r) return
         const s = e._component
-        ;(!Ct(s) && !s.render && !s.template && (s.template = r.innerHTML),
+        ;(!wt(s) && !s.render && !s.template && (s.template = r.innerHTML),
           r.nodeType === 1 && (r.textContent = ''))
         const o = t(r, !1, K9(r))
         return (
@@ -9575,7 +9575,7 @@ function BP() {
     n
   )
 }
-const wt = BP()
+const Tt = BP()
 function Vo(n) {
   return n < 0.04045 ? n * 0.0773993808 : Math.pow(n * 0.9478672986 + 0.0521327014, 2.4)
 }
@@ -13239,7 +13239,7 @@ function Ig(n, e, t) {
     t < 1 / 6 ? n + (e - n) * 6 * t : t < 1 / 2 ? e : t < 2 / 3 ? n + (e - n) * 6 * (2 / 3 - t) : n
   )
 }
-class gt {
+class mt {
   constructor(e, t, i) {
     return ((this.isColor = !0), (this.r = 1), (this.g = 1), (this.b = 1), this.set(e, t, i))
   }
@@ -13263,14 +13263,14 @@ class gt {
       (this.r = ((e >> 16) & 255) / 255),
       (this.g = ((e >> 8) & 255) / 255),
       (this.b = (e & 255) / 255),
-      wt.toWorkingColorSpace(this, t),
+      Tt.toWorkingColorSpace(this, t),
       this
     )
   }
-  setRGB(e, t, i, r = wt.workingColorSpace) {
-    return ((this.r = e), (this.g = t), (this.b = i), wt.toWorkingColorSpace(this, r), this)
+  setRGB(e, t, i, r = Tt.workingColorSpace) {
+    return ((this.r = e), (this.g = t), (this.b = i), Tt.toWorkingColorSpace(this, r), this)
   }
-  setHSL(e, t, i, r = wt.workingColorSpace) {
+  setHSL(e, t, i, r = Tt.workingColorSpace) {
     if (((e = b_(e, 1)), (t = Nt(t, 0, 1)), (i = Nt(i, 0, 1)), t === 0))
       this.r = this.g = this.b = i
     else {
@@ -13278,7 +13278,7 @@ class gt {
         o = 2 * i - s
       ;((this.r = Ig(o, s, e + 1 / 3)), (this.g = Ig(o, s, e)), (this.b = Ig(o, s, e - 1 / 3)))
     }
-    return (wt.toWorkingColorSpace(this, r), this)
+    return (Tt.toWorkingColorSpace(this, r), this)
   }
   setStyle(e, t = fi) {
     function i(s) {
@@ -13373,7 +13373,7 @@ class gt {
   }
   getHex(e = fi) {
     return (
-      wt.fromWorkingColorSpace(wi.copy(this), e),
+      Tt.fromWorkingColorSpace(wi.copy(this), e),
       Math.round(Nt(wi.r * 255, 0, 255)) * 65536 +
         Math.round(Nt(wi.g * 255, 0, 255)) * 256 +
         Math.round(Nt(wi.b * 255, 0, 255))
@@ -13382,8 +13382,8 @@ class gt {
   getHexString(e = fi) {
     return ('000000' + this.getHex(e).toString(16)).slice(-6)
   }
-  getHSL(e, t = wt.workingColorSpace) {
-    wt.fromWorkingColorSpace(wi.copy(this), t)
+  getHSL(e, t = Tt.workingColorSpace) {
+    Tt.fromWorkingColorSpace(wi.copy(this), t)
     const i = wi.r,
       r = wi.g,
       s = wi.b,
@@ -13409,11 +13409,11 @@ class gt {
     }
     return ((e.h = l), (e.s = c), (e.l = u), e)
   }
-  getRGB(e, t = wt.workingColorSpace) {
-    return (wt.fromWorkingColorSpace(wi.copy(this), t), (e.r = wi.r), (e.g = wi.g), (e.b = wi.b), e)
+  getRGB(e, t = Tt.workingColorSpace) {
+    return (Tt.fromWorkingColorSpace(wi.copy(this), t), (e.r = wi.r), (e.g = wi.g), (e.b = wi.b), e)
   }
   getStyle(e = fi) {
-    wt.fromWorkingColorSpace(wi.copy(this), e)
+    Tt.fromWorkingColorSpace(wi.copy(this), e)
     const t = wi.r,
       i = wi.g,
       r = wi.b
@@ -13511,8 +13511,8 @@ class gt {
     ;(yield this.r, yield this.g, yield this.b)
   }
 }
-const wi = new gt()
-gt.NAMES = O5
+const wi = new mt()
+mt.NAMES = O5
 let XP = 0
 class Jr extends so {
   constructor() {
@@ -13534,7 +13534,7 @@ class Jr extends so {
       (this.blendSrcAlpha = null),
       (this.blendDstAlpha = null),
       (this.blendEquationAlpha = null),
-      (this.blendColor = new gt(0, 0, 0)),
+      (this.blendColor = new mt(0, 0, 0)),
       (this.blendAlpha = 0),
       (this.depthFunc = cu),
       (this.depthTest = !0),
@@ -13849,7 +13849,7 @@ class Kr extends Jr {
     ;(super(),
       (this.isMeshBasicMaterial = !0),
       (this.type = 'MeshBasicMaterial'),
-      (this.color = new gt(16777215)),
+      (this.color = new mt(16777215)),
       (this.map = null),
       (this.lightMap = null),
       (this.lightMapIntensity = 1),
@@ -14945,7 +14945,7 @@ function k5(n) {
     ? n.outputColorSpace
     : e.isXRRenderTarget === !0
       ? e.texture.colorSpace
-      : wt.workingColorSpace
+      : Tt.workingColorSpace
 }
 const iL = { clone: pu, merge: Wi }
 var rL =
@@ -16320,7 +16320,7 @@ class H5 extends Jr {
     ;(super(),
       (this.isLineBasicMaterial = !0),
       (this.type = 'LineBasicMaterial'),
-      (this.color = new gt(16777215)),
+      (this.color = new mt(16777215)),
       (this.map = null),
       (this.linewidth = 1),
       (this.linecap = 'round'),
@@ -16499,7 +16499,7 @@ class $5 extends Jr {
     ;(super(),
       (this.isPointsMaterial = !0),
       (this.type = 'PointsMaterial'),
-      (this.color = new gt(16777215)),
+      (this.color = new mt(16777215)),
       (this.map = null),
       (this.alphaMap = null),
       (this.size = 1),
@@ -16900,7 +16900,7 @@ class I_ extends Jr {
       (this.isMeshStandardMaterial = !0),
       (this.type = 'MeshStandardMaterial'),
       (this.defines = { STANDARD: '' }),
-      (this.color = new gt(16777215)),
+      (this.color = new mt(16777215)),
       (this.roughness = 1),
       (this.metalness = 0),
       (this.map = null),
@@ -16908,7 +16908,7 @@ class I_ extends Jr {
       (this.lightMapIntensity = 1),
       (this.aoMap = null),
       (this.aoMapIntensity = 1),
-      (this.emissive = new gt(0)),
+      (this.emissive = new mt(0)),
       (this.emissiveIntensity = 1),
       (this.emissiveMap = null),
       (this.bumpMap = null),
@@ -16998,7 +16998,7 @@ class ao extends I_ {
       (this.iridescenceIOR = 1.3),
       (this.iridescenceThicknessRange = [100, 400]),
       (this.iridescenceThicknessMap = null),
-      (this.sheenColor = new gt(0)),
+      (this.sheenColor = new mt(0)),
       (this.sheenColorMap = null),
       (this.sheenRoughness = 1),
       (this.sheenRoughnessMap = null),
@@ -17006,10 +17006,10 @@ class ao extends I_ {
       (this.thickness = 0),
       (this.thicknessMap = null),
       (this.attenuationDistance = 1 / 0),
-      (this.attenuationColor = new gt(1, 1, 1)),
+      (this.attenuationColor = new mt(1, 1, 1)),
       (this.specularIntensity = 1),
       (this.specularIntensityMap = null),
-      (this.specularColor = new gt(1, 1, 1)),
+      (this.specularColor = new mt(1, 1, 1)),
       (this.specularColorMap = null),
       (this._anisotropy = 0),
       (this._clearcoat = 0),
@@ -18059,7 +18059,7 @@ class R_ extends sn {
     ;(super(),
       (this.isLight = !0),
       (this.type = 'Light'),
-      (this.color = new gt(e)),
+      (this.color = new mt(e)),
       (this.intensity = t))
   }
   dispose() {}
@@ -20253,7 +20253,7 @@ const s7 =
   },
   tt = {
     common: {
-      diffuse: { value: new gt(16777215) },
+      diffuse: { value: new mt(16777215) },
       opacity: { value: 1 },
       map: { value: null },
       mapTransform: { value: new pt() },
@@ -20304,7 +20304,7 @@ const s7 =
       fogDensity: { value: 25e-5 },
       fogNear: { value: 1 },
       fogFar: { value: 2e3 },
-      fogColor: { value: new gt(16777215) },
+      fogColor: { value: new mt(16777215) },
     },
     lights: {
       ambientLightColor: { value: [] },
@@ -20368,7 +20368,7 @@ const s7 =
       ltc_2: { value: null },
     },
     points: {
-      diffuse: { value: new gt(16777215) },
+      diffuse: { value: new mt(16777215) },
       opacity: { value: 1 },
       size: { value: 1 },
       scale: { value: 1 },
@@ -20379,7 +20379,7 @@ const s7 =
       uvTransform: { value: new pt() },
     },
     sprite: {
-      diffuse: { value: new gt(16777215) },
+      diffuse: { value: new mt(16777215) },
       opacity: { value: 1 },
       center: { value: new je(0.5, 0.5) },
       rotation: { value: 0 },
@@ -20409,7 +20409,7 @@ const s7 =
         tt.displacementmap,
         tt.fog,
         tt.lights,
-        { emissive: { value: new gt(0) } },
+        { emissive: { value: new mt(0) } },
       ]),
       vertexShader: Rt.meshlambert_vert,
       fragmentShader: Rt.meshlambert_frag,
@@ -20428,8 +20428,8 @@ const s7 =
         tt.fog,
         tt.lights,
         {
-          emissive: { value: new gt(0) },
-          specular: { value: new gt(1118481) },
+          emissive: { value: new mt(0) },
+          specular: { value: new mt(1118481) },
           shininess: { value: 30 },
         },
       ]),
@@ -20451,7 +20451,7 @@ const s7 =
         tt.fog,
         tt.lights,
         {
-          emissive: { value: new gt(0) },
+          emissive: { value: new mt(0) },
           roughness: { value: 1 },
           metalness: { value: 0 },
           envMapIntensity: { value: 1 },
@@ -20472,7 +20472,7 @@ const s7 =
         tt.gradientmap,
         tt.fog,
         tt.lights,
-        { emissive: { value: new gt(0) } },
+        { emissive: { value: new mt(0) } },
       ]),
       vertexShader: Rt.meshtoon_vert,
       fragmentShader: Rt.meshtoon_frag,
@@ -20568,7 +20568,7 @@ const s7 =
       fragmentShader: Rt.distanceRGBA_frag,
     },
     shadow: {
-      uniforms: Wi([tt.lights, tt.fog, { color: { value: new gt(0) }, opacity: { value: 1 } }]),
+      uniforms: Wi([tt.lights, tt.fog, { color: { value: new mt(0) }, opacity: { value: 1 } }]),
       vertexShader: Rt.shadow_vert,
       fragmentShader: Rt.shadow_frag,
     },
@@ -20596,7 +20596,7 @@ Vs.physical = {
       iridescenceThicknessMap: { value: null },
       iridescenceThicknessMapTransform: { value: new pt() },
       sheen: { value: 0 },
-      sheenColor: { value: new gt(0) },
+      sheenColor: { value: new mt(0) },
       sheenColorMap: { value: null },
       sheenColorMapTransform: { value: new pt() },
       sheenRoughness: { value: 1 },
@@ -20611,8 +20611,8 @@ Vs.physical = {
       thicknessMap: { value: null },
       thicknessMapTransform: { value: new pt() },
       attenuationDistance: { value: 0 },
-      attenuationColor: { value: new gt(0) },
-      specularColor: { value: new gt(1, 1, 1) },
+      attenuationColor: { value: new mt(0) },
+      specularColor: { value: new mt(1, 1, 1) },
       specularColorMap: { value: null },
       specularColorMapTransform: { value: new pt() },
       specularIntensity: { value: 1 },
@@ -20630,7 +20630,7 @@ const Gf = { r: 0, b: 0, g: 0 },
   rl = new Cs(),
   k7 = new qe()
 function z7(n, e, t, i, r, s, o) {
-  const a = new gt(0)
+  const a = new mt(0)
   let l = s === !0 ? 0 : 1,
     c,
     u,
@@ -20694,7 +20694,7 @@ function z7(n, e, t, i, r, s, o) {
         (u.material.uniforms.backgroundBlurriness.value = _.backgroundBlurriness),
         (u.material.uniforms.backgroundIntensity.value = _.backgroundIntensity),
         u.material.uniforms.backgroundRotation.value.setFromMatrix4(k7.makeRotationFromEuler(rl)),
-        (u.material.toneMapped = wt.getTransfer(S.colorSpace) !== Jt),
+        (u.material.toneMapped = Tt.getTransfer(S.colorSpace) !== Jt),
         (d !== S || h !== S.version || f !== n.toneMapping) &&
           ((u.material.needsUpdate = !0), (d = S), (h = S.version), (f = n.toneMapping)),
         u.layers.enableAll(),
@@ -20724,7 +20724,7 @@ function z7(n, e, t, i, r, s, o) {
           r.update(c)),
         (c.material.uniforms.t2D.value = S),
         (c.material.uniforms.backgroundIntensity.value = _.backgroundIntensity),
-        (c.material.toneMapped = wt.getTransfer(S.colorSpace) !== Jt),
+        (c.material.toneMapped = Tt.getTransfer(S.colorSpace) !== Jt),
         S.matrixAutoUpdate === !0 && S.updateMatrix(),
         c.material.uniforms.uvTransform.value.copy(S.matrix),
         (d !== S || h !== S.version || f !== n.toneMapping) &&
@@ -21217,7 +21217,7 @@ const Fc = 4,
   dA = [0.125, 0.215, 0.35, 0.446, 0.526, 0.582],
   yl = 20,
   kg = new Bu(),
-  hA = new gt()
+  hA = new mt()
 let zg = null,
   Vg = 0,
   Hg = 0,
@@ -22425,12 +22425,12 @@ function jO(n, e) {
 }
 const CA = new pt()
 function qO(n) {
-  wt._getMatrix(CA, wt.workingColorSpace, n)
+  Tt._getMatrix(CA, Tt.workingColorSpace, n)
   const e = 'mat3( '.concat(
     CA.elements.map((t) => t.toFixed(4)),
     ' )'
   )
-  switch (wt.getTransfer(n)) {
+  switch (Tt.getTransfer(n)) {
     case mm:
       return [e, 'LinearTransferOETF']
     case Jt:
@@ -22491,7 +22491,7 @@ function KO(n, e) {
 }
 const Qf = new Y()
 function YO() {
-  wt.getLuminanceCoefficients(Qf)
+  Tt.getLuminanceCoefficients(Qf)
   const n = Qf.x.toFixed(4),
     e = Qf.y.toFixed(4),
     t = Qf.z.toFixed(4)
@@ -23302,9 +23302,9 @@ function mB(n, e, t, i, r, s, o) {
       shadowMapType: n.shadowMap.type,
       toneMapping: hn,
       decodeVideoTexture:
-        it && w.map.isVideoTexture === !0 && wt.getTransfer(w.map.colorSpace) === Jt,
+        it && w.map.isVideoTexture === !0 && Tt.getTransfer(w.map.colorSpace) === Jt,
       decodeVideoTextureEmissive:
-        k && w.emissiveMap.isVideoTexture === !0 && wt.getTransfer(w.emissiveMap.colorSpace) === Jt,
+        k && w.emissiveMap.isVideoTexture === !0 && Tt.getTransfer(w.emissiveMap.colorSpace) === Jt,
       premultipliedAlpha: w.premultipliedAlpha,
       doubleSided: w.side === wr,
       flipSided: w.side === Oi,
@@ -23622,13 +23622,13 @@ function _B() {
       let t
       switch (e.type) {
         case 'DirectionalLight':
-          t = { direction: new Y(), color: new gt() }
+          t = { direction: new Y(), color: new mt() }
           break
         case 'SpotLight':
           t = {
             position: new Y(),
             direction: new Y(),
-            color: new gt(),
+            color: new mt(),
             distance: 0,
             coneCos: 0,
             penumbraCos: 0,
@@ -23636,13 +23636,13 @@ function _B() {
           }
           break
         case 'PointLight':
-          t = { position: new Y(), color: new gt(), distance: 0, decay: 0 }
+          t = { position: new Y(), color: new mt(), distance: 0, decay: 0 }
           break
         case 'HemisphereLight':
-          t = { direction: new Y(), skyColor: new gt(), groundColor: new gt() }
+          t = { direction: new Y(), skyColor: new mt(), groundColor: new mt() }
           break
         case 'RectAreaLight':
-          t = { color: new gt(), position: new Y(), halfWidth: new Y(), halfHeight: new Y() }
+          t = { color: new mt(), position: new Y(), halfWidth: new Y(), halfHeight: new Y() }
           break
       }
       return ((n[e.id] = t), t)
@@ -24333,7 +24333,7 @@ function IB(n, e) {
     _ = null,
     S = null,
     C = null,
-    A = new gt(0, 0, 0),
+    A = new mt(0, 0, 0),
     I = 0,
     w = !1,
     M = null,
@@ -24712,7 +24712,7 @@ function IB(n, e) {
       (_ = null),
       (S = null),
       (C = null),
-      (A = new gt(0, 0, 0)),
+      (A = new mt(0, 0, 0)),
       (I = 0),
       (w = !1),
       (M = null),
@@ -24884,7 +24884,7 @@ function RB(n, e, t, i, r, s, o) {
       D === n.RGB && W === n.UNSIGNED_INT_5_9_9_9_REV && (ue = n.RGB9_E5),
       D === n.RGBA)
     ) {
-      const z = X ? mm : wt.getTransfer(G)
+      const z = X ? mm : Tt.getTransfer(G)
       ;(W === n.FLOAT && (ue = n.RGBA32F),
         W === n.HALF_FLOAT && (ue = n.RGBA16F),
         W === n.UNSIGNED_BYTE && (ue = z === Jt ? n.SRGB8_ALPHA8 : n.RGBA8),
@@ -25163,8 +25163,8 @@ function RB(n, e, t, i, r, s, o) {
     const z = i.get(ue)
     if (ue.version !== z.__version || X === !0) {
       t.activeTexture(n.TEXTURE0 + W)
-      const E = wt.getPrimaries(wt.workingColorSpace),
-        N = D.colorSpace === $s ? null : wt.getPrimaries(D.colorSpace),
+      const E = Tt.getPrimaries(Tt.workingColorSpace),
+        N = D.colorSpace === $s ? null : Tt.getPrimaries(D.colorSpace),
         q = D.colorSpace === $s || E === N ? n.NONE : n.BROWSER_DEFAULT_WEBGL
       ;(n.pixelStorei(n.UNPACK_FLIP_Y_WEBGL, D.flipY),
         n.pixelStorei(n.UNPACK_PREMULTIPLY_ALPHA_WEBGL, D.premultiplyAlpha),
@@ -25389,8 +25389,8 @@ function RB(n, e, t, i, r, s, o) {
     const ue = i.get(X)
     if (X.version !== ue.__version || G === !0) {
       t.activeTexture(n.TEXTURE0 + W)
-      const z = wt.getPrimaries(wt.workingColorSpace),
-        E = D.colorSpace === $s ? null : wt.getPrimaries(D.colorSpace),
+      const z = Tt.getPrimaries(Tt.workingColorSpace),
+        E = D.colorSpace === $s ? null : Tt.getPrimaries(D.colorSpace),
         N = D.colorSpace === $s || z === E ? n.NONE : n.BROWSER_DEFAULT_WEBGL
       ;(n.pixelStorei(n.UNPACK_FLIP_Y_WEBGL, D.flipY),
         n.pixelStorei(n.UNPACK_PREMULTIPLY_ALPHA_WEBGL, D.premultiplyAlpha),
@@ -25927,7 +25927,7 @@ function RB(n, e, t, i, r, s, o) {
         B.isVideoTexture === !0 ||
         (W !== Ui &&
           W !== $s &&
-          (wt.getTransfer(W) === Jt
+          (Tt.getTransfer(W) === Jt
             ? (G !== Fi || X !== eo) &&
               console.warn(
                 'THREE.WebGLTextures: sRGB encoded textures have to use RGBAFormat and UnsignedByteType.'
@@ -25963,7 +25963,7 @@ function RB(n, e, t, i, r, s, o) {
 function eC(n, e) {
   function t(i, r = $s) {
     let s
-    const o = wt.getTransfer(r)
+    const o = Tt.getTransfer(r)
     if (i === eo) return n.UNSIGNED_BYTE
     if (i === v_) return n.UNSIGNED_SHORT_4_4_4_4
     if (i === __) return n.UNSIGNED_SHORT_5_5_5_1
@@ -26910,7 +26910,7 @@ class UB {
     const R = new Mt(),
       L = new Mt()
     let U = null
-    const T = new gt(0)
+    const T = new mt(0)
     let F = 0,
       V = t.width,
       Q = t.height,
@@ -27469,7 +27469,7 @@ class UB {
           stencilBuffer: s,
           resolveDepthBuffer: !1,
           resolveStencilBuffer: !1,
-          colorSpace: wt.workingColorSpace,
+          colorSpace: Tt.workingColorSpace,
         }))
       const $e = m.state.transmissionRenderTarget[Ae.id],
         nt = Ae.viewport || R
@@ -28176,8 +28176,8 @@ class UB {
   set outputColorSpace(e) {
     this._outputColorSpace = e
     const t = this.getContext()
-    ;((t.drawingBufferColorspace = wt._getDrawingBufferColorSpace(e)),
-      (t.unpackColorSpace = wt._getUnpackColorSpace()))
+    ;((t.drawingBufferColorspace = Tt._getDrawingBufferColorSpace(e)),
+      (t.unpackColorSpace = Tt._getUnpackColorSpace()))
   }
 }
 class Ft {}
@@ -31995,7 +31995,7 @@ class Vd {
         '\n            #include <common>\n            varying float ndcDepth;\n\n            void main() {\n                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position.xyz, 1.0);\n                ndcDepth = gl_Position.z / gl_Position.w;\n                gl_Position.x = gl_Position.x / gl_Position.w;\n                gl_Position.y = gl_Position.y / gl_Position.w;\n                gl_Position.z = 0.0;\n                gl_Position.w = 1.0;\n    \n            }\n        ',
       i =
         '\n            #include <common>\n            uniform vec3 color;\n            varying float ndcDepth;\n            void main() {\n                gl_FragDepth = (ndcDepth + 1.0) / 2.0;\n                gl_FragColor = vec4(color.rgb, 0.0);\n            }\n        ',
-      r = { color: { type: 'v3', value: new gt(e) } },
+      r = { color: { type: 'v3', value: new mt(e) } },
       s = new Nr({
         uniforms: r,
         vertexShader: t,
@@ -32013,7 +32013,7 @@ class Vd {
       i =
         '\n            #include <common>\n            uniform vec3 color;\n            uniform vec2 viewport;\n            uniform float opacity;\n\n            varying vec4 ndcPosition;\n            varying vec4 ndcCenter;\n            varying vec4 ndcFocusPosition;\n\n            void main() {\n                vec2 screenPosition = vec2(ndcPosition) * viewport;\n                vec2 screenCenter = vec2(ndcCenter) * viewport;\n\n                vec2 screenVec = screenPosition - screenCenter;\n\n                float projectedRadius = length(screenVec);\n\n                float lineWidth = 0.0005 * viewport.y;\n                float aaRange = 0.0025 * viewport.y;\n                float radius = 0.06 * viewport.y;\n                float radDiff = abs(projectedRadius - radius) - lineWidth;\n                float alpha = 1.0 - clamp(radDiff / 5.0, 0.0, 1.0); \n\n                gl_FragColor = vec4(color.rgb, alpha * opacity);\n            }\n        ',
       r = {
-        color: { type: 'v3', value: new gt(e) },
+        color: { type: 'v3', value: new mt(e) },
         realFocusPosition: { type: 'v3', value: new Y() },
         viewport: { type: 'v2', value: new je() },
         opacity: { value: 0 },
@@ -32380,7 +32380,7 @@ class Qc {
       inverseFocalAdjustment: { type: 'f', value: 1 },
       viewport: { type: 'v2', value: new je() },
       basisViewport: { type: 'v2', value: new je() },
-      debugColor: { type: 'v3', value: new gt() },
+      debugColor: { type: 'v3', value: new mt() },
       centersColorsTextureSize: { type: 'v2', value: new je(1024, 1024) },
       flameModelTextureSize: { type: 'v2', value: new je(4096, 2048) },
       boneTextureSize: { type: 'v2', value: new je(4, 32) },
@@ -35357,7 +35357,7 @@ function dC(n, ...e) {
           ? (e = [e[0], e[0], e[0]])
           : t === 'vec4' && (e = [e[0], e[0], e[0], e[0]])),
     n === 'color'
-      ? new gt(...e)
+      ? new mt(...e)
       : t === 'vec2'
         ? new je(...e)
         : t === 'vec3'
@@ -36153,7 +36153,7 @@ const bC = new Qn('color'),
   CC = new Qn('ivec3'),
   zu = new Qn('uvec3'),
   ex = new Qn('bvec3'),
-  yt = new Qn('vec4'),
+  gt = new Qn('vec4'),
   EC = new Qn('ivec4'),
   MC = new Qn('uvec4'),
   IC = new Qn('bvec4'),
@@ -36175,7 +36175,7 @@ Ne('toVec3', ve)
 Ne('toIVec3', CC)
 Ne('toUVec3', zu)
 Ne('toBVec3', ex)
-Ne('toVec4', yt)
+Ne('toVec4', gt)
 Ne('toIVec4', EC)
 Ne('toUVec4', MC)
 Ne('toBVec4', IC)
@@ -36248,7 +36248,7 @@ class LC extends ut {
 const DC = (n) => new LC(n),
   m0 = (n, e = 0) => new LC(n, !0, e),
   Ck = m0('frame'),
-  kt = m0('render'),
+  Ut = m0('render'),
   FC = DC('object')
 class Vh extends K_ {
   static get type() {
@@ -36575,7 +36575,7 @@ class Tn extends Un {
   }
 }
 const On = Pe(Tn, '+'),
-  Ut = Pe(Tn, '-'),
+  Bt = Pe(Tn, '-'),
   xt = Pe(Tn, '*'),
   Zo = Pe(Tn, '/'),
   tx = Pe(Tn, '%'),
@@ -36596,7 +36596,7 @@ const On = Pe(Tn, '+'),
   tE = Pe(Tn, '<<'),
   nE = Pe(Tn, '>>')
 Ne('add', On)
-Ne('sub', Ut)
+Ne('sub', Bt)
 Ne('mul', xt)
 Ne('div', Zo)
 Ne('modInt', tx)
@@ -36667,14 +36667,14 @@ class me extends Un {
     if (i === me.TRANSFORM_DIRECTION) {
       let u = o,
         d = a
-      e.isMatrix(u.getNodeType(e)) ? (d = yt(ve(d), 0)) : (u = yt(ve(u), 0))
+      e.isMatrix(u.getNodeType(e)) ? (d = gt(ve(d), 0)) : (u = gt(ve(u), 0))
       const h = xt(u, d).xyz
       return ql(h).build(e, t)
     } else {
       if (i === me.NEGATE) return e.format('( - ' + o.build(e, s) + ' )', r, t)
-      if (i === me.ONE_MINUS) return Ut(1, o).build(e, t)
+      if (i === me.ONE_MINUS) return Bt(1, o).build(e, t)
       if (i === me.RECIPROCAL) return Zo(1, o).build(e, t)
-      if (i === me.DIFFERENCE) return mn(Ut(o, a)).build(e, t)
+      if (i === me.DIFFERENCE) return mn(Bt(o, a)).build(e, t)
       {
         const u = []
         return (
@@ -37140,7 +37140,7 @@ class $h extends Un {
   }
   resolveColorSpace(e, t) {
     return t === Hh
-      ? wt.workingColorSpace
+      ? Tt.workingColorSpace
       : t === gx
         ? e.context.outputColorSpace || e.renderer.outputColorSpace
         : t
@@ -37151,14 +37151,14 @@ class $h extends Un {
       r = this.resolveColorSpace(e, this.target)
     let s = t
     return (
-      wt.enabled === !1 ||
+      Tt.enabled === !1 ||
         i === r ||
         !i ||
         !r ||
-        (wt.getTransfer(i) === Jt && (s = yt(zE(s.rgb), s.a)),
-        wt.getPrimaries(i) !== wt.getPrimaries(r) &&
-          (s = yt(ns(wt._getMatrix(new pt(), i, r)).mul(s.rgb), s.a)),
-        wt.getTransfer(r) === Jt && (s = yt(VE(s.rgb), s.a))),
+        (Tt.getTransfer(i) === Jt && (s = gt(zE(s.rgb), s.a)),
+        Tt.getPrimaries(i) !== Tt.getPrimaries(r) &&
+          (s = gt(ns(Tt._getMatrix(new pt(), i, r)).mul(s.rgb), s.a)),
+        Tt.getTransfer(r) === Jt && (s = gt(VE(s.rgb), s.a))),
       s
     )
   }
@@ -37247,7 +37247,7 @@ class sz extends rz {
     return 'RendererReferenceNode'
   }
   constructor(e, t, i = null) {
-    ;(super(e, t, i), (this.renderer = i), this.setGroup(kt))
+    ;(super(e, t, i), (this.renderer = i), this.setGroup(Ut))
   }
   updateReference(e) {
     return ((this.reference = this.renderer !== null ? this.renderer : e.renderer), this.reference)
@@ -37272,7 +37272,7 @@ class oz extends Un {
     const s = e.renderer.library.getToneMappingFunction(i)
     return (
       s !== null
-        ? (r = yt(s(t.rgb, this.exposureNode), t.a))
+        ? (r = gt(s(t.rgb, this.exposureNode), t.a))
         : (console.error('ToneMappingNode: Unsupported Tone Mapping configuration.', i), (r = t)),
       r
     )
@@ -37505,7 +37505,7 @@ class fz extends Un {
       r = (this.outputColorSpace !== null ? this.outputColorSpace : e.outputColorSpace) || $s
     return (
       i !== _s && (t = t.toneMapping(i)),
-      r !== $s && r !== wt.workingColorSpace && (t = t.workingToColorSpace(r)),
+      r !== $s && r !== Tt.workingColorSpace && (t = t.workingToColorSpace(r)),
       t
     )
   }
@@ -37974,11 +37974,11 @@ const Fo = (n, e) => Fe(new sM(n, e)),
   _x = It(0, 'uint').setGroup(m0('cameraIndex')).toVarying('v_cameraIndex'),
   Sa = It('float')
     .label('cameraNear')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate(({ camera: n }) => n.near),
   Aa = It('float')
     .label('cameraFar')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate(({ camera: n }) => n.far),
   Qh = _e(({ camera: n }) => {
     let e
@@ -37986,45 +37986,45 @@ const Fo = (n, e) => Fe(new sM(n, e)),
       const t = []
       for (const r of n.cameras) t.push(r.projectionMatrix)
       e = Fo(t)
-        .setGroup(kt)
+        .setGroup(Ut)
         .label('cameraProjectionMatrices')
         .element(_x)
         .toVar('cameraProjectionMatrix')
     } else
       e = It('mat4')
         .label('cameraProjectionMatrix')
-        .setGroup(kt)
+        .setGroup(Ut)
         .onRenderUpdate(({ camera: t }) => t.projectionMatrix)
     return e
   }).once()(),
   xz = It('mat4')
     .label('cameraProjectionMatrixInverse')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate(({ camera: n }) => n.projectionMatrixInverse),
   rs = _e(({ camera: n }) => {
     let e
     if (n.isArrayCamera && n.cameras.length > 0) {
       const t = []
       for (const r of n.cameras) t.push(r.matrixWorldInverse)
-      e = Fo(t).setGroup(kt).label('cameraViewMatrices').element(_x).toVar('cameraViewMatrix')
+      e = Fo(t).setGroup(Ut).label('cameraViewMatrices').element(_x).toVar('cameraViewMatrix')
     } else
       e = It('mat4')
         .label('cameraViewMatrix')
-        .setGroup(kt)
+        .setGroup(Ut)
         .onRenderUpdate(({ camera: t }) => t.matrixWorldInverse)
     return e
   }).once()(),
   Sz = It('mat4')
     .label('cameraWorldMatrix')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate(({ camera: n }) => n.matrixWorld),
   Az = It('mat3')
     .label('cameraNormalMatrix')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate(({ camera: n }) => n.normalMatrix),
   bz = It(new Y())
     .label('cameraPosition')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate(({ camera: n }, e) => e.value.setFromMatrixPosition(n.matrixWorld))
 class Ht extends ut {
   static get type() {
@@ -38344,7 +38344,7 @@ const _l = (n, e, t = null) => Fe(new kz(n, e, t)),
     )
   )(),
   Xh = x0.xyz.toVar('tangentLocal'),
-  Kh = jh.mul(yt(Xh, 0)).xyz.toVarying('v_tangentView').normalize().toVar('tangentView'),
+  Kh = jh.mul(gt(Xh, 0)).xyz.toVarying('v_tangentView').normalize().toVar('tangentView'),
   SM = Kh.transformDirection(rs).toVarying('v_tangentWorld').normalize().toVar('tangentWorld'),
   bx = Kh.toVar('transformedTangentView'),
   zz = bx.transformDirection(rs).normalize().toVar('transformedTangentWorld'),
@@ -39466,13 +39466,13 @@ const tH = () => Fe(new es()),
       o = On(xt(s.oneMinus(), r.x), xt(s, r.y)),
       a = Dr(s, s.oneMinus()),
       l = ve(
-        o.mul(o).div(xt(2, a).mul(Ut(1, a))),
-        o.sub(xt(0.5, a)).div(Ut(1, a)),
-        Ut(
+        o.mul(o).div(xt(2, a).mul(Bt(1, a))),
+        o.sub(xt(0.5, a)).div(Bt(1, a)),
+        Bt(
           1,
-          Ut(1, o)
-            .mul(Ut(1, o))
-            .div(xt(2, a).mul(Ut(1, a)))
+          Bt(1, o)
+            .mul(Bt(1, o))
+            .div(xt(2, a).mul(Bt(1, a)))
         )
       ),
       c = o.lessThan(a.oneMinus()).select(o.lessThan(a).select(l.x, l.y), l.z)
@@ -39551,7 +39551,7 @@ class _h extends Jr {
       ;(this.setupDiffuseColor(e), this.setupVariants(e))
       const a = this.setupLighting(e)
       o !== null && e.stack.add(o)
-      const l = yt(a, ds.a).max(0)
+      const l = gt(a, ds.a).max(0)
       if (
         ((s = this.setupOutput(e, l)),
         vh.assign(s),
@@ -39564,7 +39564,7 @@ class _h extends Jr {
       }
     } else {
       let a = this.fragmentNode
-      ;(a.isOutputStructNode !== !0 && (a = yt(a)), (s = this.setupOutput(e, a)))
+      ;(a.isOutputStructNode !== !0 && (a = gt(a)), (s = this.setupOutput(e, a)))
     }
     ;((e.stack.outputNode = s),
       e.addFlow('fragment', e.removeStack()),
@@ -39634,10 +39634,10 @@ class _h extends Jr {
     )
   }
   setupDiffuseColor({ object: e, geometry: t }) {
-    let i = this.colorNode ? yt(this.colorNode) : EM
+    let i = this.colorNode ? gt(this.colorNode) : EM
     ;(this.vertexColors === !0 &&
       t.hasAttribute('color') &&
-      (i = yt(i.xyz.mul(ea('color', 'vec3')), i.a)),
+      (i = gt(i.xyz.mul(ea('color', 'vec3')), i.a)),
       e.instanceColor && (i = yh('vec3', 'vInstanceColor').mul(i)),
       e.isBatchedMesh && e._colorsTexture && (i = yh('vec3', 'vBatchColor').mul(i)),
       ds.assign(i))
@@ -39704,7 +39704,7 @@ class _h extends Jr {
   setupOutput(e, t) {
     if (this.fog === !0) {
       const i = e.fogNode
-      i && (vh.assign(t), (t = yt(i)))
+      i && (vh.assign(t), (t = gt(i)))
     }
     return t
   }
@@ -39927,8 +39927,8 @@ const dH = Pe(uH),
     return g.mul(y).mul(m)
   }),
   vH = _e(({ roughness: n, dotNV: e }) => {
-    const t = yt(-1, -0.0275, -0.572, 0.022),
-      i = yt(1, 0.0425, 1.04, -0.04),
+    const t = gt(-1, -0.0275, -0.572, 0.022),
+      i = gt(1, 0.0425, 1.04, -0.04),
       r = n.mul(t).add(i),
       s = r.x.mul(r.x).min(e.mul(-9.28).exp2()).mul(r.x).add(r.y)
     return He(-1.04, 1.04).mul(s).add(r.zw)
@@ -39987,8 +39987,8 @@ const dH = Pe(uH),
       i = He(n.size(de(e.add(1)))),
       r = Zo(1, t),
       s = Zo(1, i),
-      o = Sb(n, yt(r, t), Xs(e)),
-      a = Sb(n, yt(s, i), g0(e))
+      o = Sb(n, gt(r, t), Xs(e)),
+      a = Sb(n, gt(s, i), g0(e))
     return sa(e).mix(o, a)
   })
 ve(0.04)
@@ -40244,7 +40244,7 @@ const Ab = ce(1),
                 )
             ))
         }),
-        yt(f, 1)
+        gt(f, 1)
       )
     }
   )
@@ -40369,24 +40369,24 @@ class FH extends Un {
     } else {
       const s = t,
         o = Ll(
-          yt(1, 0, 0, 0),
-          yt(0, Io(s.x), Tr(s.x).negate(), 0),
-          yt(0, Tr(s.x), Io(s.x), 0),
-          yt(0, 0, 0, 1)
+          gt(1, 0, 0, 0),
+          gt(0, Io(s.x), Tr(s.x).negate(), 0),
+          gt(0, Tr(s.x), Io(s.x), 0),
+          gt(0, 0, 0, 1)
         ),
         a = Ll(
-          yt(Io(s.y), 0, Tr(s.y), 0),
-          yt(0, 1, 0, 0),
-          yt(Tr(s.y).negate(), 0, Io(s.y), 0),
-          yt(0, 0, 0, 1)
+          gt(Io(s.y), 0, Tr(s.y), 0),
+          gt(0, 1, 0, 0),
+          gt(Tr(s.y).negate(), 0, Io(s.y), 0),
+          gt(0, 0, 0, 1)
         ),
         l = Ll(
-          yt(Io(s.z), Tr(s.z).negate(), 0, 0),
-          yt(Tr(s.z), Io(s.z), 0, 0),
-          yt(0, 0, 1, 0),
-          yt(0, 0, 0, 1)
+          gt(Io(s.z), Tr(s.z).negate(), 0, 0),
+          gt(Tr(s.z), Io(s.z), 0, 0),
+          gt(0, 0, 1, 0),
+          gt(0, 0, 0, 1)
         )
-      return o.mul(a).mul(l).mul(yt(i, 1)).xyz
+      return o.mul(a).mul(l).mul(gt(i, 1)).xyz
     }
   }
 }
@@ -40656,7 +40656,7 @@ class qH extends r4 {
       s = i.textures
     for (const o in t) {
       const a = s4(s, o)
-      r[a] = yt(t[o])
+      r[a] = gt(t[o])
     }
     return ((this.members = r), super.setup(e))
   }
@@ -40671,9 +40671,9 @@ const o4 = Pe(qH),
       .toFloat()
       .mul(1 / 2 ** 32)
   }),
-  av = (n, e) => gs(xt(4, n.mul(Ut(1, n))), e),
-  KH = (n, e) => (n.lessThan(0.5) ? av(n.mul(2), e).div(2) : Ut(1, av(xt(Ut(1, n), 2), e).div(2))),
-  YH = (n, e, t) => gs(Zo(gs(n, e), On(gs(n, e), gs(Ut(1, n), t))), 1 / e),
+  av = (n, e) => gs(xt(4, n.mul(Bt(1, n))), e),
+  KH = (n, e) => (n.lessThan(0.5) ? av(n.mul(2), e).div(2) : Bt(1, av(xt(Bt(1, n), 2), e).div(2))),
+  YH = (n, e, t) => gs(Zo(gs(n, e), On(gs(n, e), gs(Bt(1, n), t))), 1 / e),
   ZH = (n, e) => Tr(wm.mul(e.mul(n).sub(1))).div(wm.mul(e.mul(n).sub(1))),
   Ro = _e(([n]) => n.fract().sub(0.5).abs()).setLayout({
     name: 'tri',
@@ -40754,13 +40754,13 @@ const n$ = Pe(t$),
     (...e) =>
       n$(n, ...e),
   Xl = It(0)
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate((n) => n.time),
   a4 = It(0)
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate((n) => n.deltaTime),
   i$ = It(0, 'uint')
-    .setGroup(kt)
+    .setGroup(Ut)
     .onRenderUpdate((n) => n.frameId),
   r$ = (n = 1) => (console.warn('TSL: timerLocal() is deprecated. Use "time" instead.'), Xl.mul(n)),
   s$ = (n = 1) => (
@@ -41110,13 +41110,13 @@ const u4 = (n, ...e) => Fe(new w$(Fe(n), ...e)),
   Ic = _e(([n, e, t], i) => {
     let r
     i.renderer.coordinateSystem === Xo
-      ? ((n = He(n.x, n.y.oneMinus()).mul(2).sub(1)), (r = yt(ve(n, e), 1)))
-      : (r = yt(ve(n.x, n.y.oneMinus(), e).mul(2).sub(1), 1))
-    const s = yt(t.mul(r))
+      ? ((n = He(n.x, n.y.oneMinus()).mul(2).sub(1)), (r = gt(ve(n, e), 1)))
+      : (r = gt(ve(n.x, n.y.oneMinus(), e).mul(2).sub(1), 1))
+    const s = gt(t.mul(r))
     return s.xyz.div(s.w)
   }),
   E$ = _e(([n, e]) => {
-    const t = e.mul(yt(n, 1)),
+    const t = e.mul(gt(n, 1)),
       i = t.xy.div(t.w).mul(0.5).add(0.5).toVar()
     return He(i.x, i.y.oneMinus())
   }),
@@ -41132,10 +41132,10 @@ const u4 = (n, ...e) => Fe(new w$(Fe(n), ...e)),
       d = In(e, r.add(Xn(0, 1))).toVar(),
       h = In(e, r.sub(Xn(0, 1))).toVar(),
       f = In(e, r.sub(Xn(0, 2))).toVar(),
-      p = mn(Ut(ce(2).mul(a).sub(o), s)).toVar(),
-      g = mn(Ut(ce(2).mul(l).sub(c), s)).toVar(),
-      y = mn(Ut(ce(2).mul(d).sub(u), s)).toVar(),
-      m = mn(Ut(ce(2).mul(h).sub(f), s)).toVar(),
+      p = mn(Bt(ce(2).mul(a).sub(o), s)).toVar(),
+      g = mn(Bt(ce(2).mul(l).sub(c), s)).toVar(),
+      y = mn(Bt(ce(2).mul(d).sub(u), s)).toVar(),
+      m = mn(Bt(ce(2).mul(h).sub(f), s)).toVar(),
       v = Ic(n, s, t).toVar(),
       x = p
         .lessThan(g)
@@ -41372,7 +41372,7 @@ class or extends ut {
           : t === or.BACKGROUND_ROTATION
             ? (r = It('mat4')
                 .label('backgroundRotation')
-                .setGroup(kt)
+                .setGroup(Ut)
                 .onRenderUpdate(() => {
                   const s = i.background
                   return (
@@ -41472,7 +41472,7 @@ class q$ extends Un {
       (this.updateType = Wt.OBJECT),
       (this.updateAfterType = Wt.OBJECT),
       (this.previousModelWorldMatrix = It(new qe())),
-      (this.previousProjectionMatrix = It(new qe()).setGroup(kt)),
+      (this.previousProjectionMatrix = It(new qe()).setGroup(Ut)),
       (this.previousCameraViewMatrix = It(new qe())))
   }
   setProjectionMatrix(e) {
@@ -41508,7 +41508,7 @@ class q$ extends Un {
       r = this.previousProjectionMatrix.mul(t).mul(Mm),
       s = i.xy.div(i.w),
       o = r.xy.div(r.w)
-    return Ut(s, o)
+    return Bt(s, o)
   }
 }
 function h4(n) {
@@ -41557,7 +41557,7 @@ const X$ = We(q$),
   }),
   K$ = _e(([n, e]) => {
     const t = e.a.add(n.a.mul(e.a.oneMinus()))
-    return yt(e.rgb.mul(e.a).add(n.rgb.mul(n.a).mul(e.a.oneMinus())).div(t), t)
+    return gt(e.rgb.mul(e.a).add(n.rgb.mul(n.a).mul(e.a.oneMinus())).div(t), t)
   }).setLayout({
     name: 'blendColor',
     type: 'vec4',
@@ -41602,7 +41602,7 @@ const X$ = We(q$),
       )
     )
   }),
-  Nx = (n, e = ve(wt.getLuminanceCoefficients(new Y()))) => $a(n, e),
+  Nx = (n, e = ve(Tt.getLuminanceCoefficients(new Y()))) => $a(n, e),
   sG = _e(
     ([
       n,
@@ -41610,7 +41610,7 @@ const X$ = We(q$),
       t = ve(0),
       i = ve(1),
       r = ce(1),
-      s = ve(wt.getLuminanceCoefficients(new Y(), Ui)),
+      s = ve(Tt.getLuminanceCoefficients(new Y(), Ui)),
     ]) => {
       const o = n.rgb.dot(ve(s)),
         a = ui(n.rgb.mul(e).add(t), 0).toVar(),
@@ -41626,7 +41626,7 @@ const X$ = We(q$),
           a.b.assign(l.b)
         }),
         a.assign(o.add(a.sub(o).mul(r))),
-        yt(a.rgb, n.a)
+        gt(a.rgb, n.a)
       )
     }
   )
@@ -41857,12 +41857,12 @@ class hG extends io {
     const t = cr.negate(),
       i = Qh.mul(jh),
       r = ce(1),
-      s = i.mul(yt(Nn, 1)),
-      o = i.mul(yt(Nn.add(t), 1)),
+      s = i.mul(gt(Nn, 1)),
+      o = i.mul(gt(Nn.add(t), 1)),
       a = ql(s.sub(o))
     return (
       (e.vertexNode = s.add(a.mul(this.thicknessNode).mul(s.w).mul(r))),
-      (e.colorNode = yt(this.colorNode, this.alphaNode)),
+      (e.colorNode = gt(this.colorNode, this.alphaNode)),
       e
     )
   }
@@ -41871,7 +41871,7 @@ class hG extends io {
     return (t === void 0 && ((t = this._createMaterial()), this._materialCache.set(e, t)), t)
   }
 }
-const fG = (n, e, t = new gt(0, 0, 0), i = 0.003, r = 1) => Fe(new hG(n, e, Fe(t), Fe(i), Fe(r))),
+const fG = (n, e, t = new mt(0, 0, 0), i = 0.003, r = 1) => Fe(new hG(n, e, Fe(t), Fe(i), Fe(r))),
   pG = _e(([n, e]) => n.mul(e).clamp()).setLayout({
     name: 'linearToneMapping',
     type: 'vec3',
@@ -41979,10 +41979,10 @@ const fG = (n, e, t = new gt(0, 0, 0), i = 0.003, r = 1) => Fe(new hG(n, e, Fe(t
     n.subAssign(s)
     const o = ui(n.r, ui(n.g, n.b))
     Dt(o.lessThan(t), () => n)
-    const a = Ut(1, t),
-      l = Ut(1, a.mul(a).div(o.add(a.sub(t))))
+    const a = Bt(1, t),
+      l = Bt(1, a.mul(a).div(o.add(a.sub(t))))
     n.mulAssign(l.div(o))
-    const c = Ut(1, Zo(1, i.mul(o.sub(l)).add(1)))
+    const c = Bt(1, Zo(1, i.mul(o.sub(l)).add(1)))
     return Ln(n, ve(l), c)
   }).setLayout({
     name: 'neutralToneMapping',
@@ -42382,7 +42382,7 @@ const S4 = _e(([n, e], t) => {
     const t = x4(e)
     return n.mul(n, t, t).negate().exp().oneMinus()
   }),
-  Px = _e(([n, e]) => yt(e.toFloat().mix(vh.rgb, n.toVec3()), vh.a))
+  Px = _e(([n, e]) => gt(e.toFloat().mix(vh.rgb, n.toVec3()), vh.a))
 function DG(n, e, t) {
   return (
     console.warn(
@@ -42635,7 +42635,7 @@ function Dx(n) {
   return (
     e.shadowMatrix ||
     (e.shadowMatrix = It('mat4')
-      .setGroup(kt)
+      .setGroup(Ut)
       .onRenderUpdate(() => (n.castShadow !== !0 && n.shadow.updateMatrices(n), n.shadow.matrix)))
   )
 }
@@ -42652,7 +42652,7 @@ function b4(n) {
   return (
     e.position ||
     (e.position = It(new Y())
-      .setGroup(kt)
+      .setGroup(Ut)
       .onRenderUpdate((t, i) => i.value.setFromMatrixPosition(n.matrixWorld)))
   )
 }
@@ -42661,7 +42661,7 @@ function T4(n) {
   return (
     e.targetPosition ||
     (e.targetPosition = It(new Y())
-      .setGroup(kt)
+      .setGroup(Ut)
       .onRenderUpdate((t, i) => i.value.setFromMatrixPosition(n.target.matrixWorld)))
   )
 }
@@ -42670,7 +42670,7 @@ function lW(n) {
   return (
     e.viewPosition ||
     (e.viewPosition = It(new Y())
-      .setGroup(kt)
+      .setGroup(Ut)
       .onRenderUpdate(({ camera: t }, i) => {
         ;((i.value = i.value || new Y()),
           i.value.setFromMatrixPosition(n.matrixWorld),
@@ -42810,7 +42810,7 @@ function mW(n, e = {}) {
     (e.renderObjectFunction = n.getRenderObjectFunction()),
     (e.pixelRatio = n.getPixelRatio()),
     (e.mrt = n.getMRT()),
-    (e.clearColor = n.getClearColor(e.clearColor || new gt())),
+    (e.clearColor = n.getClearColor(e.clearColor || new mt())),
     (e.clearAlpha = n.getClearAlpha()),
     (e.autoClear = n.autoClear),
     (e.scissorTest = n.getScissorTest()),
@@ -42874,8 +42874,8 @@ const Ib = new WeakMap(),
   }),
   TW = (n) => {
     const e = n.shadow.camera,
-      t = Pn('near', 'float', e).setGroup(kt),
-      i = Pn('far', 'float', e).setGroup(kt),
+      t = Pn('near', 'float', e).setGroup(Ut),
+      i = Pn('far', 'float', e).setGroup(Ut),
       r = oM(n)
     return bW(r, t, i)
   },
@@ -42884,7 +42884,7 @@ const Ib = new WeakMap(),
     if (e === void 0) {
       const t = n.isPointLight ? TW(n) : null
       ;((e = new _h()),
-        (e.colorNode = yt(0, 0, 0, 1)),
+        (e.colorNode = gt(0, 0, 0, 1)),
         (e.depthNode = t),
         (e.isShadowPassMaterial = !0),
         (e.name = 'ShadowMaterial'),
@@ -42896,8 +42896,8 @@ const Ib = new WeakMap(),
   w4 = _e(({ depthTexture: n, shadowCoord: e }) => Ji(n, e.xy).compare(e.z)),
   C4 = _e(({ depthTexture: n, shadowCoord: e, shadow: t }) => {
     const i = (g, y) => Ji(n, g).compare(y),
-      r = Pn('mapSize', 'vec2', t).setGroup(kt),
-      s = Pn('radius', 'float', t).setGroup(kt),
+      r = Pn('mapSize', 'vec2', t).setGroup(Ut),
+      s = Pn('radius', 'float', t).setGroup(Ut),
       o = He(1).div(r),
       a = o.x.negate().mul(s),
       l = o.y.negate().mul(s),
@@ -42929,7 +42929,7 @@ const Ib = new WeakMap(),
   }),
   E4 = _e(({ depthTexture: n, shadowCoord: e, shadow: t }) => {
     const i = (u, d) => Ji(n, u).compare(d),
-      r = Pn('mapSize', 'vec2', t).setGroup(kt),
+      r = Pn('mapSize', 'vec2', t).setGroup(Ut),
       s = He(1).div(r),
       o = s.x,
       a = s.y,
@@ -42967,7 +42967,7 @@ const Ib = new WeakMap(),
         const s = e.z.sub(i.x),
           o = ui(0, i.y.mul(i.y))
         let a = o.div(o.add(s.mul(s)))
-        ;((a = Jo(Ut(a, 0.3).div(0.95 - 0.3))), t.assign(Jo(ui(r, a))))
+        ;((a = Jo(Bt(a, 0.3).div(0.95 - 0.3))), t.assign(Jo(ui(r, a))))
       }),
       t
     )
@@ -43033,7 +43033,7 @@ class IW extends pW {
   setupShadowCoord(e, t) {
     const { shadow: i } = this,
       { renderer: r } = e,
-      s = Pn('bias', 'float', i).setGroup(kt)
+      s = Pn('bias', 'float', i).setGroup(Ut)
     let o = t,
       a
     if (i.camera.isOrthographicCamera || r.logarithmicDepthBuffer !== !0)
@@ -43041,8 +43041,8 @@ class IW extends pW {
     else {
       const l = o.w
       o = o.xy.div(l)
-      const c = Pn('near', 'float', i.camera).setGroup(kt),
-        u = Pn('far', 'float', i.camera).setGroup(kt)
+      const c = Pn('near', 'float', i.camera).setGroup(Ut),
+        u = Pn('far', 'float', i.camera).setGroup(Ut)
       a = Mx(l.negate(), c, u)
     }
     return ((o = ve(o.x, o.y.oneMinus(), a.add(s))), o)
@@ -43069,9 +43069,9 @@ class IW extends pW {
         })))
       const m = Ji(o),
         v = Ji(this.vsmShadowMapVertical.texture),
-        x = Pn('blurSamples', 'float', r).setGroup(kt),
-        _ = Pn('radius', 'float', r).setGroup(kt),
-        S = Pn('mapSize', 'vec2', r).setGroup(kt)
+        x = Pn('blurSamples', 'float', r).setGroup(Ut),
+        _ = Pn('radius', 'float', r).setGroup(Ut),
+        S = Pn('mapSize', 'vec2', r).setGroup(Ut)
       let C = this.vsmMaterialVertical || (this.vsmMaterialVertical = new _h())
       ;((C.fragmentNode = CW({ samples: x, radius: _, size: S, shadowPass: m }).context(
         e.getSharedContext()
@@ -43083,8 +43083,8 @@ class IW extends pW {
         )),
         (C.name = 'VSMHorizontal'))
     }
-    const l = Pn('intensity', 'float', r).setGroup(kt),
-      c = Pn('normalBias', 'float', r).setGroup(kt),
+    const l = Pn('intensity', 'float', r).setGroup(Ut),
+      c = Pn('normalBias', 'float', r).setGroup(Ut),
       u = Dx(i).mul(Fx.add(fM.mul(c))),
       d = this.setupShadowCoord(e, u),
       h = r.filterNode || this.getShadowFilterFn(t.shadowMap.type) || null
@@ -43251,8 +43251,8 @@ const RW = (n, e) => Fe(new IW(n, e)),
       c = ce(t).toVar(),
       u = ce(e).toVar(),
       d = ce(n).toVar(),
-      h = ce(Ut(1, a)).toVar()
-    return Ut(1, o)
+      h = ce(Bt(1, a)).toVar()
+    return Bt(1, o)
       .mul(d.mul(h).add(u.mul(a)))
       .add(o.mul(c.mul(h).add(l.mul(a))))
   }).setLayout({
@@ -43274,8 +43274,8 @@ const RW = (n, e) => Fe(new IW(n, e)),
       c = ve(t).toVar(),
       u = ve(e).toVar(),
       d = ve(n).toVar(),
-      h = ce(Ut(1, a)).toVar()
-    return Ut(1, o)
+      h = ce(Bt(1, a)).toVar()
+    return Bt(1, o)
       .mul(d.mul(h).add(u.mul(a)))
       .add(o.mul(c.mul(h).add(l.mul(a))))
   }).setLayout({
@@ -43303,9 +43303,9 @@ const RW = (n, e) => Fe(new IW(n, e)),
       x = ce(t).toVar(),
       _ = ce(e).toVar(),
       S = ce(n).toVar(),
-      C = ce(Ut(1, f)).toVar(),
-      A = ce(Ut(1, h)).toVar()
-    return ce(Ut(1, d))
+      C = ce(Bt(1, f)).toVar(),
+      A = ce(Bt(1, h)).toVar()
+    return ce(Bt(1, d))
       .toVar()
       .mul(A.mul(S.mul(C).add(_.mul(f))).add(h.mul(x.mul(C).add(v.mul(f)))))
       .add(d.mul(A.mul(m.mul(C).add(y.mul(f))).add(h.mul(g.mul(C).add(p.mul(f))))))
@@ -43338,9 +43338,9 @@ const RW = (n, e) => Fe(new IW(n, e)),
       x = ve(t).toVar(),
       _ = ve(e).toVar(),
       S = ve(n).toVar(),
-      C = ce(Ut(1, f)).toVar(),
-      A = ce(Ut(1, h)).toVar()
-    return ce(Ut(1, d))
+      C = ce(Bt(1, f)).toVar(),
+      A = ce(Bt(1, h)).toVar()
+    return ce(Bt(1, d))
       .toVar()
       .mul(A.mul(S.mul(C).add(_.mul(f))).add(h.mul(x.mul(C).add(v.mul(f)))))
       .add(d.mul(A.mul(m.mul(C).add(y.mul(f))).add(h.mul(g.mul(C).add(p.mul(f))))))
@@ -43870,7 +43870,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
     inputs: [{ name: 'p', type: 'vec3' }],
   }),
   oQ = _e(([n]) => {
-    const e = yt(n).toVar(),
+    const e = gt(n).toVar(),
       t = de(Fn(e.x)).toVar(),
       i = de(Fn(e.y)).toVar(),
       r = de(Fn(e.z)).toVar(),
@@ -43913,7 +43913,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
     inputs: [{ name: 'p', type: 'vec3' }],
   }),
   dQ = _e(([n]) => {
-    const e = yt(n).toVar(),
+    const e = gt(n).toVar(),
       t = de(Fn(e.x)).toVar(),
       i = de(Fn(e.y)).toVar(),
       r = de(Fn(e.z)).toVar(),
@@ -43994,7 +43994,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
       a = ve(n).toVar(),
       l = ve(O4(a, o, s, r)).toVar(),
       c = ce(Dm(a.add(ve(de(19), de(193), de(17))), o, s, r)).toVar()
-    return yt(l, c)
+    return gt(l, c)
   }).setLayout({
     name: 'mx_fractal_noise_vec4',
     type: 'vec4',
@@ -44385,7 +44385,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
   OQ = (n = xn(), e = 1, t = 0) => Bx(n.convert('vec2|vec3')).mul(e).add(t),
   BQ = (n = xn(), e = 1, t = 0) => (
     (n = n.convert('vec2|vec3')),
-    yt(Bx(n), Ox(n.add(He(19, 73))))
+    gt(Bx(n), Ox(n.add(He(19, 73))))
       .mul(e)
       .add(t)
   ),
@@ -44399,10 +44399,10 @@ const RW = (n, e) => Fe(new IW(n, e)),
   WQ = (n = xn(), e = 3, t = 2, i = 0.5, r = 1) => fQ(n, de(e), t, i).mul(r),
   QQ = _e(([n, e, t]) => {
     const i = ql(n).toVar('nDir'),
-      r = Ut(ce(0.5).mul(e.sub(t)), Dl)
+      r = Bt(ce(0.5).mul(e.sub(t)), Dl)
         .div(i)
         .toVar('rbmax'),
-      s = Ut(ce(-0.5).mul(e.sub(t)), Dl)
+      s = Bt(ce(-0.5).mul(e.sub(t)), Dl)
         .div(i)
         .toVar('rbmin'),
       o = ve().toVar('rbminmax')
@@ -44866,7 +44866,7 @@ var O = Object.freeze({
   remainder: iE,
   remap: JE,
   remapClamp: eM,
-  renderGroup: kt,
+  renderGroup: Ut,
   renderOutput: nM,
   rendererReference: WE,
   rotate: i4,
@@ -44918,7 +44918,7 @@ var O = Object.freeze({
   storageTexture: d4,
   string: bk,
   struct: QH,
-  sub: Ut,
+  sub: Bt,
   subgroupIndex: MV,
   subgroupSize: $G,
   tan: cE,
@@ -44977,7 +44977,7 @@ var O = Object.freeze({
   varyingProperty: yh,
   vec2: He,
   vec3: ve,
-  vec4: yt,
+  vec4: gt,
   vectorComponents: ku,
   velocity: X$,
   vertexColor: U$,
@@ -49190,22 +49190,22 @@ Bn.getAdapter = o6.getAdapter
 Bn.HttpStatusCode = pv
 Bn.default = Bn
 const {
-  Axios: wre,
-  AxiosError: Cre,
-  CanceledError: Ere,
-  isCancel: Mre,
-  CancelToken: Ire,
-  VERSION: Rre,
-  all: Nre,
-  Cancel: Pre,
-  isAxiosError: Lre,
-  spread: Dre,
-  toFormData: Fre,
-  AxiosHeaders: Ore,
-  HttpStatusCode: Bre,
-  formToJSON: Ure,
-  getAdapter: kre,
-  mergeConfig: zre,
+  Axios: Sre,
+  AxiosError: Are,
+  CanceledError: bre,
+  isCancel: Tre,
+  CancelToken: wre,
+  VERSION: Cre,
+  all: Ere,
+  Cancel: Mre,
+  isAxiosError: Ire,
+  spread: Rre,
+  toFormData: Nre,
+  AxiosHeaders: Pre,
+  HttpStatusCode: Lre,
+  formToJSON: Dre,
+  getAdapter: Fre,
+  mergeConfig: Ore,
 } = Bn
 var Bc =
   typeof globalThis < 'u'
@@ -56309,7 +56309,7 @@ class Qq {
     const s = t.json,
       l = (((s.extensions && s.extensions[this.name]) || {}).lights || [])[e]
     let c
-    const u = new gt(16777215)
+    const u = new mt(16777215)
     l.color !== void 0 && u.setRGB(l.color[0], l.color[1], l.color[2], Ui)
     const d = l.range !== void 0 ? l.range : 0
     switch (l.type) {
@@ -56368,7 +56368,7 @@ class jq {
   }
   extendParams(e, t, i) {
     const r = []
-    ;((e.color = new gt(1, 1, 1)), (e.opacity = 1))
+    ;((e.color = new mt(1, 1, 1)), (e.opacity = 1))
     const s = t.pbrMetallicRoughness
     if (s) {
       if (Array.isArray(s.baseColorFactor)) {
@@ -56480,7 +56480,7 @@ class Zq {
       r = i.json.materials[e]
     if (!r.extensions || !r.extensions[this.name]) return Promise.resolve()
     const s = []
-    ;((t.sheenColor = new gt(0, 0, 0)), (t.sheenRoughness = 0), (t.sheen = 1))
+    ;((t.sheenColor = new mt(0, 0, 0)), (t.sheenRoughness = 0), (t.sheen = 1))
     const o = r.extensions[this.name]
     if (o.sheenColorFactor !== void 0) {
       const a = o.sheenColorFactor
@@ -56537,7 +56537,7 @@ class eX {
         s.push(i.assignTexture(t, 'thicknessMap', o.thicknessTexture)),
       (t.attenuationDistance = o.attenuationDistance || 1 / 0))
     const a = o.attenuationColor || [1, 1, 1]
-    return ((t.attenuationColor = new gt().setRGB(a[0], a[1], a[2], Ui)), Promise.all(s))
+    return ((t.attenuationColor = new mt().setRGB(a[0], a[1], a[2], Ui)), Promise.all(s))
   }
 }
 class tX {
@@ -56574,7 +56574,7 @@ class nX {
         s.push(i.assignTexture(t, 'specularIntensityMap', o.specularTexture)))
     const a = o.specularColorFactor || [1, 1, 1]
     return (
-      (t.specularColor = new gt().setRGB(a[0], a[1], a[2], Ui)),
+      (t.specularColor = new mt().setRGB(a[0], a[1], a[2], Ui)),
       o.specularColorTexture !== void 0 &&
         s.push(i.assignTexture(t, 'specularColorMap', o.specularColorTexture, fi)),
       Promise.all(s)
@@ -57611,7 +57611,7 @@ class bX {
       ;((o = d.getMaterialType()), c.push(d.extendParams(a, s, t)))
     } else {
       const d = s.pbrMetallicRoughness || {}
-      if (((a.color = new gt(1, 1, 1)), (a.opacity = 1), Array.isArray(d.baseColorFactor))) {
+      if (((a.color = new mt(1, 1, 1)), (a.opacity = 1), Array.isArray(d.baseColorFactor))) {
         const h = d.baseColorFactor
         ;(a.color.setRGB(h[0], h[1], h[2], Ui), (a.opacity = h[3]))
       }
@@ -57656,7 +57656,7 @@ class bX {
       s.emissiveFactor !== void 0 && o !== Kr)
     ) {
       const d = s.emissiveFactor
-      a.emissive = new gt().setRGB(d[0], d[1], d[2], Ui)
+      a.emissive = new mt().setRGB(d[0], d[1], d[2], Ui)
     }
     return (
       s.emissiveTexture !== void 0 &&
@@ -58107,11 +58107,11 @@ function n3(n, e, t) {
     r.push(o)
   }
   return (
-    wt.workingColorSpace !== Ui &&
+    Tt.workingColorSpace !== Ui &&
       'COLOR_0' in i &&
       console.warn(
         'THREE.GLTFLoader: Converting vertex colors from "srgb-linear" to "'.concat(
-          wt.workingColorSpace,
+          Tt.workingColorSpace,
           '" not supported.'
         )
       ),
@@ -66322,9 +66322,9 @@ const ba = o5('visionStore', {
       return (
         Va(() => {}),
         (r, s) => (
-          mt(),
-          Tt('div', { class: 'access-wrap', onClick: i }, [
-            Bt('span', Eee, [Te(Xe(s2))]),
+          yt(),
+          Ct('div', { class: 'access-wrap', onClick: i }, [
+            kt('span', Eee, [Te(Xe(s2))]),
             om(' ' + su(Mee)),
           ])
         )
@@ -69525,7 +69525,7 @@ const gr = '${label}不是一个有效的${type}',
     emits: [],
     setup(n, { emit: e }) {
       return (t, i) => (
-        mt(),
+        yt(),
         ou(
           C8(t.icon),
           { class: 'icon', style: Go({ fontSize: t.fontSize + 'px', color: t.color }) },
@@ -69549,8 +69549,8 @@ const gr = '${label}不是一个有效的${type}',
   }
 function Vne(n, e) {
   return (
-    mt(),
-    Tt('svg', zne, [
+    yt(),
+    Ct('svg', zne, [
       ...(e[0] ||
         (e[0] = [
           Pu(
@@ -69574,8 +69574,8 @@ const Hne = si(kne, [['render', Vne]]),
   }
 function Wne(n, e) {
   return (
-    mt(),
-    Tt('svg', Gne, [
+    yt(),
+    Ct('svg', Gne, [
       ...(e[0] ||
         (e[0] = [
           Pu(
@@ -69599,15 +69599,15 @@ const Qne = si($ne, [['render', Wne]]),
   }
 function Xne(n, e) {
   return (
-    mt(),
-    Tt('svg', qne, [
+    yt(),
+    Ct('svg', qne, [
       ...(e[0] ||
         (e[0] = [
-          Bt(
+          kt(
             'g',
             null,
             [
-              Bt('path', {
+              kt('path', {
                 d: 'M13.802466686534881,1.1380186865348816Q13.89646668653488,1.0444176865348815,13.947366686534881,0.9218876865348815Q13.998366686534881,0.7993576865348816,13.998366686534881,0.6666666865348816Q13.998366686534881,0.6011698865348816,13.98556668653488,0.5369316865348817Q13.972766686534882,0.4726936865348816,13.947666686534882,0.4121826865348816Q13.922666686534882,0.3516706865348816,13.886266686534881,0.2972126865348816Q13.849866686534881,0.2427536865348816,13.803566686534882,0.19644068653488161Q13.757266686534882,0.15012768653488162,13.702766686534881,0.11373968653488165Q13.648366686534882,0.07735168653488156,13.587866686534882,0.052286686534881555Q13.527266686534881,0.02722268653488158,13.463066686534882,0.014444686534881623Q13.398866686534882,0.0016666865348815563,13.333366686534882,0.0016666865348815563Q13.201466686534882,0.0016666865348815563,13.079566686534882,0.051981686534881555Q12.957666686534882,0.10229768653488158,12.864266686534881,0.1953146865348816L12.863066686534882,0.19413268653488158L4.624996686534882,8.392776686534882L1.1369396865348815,4.921396686534882L1.1357636865348817,4.922586686534881Q1.0422996865348817,4.829566686534881,0.9204146865348816,4.779246686534882Q0.7985286865348816,4.728936686534881,0.6666666865348816,4.728936686534881Q0.6011698865348816,4.728936686534881,0.5369316865348817,4.741706686534882Q0.4726936865348816,4.754486686534881,0.4121826865348816,4.779556686534882Q0.3516706865348816,4.804616686534882,0.2972126865348816,4.8410066865348815Q0.2427536865348816,4.8773966865348815,0.19644068653488161,4.9237066865348815Q0.15012768653488162,4.970016686534882,0.11373968653488165,5.024476686534881Q0.07735168653488156,5.078936686534882,0.052286686534881555,5.139446686534882Q0.02722268653488158,5.199956686534882,0.014444686534881623,5.2641966865348815Q0.0016666865348815563,5.328436686534881,0.0016666865348815563,5.3939366865348815Q0.0016666865348815563,5.526626686534882,0.05259268653488158,5.649156686534882Q0.10351768653488158,5.771686686534881,0.1975696865348816,5.865286686534882L0.1963936865348816,5.866466686534881L4.1547266865348815,9.805866686534882Q4.201126686534882,9.852046686534882,4.255616686534882,9.888306686534882Q4.310106686534882,9.924576686534882,4.3706166865348814,9.949556686534882Q4.431126686534881,9.974536686534881,4.495326686534882,9.987266686534882Q4.559536686534882,9.999996686534882,4.624996686534882,9.999996686534882Q4.690456686534882,9.999996686534882,4.754666686534882,9.987266686534882Q4.818876686534882,9.974536686534881,4.879386686534882,9.949556686534882Q4.939886686534882,9.924576686534882,4.994386686534882,9.888306686534882Q5.048876686534881,9.852046686534882,5.0952766865348815,9.805866686534882L13.803566686534882,1.1392006865348816L13.802466686534881,1.1380186865348816Z',
                 'fill-rule': 'evenodd',
                 fill: '#E0E0FC',
@@ -69634,8 +69634,8 @@ const DT = si(jne, [['render', Xne]]),
   }
 function Zne(n, e) {
   return (
-    mt(),
-    Tt('svg', Yne, [
+    yt(),
+    Ct('svg', Yne, [
       ...(e[0] ||
         (e[0] = [
           Pu(
@@ -69659,8 +69659,8 @@ const Jne = si(Kne, [['render', Zne]]),
   }
 function nie(n, e) {
   return (
-    mt(),
-    Tt('svg', tie, [
+    yt(),
+    Ct('svg', tie, [
       ...(e[0] ||
         (e[0] = [
           Pu(
@@ -69681,11 +69681,11 @@ const iie = si(eie, [['render', nie]]),
   }
 function oie(n, e) {
   return (
-    mt(),
-    Tt('svg', sie, [
+    yt(),
+    Ct('svg', sie, [
       ...(e[0] ||
         (e[0] = [
-          Bt(
+          kt(
             'path',
             {
               d: 'M899.925333 172.080762a48.761905 48.761905 0 0 1 0 28.525714l-207.969523 679.448381a48.761905 48.761905 0 0 1-81.115429 20.187429l-150.552381-150.552381-96.304762 96.329143a24.380952 24.380952 0 0 1-41.593905-17.237334v-214.966857l275.821715-243.370667-355.57181 161.596953-103.253333-103.228953a48.761905 48.761905 0 0 1 20.23619-81.091047L838.997333 139.702857a48.761905 48.761905 0 0 1 60.903619 32.353524z',
@@ -69710,8 +69710,8 @@ const aie = si(rie, [['render', oie]]),
   }
 function uie(n, e) {
   return (
-    mt(),
-    Tt('svg', cie, [
+    yt(),
+    Ct('svg', cie, [
       ...(e[0] ||
         (e[0] = [
           Pu(
@@ -69735,8 +69735,8 @@ const die = si(lie, [['render', uie]]),
   }
 function pie(n, e) {
   return (
-    mt(),
-    Tt('svg', fie, [
+    yt(),
+    Ct('svg', fie, [
       ...(e[0] ||
         (e[0] = [
           Pu(
@@ -69762,11 +69762,11 @@ const mie = si(hie, [['render', pie]]),
   }
 function vie(n, e) {
   return (
-    mt(),
-    Tt('svg', yie, [
+    yt(),
+    Ct('svg', yie, [
       ...(e[0] ||
         (e[0] = [
-          Bt(
+          kt(
             'path',
             {
               d: 'M824 466.56V213.12q0-13.6512-5.2928-26.1632-5.104-12.064-14.3904-21.3536-9.2864-9.2864-21.3504-14.3872-12.5152-5.2928-26.1664-5.2928H246.4q-13.6512 0-26.1664 5.2928-12.064 5.1008-21.3504 14.3872-9.2864 9.2864-14.3904 21.3536Q179.2 199.4688 179.2 213.12v607.296q0 12.8448 5.0592 24.608 4.8576 11.2896 13.6704 19.9552 8.7616 8.6176 20.1184 13.344Q229.7792 883.2 242.56 883.2h217.6a28.8 28.8 0 0 0 0-57.6h-217.6q-2.528 0-4.2432-1.6864-1.5168-1.4912-1.5168-3.4976V213.12q0-3.9744 2.8128-6.784 2.8096-2.816 6.7872-2.816h510.4q3.9776 0 6.7872 2.816 2.8128 2.8096 2.8128 6.784v253.44a28.8 28.8 0 0 0 28.8 28.8 28.8 28.8 0 0 0 28.8-28.8zM466.0064 338.08l-130.2016 278.784A32 32 0 0 0 364.8 662.4h0.176a31.9904 31.9904 0 0 0 28.8192-18.4576L418.048 592h165.4976l15.2896 32.736q3.1008-3.4144 6.3904-6.704 20.3584-20.3616 45.4816-33.472l-115.1168-246.4832q-4.9408-10.5792-14.8704-16.5952-9.168-5.5552-19.9232-5.5552-10.7552 0-19.9232 5.5552-9.9296 6.016-14.8704 16.5952z m34.7936 76.7456L553.6576 528h-105.7152l52.8576-113.1776zM896 750.4c0 87.4816-70.9184 158.4-158.4 158.4S579.2 837.8816 579.2 750.4s70.9184-158.4 158.4-158.4 158.4 70.9184 158.4 158.4z m-116.3648-82.7648a28.9152 28.9152 0 0 1 7.1648-5.232q-5.8048-3.232-12.096-5.7248Q756.8256 649.6 737.6 649.6q-19.2256 0-37.104 7.0784-19.4112 7.6832-34.1728 22.448-14.7616 14.7616-22.4448 34.1696Q636.8 731.1744 636.8 750.4q0 19.232 7.0784 37.104 2.4896 6.2944 5.7248 12.096a28.7552 28.7552 0 0 1 5.232-7.1648l124.8-124.8zM838.4 750.4q0-19.2256-7.0784-37.104-2.4896-6.2912-5.7248-12.096a28.6944 28.6944 0 0 1-5.232 7.168l-124.8 124.8a28.7552 28.7552 0 0 1-7.1648 5.2288q5.8048 3.2352 12.096 5.728Q718.3744 851.2 737.6 851.2q19.2256 0 37.104-7.072 19.4112-7.6896 34.1728-22.4512 14.7616-14.7616 22.4448-34.1728Q838.4 769.632 838.4 750.4z',
@@ -69795,11 +69795,11 @@ const _ie = si(gie, [['render', vie]]),
   }
 function Aie(n, e) {
   return (
-    mt(),
-    Tt('svg', Sie, [
+    yt(),
+    Ct('svg', Sie, [
       ...(e[0] ||
         (e[0] = [
-          Bt(
+          kt(
             'path',
             {
               d: 'M833.6 213.12v253.44a28.8 28.8 0 0 1-28.8 28.8 28.8 28.8 0 0 1-28.8-28.8V213.12q0-3.9744-2.8128-6.784-2.8096-2.816-6.7872-2.816H256q-3.9776 0-6.7872 2.816Q246.4 209.1424 246.4 213.12v607.296q0 2.0064 1.5168 3.4976 1.7152 1.6864 4.2432 1.6864h217.6a28.8 28.8 0 0 1 0 57.6h-217.6q-12.7808 0-24.512-4.8768-11.3568-4.7232-20.1184-13.3408-8.8128-8.6656-13.6704-19.9584Q188.8 833.264 188.8 820.416V213.12q0-13.6512 5.2928-26.1632 5.104-12.064 14.3904-21.3536 9.2864-9.2864 21.3504-14.3872Q242.3456 145.92 256 145.92h510.4q13.6512 0 26.1664 5.2928 12.064 5.1008 21.3504 14.3872 9.2864 9.2864 14.3904 21.3536 5.2928 12.512 5.2928 26.1664zM345.408 613.664l130.1984-278.784q4.9408-10.5824 14.8704-16.5984 9.168-5.5552 19.9232-5.5552 10.7552 0 19.9232 5.5552 9.9296 6.016 14.8704 16.5952l130.2016 278.784a32 32 0 0 1-28.672 45.5392l-0.3232 0.0032c-12.4288 0-23.7344-7.2-28.9952-18.4608L593.1488 588.8h-165.4976l-24.256 51.9424a32.0064 32.0064 0 0 1-28.8192 18.4576l-0.176 0.0032a32 32 0 0 1-28.992-45.5424z m164.992-202.0416L457.5424 524.8h105.7152L510.4 411.6224z m120.2784 329.44l61.3216 61.5872 162.1248-162.8256a31.9936 31.9936 0 0 1 22.608-9.424H876.8a32 32 0 0 1 32 31.936v0.064a32 32 0 0 1-9.3216 22.5792l-184.8 185.6-0.0992 0.0992a31.9936 31.9936 0 0 1-45.2544-0.096l-83.984-84.352-0.016-0.016a31.9904 31.9904 0 0 1-9.2896-21.1104l30.496-33.4336c0.4896-0.0224 0.9792-0.032 1.4688-0.032h0.0704a32 32 0 0 1 22.608 9.4208z',
@@ -69816,15 +69816,11 @@ function Aie(n, e) {
 }
 const bie = si(xie, [['render', Aie]]),
   Tie = { class: 'action-group' },
-  wie = { key: 0, class: 'action-wrapper' },
-  Cie = ['onClick'],
-  Eie = { key: 0, class: 'active-icon' },
-  Mie = { key: 1, class: 'action-wrapper' },
-  Iie = ['onClick'],
-  Rie = { key: 0, class: 'active-icon' },
-  Nie = { class: 'action-wrapper' },
-  Pie = { key: 2, class: 'action-wrapper' },
-  Lie = qt({
+  wie = ['onClick'],
+  Cie = { key: 0, class: 'active-icon' },
+  Eie = ['onClick'],
+  Mie = { key: 0, class: 'active-icon' },
+  Iie = qt({
     __name: 'ActionGroup',
     setup(n) {
       const e = k0(),
@@ -69855,182 +69851,178 @@ const bie = si(xie, [['render', Aie]]),
       return (A, I) => {
         const w = E8('click-outside')
         return (
-          mt(),
-          Tt('div', Tie, [
+          yt(),
+          Ct('div', Tie, [
             Xe(i)
-              ? (mt(),
-                Tt('div', wie, [
-                  Pc(
-                    (mt(),
-                    Tt(
-                      'div',
-                      { class: 'action', onClick: I[1] || (I[1] = (...M) => Xe(p) && Xe(p)(...M)) },
-                      [
-                        Te(Xe(Ed), { icon: Xe(s) ? Xe(Hne) : Xe(Qne) }, null, 8, ['icon']),
-                        Xe(c) === 'closed'
-                          ? (mt(),
-                            Tt(
-                              'div',
-                              {
-                                key: 0,
-                                class: 'corner',
-                                onClick:
-                                  I[0] ||
-                                  (I[0] = vf(() => (C.value = !C.value), ['stop', 'prevent'])),
-                              },
-                              [
-                                ...(I[6] ||
-                                  (I[6] = [Bt('div', { class: 'corner-inner' }, null, -1)])),
-                              ]
-                            ))
-                          : hs('', !0),
-                        Pc(
-                          Bt(
+              ? Pc(
+                  (yt(),
+                  Ct(
+                    'div',
+                    {
+                      key: 0,
+                      class: 'action',
+                      onClick: I[1] || (I[1] = (...M) => Xe(p) && Xe(p)(...M)),
+                    },
+                    [
+                      Te(Xe(Ed), { icon: Xe(s) ? Xe(Hne) : Xe(Qne) }, null, 8, ['icon']),
+                      Xe(c) === 'closed'
+                        ? (yt(),
+                          Ct(
                             'div',
-                            { class: Wo(['selectors', { left: Xe(_) }]) },
-                            [
-                              (mt(!0),
-                              Tt(
-                                Hn,
-                                null,
-                                th(
-                                  Xe(f),
-                                  (M) => (
-                                    mt(),
-                                    Tt(
-                                      'div',
-                                      {
-                                        key: M.deviceId,
-                                        class: 'selector',
-                                        onClick: vf(() => {
-                                          ;(Xe(m)(M.deviceId), (C.value = !1))
-                                        }, ['stop']),
-                                      },
-                                      [
-                                        om(su(M.label) + ' ', 1),
-                                        Xe(d) && M.deviceId === Xe(d).deviceId
-                                          ? (mt(), Tt('div', Eie, [Te(Xe(DT))]))
-                                          : hs('', !0),
-                                      ],
-                                      8,
-                                      Cie
-                                    )
+                            {
+                              key: 0,
+                              class: 'corner',
+                              onClick:
+                                I[0] ||
+                                (I[0] = vf(() => (C.value = !C.value), ['stop', 'prevent'])),
+                            },
+                            [...(I[6] || (I[6] = [kt('div', { class: 'corner-inner' }, null, -1)]))]
+                          ))
+                        : hs('', !0),
+                      Pc(
+                        kt(
+                          'div',
+                          { class: Wo(['selectors', { left: Xe(_) }]) },
+                          [
+                            (yt(!0),
+                            Ct(
+                              Hn,
+                              null,
+                              th(
+                                Xe(f),
+                                (M) => (
+                                  yt(),
+                                  Ct(
+                                    'div',
+                                    {
+                                      key: M.deviceId,
+                                      class: 'selector',
+                                      onClick: vf(() => {
+                                        ;(Xe(m)(M.deviceId), (C.value = !1))
+                                      }, ['stop']),
+                                    },
+                                    [
+                                      om(su(M.label) + ' ', 1),
+                                      Xe(d) && M.deviceId === Xe(d).deviceId
+                                        ? (yt(), Ct('div', Cie, [Te(Xe(DT))]))
+                                        : hs('', !0),
+                                    ],
+                                    8,
+                                    wie
                                   )
-                                ),
-                                128
-                              )),
-                            ],
-                            2
-                          ),
-                          [[cm, C.value && Xe(c) === 'closed']]
+                                )
+                              ),
+                              128
+                            )),
+                          ],
+                          2
                         ),
-                      ]
-                    )),
-                    [[w, () => (C.value = !1)]]
-                  ),
-                ]))
+                        [[cm, C.value && Xe(c) === 'closed']]
+                      ),
+                    ]
+                  )),
+                  [[w, () => (C.value = !1)]]
+                )
               : hs('', !0),
             Xe(r)
-              ? (mt(),
-                Tt('div', Mie, [
-                  Pc(
-                    (mt(),
-                    Tt(
-                      'div',
-                      { class: 'action', onClick: I[3] || (I[3] = (...M) => Xe(g) && Xe(g)(...M)) },
-                      [
-                        Te(Xe(Ed), { icon: Xe(o) ? Xe(Jne) : Xe(iie) }, null, 8, ['icon']),
-                        Xe(c) === 'closed'
-                          ? (mt(),
-                            Tt(
-                              'div',
-                              {
-                                key: 0,
-                                class: 'corner',
-                                onClick:
-                                  I[2] ||
-                                  (I[2] = vf(() => (S.value = !S.value), ['stop', 'prevent'])),
-                              },
-                              [
-                                ...(I[7] ||
-                                  (I[7] = [Bt('div', { class: 'corner-inner' }, null, -1)])),
-                              ]
-                            ))
-                          : hs('', !0),
-                        Pc(
-                          Bt(
-                            'div',
-                            { class: Wo(['selectors', { left: Xe(_) }]) },
-                            [
-                              (mt(!0),
-                              Tt(
-                                Hn,
-                                null,
-                                th(
-                                  Xe(h),
-                                  (M) => (
-                                    mt(),
-                                    Tt(
-                                      'div',
-                                      {
-                                        key: M.deviceId,
-                                        class: 'selector',
-                                        onClick: vf(
-                                          (R) => {
-                                            ;(Xe(m)(M.deviceId), (S.value = !1))
-                                          },
-                                          ['stop']
-                                        ),
-                                      },
-                                      [
-                                        om(su(M.label) + ' ', 1),
-                                        Xe(u) && M.deviceId === Xe(u).deviceId
-                                          ? (mt(), Tt('div', Rie, [Te(Xe(DT))]))
-                                          : hs('', !0),
-                                      ],
-                                      8,
-                                      Iie
-                                    )
-                                  )
-                                ),
-                                128
-                              )),
-                            ],
-                            2
-                          ),
-                          [[cm, S.value && Xe(c) === 'closed']]
-                        ),
-                      ]
-                    )),
-                    [[w, () => (S.value = !1)]]
-                  ),
-                ]))
-              : hs('', !0),
-            Bt('div', Nie, [
-              Bt(
-                'div',
-                { class: 'action', onClick: I[4] || (I[4] = (...M) => Xe(y) && Xe(y)(...M)) },
-                [Te(Xe(Ed), { icon: Xe(a) ? Xe(die) : Xe(mie) }, null, 8, ['icon'])]
-              ),
-            ]),
-            Xe(x).width > 300
-              ? (mt(),
-                Tt('div', Pie, [
-                  Bt(
+              ? Pc(
+                  (yt(),
+                  Ct(
                     'div',
-                    { class: 'action', onClick: I[5] || (I[5] = (...M) => Xe(v) && Xe(v)(...M)) },
-                    [Te(Xe(Ed), { icon: Xe(l) ? Xe(bie) : Xe(_ie) }, null, 8, ['icon'])]
-                  ),
-                ]))
+                    {
+                      key: 1,
+                      class: 'action',
+                      onClick: I[3] || (I[3] = (...M) => Xe(g) && Xe(g)(...M)),
+                    },
+                    [
+                      Te(Xe(Ed), { icon: Xe(o) ? Xe(Jne) : Xe(iie) }, null, 8, ['icon']),
+                      Xe(c) === 'closed'
+                        ? (yt(),
+                          Ct(
+                            'div',
+                            {
+                              key: 0,
+                              class: 'corner',
+                              onClick:
+                                I[2] ||
+                                (I[2] = vf(() => (S.value = !S.value), ['stop', 'prevent'])),
+                            },
+                            [...(I[7] || (I[7] = [kt('div', { class: 'corner-inner' }, null, -1)]))]
+                          ))
+                        : hs('', !0),
+                      Pc(
+                        kt(
+                          'div',
+                          { class: Wo(['selectors', { left: Xe(_) }]) },
+                          [
+                            (yt(!0),
+                            Ct(
+                              Hn,
+                              null,
+                              th(
+                                Xe(h),
+                                (M) => (
+                                  yt(),
+                                  Ct(
+                                    'div',
+                                    {
+                                      key: M.deviceId,
+                                      class: 'selector',
+                                      onClick: vf(
+                                        (R) => {
+                                          ;(Xe(m)(M.deviceId), (S.value = !1))
+                                        },
+                                        ['stop']
+                                      ),
+                                    },
+                                    [
+                                      om(su(M.label) + ' ', 1),
+                                      Xe(u) && M.deviceId === Xe(u).deviceId
+                                        ? (yt(), Ct('div', Mie, [Te(Xe(DT))]))
+                                        : hs('', !0),
+                                    ],
+                                    8,
+                                    Eie
+                                  )
+                                )
+                              ),
+                              128
+                            )),
+                          ],
+                          2
+                        ),
+                        [[cm, S.value && Xe(c) === 'closed']]
+                      ),
+                    ]
+                  )),
+                  [[w, () => (S.value = !1)]]
+                )
+              : hs('', !0),
+            kt(
+              'div',
+              { class: 'action', onClick: I[4] || (I[4] = (...M) => Xe(y) && Xe(y)(...M)) },
+              [Te(Xe(Ed), { icon: Xe(a) ? Xe(die) : Xe(mie) }, null, 8, ['icon'])]
+            ),
+            Xe(x).width > 300
+              ? (yt(),
+                Ct(
+                  'div',
+                  {
+                    key: 2,
+                    class: 'action',
+                    onClick: I[5] || (I[5] = (...M) => Xe(v) && Xe(v)(...M)),
+                  },
+                  [Te(Xe(Ed), { icon: Xe(l) ? Xe(bie) : Xe(_ie) }, null, 8, ['icon'])]
+                ))
               : hs('', !0),
           ])
         )
       }
     },
   }),
-  Die = si(Lie, [['__scopeId', 'data-v-76b8fe8f']]),
-  Fie = { class: 'gradio-webrtc-waveContainer' },
-  Oie = qt({
+  Rie = si(Iie, [['__scopeId', 'data-v-b28f9260']]),
+  Nie = { class: 'gradio-webrtc-waveContainer' },
+  Pie = qt({
     __name: 'AudioWave',
     props: {
       streamState: { default: qi.closed },
@@ -70087,30 +70079,30 @@ const bie = si(xie, [['render', Aie]]),
         return h[d]
       }
       return (d, h) => (
-        mt(),
-        Tt('div', Fie, [
-          Bt(
+        yt(),
+        Ct('div', Nie, [
+          kt(
             'div',
             { class: 'gradio-webrtc-boxContainer', style: Go({ width: a.value }) },
             [
-              (mt(!0),
-              Tt(
+              (yt(!0),
+              Ct(
                 Hn,
                 null,
                 th(
                   Array(d.numBars / 2),
-                  (f, p) => (mt(), Tt('div', { key: p, class: 'gradio-webrtc-box' }))
+                  (f, p) => (yt(), Ct('div', { key: p, class: 'gradio-webrtc-box' }))
                 ),
                 128
               )),
-              h[0] || (h[0] = Bt('div', { class: 'split-container' }, null, -1)),
-              (mt(!0),
-              Tt(
+              h[0] || (h[0] = kt('div', { class: 'split-container' }, null, -1)),
+              (yt(!0),
+              Ct(
                 Hn,
                 null,
                 th(
                   Array(d.numBars / 2),
-                  (f, p) => (mt(), Tt('div', { key: p, class: 'gradio-webrtc-box' }))
+                  (f, p) => (yt(), Ct('div', { key: p, class: 'gradio-webrtc-box' }))
                 ),
                 128
               )),
@@ -70121,14 +70113,14 @@ const bie = si(xie, [['render', Aie]]),
       )
     },
   }),
-  Bie = si(Oie, [['__scopeId', 'data-v-d7e47480']]),
-  Uie = { class: 'player-controls' },
-  kie = { key: 0 },
-  zie = { key: 1, class: 'waiting-icon-text' },
-  Vie = { class: 'icon', title: 'spinner' },
-  Hie = { key: 2, class: 'stop-chat-inner' },
-  $ie = { key: 0, class: 'input-audio-wave' },
-  Gie = qt({
+  Lie = si(Pie, [['__scopeId', 'data-v-d7e47480']]),
+  Die = { class: 'player-controls' },
+  Fie = { key: 0 },
+  Oie = { key: 1, class: 'waiting-icon-text' },
+  Bie = { class: 'icon', title: 'spinner' },
+  Uie = { key: 2, class: 'stop-chat-inner' },
+  kie = { key: 0, class: 'input-audio-wave' },
+  zie = qt({
     __name: 'ChatBtn',
     props: {
       streamState: { type: Object, default: () => qi.closed },
@@ -70139,9 +70131,9 @@ const bie = si(xie, [['render', Aie]]),
     emits: [],
     setup(n, { emit: e }) {
       return (t, i) => (
-        mt(),
-        Tt('div', Uie, [
-          Bt(
+        yt(),
+        Ct('div', Die, [
+          kt(
             'div',
             {
               class: Wo([
@@ -70153,22 +70145,22 @@ const bie = si(xie, [['render', Aie]]),
             },
             [
               n.streamState === Xe(qi).closed
-                ? (mt(), Tt('span', kie, 'Please点击开始对话'))
+                ? (yt(), Ct('span', Fie, 'Please点击开始对话'))
                 : n.streamState === Xe(qi).waiting
-                  ? (mt(),
-                    Tt('div', zie, [
-                      Bt('div', Vie, [Te(Xe(qd), { 'wrapper-class-name': 'spin-icon' })]),
-                      i[1] || (i[1] = Bt('span', null, '等待中', -1)),
+                  ? (yt(),
+                    Ct('div', Oie, [
+                      kt('div', Bie, [Te(Xe(qd), { 'wrapper-class-name': 'spin-icon' })]),
+                      i[1] || (i[1] = kt('span', null, '等待中', -1)),
                     ]))
-                  : (mt(), Tt('div', Hie)),
+                  : (yt(), Ct('div', Uie)),
             ],
             2
           ),
           n.streamState === Xe(qi).open
-            ? (mt(),
-              Tt('div', $ie, [
+            ? (yt(),
+              Ct('div', kie, [
                 Te(
-                  Bie,
+                  Lie,
                   {
                     'audio-source-callback': n.audioSourceCallback,
                     'stream-state': n.streamState,
@@ -70184,16 +70176,16 @@ const bie = si(xie, [['render', Aie]]),
       )
     },
   }),
-  Wie = si(Gie, [['__scopeId', 'data-v-8a83fff7']])
-function Qie(n, e, t) {
+  Vie = si(zie, [['__scopeId', 'data-v-8a83fff7']])
+function Hie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
     : n.substring(0, t) + e + n.substring(t)
 }
-const jie = { class: 'chat-input-container' },
-  qie = { class: 'chat-input-inner' },
-  Xie = { class: 'chat-input-wrapper' },
-  Kie = qt({
+const $ie = { class: 'chat-input-container' },
+  Gie = { class: 'chat-input-inner' },
+  Wie = { class: 'chat-input-wrapper' },
+  Qie = qt({
     __name: 'ChatInput',
     props: { replying: { type: Boolean } },
     emits: ['send', 'stop', 'interrupt'],
@@ -70207,7 +70199,7 @@ const jie = { class: 'chat-input-container' },
         h.key === 'Enter' &&
           (h.altKey
             ? s.value &&
-              ((s.value.value = Qie(s.value.value, '\n', s.value.selectionStart || 0)),
+              ((s.value.value = Hie(s.value.value, '\n', s.value.selectionStart || 0)),
               s.value.dispatchEvent(new InputEvent('input')))
             : (h.preventDefault(), l()))
       }
@@ -70226,12 +70218,12 @@ const jie = { class: 'chat-input-container' },
         t('interrupt')
       }
       return (h, f) => (
-        mt(),
-        Tt('div', jie, [
-          Bt('div', { class: 'stop-chat-btn', onClick: u }),
-          Bt('div', qie, [
-            Bt('div', Xie, [
-              Bt(
+        yt(),
+        Ct('div', $ie, [
+          kt('div', { class: 'stop-chat-btn', onClick: u }),
+          kt('div', Gie, [
+            kt('div', Wie, [
+              kt(
                 'textarea',
                 {
                   class: 'chat-input',
@@ -70244,39 +70236,40 @@ const jie = { class: 'chat-input-container' },
                 null,
                 36
               ),
-              Bt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Xe(o)), 513),
+              kt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Xe(o)), 513),
             ]),
             h.replying
-              ? (mt(), Tt('button', { key: 0, class: 'interrupt-btn', onClick: d }))
-              : (mt(),
-                Tt('button', { key: 1, class: 'send-btn', onClick: l }, [
+              ? (yt(), Ct('button', { key: 0, class: 'interrupt-btn', onClick: d }))
+              : (yt(),
+                Ct('button', { key: 1, class: 'send-btn', onClick: l }, [
                   Te(Xe(Ed), { icon: Xe(aie), color: '#fff' }, null, 8, ['icon']),
                 ])),
           ]),
+          f[0] || (f[0] = kt('div', { class: 'ai-generate-hint' }, ' 内容内 AI生成 ', -1)),
         ])
       )
     },
   }),
-  Yie = si(Kie, [['__scopeId', 'data-v-32a58abc']]),
-  Zie = { class: 'answer-message-text' },
-  Jie = qt({
+  jie = si(Qie, [['__scopeId', 'data-v-422c1d19']]),
+  qie = { class: 'answer-message-text' },
+  Xie = qt({
     __name: 'ChatMessage',
     props: { message: {}, role: {}, style: {} },
     setup(n) {
       return (e, t) => (
-        mt(),
-        Tt(
+        yt(),
+        Ct(
           'div',
           { class: Wo(['answer-message-container', e.role]), style: Go(e.style) },
-          [Bt('div', Zie, su(e.message), 1)],
+          [kt('div', qie, su(e.message), 1)],
           6
         )
       )
     },
   }),
-  ere = si(Jie, [['__scopeId', 'data-v-dde1c5d3']]),
-  tre = { class: 'chat-records-inner' },
-  nre = qt({
+  Kie = si(Xie, [['__scopeId', 'data-v-dde1c5d3']]),
+  Yie = { class: 'chat-records-inner' },
+  Zie = qt({
     __name: 'ChatRecords',
     props: { chatRecords: {} },
     setup(n, { expose: e }) {
@@ -70297,25 +70290,25 @@ const jie = { class: 'chat-input-container' },
       return (
         e({ scrollToBottom: r }),
         (s, o) => (
-          mt(),
-          Tt(
+          yt(),
+          Ct(
             'div',
             { class: 'chat-records', ref_key: 'containerRef', ref: i },
             [
-              Bt('div', tre, [
-                (mt(!0),
-                Tt(
+              kt('div', Yie, [
+                (yt(!0),
+                Ct(
                   Hn,
                   null,
                   th(
                     s.chatRecords,
                     (a, l) => (
-                      mt(),
-                      Tt(
+                      yt(),
+                      Ct(
                         'div',
                         { key: a.id, class: Wo('chat-message '.concat(a.role)) },
                         [
-                          Te(ere, { message: a.message, role: a.role }, null, 8, [
+                          Te(Kie, { message: a.message, role: a.role }, null, 8, [
                             'message',
                             'role',
                           ]),
@@ -70334,11 +70327,11 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  ire = { class: 'content-container' },
-  rre = { class: 'top-actions' },
-  sre = ['muted'],
-  ore = { class: 'chat-records-container' },
-  are = qt({
+  Jie = { class: 'content-container' },
+  ere = { class: 'top-actions' },
+  tre = ['muted'],
+  nre = { class: 'chat-records-container' },
+  ire = qt({
     __name: 'index',
     setup(n) {
       const e = ba(),
@@ -70418,22 +70411,22 @@ const jie = { class: 'chat-input-container' },
           (T = R.value) == null || T.scrollToBottom())
       }
       return (U, T) => (
-        mt(),
-        Tt(
+        yt(),
+        Ct(
           'div',
           { class: 'page-container', ref_key: 'wrapRef', ref: i },
           [
-            Bt('div', ire, [
-              Bt(
+            kt('div', Jie, [
+              kt(
                 'div',
                 {
                   class: 'video-container',
                   style: Go({ visibility: Xe(g) ? 'visible' : 'hidden', aspectRatio: l.value }),
                 },
                 [
-                  Bt('div', rre, [Te(Die)]),
+                  kt('div', ere, [Te(Rie)]),
                   Pc(
-                    Bt(
+                    kt(
                       'div',
                       {
                         class: Wo(
@@ -70443,7 +70436,7 @@ const jie = { class: 'chat-input-container' },
                         ref: r,
                       },
                       [
-                        Bt(
+                        kt(
                           'video',
                           {
                             class: 'local-video',
@@ -70465,15 +70458,15 @@ const jie = { class: 'chat-input-container' },
                     ),
                     [[cm, Xe(d) && !Xe(p)]]
                   ),
-                  Bt(
+                  kt(
                     'div',
                     { class: 'remote-video-container', ref_key: 'remoteVideoContainerRef', ref: s },
                     [
                       Xe(m)
                         ? hs('', !0)
                         : Pc(
-                            (mt(),
-                            Tt(
+                            (yt(),
+                            Ct(
                               'video',
                               {
                                 key: 0,
@@ -70487,16 +70480,16 @@ const jie = { class: 'chat-input-container' },
                               },
                               null,
                               40,
-                              sre
+                              tre
                             )),
                             [[cm, Xe(y) === 'open']]
                           ),
                     ],
                     512
                   ),
-                  Bt('div', ore, [
+                  kt('div', nre, [
                     Te(
-                      nre,
+                      Zie,
                       { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
                       null,
                       8,
@@ -70507,9 +70500,9 @@ const jie = { class: 'chat-input-container' },
                 4
               ),
               (!Xe(h) || Xe(f)) && Xe(y) === 'open'
-                ? (mt(),
+                ? (yt(),
                   ou(
-                    Yie,
+                    jie,
                     {
                       key: 0,
                       replying: Xe(x),
@@ -70522,9 +70515,9 @@ const jie = { class: 'chat-input-container' },
                     ['replying', 'onStop']
                   ))
                 : Xe(g)
-                  ? (mt(),
+                  ? (yt(),
                     ou(
-                      Wie,
+                      Vie,
                       {
                         key: 1,
                         onStartChat: I,
@@ -70544,24 +70537,24 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  lre = si(are, [['__scopeId', 'data-v-628a3381']]),
-  cre = { class: 'wrap' },
-  ure = qt({
+  rre = si(ire, [['__scopeId', 'data-v-628a3381']]),
+  sre = { class: 'wrap' },
+  ore = qt({
     __name: 'App',
     setup(n) {
       const e = k0()
       return (
         e.init(),
         (t, i) => (
-          mt(),
+          yt(),
           ou(
             Xe(Jc),
             { locale: Xe(Fne)[Xe(uR)] },
             {
               default: gw(() => [
-                Bt('div', cre, [
-                  Xe(e).webcamAccessed ? hs('', !0) : (mt(), ou(Ree, { key: 0 })),
-                  Te(lre),
+                kt('div', sre, [
+                  Xe(e).webcamAccessed ? hs('', !0) : (yt(), ou(Ree, { key: 0 })),
+                  Te(rre),
                 ]),
               ]),
               _: 1,
@@ -70573,18 +70566,18 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  dre = si(ure, [['__scopeId', 'data-v-45f9c857']])
+  are = si(ore, [['__scopeId', 'data-v-45f9c857']])
 var Kp = { exports: {} },
-  hre = Kp.exports,
+  lre = Kp.exports,
   FT
-function fre() {
+function cre() {
   return (
     FT ||
       ((FT = 1),
       (function (n, e) {
         ;(function (t, i) {
           n.exports = i()
-        })(hre, function () {
+        })(lre, function () {
           var t = '__v-click-outside',
             i = typeof window < 'u',
             r = typeof navigator < 'u',
@@ -70703,12 +70696,12 @@ function fre() {
     Kp.exports
   )
 }
-var pre = fre()
-const mre = u_(pre),
-  $0 = X9(dre),
-  gre = Z9()
-$0.use(gre)
+var ure = cre()
+const dre = u_(ure),
+  $0 = X9(are),
+  hre = Z9()
+$0.use(hre)
 $0.use(Bne)
-$0.use(mre)
+$0.use(dre)
 $0.mount('#app')
-export { vre as __vite_legacy_guard }
+export { pre as __vite_legacy_guard }
