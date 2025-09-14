@@ -1,6 +1,6 @@
 <template>
   <div class="action-group">
-    <div v-if="hasCamera">
+    <div v-if="hasCamera" class="action-wrapper">
       <div v-click-outside="() => (cameraListShow = false)" class="action" @click="handleCameraOff">
         <Iconfont :icon="cameraOff ? CameraOff : CameraOn" />
         <div
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div v-if="hasMic">
+    <div v-if="hasMic" class="action-wrapper">
       <div v-click-outside="() => (micListShow = false)" class="action" @click="handleMicMuted">
         <Iconfont :icon="micMuted ? MicOff : MicOn" />
         <div
@@ -75,10 +75,12 @@
       </div>
     </div>
 
-    <div class="action" @click="handleVolumeMute">
-      <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" />
+    <div class="action-wrapper">
+      <div class="action" @click="handleVolumeMute">
+        <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" />
+      </div>
     </div>
-    <div v-if="wrapperRect.width > 300">
+    <div v-if="wrapperRect.width > 300" class="action-wrapper">
       <div class="action" @click="handleSubtitleToggle">
         <Iconfont :icon="showChatRecords ? SubtitleOn : SubtitleOff" />
       </div>
@@ -132,64 +134,83 @@ const cameraListShow = ref(false)
 
 <style lang="less" scoped>
 .action-group {
-  border-radius: 12px;
-  background: rgba(88, 87, 87, 0.5);
-  padding: 2px;
-  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 12px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  .action-wrapper {
+    position: relative;
+  }
 
   .action {
     cursor: pointer;
-    width: 42px;
-    height: 42px;
-    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     color: #fff;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
 
     .corner {
       position: absolute;
-      right: 0px;
-      bottom: 0px;
-      padding: 3px;
+      right: 2px;
+      bottom: 2px;
+      padding: 2px;
 
       .corner-inner {
         width: 6px;
         height: 6px;
-        border-top: 3px transparent solid;
-        border-left: 3px transparent solid;
-        border-bottom: 3px #fff solid;
-        border-right: 3px #fff solid;
+        border-top: 2px transparent solid;
+        border-left: 2px transparent solid;
+        border-bottom: 2px #fff solid;
+        border-right: 2px #fff solid;
       }
     }
 
-    // &:hover {
-    // 	.selectors {
-    // 		display: block !important;
-    // 	}
-    // }
     .selectors {
       position: absolute;
       top: 0;
-      left: calc(100%);
-      margin-left: 3px;
-      max-height: 150px;
+      left: calc(100% + 8px);
+      margin-top: 0;
+      max-height: 200px;
+      min-width: 200px;
 
       &.left {
-        left: 0;
-        margin-left: -3px;
-        transform: translateX(-100%);
+        left: auto;
+        right: calc(100% + 8px);
+        transform: none;
       }
 
       border-radius: 12px;
       width: max-content;
       overflow: hidden;
-      overflow: auto;
-
-      background: rgba(90, 90, 90, 0.5);
-      backdrop-filter: blur(8px);
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
 
       .selector {
         max-width: 250px;
@@ -198,38 +219,53 @@ const cameraListShow = ref(false)
         white-space: nowrap;
         position: relative;
         cursor: pointer;
-        height: 42px;
-        line-height: 42px;
+        height: 48px;
+        line-height: 48px;
         color: #fff;
         font-size: 14px;
+        padding: 0 16px;
+        transition: background-color 0.2s ease;
 
         &:hover {
-          background: #67666a;
+          background: rgba(255, 255, 255, 0.1);
         }
-
-        padding-left: 15px;
-        padding-right: 50px;
 
         .active-icon {
           position: absolute;
-          right: 10px;
-          width: 40px;
-          height: 40px;
+          right: 12px;
+          width: 24px;
+          height: 24px;
           display: flex;
           align-items: center;
           justify-content: center;
-          top: 0;
+          top: 50%;
+          transform: translateY(-50%);
         }
       }
     }
   }
 
-  .action:hover {
-    background: #67666a;
-  }
-}
+  // 响应式设计
+  @media (max-width: 768px) {
+    gap: 6px;
+    padding: 6px 10px;
 
-.action-group + .action-group {
-  margin-top: 10px;
+    .action {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: 4px;
+    padding: 4px 8px;
+
+    .action {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+  }
 }
 </style>

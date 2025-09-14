@@ -8,6 +8,11 @@
           aspectRatio: remoteAspectRatio,
         }"
       >
+        <!-- 顶部操作栏 -->
+        <div class="top-actions">
+          <ActionGroup />
+        </div>
+
         <div
           :class="`local-video-container ${streamState === 'open' ? 'scaled' : ''}`"
           v-show="hasCamera && !cameraOff"
@@ -49,11 +54,8 @@
             />
           </div>
         </div>
-
-        <div class="actions">
-          <ActionGroup />
-        </div>
       </div>
+
       <template v-if="(!hasMic || micMuted) && streamState === 'open'" class="chat-input-wrapper">
         <ChatInput
           :replying="replying"
@@ -71,6 +73,7 @@
         />
       </template>
     </div>
+
     <div
       v-if="streamState === 'open' && showChatRecords && isLandscape"
       class="chat-records-container"
@@ -81,48 +84,48 @@
 </template>
 
 <script setup lang="ts">
-import ActionGroup from '@/components/ActionGroup.vue';
-import ChatBtn from '@/components/ChatBtn.vue';
-import ChatInput from '@/components/ChatInput.vue';
-import ChatRecords from '@/components/ChatRecords.vue';
-import { useVideoChatStore } from '@/store';
-import { useVisionStore } from '@/store/vision';
-import { storeToRefs } from 'pinia';
-import { onMounted, ref, useTemplateRef } from 'vue';
-const visionState = useVisionStore();
-const videoChatState = useVideoChatStore();
-const wrapRef = ref<HTMLDivElement>();
+import ActionGroup from '@/components/ActionGroup.vue'
+import ChatBtn from '@/components/ChatBtn.vue'
+import ChatInput from '@/components/ChatInput.vue'
+import ChatRecords from '@/components/ChatRecords.vue'
+import { useVideoChatStore } from '@/store'
+import { useVisionStore } from '@/store/vision'
+import { storeToRefs } from 'pinia'
+import { onMounted, ref, useTemplateRef } from 'vue'
+const visionState = useVisionStore()
+const videoChatState = useVideoChatStore()
+const wrapRef = ref<HTMLDivElement>()
 
-const localVideoContainerRef = ref<HTMLDivElement>();
-const remoteVideoContainerRef = ref<HTMLDivElement>();
-const localVideoRef = ref<HTMLVideoElement>();
-const remoteVideoRef = ref<HTMLVideoElement>();
-const remoteAspectRatio = ref('9 / 16');
+const localVideoContainerRef = ref<HTMLDivElement>()
+const remoteVideoContainerRef = ref<HTMLDivElement>()
+const localVideoRef = ref<HTMLVideoElement>()
+const remoteVideoRef = ref<HTMLVideoElement>()
+const remoteAspectRatio = ref('9 / 16')
 const onplayingRemoteVideo = () => {
   if (remoteVideoRef.value) {
-    remoteAspectRatio.value = `${remoteVideoRef.value.videoWidth} / ${remoteVideoRef.value.videoHeight}`;
+    remoteAspectRatio.value = `${remoteVideoRef.value.videoWidth} / ${remoteVideoRef.value.videoHeight}`
   }
-};
+}
 
 const audioSourceCallback = () => {
-  return videoChatState.localStream;
-};
+  return videoChatState.localStream
+}
 
 onMounted(() => {
-  const wrapperRef = wrapRef.value;
-  visionState.wrapperRef = wrapperRef;
-  wrapperRef!.getBoundingClientRect();
-  wrapperRect.value.width = wrapperRef!.clientWidth;
-  wrapperRect.value.height = wrapperRef!.clientHeight;
-  visionState.isLandscape = wrapperRect.value.width > wrapperRect.value.height;
-  console.log(wrapperRect);
+  const wrapperRef = wrapRef.value
+  visionState.wrapperRef = wrapperRef
+  wrapperRef!.getBoundingClientRect()
+  wrapperRect.value.width = wrapperRef!.clientWidth
+  wrapperRect.value.height = wrapperRef!.clientHeight
+  visionState.isLandscape = wrapperRect.value.width > wrapperRect.value.height
+  console.log(wrapperRect)
 
-  visionState.remoteVideoContainerRef = remoteVideoContainerRef.value;
-  visionState.localVideoContainerRef = localVideoContainerRef.value;
-  visionState.localVideoRef = localVideoRef.value;
-  visionState.remoteVideoRef = remoteVideoRef.value;
-  visionState.wrapperRef = wrapRef.value;
-});
+  visionState.remoteVideoContainerRef = remoteVideoContainerRef.value
+  visionState.localVideoContainerRef = localVideoContainerRef.value
+  visionState.localVideoRef = localVideoRef.value
+  visionState.remoteVideoRef = remoteVideoRef.value
+  visionState.wrapperRef = wrapRef.value
+})
 const {
   hasCamera,
   hasMic,
@@ -135,28 +138,28 @@ const {
   replying,
   showChatRecords,
   chatRecords,
-} = storeToRefs(videoChatState);
-const { wrapperRect, isLandscape } = storeToRefs(visionState);
+} = storeToRefs(videoChatState)
+const { wrapperRect, isLandscape } = storeToRefs(visionState)
 
 function onStartChat() {
   videoChatState.startWebRTC().then(() => {
-    initChatDataChannel();
-  });
+    initChatDataChannel()
+  })
 }
 
 function initChatDataChannel() {
-  if (!videoChatState.chatDataChannel) return;
+  if (!videoChatState.chatDataChannel) return
   videoChatState.chatDataChannel.addEventListener('message', (event) => {
-    const data = JSON.parse(event.data);
+    const data = JSON.parse(event.data)
     if (data.type === 'chat') {
       const index = videoChatState.chatRecords.findIndex((item) => {
-        return item.id === data.id;
-      });
+        return item.id === data.id
+      })
       if (index !== -1) {
-        const item = videoChatState.chatRecords[index];
-        item.message += data.message;
-        videoChatState.chatRecords.splice(index, 1, item);
-        videoChatState.chatRecords = [...videoChatState.chatRecords];
+        const item = videoChatState.chatRecords[index]
+        item.message += data.message
+        videoChatState.chatRecords.splice(index, 1, item)
+        videoChatState.chatRecords = [...videoChatState.chatRecords]
       } else {
         videoChatState.chatRecords = [
           ...videoChatState.chatRecords,
@@ -165,27 +168,27 @@ function initChatDataChannel() {
             role: data.role || 'human', // TODO: 默认值测试后续删除
             message: data.message,
           },
-        ];
+        ]
       }
     } else if (data.type === 'avatar_end') {
-      videoChatState.replying = false;
+      videoChatState.replying = false
     }
-  });
+  })
 }
 
 function onInterrupt() {
   if (videoChatState.chatDataChannel) {
-    videoChatState.chatDataChannel.send(JSON.stringify({ type: 'stop_chat' }));
+    videoChatState.chatDataChannel.send(JSON.stringify({ type: 'stop_chat' }))
   }
 }
 
-const chatRecordsInstanceRef = useTemplateRef<any>('chatRecordsInstanceRef');
+const chatRecordsInstanceRef = useTemplateRef<any>('chatRecordsInstanceRef')
 function onSend(message: string) {
-  if (!message) return;
-  if (!videoChatState.chatDataChannel) return;
-  videoChatState.chatDataChannel.send(JSON.stringify({ type: 'chat', data: message }));
-  videoChatState.replying = true;
-  chatRecordsInstanceRef.value?.scrollToBottom();
+  if (!message) return
+  if (!videoChatState.chatDataChannel) return
+  videoChatState.chatDataChannel.send(JSON.stringify({ type: 'chat', data: message }))
+  videoChatState.replying = true
+  chatRecordsInstanceRef.value?.scrollToBottom()
 }
 </script>
 <style lang="less" scoped>

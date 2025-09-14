@@ -23,7 +23,7 @@ var Yu = (n, e, t, i) => ({
     return dt(n, e, i)
   },
 })
-function yre() {
+function vre() {
   ;(import.meta.url, import('_').catch(() => 1), (async function* () {})().next())
 }
 ;(function () {
@@ -3364,7 +3364,7 @@ function Ww(n) {
   return ((n.dynamicChildren = nh > 0 ? Rr || Vc : null), s9(), nh > 0 && Rr && Rr.push(n), n)
 }
 function xt(n, e, t, i, r, s) {
-  return Ww(zt(n, e, t, i, r, s, !0))
+  return Ww(kt(n, e, t, i, r, s, !0))
 }
 function ou(n, e, t, i, r) {
   return Ww(be(n, e, t, i, r, !0))
@@ -3380,7 +3380,7 @@ const Qw = ({ key: n }) => (n != null ? n : null),
     typeof n == 'number' && (n = '' + n),
     n != null ? (wn(n) || bn(n) || Ct(n) ? { i: Mr, r: n, k: e, f: !!t } : n) : null
   )
-function zt(n, e = null, t = null, i = 0, r = null, s = n === Hn ? 0 : 1, o = !1, a = !1) {
+function kt(n, e = null, t = null, i = 0, r = null, s = n === Hn ? 0 : 1, o = !1, a = !1) {
   const l = {
     __v_isVNode: !0,
     __v_skip: !0,
@@ -3434,7 +3434,7 @@ function o9(n, e = null, t = null, i = 0, r = null, s = !1) {
       gn(l) && (t_(l) && !vt(l) && (l = ti({}, l)), (e.style = Xs(l))))
   }
   const o = wn(n) ? 1 : Gw(n) ? 128 : f8(n) ? 64 : gn(n) ? 4 : Ct(n) ? 2 : 0
-  return zt(n, e, t, i, r, o, s, !0)
+  return kt(n, e, t, i, r, o, s, !0)
 }
 function a9(n) {
   return n ? (t_(n) || Fw(n) ? ti({}, n) : n) : null
@@ -27199,14 +27199,14 @@ class kB {
       }
       const Tt = Se.drawRange,
         ht = Se.attributes.position
-      let kt = Tt.start * At,
+      let zt = Tt.start * At,
         Kt = (Tt.start + Tt.count) * At
       ;($e !== null &&
-        ((kt = Math.max(kt, $e.start * At)), (Kt = Math.min(Kt, ($e.start + $e.count) * At))),
+        ((zt = Math.max(zt, $e.start * At)), (Kt = Math.min(Kt, ($e.start + $e.count) * At))),
         at !== null
-          ? ((kt = Math.max(kt, 0)), (Kt = Math.min(Kt, at.count)))
-          : ht != null && ((kt = Math.max(kt, 0)), (Kt = Math.min(Kt, ht.count))))
-      const kn = Kt - kt
+          ? ((zt = Math.max(zt, 0)), (Kt = Math.min(Kt, at.count)))
+          : ht != null && ((zt = Math.max(zt, 0)), (Kt = Math.min(Kt, ht.count))))
+      const kn = Kt - zt
       if (kn < 0 || kn === 1 / 0) return
       rt.setup(ye, Ae, ot, Se, at)
       let Cn,
@@ -27244,12 +27244,12 @@ class kB {
           for (let dr = 0; dr < Yt; dr++)
             (Yl.setValue(b, '_gl_DrawID', dr), Vt.render(pt[dr] / as, di[dr]))
         }
-      else if (ye.isInstancedMesh) Vt.renderInstances(kt, kn, ye.count)
+      else if (ye.isInstancedMesh) Vt.renderInstances(zt, kn, ye.count)
       else if (Se.isInstancedBufferGeometry) {
         const pt = Se._maxInstanceCount !== void 0 ? Se._maxInstanceCount : 1 / 0,
           di = Math.min(Se.instanceCount, pt)
-        Vt.renderInstances(kt, kn, di)
-      } else Vt.render(kt, kn)
+        Vt.renderInstances(zt, kn, di)
+      } else Vt.render(zt, kn)
     }
     function on(K, ge, Se) {
       K.transparent === !0 && K.side === Cr && K.forceSinglePass === !1
@@ -27434,8 +27434,8 @@ class kB {
             const at = nt.groups
             for (let At = 0, Tt = at.length; At < Tt; At++) {
               const ht = at[At],
-                kt = ot[ht.materialIndex]
-              kt && kt.visible && y.push(K, nt, kt, Se, Be.z, ht)
+                zt = ot[ht.materialIndex]
+              zt && zt.visible && y.push(K, nt, zt, Se, Be.z, ht)
             }
           } else ot.visible && y.push(K, nt, ot, Se, Be.z, null)
         }
@@ -27494,7 +27494,7 @@ class kB {
         J.has('WEBGL_multisampled_render_to_texture') === !1)
       ) {
         let Tt = !1
-        for (let ht = 0, kt = ge.length; ht < kt; ht++) {
+        for (let ht = 0, zt = ge.length; ht < zt; ht++) {
           const Kt = ge[ht],
             kn = Kt.object,
             Cn = Kt.geometry,
@@ -27636,7 +27636,7 @@ class kB {
         At = Ae.vertexColors === !0 && !!Se.attributes.color && Se.attributes.color.itemSize === 4,
         Tt = !!Se.attributes.tangent && (!!Ae.normalMap || Ae.anisotropy > 0),
         ht = !!Se.morphAttributes.position,
-        kt = !!Se.morphAttributes.normal,
+        zt = !!Se.morphAttributes.normal,
         Kt = !!Se.morphAttributes.color
       let kn = _s
       Ae.toneMapped && (R === null || R.isXRRenderTarget === !0) && (kn = _.toneMapping)
@@ -27672,7 +27672,7 @@ class kB {
             pt.vertexAlphas !== At ||
             pt.vertexTangents !== Tt ||
             pt.morphTargets !== ht ||
-            pt.morphNormals !== kt ||
+            pt.morphNormals !== zt ||
             pt.morphColors !== Kt ||
             pt.toneMapping !== kn ||
             pt.morphTargetsCount !== Vt) &&
@@ -27942,8 +27942,8 @@ class kB {
             ;(b.bindBuffer(b.PIXEL_PACK_BUFFER, ht),
               b.bufferData(b.PIXEL_PACK_BUFFER, $e.byteLength, b.STREAM_READ),
               b.readPixels(ge, Se, Ae, ye, Je.convert(At), Je.convert(Tt), 0))
-            const kt = R !== null ? j.get(R).__webglFramebuffer : null
-            P.bindFramebuffer(b.FRAMEBUFFER, kt)
+            const zt = R !== null ? j.get(R).__webglFramebuffer : null
+            P.bindFramebuffer(b.FRAMEBUFFER, zt)
             const Kt = b.fenceSync(b.SYNC_GPU_COMMANDS_COMPLETE, 0)
             return (
               b.flush(),
@@ -27992,7 +27992,7 @@ class kB {
               ($e = ye),
               (ye = 0))
             : ($e = 0)))
-      let nt, ot, at, At, Tt, ht, kt, Kt, kn
+      let nt, ot, at, At, Tt, ht, zt, Kt, kn
       const Cn = K.isCompressedTexture ? K.mipmaps[$e] : K.image
       if (Se !== null)
         ((nt = Se.max.x - Se.min.x),
@@ -28014,7 +28014,7 @@ class kB {
           (Tt = 0),
           (ht = 0))
       }
-      Ae !== null ? ((kt = Ae.x), (Kt = Ae.y), (kn = Ae.z)) : ((kt = 0), (Kt = 0), (kn = 0))
+      Ae !== null ? ((zt = Ae.x), (Kt = Ae.y), (kn = Ae.z)) : ((zt = 0), (Kt = 0), (kn = 0))
       const Vt = Je.convert(ge.format),
         pt = Je.convert(ge.type)
       let di
@@ -28061,7 +28061,7 @@ class kB {
               $e,
               kn + Ka
             )),
-            b.blitFramebuffer(At, Tt, nt, ot, kt, Kt, nt, ot, b.DEPTH_BUFFER_BIT, b.NEAREST))
+            b.blitFramebuffer(At, Tt, nt, ot, zt, Kt, nt, ot, b.DEPTH_BUFFER_BIT, b.NEAREST))
         ;(P.bindFramebuffer(b.READ_FRAMEBUFFER, null), P.bindFramebuffer(b.DRAW_FRAMEBUFFER, null))
       } else if (ye !== 0 || K.isRenderTargetTexture || j.has(K)) {
         const zr = j.get(K),
@@ -28099,32 +28099,32 @@ class kB {
                   $e
                 ),
             ye !== 0
-              ? b.blitFramebuffer(At, Tt, nt, ot, kt, Kt, nt, ot, b.COLOR_BUFFER_BIT, b.NEAREST)
+              ? b.blitFramebuffer(At, Tt, nt, ot, zt, Kt, nt, ot, b.COLOR_BUFFER_BIT, b.NEAREST)
               : kr
-                ? b.copyTexSubImage3D(di, $e, kt, Kt, kn + tr, At, Tt, nt, ot)
-                : b.copyTexSubImage2D(di, $e, kt, Kt, At, Tt, nt, ot))
+                ? b.copyTexSubImage3D(di, $e, zt, Kt, kn + tr, At, Tt, nt, ot)
+                : b.copyTexSubImage2D(di, $e, zt, Kt, At, Tt, nt, ot))
         ;(P.bindFramebuffer(b.READ_FRAMEBUFFER, null), P.bindFramebuffer(b.DRAW_FRAMEBUFFER, null))
       } else
         kr
           ? K.isDataTexture || K.isData3DTexture
-            ? b.texSubImage3D(di, $e, kt, Kt, kn, nt, ot, at, Vt, pt, Cn.data)
+            ? b.texSubImage3D(di, $e, zt, Kt, kn, nt, ot, at, Vt, pt, Cn.data)
             : ge.isCompressedArrayTexture
-              ? b.compressedTexSubImage3D(di, $e, kt, Kt, kn, nt, ot, at, Vt, Cn.data)
-              : b.texSubImage3D(di, $e, kt, Kt, kn, nt, ot, at, Vt, pt, Cn)
+              ? b.compressedTexSubImage3D(di, $e, zt, Kt, kn, nt, ot, at, Vt, Cn.data)
+              : b.texSubImage3D(di, $e, zt, Kt, kn, nt, ot, at, Vt, pt, Cn)
           : K.isDataTexture
-            ? b.texSubImage2D(b.TEXTURE_2D, $e, kt, Kt, nt, ot, Vt, pt, Cn.data)
+            ? b.texSubImage2D(b.TEXTURE_2D, $e, zt, Kt, nt, ot, Vt, pt, Cn.data)
             : K.isCompressedTexture
               ? b.compressedTexSubImage2D(
                   b.TEXTURE_2D,
                   $e,
-                  kt,
+                  zt,
                   Kt,
                   Cn.width,
                   Cn.height,
                   Vt,
                   Cn.data
                 )
-              : b.texSubImage2D(b.TEXTURE_2D, $e, kt, Kt, nt, ot, Vt, pt, Cn)
+              : b.texSubImage2D(b.TEXTURE_2D, $e, zt, Kt, nt, ot, Vt, pt, Cn)
       ;(b.pixelStorei(b.UNPACK_ROW_LENGTH, Yt),
         b.pixelStorei(b.UNPACK_IMAGE_HEIGHT, as),
         b.pixelStorei(b.UNPACK_SKIP_PIXELS, Yl),
@@ -49190,22 +49190,22 @@ Bn.getAdapter = a6.getAdapter
 Bn.HttpStatusCode = pv
 Bn.default = Bn
 const {
-  Axios: Tre,
-  AxiosError: wre,
-  CanceledError: Cre,
-  isCancel: Ere,
-  CancelToken: Mre,
-  VERSION: Rre,
-  all: Ire,
-  Cancel: Nre,
-  isAxiosError: Pre,
-  spread: Lre,
-  toFormData: Dre,
-  AxiosHeaders: Fre,
-  HttpStatusCode: Ore,
-  formToJSON: Bre,
-  getAdapter: Ure,
-  mergeConfig: kre,
+  Axios: wre,
+  AxiosError: Cre,
+  CanceledError: Ere,
+  isCancel: Mre,
+  CancelToken: Rre,
+  VERSION: Ire,
+  all: Nre,
+  Cancel: Pre,
+  isAxiosError: Lre,
+  spread: Dre,
+  toFormData: Fre,
+  AxiosHeaders: Ore,
+  HttpStatusCode: Bre,
+  formToJSON: Ure,
+  getAdapter: kre,
+  mergeConfig: zre,
 } = Bn
 var Bc =
   typeof globalThis < 'u'
@@ -66324,7 +66324,7 @@ const ba = a5('visionStore', {
         (r, s) => (
           ft(),
           xt('div', { class: 'access-wrap', onClick: i }, [
-            zt('span', Mee, [be(Ge(s2))]),
+            kt('span', Mee, [be(Ge(s2))]),
             om(' ' + su(Ree)),
           ])
         )
@@ -69603,11 +69603,11 @@ function Kne(n, e) {
     xt('svg', Xne, [
       ...(e[0] ||
         (e[0] = [
-          zt(
+          kt(
             'g',
             null,
             [
-              zt('path', {
+              kt('path', {
                 d: 'M13.802466686534881,1.1380186865348816Q13.89646668653488,1.0444176865348815,13.947366686534881,0.9218876865348815Q13.998366686534881,0.7993576865348816,13.998366686534881,0.6666666865348816Q13.998366686534881,0.6011698865348816,13.98556668653488,0.5369316865348817Q13.972766686534882,0.4726936865348816,13.947666686534882,0.4121826865348816Q13.922666686534882,0.3516706865348816,13.886266686534881,0.2972126865348816Q13.849866686534881,0.2427536865348816,13.803566686534882,0.19644068653488161Q13.757266686534882,0.15012768653488162,13.702766686534881,0.11373968653488165Q13.648366686534882,0.07735168653488156,13.587866686534882,0.052286686534881555Q13.527266686534881,0.02722268653488158,13.463066686534882,0.014444686534881623Q13.398866686534882,0.0016666865348815563,13.333366686534882,0.0016666865348815563Q13.201466686534882,0.0016666865348815563,13.079566686534882,0.051981686534881555Q12.957666686534882,0.10229768653488158,12.864266686534881,0.1953146865348816L12.863066686534882,0.19413268653488158L4.624996686534882,8.392776686534882L1.1369396865348815,4.921396686534882L1.1357636865348817,4.922586686534881Q1.0422996865348817,4.829566686534881,0.9204146865348816,4.779246686534882Q0.7985286865348816,4.728936686534881,0.6666666865348816,4.728936686534881Q0.6011698865348816,4.728936686534881,0.5369316865348817,4.741706686534882Q0.4726936865348816,4.754486686534881,0.4121826865348816,4.779556686534882Q0.3516706865348816,4.804616686534882,0.2972126865348816,4.8410066865348815Q0.2427536865348816,4.8773966865348815,0.19644068653488161,4.9237066865348815Q0.15012768653488162,4.970016686534882,0.11373968653488165,5.024476686534881Q0.07735168653488156,5.078936686534882,0.052286686534881555,5.139446686534882Q0.02722268653488158,5.199956686534882,0.014444686534881623,5.2641966865348815Q0.0016666865348815563,5.328436686534881,0.0016666865348815563,5.3939366865348815Q0.0016666865348815563,5.526626686534882,0.05259268653488158,5.649156686534882Q0.10351768653488158,5.771686686534881,0.1975696865348816,5.865286686534882L0.1963936865348816,5.866466686534881L4.1547266865348815,9.805866686534882Q4.201126686534882,9.852046686534882,4.255616686534882,9.888306686534882Q4.310106686534882,9.924576686534882,4.3706166865348814,9.949556686534882Q4.431126686534881,9.974536686534881,4.495326686534882,9.987266686534882Q4.559536686534882,9.999996686534882,4.624996686534882,9.999996686534882Q4.690456686534882,9.999996686534882,4.754666686534882,9.987266686534882Q4.818876686534882,9.974536686534881,4.879386686534882,9.949556686534882Q4.939886686534882,9.924576686534882,4.994386686534882,9.888306686534882Q5.048876686534881,9.852046686534882,5.0952766865348815,9.805866686534882L13.803566686534882,1.1392006865348816L13.802466686534881,1.1380186865348816Z',
                 'fill-rule': 'evenodd',
                 fill: '#E0E0FC',
@@ -69685,7 +69685,7 @@ function aie(n, e) {
     xt('svg', oie, [
       ...(e[0] ||
         (e[0] = [
-          zt(
+          kt(
             'path',
             {
               d: 'M899.925333 172.080762a48.761905 48.761905 0 0 1 0 28.525714l-207.969523 679.448381a48.761905 48.761905 0 0 1-81.115429 20.187429l-150.552381-150.552381-96.304762 96.329143a24.380952 24.380952 0 0 1-41.593905-17.237334v-214.966857l275.821715-243.370667-355.57181 161.596953-103.253333-103.228953a48.761905 48.761905 0 0 1 20.23619-81.091047L838.997333 139.702857a48.761905 48.761905 0 0 1 60.903619 32.353524z',
@@ -69766,7 +69766,7 @@ function _ie(n, e) {
     xt('svg', vie, [
       ...(e[0] ||
         (e[0] = [
-          zt(
+          kt(
             'path',
             {
               d: 'M824 466.56V213.12q0-13.6512-5.2928-26.1632-5.104-12.064-14.3904-21.3536-9.2864-9.2864-21.3504-14.3872-12.5152-5.2928-26.1664-5.2928H246.4q-13.6512 0-26.1664 5.2928-12.064 5.1008-21.3504 14.3872-9.2864 9.2864-14.3904 21.3536Q179.2 199.4688 179.2 213.12v607.296q0 12.8448 5.0592 24.608 4.8576 11.2896 13.6704 19.9552 8.7616 8.6176 20.1184 13.344Q229.7792 883.2 242.56 883.2h217.6a28.8 28.8 0 0 0 0-57.6h-217.6q-2.528 0-4.2432-1.6864-1.5168-1.4912-1.5168-3.4976V213.12q0-3.9744 2.8128-6.784 2.8096-2.816 6.7872-2.816h510.4q3.9776 0 6.7872 2.816 2.8128 2.8096 2.8128 6.784v253.44a28.8 28.8 0 0 0 28.8 28.8 28.8 28.8 0 0 0 28.8-28.8zM466.0064 338.08l-130.2016 278.784A32 32 0 0 0 364.8 662.4h0.176a31.9904 31.9904 0 0 0 28.8192-18.4576L418.048 592h165.4976l15.2896 32.736q3.1008-3.4144 6.3904-6.704 20.3584-20.3616 45.4816-33.472l-115.1168-246.4832q-4.9408-10.5792-14.8704-16.5952-9.168-5.5552-19.9232-5.5552-10.7552 0-19.9232 5.5552-9.9296 6.016-14.8704 16.5952z m34.7936 76.7456L553.6576 528h-105.7152l52.8576-113.1776zM896 750.4c0 87.4816-70.9184 158.4-158.4 158.4S579.2 837.8816 579.2 750.4s70.9184-158.4 158.4-158.4 158.4 70.9184 158.4 158.4z m-116.3648-82.7648a28.9152 28.9152 0 0 1 7.1648-5.232q-5.8048-3.232-12.096-5.7248Q756.8256 649.6 737.6 649.6q-19.2256 0-37.104 7.0784-19.4112 7.6832-34.1728 22.448-14.7616 14.7616-22.4448 34.1696Q636.8 731.1744 636.8 750.4q0 19.232 7.0784 37.104 2.4896 6.2944 5.7248 12.096a28.7552 28.7552 0 0 1 5.232-7.1648l124.8-124.8zM838.4 750.4q0-19.2256-7.0784-37.104-2.4896-6.2912-5.7248-12.096a28.6944 28.6944 0 0 1-5.232 7.168l-124.8 124.8a28.7552 28.7552 0 0 1-7.1648 5.2288q5.8048 3.2352 12.096 5.728Q718.3744 851.2 737.6 851.2q19.2256 0 37.104-7.072 19.4112-7.6896 34.1728-22.4512 14.7616-14.7616 22.4448-34.1728Q838.4 769.632 838.4 750.4z',
@@ -69799,7 +69799,7 @@ function bie(n, e) {
     xt('svg', Aie, [
       ...(e[0] ||
         (e[0] = [
-          zt(
+          kt(
             'path',
             {
               d: 'M833.6 213.12v253.44a28.8 28.8 0 0 1-28.8 28.8 28.8 28.8 0 0 1-28.8-28.8V213.12q0-3.9744-2.8128-6.784-2.8096-2.816-6.7872-2.816H256q-3.9776 0-6.7872 2.816Q246.4 209.1424 246.4 213.12v607.296q0 2.0064 1.5168 3.4976 1.7152 1.6864 4.2432 1.6864h217.6a28.8 28.8 0 0 1 0 57.6h-217.6q-12.7808 0-24.512-4.8768-11.3568-4.7232-20.1184-13.3408-8.8128-8.6656-13.6704-19.9584Q188.8 833.264 188.8 820.416V213.12q0-13.6512 5.2928-26.1632 5.104-12.064 14.3904-21.3536 9.2864-9.2864 21.3504-14.3872Q242.3456 145.92 256 145.92h510.4q13.6512 0 26.1664 5.2928 12.064 5.1008 21.3504 14.3872 9.2864 9.2864 14.3904 21.3536 5.2928 12.512 5.2928 26.1664zM345.408 613.664l130.1984-278.784q4.9408-10.5824 14.8704-16.5984 9.168-5.5552 19.9232-5.5552 10.7552 0 19.9232 5.5552 9.9296 6.016 14.8704 16.5952l130.2016 278.784a32 32 0 0 1-28.672 45.5392l-0.3232 0.0032c-12.4288 0-23.7344-7.2-28.9952-18.4608L593.1488 588.8h-165.4976l-24.256 51.9424a32.0064 32.0064 0 0 1-28.8192 18.4576l-0.176 0.0032a32 32 0 0 1-28.992-45.5424z m164.992-202.0416L457.5424 524.8h105.7152L510.4 411.6224z m120.2784 329.44l61.3216 61.5872 162.1248-162.8256a31.9936 31.9936 0 0 1 22.608-9.424H876.8a32 32 0 0 1 32 31.936v0.064a32 32 0 0 1-9.3216 22.5792l-184.8 185.6-0.0992 0.0992a31.9936 31.9936 0 0 1-45.2544-0.096l-83.984-84.352-0.016-0.016a31.9904 31.9904 0 0 1-9.2896-21.1104l30.496-33.4336c0.4896-0.0224 0.9792-0.032 1.4688-0.032h0.0704a32 32 0 0 1 22.608 9.4208z',
@@ -69816,14 +69816,15 @@ function bie(n, e) {
 }
 const Tie = si(Sie, [['render', bie]]),
   wie = { class: 'action-group' },
-  Cie = { key: 0 },
+  Cie = { key: 0, class: 'action-wrapper' },
   Eie = ['onClick'],
   Mie = { key: 0, class: 'active-icon' },
-  Rie = { key: 1 },
+  Rie = { key: 1, class: 'action-wrapper' },
   Iie = ['onClick'],
   Nie = { key: 0, class: 'active-icon' },
-  Pie = { key: 2 },
-  Lie = qt({
+  Pie = { class: 'action-wrapper' },
+  Lie = { key: 2, class: 'action-wrapper' },
+  Die = qt({
     __name: 'ActionGroup',
     setup(n) {
       const e = k0(),
@@ -69879,12 +69880,12 @@ const Tie = si(Sie, [['render', bie]]),
                               },
                               [
                                 ...(R[6] ||
-                                  (R[6] = [zt('div', { class: 'corner-inner' }, null, -1)])),
+                                  (R[6] = [kt('div', { class: 'corner-inner' }, null, -1)])),
                               ]
                             ))
                           : br('', !0),
                         Pc(
-                          zt(
+                          kt(
                             'div',
                             { class: Js(['selectors', { left: Ge(_) }]) },
                             [
@@ -69952,12 +69953,12 @@ const Tie = si(Sie, [['render', bie]]),
                               },
                               [
                                 ...(R[7] ||
-                                  (R[7] = [zt('div', { class: 'corner-inner' }, null, -1)])),
+                                  (R[7] = [kt('div', { class: 'corner-inner' }, null, -1)])),
                               ]
                             ))
                           : br('', !0),
                         Pc(
-                          zt(
+                          kt(
                             'div',
                             { class: Js(['selectors', { left: Ge(_) }]) },
                             [
@@ -70005,15 +70006,17 @@ const Tie = si(Sie, [['render', bie]]),
                   ),
                 ]))
               : br('', !0),
-            zt(
-              'div',
-              { class: 'action', onClick: R[4] || (R[4] = (...M) => Ge(y) && Ge(y)(...M)) },
-              [be(Ge(Ed), { icon: Ge(a) ? Ge(hie) : Ge(gie) }, null, 8, ['icon'])]
-            ),
+            kt('div', Pie, [
+              kt(
+                'div',
+                { class: 'action', onClick: R[4] || (R[4] = (...M) => Ge(y) && Ge(y)(...M)) },
+                [be(Ge(Ed), { icon: Ge(a) ? Ge(hie) : Ge(gie) }, null, 8, ['icon'])]
+              ),
+            ]),
             Ge(x).width > 300
               ? (ft(),
-                xt('div', Pie, [
-                  zt(
+                xt('div', Lie, [
+                  kt(
                     'div',
                     { class: 'action', onClick: R[5] || (R[5] = (...M) => Ge(v) && Ge(v)(...M)) },
                     [be(Ge(Ed), { icon: Ge(l) ? Ge(Tie) : Ge(xie) }, null, 8, ['icon'])]
@@ -70025,9 +70028,9 @@ const Tie = si(Sie, [['render', bie]]),
       }
     },
   }),
-  Die = si(Lie, [['__scopeId', 'data-v-628a9c05']]),
-  Fie = { class: 'gradio-webrtc-waveContainer' },
-  Oie = qt({
+  Fie = si(Die, [['__scopeId', 'data-v-4402c8f7']]),
+  Oie = { class: 'gradio-webrtc-waveContainer' },
+  Bie = qt({
     __name: 'AudioWave',
     props: {
       streamState: { default: qi.closed },
@@ -70085,8 +70088,8 @@ const Tie = si(Sie, [['render', bie]]),
       }
       return (d, h) => (
         ft(),
-        xt('div', Fie, [
-          zt(
+        xt('div', Oie, [
+          kt(
             'div',
             { class: 'gradio-webrtc-boxContainer', style: Xs({ width: a.value }) },
             [
@@ -70100,7 +70103,7 @@ const Tie = si(Sie, [['render', bie]]),
                 ),
                 128
               )),
-              h[0] || (h[0] = zt('div', { class: 'split-container' }, null, -1)),
+              h[0] || (h[0] = kt('div', { class: 'split-container' }, null, -1)),
               (ft(!0),
               xt(
                 Hn,
@@ -70118,14 +70121,14 @@ const Tie = si(Sie, [['render', bie]]),
       )
     },
   }),
-  Bie = si(Oie, [['__scopeId', 'data-v-1bcbfa11']]),
-  Uie = { class: 'player-controls' },
-  kie = { key: 0 },
-  zie = { key: 1, class: 'waiting-icon-text' },
-  Vie = { class: 'icon', title: 'spinner' },
-  Hie = { key: 2, class: 'stop-chat-inner' },
-  $ie = { key: 0, class: 'input-audio-wave' },
-  Gie = qt({
+  Uie = si(Bie, [['__scopeId', 'data-v-d7e47480']]),
+  kie = { class: 'player-controls' },
+  zie = { key: 0 },
+  Vie = { key: 1, class: 'waiting-icon-text' },
+  Hie = { class: 'icon', title: 'spinner' },
+  $ie = { key: 2, class: 'stop-chat-inner' },
+  Gie = { key: 0, class: 'input-audio-wave' },
+  Wie = qt({
     __name: 'ChatBtn',
     props: {
       streamState: { type: Object, default: () => qi.closed },
@@ -70137,8 +70140,8 @@ const Tie = si(Sie, [['render', bie]]),
     setup(n, { emit: e }) {
       return (t, i) => (
         ft(),
-        xt('div', Uie, [
-          zt(
+        xt('div', kie, [
+          kt(
             'div',
             {
               class: Js([
@@ -70150,22 +70153,22 @@ const Tie = si(Sie, [['render', bie]]),
             },
             [
               n.streamState === Ge(qi).closed
-                ? (ft(), xt('span', kie, 'Please点击开始对话'))
+                ? (ft(), xt('span', zie, 'Please点击开始对话'))
                 : n.streamState === Ge(qi).waiting
                   ? (ft(),
-                    xt('div', zie, [
-                      zt('div', Vie, [be(Ge(qd), { 'wrapper-class-name': 'spin-icon' })]),
-                      i[1] || (i[1] = zt('span', null, '等待中', -1)),
+                    xt('div', Vie, [
+                      kt('div', Hie, [be(Ge(qd), { 'wrapper-class-name': 'spin-icon' })]),
+                      i[1] || (i[1] = kt('span', null, '等待中', -1)),
                     ]))
-                  : (ft(), xt('div', Hie)),
+                  : (ft(), xt('div', $ie)),
             ],
             2
           ),
           n.streamState === Ge(qi).open
             ? (ft(),
-              xt('div', $ie, [
+              xt('div', Gie, [
                 be(
-                  Bie,
+                  Uie,
                   {
                     'audio-source-callback': n.audioSourceCallback,
                     'stream-state': n.streamState,
@@ -70181,16 +70184,16 @@ const Tie = si(Sie, [['render', bie]]),
       )
     },
   }),
-  Wie = si(Gie, [['__scopeId', 'data-v-8a83fff7']])
-function Qie(n, e, t) {
+  Qie = si(Wie, [['__scopeId', 'data-v-8a83fff7']])
+function jie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
     : n.substring(0, t) + e + n.substring(t)
 }
-const jie = { class: 'chat-input-container' },
-  qie = { class: 'chat-input-inner' },
-  Xie = { class: 'chat-input-wrapper' },
-  Kie = qt({
+const qie = { class: 'chat-input-container' },
+  Xie = { class: 'chat-input-inner' },
+  Kie = { class: 'chat-input-wrapper' },
+  Yie = qt({
     __name: 'ChatInput',
     props: { replying: { type: Boolean } },
     emits: ['send', 'stop', 'interrupt'],
@@ -70204,7 +70207,7 @@ const jie = { class: 'chat-input-container' },
         h.key === 'Enter' &&
           (h.altKey
             ? s.value &&
-              ((s.value.value = Qie(s.value.value, '\n', s.value.selectionStart || 0)),
+              ((s.value.value = jie(s.value.value, '\n', s.value.selectionStart || 0)),
               s.value.dispatchEvent(new InputEvent('input')))
             : (h.preventDefault(), l()))
       }
@@ -70224,11 +70227,11 @@ const jie = { class: 'chat-input-container' },
       }
       return (h, f) => (
         ft(),
-        xt('div', jie, [
-          zt('div', { class: 'stop-chat-btn', onClick: u }),
-          zt('div', qie, [
-            zt('div', Xie, [
-              zt(
+        xt('div', qie, [
+          kt('div', { class: 'stop-chat-btn', onClick: u }),
+          kt('div', Xie, [
+            kt('div', Kie, [
+              kt(
                 'textarea',
                 {
                   class: 'chat-input',
@@ -70241,7 +70244,7 @@ const jie = { class: 'chat-input-container' },
                 null,
                 36
               ),
-              zt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Ge(o)), 513),
+              kt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Ge(o)), 513),
             ]),
             h.replying
               ? (ft(), xt('button', { key: 0, class: 'interrupt-btn', onClick: d }))
@@ -70254,9 +70257,9 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  Yie = si(Kie, [['__scopeId', 'data-v-32a58abc']]),
-  Zie = { class: 'answer-message-text' },
-  Jie = qt({
+  Zie = si(Yie, [['__scopeId', 'data-v-32a58abc']]),
+  Jie = { class: 'answer-message-text' },
+  ere = qt({
     __name: 'ChatMessage',
     props: { message: {}, role: {}, style: {} },
     setup(n) {
@@ -70265,14 +70268,14 @@ const jie = { class: 'chat-input-container' },
         xt(
           'div',
           { class: Js(['answer-message-container', e.role]), style: Xs(e.style) },
-          [zt('div', Zie, su(e.message), 1)],
+          [kt('div', Jie, su(e.message), 1)],
           6
         )
       )
     },
   }),
-  ere = si(Jie, [['__scopeId', 'data-v-dde1c5d3']]),
-  tre = { class: 'chat-records-inner' },
+  tre = si(ere, [['__scopeId', 'data-v-dde1c5d3']]),
+  nre = { class: 'chat-records-inner' },
   FT = qt({
     __name: 'ChatRecords',
     props: { chatRecords: {} },
@@ -70299,7 +70302,7 @@ const jie = { class: 'chat-input-container' },
             'div',
             { class: 'chat-records', ref_key: 'containerRef', ref: i },
             [
-              zt('div', tre, [
+              kt('div', nre, [
                 (ft(!0),
                 xt(
                   Hn,
@@ -70312,7 +70315,7 @@ const jie = { class: 'chat-input-container' },
                         'div',
                         { key: a.id, class: Js('chat-message '.concat(a.role)) },
                         [
-                          be(ere, { message: a.message, role: a.role }, null, 8, [
+                          be(tre, { message: a.message, role: a.role }, null, 8, [
                             'message',
                             'role',
                           ]),
@@ -70331,11 +70334,11 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  nre = { class: 'content-container' },
-  ire = ['muted'],
-  rre = { class: 'actions' },
-  sre = { key: 0, class: 'chat-records-container' },
-  ore = qt({
+  ire = { class: 'content-container' },
+  rre = { class: 'top-actions' },
+  sre = ['muted'],
+  ore = { key: 0, class: 'chat-records-container' },
+  are = qt({
     __name: 'index',
     setup(n) {
       const e = ba(),
@@ -70420,16 +70423,17 @@ const jie = { class: 'chat-input-container' },
           'div',
           { class: 'page-container', ref_key: 'wrapRef', ref: i },
           [
-            zt('div', nre, [
-              zt(
+            kt('div', ire, [
+              kt(
                 'div',
                 {
                   class: 'video-container',
                   style: Xs({ visibility: Ge(g) ? 'visible' : 'hidden', aspectRatio: l.value }),
                 },
                 [
+                  kt('div', rre, [be(Fie)]),
                   Pc(
-                    zt(
+                    kt(
                       'div',
                       {
                         class: Js(
@@ -70439,7 +70443,7 @@ const jie = { class: 'chat-input-container' },
                         ref: r,
                       },
                       [
-                        zt(
+                        kt(
                           'video',
                           {
                             class: 'local-video',
@@ -70461,7 +70465,7 @@ const jie = { class: 'chat-input-container' },
                     ),
                     [[cm, Ge(d) && !Ge(p)]]
                   ),
-                  zt(
+                  kt(
                     'div',
                     { class: 'remote-video-container', ref_key: 'remoteVideoContainerRef', ref: s },
                     [
@@ -70483,7 +70487,7 @@ const jie = { class: 'chat-input-container' },
                               },
                               null,
                               40,
-                              ire
+                              sre
                             )),
                             [[cm, Ge(y) === 'open']]
                           ),
@@ -70519,14 +70523,13 @@ const jie = { class: 'chat-input-container' },
                     ],
                     512
                   ),
-                  zt('div', rre, [be(Die)]),
                 ],
                 4
               ),
               (!Ge(h) || Ge(f)) && Ge(y) === 'open'
                 ? (ft(),
                   ou(
-                    Yie,
+                    Zie,
                     {
                       key: 0,
                       replying: Ge(x),
@@ -70541,7 +70544,7 @@ const jie = { class: 'chat-input-container' },
                 : Ge(g)
                   ? (ft(),
                     ou(
-                      Wie,
+                      Qie,
                       {
                         key: 1,
                         onStartChat: R,
@@ -70557,7 +70560,7 @@ const jie = { class: 'chat-input-container' },
             ]),
             Ge(y) === 'open' && Ge(_) && Ge(A)
               ? (ft(),
-                xt('div', sre, [
+                xt('div', ore, [
                   be(
                     FT,
                     { ref_key: 'chatRecordsInstanceRef', ref: I, chatRecords: Ge(S) },
@@ -70573,9 +70576,9 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  are = si(ore, [['__scopeId', 'data-v-269b506f']]),
-  lre = { class: 'wrap' },
-  cre = qt({
+  lre = si(are, [['__scopeId', 'data-v-5e9bb19b']]),
+  cre = { class: 'wrap' },
+  ure = qt({
     __name: 'App',
     setup(n) {
       const e = k0()
@@ -70588,9 +70591,9 @@ const jie = { class: 'chat-input-container' },
             { locale: Ge(One)[Ge(dI)] },
             {
               default: yw(() => [
-                zt('div', lre, [
+                kt('div', cre, [
                   Ge(e).webcamAccessed ? br('', !0) : (ft(), ou(Nee, { key: 0 })),
-                  be(are),
+                  be(lre),
                 ]),
               ]),
               _: 1,
@@ -70602,18 +70605,18 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  ure = si(cre, [['__scopeId', 'data-v-45f9c857']])
+  dre = si(ure, [['__scopeId', 'data-v-45f9c857']])
 var Kp = { exports: {} },
-  dre = Kp.exports,
+  hre = Kp.exports,
   OT
-function hre() {
+function fre() {
   return (
     OT ||
       ((OT = 1),
       (function (n, e) {
         ;(function (t, i) {
           n.exports = i()
-        })(dre, function () {
+        })(hre, function () {
           var t = '__v-click-outside',
             i = typeof window < 'u',
             r = typeof navigator < 'u',
@@ -70732,12 +70735,12 @@ function hre() {
     Kp.exports
   )
 }
-var fre = hre()
-const pre = u_(fre),
-  $0 = K9(ure),
-  mre = J9()
-$0.use(mre)
+var pre = fre()
+const mre = u_(pre),
+  $0 = K9(dre),
+  gre = J9()
+$0.use(gre)
 $0.use(Une)
-$0.use(pre)
+$0.use(mre)
 $0.mount('#app')
-export { yre as __vite_legacy_guard }
+export { vre as __vite_legacy_guard }
