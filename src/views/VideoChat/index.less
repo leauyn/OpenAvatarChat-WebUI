@@ -57,24 +57,6 @@
     transition: all 0.3s linear;
     background: #fff;
     position: relative;
-    
-    .video-bottom-gradient {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 120px;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.2) 30%,
-        rgba(255, 255, 255, 0.5) 60%,
-        rgba(248, 249, 250, 0.8) 90%,
-        rgba(248, 249, 250, 1) 100%
-      );
-      z-index: 3;
-      pointer-events: none;
-    }
   }
   
   .chat-records-container {
@@ -82,54 +64,22 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40%;
-    background: #f8f9fa;
+    height: 30%;
+    overflow: auto;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    backdrop-filter: blur(15px);
     border-radius: 0 0 32px 32px;
-    z-index: 5;
-    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    box-sizing: border-box;
+    z-index: 99;
     
-    .chat-top-gradient {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 120px;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 20%,
-        rgba(248, 249, 250, 0.6) 50%,
-        rgba(248, 249, 250, 0.8) 80%,
-        rgba(248, 249, 250, 1) 100%
-      );
-      z-index: 4;
-      pointer-events: none;
-    }
-    
-    .chat-records-content {
-      height: 100%;
-      overflow: auto;
-      position: relative;
-      
-      .chat-records-top-fade {
-        position: sticky;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 120px;
-        background: linear-gradient(
-          to bottom,
-          rgba(248, 249, 250, 1) 0%,
-          rgba(248, 249, 250, 0.95) 20%,
-          rgba(248, 249, 250, 0.8) 50%,
-          rgba(248, 249, 250, 0.4) 80%,
-          rgba(248, 249, 250, 0) 100%
-        );
-        z-index: 10;
-        pointer-events: none;
-        margin-bottom: -120px;
-      }
-    }
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
   }
   
   .local-video {
