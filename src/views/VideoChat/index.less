@@ -63,14 +63,58 @@
     overflow: hidden;
     transition: all 0.3s linear;
     background: #fff;
+    position: relative;
+    
+    .video-to-chat-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 30%,
+        rgba(248, 249, 250, 0.8) 70%,
+        rgba(248, 249, 250, 1) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
   }
   
   .chat-records-container {
     flex: 0 0 30%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
     background: #f8f9fa;
-    border-top: 1px solid #e9ecef;
+    position: relative;
+    
+    .chat-records-content {
+      height: 100%;
+      overflow: auto;
+      position: relative;
+      
+      .chat-records-top-fade {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(
+          to bottom,
+          rgba(248, 249, 250, 1) 0%,
+          rgba(248, 249, 250, 0.95) 15%,
+          rgba(248, 249, 250, 0.8) 35%,
+          rgba(248, 249, 250, 0.5) 60%,
+          rgba(248, 249, 250, 0.2) 85%,
+          rgba(248, 249, 250, 0) 100%
+        );
+        z-index: 10;
+        pointer-events: none;
+        margin-bottom: -80px;
+      }
+    }
   }
   
   .local-video {

@@ -42,10 +42,14 @@
               playsinline
               :muted="volumeMuted"
             />
+            <div class="video-to-chat-gradient"></div>
           </div>
 
           <div class="chat-records-container">
-            <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
+            <div class="chat-records-content">
+              <div class="chat-records-top-fade"></div>
+              <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
+            </div>
           </div>
         </div>
       </div>

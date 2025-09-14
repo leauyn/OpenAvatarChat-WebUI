@@ -23,7 +23,7 @@ var Yu = (n, e, t, i) => ({
     return dt(n, e, i)
   },
 })
-function _re() {
+function xre() {
   ;(import.meta.url, import('_').catch(() => 1), (async function* () {})().next())
 }
 ;(function () {
@@ -3364,7 +3364,7 @@ function Gw(n) {
   return ((n.dynamicChildren = nh > 0 ? Mr || Vc : null), r9(), nh > 0 && Mr && Mr.push(n), n)
 }
 function Tt(n, e, t, i, r, s) {
-  return Gw(Ot(n, e, t, i, r, s, !0))
+  return Gw(Pt(n, e, t, i, r, s, !0))
 }
 function ou(n, e, t, i, r) {
   return Gw(Te(n, e, t, i, r, !0))
@@ -3380,7 +3380,7 @@ const Ww = ({ key: n }) => (n != null ? n : null),
     typeof n == 'number' && (n = '' + n),
     n != null ? (wn(n) || bn(n) || Ct(n) ? { i: Er, r: n, k: e, f: !!t } : n) : null
   )
-function Ot(n, e = null, t = null, i = 0, r = null, s = n === Hn ? 0 : 1, o = !1, a = !1) {
+function Pt(n, e = null, t = null, i = 0, r = null, s = n === Hn ? 0 : 1, o = !1, a = !1) {
   const l = {
     __v_isVNode: !0,
     __v_skip: !0,
@@ -3434,7 +3434,7 @@ function s9(n, e = null, t = null, i = 0, r = null, s = !1) {
       gn(l) && (t_(l) && !vt(l) && (l = ti({}, l)), (e.style = Go(l))))
   }
   const o = wn(n) ? 1 : $w(n) ? 128 : h8(n) ? 64 : gn(n) ? 4 : Ct(n) ? 2 : 0
-  return Ot(n, e, t, i, r, o, s, !0)
+  return Pt(n, e, t, i, r, o, s, !0)
 }
 function o9(n) {
   return n ? (t_(n) || Dw(n) ? ti({}, n) : n) : null
@@ -28180,16 +28180,16 @@ class UB {
       (t.unpackColorSpace = wt._getUnpackColorSpace()))
   }
 }
-class Ft {}
-;(xe(Ft, 'DefaultSplatSortDistanceMapPrecision', 16),
-  xe(Ft, 'MemoryPageSize', 65536),
-  xe(Ft, 'BytesPerFloat', 4),
-  xe(Ft, 'BytesPerInt', 4),
-  xe(Ft, 'MaxScenes', 32),
-  xe(Ft, 'ProgressiveLoadSectionSize', 262144),
-  xe(Ft, 'ProgressiveLoadSectionDelayDuration', 15),
-  xe(Ft, 'SphericalHarmonics8BitCompressionRange', 3))
-const kB = Ft.SphericalHarmonics8BitCompressionRange,
+class Ot {}
+;(xe(Ot, 'DefaultSplatSortDistanceMapPrecision', 16),
+  xe(Ot, 'MemoryPageSize', 65536),
+  xe(Ot, 'BytesPerFloat', 4),
+  xe(Ot, 'BytesPerInt', 4),
+  xe(Ot, 'MaxScenes', 32),
+  xe(Ot, 'ProgressiveLoadSectionSize', 262144),
+  xe(Ot, 'ProgressiveLoadSectionDelayDuration', 15),
+  xe(Ot, 'SphericalHarmonics8BitCompressionRange', 3))
+const kB = Ot.SphericalHarmonics8BitCompressionRange,
   fa = kB / 2,
   jn = hh.toHalfFloat.bind(hh),
   O_ = hh.fromHalfFloat.bind(hh),
@@ -30323,7 +30323,7 @@ class Q_ {
   static loadFromURL(e, t, i, r, s, o, a = !0, l = 0, c, u, d, h, f) {
     let p = i ? Mn.DirectToSplatBuffer : Mn.DirectToSplatArray
     a && (p = Mn.DirectToSplatArray)
-    const g = Ft.ProgressiveLoadSectionSize,
+    const g = Ot.ProgressiveLoadSectionSize,
       y = ct.HeaderSizeBytes + ct.SectionHeaderSizeBytes,
       m = 1
     let v,
@@ -30618,7 +30618,7 @@ class j_ {
     let f = i ? Mn.DirectToSplatBuffer : Mn.DirectToSplatArray
     a && (f = Mn.DirectToSplatArray)
     const p = ct.HeaderSizeBytes + ct.SectionHeaderSizeBytes,
-      g = Ft.ProgressiveLoadSectionSize,
+      g = Ot.ProgressiveLoadSectionSize,
       y = 1
     let m,
       v,
@@ -30825,8 +30825,8 @@ const zc = class zc {
         const T = () => {
           if (((S = !1), p)) {
             if (_) return
-            if (((x = y >= v), y - m > Ft.ProgressiveLoadSectionSize || x)) {
-              ;((m += Ft.ProgressiveLoadSectionSize), (_ = m >= v), a || (a = new ct(o, !1)))
+            if (((x = y >= v), y - m > Ot.ProgressiveLoadSectionSize || x)) {
+              ;((m += Ot.ProgressiveLoadSectionSize), (_ = m >= v), a || (a = new ct(o, !1)))
               const V = ct.HeaderSizeBytes + ct.SectionHeaderSizeBytes * c.maxSectionCount
               let Q = 0,
                 ee = 0,
@@ -30860,7 +30860,7 @@ const zc = class zc {
             }
           }
         }
-        window.setTimeout(T, Ft.ProgressiveLoadSectionDelayDuration)
+        window.setTimeout(T, Ot.ProgressiveLoadSectionDelayDuration)
       }
     return f_(
       e,
@@ -32291,21 +32291,21 @@ class Qc {
         '\n        precision highp float;\n        #include <common>\n\n        attribute uint splatIndex;\n        uniform highp usampler2D flameModelTexture;\n        uniform highp usampler2D boneTexture;\n        uniform highp usampler2D boneWeightTexture;\n\n\n        uniform highp usampler2D centersColorsTexture;\n        uniform highp sampler2D sphericalHarmonicsTexture;\n        uniform highp sampler2D sphericalHarmonicsTextureR;\n        uniform highp sampler2D sphericalHarmonicsTextureG;\n        uniform highp sampler2D sphericalHarmonicsTextureB;\n\n        uniform highp usampler2D sceneIndexesTexture;\n        uniform vec2 sceneIndexesTextureSize;\n        uniform int sceneCount;\n        uniform int gaussianSplatCount;\n        uniform int bsCount;\n        uniform float headBoneIndex;\n        #ifdef USE_SKINNING\n            attribute vec4 skinIndex;\n            attribute vec4 skinWeight;\n        #endif\n    '),
       t &&
         (o += '\n            uniform float sceneOpacity['
-          .concat(Ft.MaxScenes, '];\n            uniform int sceneVisibility[')
-          .concat(Ft.MaxScenes, '];\n        ')),
+          .concat(Ot.MaxScenes, '];\n            uniform int sceneVisibility[')
+          .concat(Ot.MaxScenes, '];\n        ')),
       e &&
-        (o += '\n            uniform highp mat4 transforms['.concat(Ft.MaxScenes, '];\n        ')),
+        (o += '\n            uniform highp mat4 transforms['.concat(Ot.MaxScenes, '];\n        ')),
       (o += '\n        '
         .concat(
           r,
           '\n        uniform vec2 focal;\n        uniform float orthoZoom;\n        uniform int orthographicMode;\n        uniform int pointCloudModeEnabled;\n        uniform float inverseFocalAdjustment;\n        uniform vec2 viewport;\n        uniform vec2 basisViewport;\n        uniform vec2 centersColorsTextureSize;\n        uniform vec2 flameModelTextureSize;\n        uniform vec2 boneWeightTextureSize;\n        uniform vec2 boneTextureSize;\n\n        uniform int sphericalHarmonicsDegree;\n        uniform vec2 sphericalHarmonicsTextureSize;\n        uniform int sphericalHarmonics8BitMode;\n        uniform int sphericalHarmonicsMultiTextureMode;\n        uniform float visibleRegionRadius;\n        uniform float visibleRegionFadeStartRadius;\n        uniform float firstRenderTime;\n        uniform float currentTime;\n        uniform int fadeInComplete;\n        uniform vec3 sceneCenter;\n        uniform float splatScale;\n        uniform float sphericalHarmonics8BitCompressionRangeMin['
         )
         .concat(
-          Ft.MaxScenes,
+          Ot.MaxScenes,
           '];\n        uniform float sphericalHarmonics8BitCompressionRangeMax['
         )
         .concat(
-          Ft.MaxScenes,
+          Ot.MaxScenes,
           '];\n\n        varying vec4 vColor;\n        varying vec2 vUv;\n        varying vec2 vPosition;\n        varying vec2 vSplatIndex;\n        #ifdef USE_SKINNING\n            uniform mat4 bindMatrix;\n            uniform mat4 bindMatrixInverse;\n            uniform highp sampler2D boneTexture0;\n            mat4 getBoneMatrix0( const in float i ) {\n                int size = textureSize( boneTexture0, 0 ).x;\n                int j = int( i ) * 4;\n                int x = j % size;\n                int y = j / size;\n                vec4 v1 = texelFetch( boneTexture0, ivec2( x, y ), 0 );\n                vec4 v2 = texelFetch( boneTexture0, ivec2( x + 1, y ), 0 );\n                vec4 v3 = texelFetch( boneTexture0, ivec2( x + 2, y ), 0 );\n                vec4 v4 = texelFetch( boneTexture0, ivec2( x + 3, y ), 0 );\n                return mat4( v1, v2, v3, v4 );\n            }\n        #endif\n\n        mat3 quaternionToRotationMatrix(float x, float y, float z, float w) {\n            float s = 1.0 / sqrt(w * w + x * x + y * y + z * z);\n        \n            return mat3(\n                1. - 2. * (y * y + z * z),\n                2. * (x * y + w * z),\n                2. * (x * z - w * y),\n                2. * (x * y - w * z),\n                1. - 2. * (x * x + z * z),\n                2. * (y * z + w * x),\n                2. * (x * z + w * y),\n                2. * (y * z - w * x),\n                1. - 2. * (x * x + y * y)\n            );\n        }\n\n        const float sqrt8 = sqrt(8.0);\n        const float minAlpha = 1.0 / 255.0;\n\n        const vec4 encodeNorm4 = vec4(1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0);\n        const uvec4 mask4 = uvec4(uint(0x000000FF), uint(0x0000FF00), uint(0x00FF0000), uint(0xFF000000));\n        const uvec4 shift4 = uvec4(0, 8, 16, 24);\n        int internal = 1;//show a gaussian splatting point every internal points.\n        vec4 uintToRGBAVec (uint u) {\n           uvec4 urgba = mask4 & u;\n           urgba = urgba >> shift4;\n           vec4 rgba = vec4(urgba) * encodeNorm4;\n           return rgba;\n        }\n        float getRealIndex(int sIndex, int reducedFactor) {\n            int remainder = sIndex % reducedFactor;\n\n            if(remainder == int(0)) {\n                return float(sIndex);\n            }\n            else\n            {\n                return float(sIndex - remainder);\n            }\n        }\n\n        vec2 getDataUV(in int stride, in int offset, in vec2 dimensions) {\n            vec2 samplerUV = vec2(0.0, 0.0);\n            float d = float(uint(getRealIndex(int(splatIndex), internal)) * uint(stride) + uint(offset)) / dimensions.x;\n            samplerUV.y = float(floor(d)) / dimensions.y;\n            samplerUV.x = fract(d);\n            return samplerUV;\n        }\n\n        vec2 getFlameDataUV(in int stride, in int offset, in vec2 dimensions) {\n            vec2 samplerUV = vec2(0.0, 0.0);\n            float d = float(uint(int(splatIndex) / internal) * uint(stride) + uint(offset) + uint(gaussianSplatCount * bsCount)) / dimensions.x;\n            samplerUV.y = float(floor(d)) / dimensions.y;\n            samplerUV.x = fract(d);\n            return samplerUV;\n        }\n\n        vec2 getBoneWeightUV(in int stride, in int offset, in vec2 dimensions) {\n            vec2 samplerUV = vec2(0.0, 0.0);\n            float d = float(uint(int(splatIndex) / internal) * uint(stride) + uint(offset)) / dimensions.x;\n            samplerUV.y = float(floor(d)) / dimensions.y;\n            samplerUV.x = fract(d);\n            return samplerUV;\n        }\n\n        vec2 getBSFlameDataUV(in int bsInedex, in int stride, in int offset, in vec2 dimensions) {\n            vec2 samplerUV = vec2(0.0, 0.0);\n            float d = float(uint(int(splatIndex) / internal) * uint(stride) + uint(offset) + uint(gaussianSplatCount * bsInedex)) / dimensions.x;\n            samplerUV.y = float(floor(d)) / dimensions.y;\n            samplerUV.x = fract(d);\n            return samplerUV;\n        }\n\n        vec2 getDataUVF(in uint sIndex, in float stride, in uint offset, in vec2 dimensions) {\n            vec2 samplerUV = vec2(0.0, 0.0);\n            float d = float(uint(float(getRealIndex(int(sIndex), internal)) * stride) + offset) / dimensions.x;\n            samplerUV.y = float(floor(d)) / dimensions.y;\n            samplerUV.x = fract(d);\n            return samplerUV;\n        }\n\n        const float SH_C1 = 0.4886025119029199f;\n        const float[5] SH_C2 = float[](1.0925484, -1.0925484, 0.3153916, -1.0925484, 0.5462742);\n\n        mat4 getBoneMatrix( float i ) {\n            float y = i;\n            float x = 0.0;\n\n            vec2 samplerUV = vec2(0.0, 0.0);\n            float d = float(i * 4.0) / boneTextureSize.x;//4\n            samplerUV.y = float(floor(d)) / boneTextureSize.y;//5\n            samplerUV.x = fract(d);\n\n            vec4 v1 = uintBitsToFloat(texture( boneTexture, samplerUV ));\n            vec4 v2 = uintBitsToFloat(texture( boneTexture, vec2(samplerUV.x + 1.0 / boneTextureSize.x, samplerUV.y)));\n            vec4 v3 = uintBitsToFloat(texture( boneTexture, vec2(samplerUV.x + 2.0 / boneTextureSize.x, samplerUV.y) ));\n            vec4 v4 = uintBitsToFloat(texture( boneTexture, vec2(samplerUV.x + 3.0 / boneTextureSize.x, samplerUV.y)));\n\n            return mat4( v1, v2, v3, v4 );\n        }\n\n        void main () {\n\n            uint oddOffset = splatIndex & uint(0x00000001);\n            uint doubleOddOffset = oddOffset * uint(2);\n            bool isEven = oddOffset == uint(0);\n            uint nearestEvenIndex = splatIndex - oddOffset;\n            float fOddOffset = float(oddOffset);\n\n            uvec4 sampledCenterColor = texture(centersColorsTexture, getDataUV(1, 0, centersColorsTextureSize));\n            // vec3 splatCenter = uintBitsToFloat(uvec3(sampledCenterColor.gba));\n\n            uvec3 sampledCenter = texture(centersColorsTexture, getDataUV(1, 0, centersColorsTextureSize)).gba;\n            vec3 splatCenter = uintBitsToFloat(uvec3(sampledCenter));\n\n            vec2 flameTextureUV = getBSFlameDataUV(bsCount, 1, 0, flameModelTextureSize);\n            uvec3 sampledflamePos = texture(flameModelTexture, flameTextureUV).rgb;\n            // splatCenter += uintBitsToFloat(uvec3(sampledflamePos.rgb));\n\n            for(int i = 0; i < bsCount; ++i) {\n                vec2 flameBSTextureUV = getBSFlameDataUV(i, 1, 0, flameModelTextureSize);\n                uvec3 sampledBSPos = texture(flameModelTexture, flameBSTextureUV).rgb;\n\n                vec2 samplerUV = vec2(0.0, 0.0);\n                float d = float(i / 4 + 5 * 4) / boneTextureSize.x;//4\n                samplerUV.y = float(floor(d)) / boneTextureSize.y;//32\n                samplerUV.x = fract(d);\n\n                vec4 bsWeight = uintBitsToFloat(texture(boneTexture, samplerUV));\n                float weight = bsWeight.r;\n                if(i % 4 == 1) {\n                    weight = bsWeight.g;\n                }\n                if(i % 4 == 2) {\n                    weight = bsWeight.b;\n                }\n                if(i % 4 == 3) {\n                    weight = bsWeight.a;\n                }\n\n                splatCenter = splatCenter + weight * uintBitsToFloat(sampledBSPos);\n            }\n\n\n            #ifdef USE_SKINNING\n                mat4 boneMatX = getBoneMatrix0( skinIndex.x );\n                mat4 boneMatY = getBoneMatrix0( skinIndex.y );\n                mat4 boneMatZ = getBoneMatrix0( skinIndex.z );\n                mat4 boneMatW = getBoneMatrix0( skinIndex.w );\n            #endif\n            #ifdef USE_SKINNING\n                mat4 skinMatrix = mat4( 0.0 );\n                skinMatrix += skinWeight.x * boneMatX;\n                skinMatrix += skinWeight.y * boneMatY;\n                skinMatrix += skinWeight.z * boneMatZ;\n                skinMatrix += skinWeight.w * boneMatW;\n                // skinMatrix = bindMatrixInverse * skinMatrix * bindMatrix;\n            #endif\n            vec3 transformed = vec3(splatCenter.xyz);\n            #ifdef USE_SKINNING\n                // vec4 skinVertex = bindMatrix * vec4( transformed, 1.0 );\n                vec4 skinVertex = vec4( transformed, 1.0 );\n\n                vec4 skinned = vec4( 0.0 );\n                // There is an offset between the Gaussian point and the mesh vertex,\n                // which will cause defects in the skeletal animation driving the Gaussian point. \n                //In order to circumvent this problem, only the head bone(index is 110 currently) is used to drive\n\n                if (headBoneIndex >= 0.0)\n                {\n                    mat4 boneMat = getBoneMatrix0( headBoneIndex );\n                    skinned += boneMat * skinVertex * 1.0;\n                }\n\n                // skinned += boneMatX * skinVertex * skinWeight.x;\n                // skinned += boneMatY * skinVertex * skinWeight.y;\n                // skinned += boneMatZ * skinVertex * skinWeight.z;\n                // skinned += boneMatW * skinVertex * skinWeight.w;\n\n                // transformed = ( bindMatrixInverse * skinned ).xyz;\n                transformed = skinned.xyz;\n\n            #endif\n            splatCenter = transformed.xyz;\n\n            #ifdef USE_FLAME\n                mat4 boneMatX = getBoneMatrix( 0.0 );\n                mat4 boneMatY = getBoneMatrix( 1.0 );\n                mat4 boneMatZ = getBoneMatrix( 2.0 );\n                mat4 boneMatW = getBoneMatrix( 3.0 );   \n                mat4 boneMat0 = getBoneMatrix( 4.0 );   \n                \n                vec2 boneWeightUV0 = getBoneWeightUV(2, 0, boneWeightTextureSize);\n                vec2 boneWeightUV1 = getBoneWeightUV(2, 1, boneWeightTextureSize);\n\n                uvec4 sampledBoneMatrixValue = texture(boneWeightTexture, boneWeightUV0);\n                uvec4 sampledBoneMatrixValue0 = texture(boneWeightTexture, boneWeightUV1);\n\n                vec4 boneMatrixValue = uintBitsToFloat(sampledBoneMatrixValue);\n                vec4 boneMatrixValue0 = uintBitsToFloat(sampledBoneMatrixValue0);\n\n                vec4 skinVertex = vec4( splatCenter, 1.0 );\n                vec4 skinned = vec4( 0.0 );\n                float minWeight = min(boneMatrixValue.x,min(boneMatrixValue.y, min(boneMatrixValue.z, min(boneMatrixValue.w, boneMatrixValue0.x))));\n                \n                if(boneMatrixValue.x > 0.0 && boneMatrixValue.x > minWeight)\n                    skinned += boneMatX * skinVertex * boneMatrixValue.x;\n                \n                if(boneMatrixValue.y > 0.0 && boneMatrixValue.y > minWeight)\n                    skinned += boneMatY * skinVertex * boneMatrixValue.y;\n                \n                if(boneMatrixValue.z > 0.0 && boneMatrixValue.z > minWeight)\n                    skinned += boneMatZ * skinVertex * boneMatrixValue.z;\n                \n                if(boneMatrixValue.w > 0.0 && boneMatrixValue.w > minWeight)\n                    skinned += boneMatW * skinVertex * boneMatrixValue.w;\n                \n                if(boneMatrixValue0.x > 0.0 && boneMatrixValue0.x > minWeight)\n                    skinned += boneMat0 * skinVertex * boneMatrixValue0.x;\n                \n                splatCenter = skinned.xyz;\n            #endif\n\n            uint sceneIndex = uint(0);\n            if (sceneCount > 1) {\n                sceneIndex = texture(sceneIndexesTexture, getDataUV(1, 0, sceneIndexesTextureSize)).r;\n            }\n            '
         )),
       t &&
@@ -32398,22 +32398,22 @@ class Qc {
       bsCount: { type: 'i', value: 1 },
       headBoneIndex: { type: 'f', value: -1 },
     }
-    for (let a = 0; a < Ft.MaxScenes; a++)
+    for (let a = 0; a < Ot.MaxScenes; a++)
       (o.sphericalHarmonics8BitCompressionRangeMin.value.push(-3 / 2),
         o.sphericalHarmonics8BitCompressionRangeMax.value.push(
-          Ft.SphericalHarmonics8BitCompressionRange / 2
+          Ot.SphericalHarmonics8BitCompressionRange / 2
         ))
     if (t) {
       const a = []
-      for (let c = 0; c < Ft.MaxScenes; c++) a.push(1)
+      for (let c = 0; c < Ot.MaxScenes; c++) a.push(1)
       o.sceneOpacity = { type: 'f', value: a }
       const l = []
-      for (let c = 0; c < Ft.MaxScenes; c++) l.push(1)
+      for (let c = 0; c < Ot.MaxScenes; c++) l.push(1)
       o.sceneVisibility = { type: 'i', value: l }
     }
     if (e) {
       const a = []
-      for (let l = 0; l < Ft.MaxScenes; l++) a.push(new qe())
+      for (let l = 0; l < Ot.MaxScenes; l++) a.push(new qe())
       o.transforms = { type: 'mat4', value: a }
     }
     return o
@@ -33158,7 +33158,7 @@ class li extends pn {
               this.dynamicMode
                 ? (l +=
                     '\n                        in uint sceneIndex;\n                        uniform ivec4 transforms['.concat(
-                      Ft.MaxScenes,
+                      Ot.MaxScenes,
                       '];\n                        void main(void) {\n                            ivec4 transform = transforms[sceneIndex];\n                            distance = center.x * transform.x + center.y * transform.y + center.z * transform.z + transform.w * center.w;\n                        }\n                    '
                     ))
                 : (l +=
@@ -33168,7 +33168,7 @@ class li extends pn {
               this.dynamicMode
                 ? (l +=
                     '\n                        in uint sceneIndex;\n                        uniform mat4 transforms['.concat(
-                      Ft.MaxScenes,
+                      Ot.MaxScenes,
                       '];\n                        void main(void) {\n                            vec4 transformedCenter = transforms[sceneIndex] * vec4(center.xyz, 1.0);\n                            distance = transformedCenter.z;\n                        }\n                    '
                     ))
                 : (l +=
@@ -34766,7 +34766,7 @@ function qU(n) {
     }
   }
 }
-function XU(n, e, t, i, r, s = Ft.DefaultSplatSortDistanceMapPrecision) {
+function XU(n, e, t, i, r, s = Ot.DefaultSplatSortDistanceMapPrecision) {
   const o = new Worker(
     URL.createObjectURL(
       new Blob(['(', qU.toString(), ')(self)'], { type: 'application/javascript' })
@@ -34792,10 +34792,10 @@ function XU(n, e, t, i, r, s = Ft.DefaultSplatSortDistanceMapPrecision) {
         dynamicMode: r,
         distanceMapRange: 1 << s,
         Constants: {
-          BytesPerFloat: Ft.BytesPerFloat,
-          BytesPerInt: Ft.BytesPerInt,
-          MemoryPageSize: Ft.MemoryPageSize,
-          MaxScenes: Ft.MaxScenes,
+          BytesPerFloat: Ot.BytesPerFloat,
+          BytesPerInt: Ot.BytesPerInt,
+          MemoryPageSize: Ot.MemoryPageSize,
+          MaxScenes: Ot.MaxScenes,
         },
       },
     }),
@@ -36135,7 +36135,7 @@ const Yy = (n) => {
     xu = n
   },
   SC = () => xu,
-  Dt = (...n) => xu.If(...n)
+  Ft = (...n) => xu.If(...n)
 function AC(n) {
   return (xu && xu.add(n), n)
 }
@@ -40009,14 +40009,14 @@ const Ab = ce(1),
     const e = ve(mn(n)).toVar(),
       t = ce(-1).toVar()
     return (
-      Dt(e.x.greaterThan(e.z), () => {
-        Dt(e.x.greaterThan(e.y), () => {
+      Ft(e.x.greaterThan(e.z), () => {
+        Ft(e.x.greaterThan(e.y), () => {
           t.assign(rr(n.x.greaterThan(0), 0, 3))
         }).Else(() => {
           t.assign(rr(n.y.greaterThan(0), 1, 4))
         })
       }).Else(() => {
-        Dt(e.z.greaterThan(e.y), () => {
+        Ft(e.z.greaterThan(e.y), () => {
           t.assign(rr(n.z.greaterThan(0), 2, 5))
         }).Else(() => {
           t.assign(rr(n.y.greaterThan(0), 1, 4))
@@ -40028,7 +40028,7 @@ const Ab = ce(1),
   TH = _e(([n, e]) => {
     const t = He().toVar()
     return (
-      Dt(e.equal(0), () => {
+      Ft(e.equal(0), () => {
         t.assign(He(n.z, n.y).div(mn(n.x)))
       })
         .ElseIf(e.equal(1), () => {
@@ -40059,7 +40059,7 @@ const Ab = ce(1),
   wH = _e(([n]) => {
     const e = ce(0).toVar()
     return (
-      Dt(n.greaterThanEqual(ep), () => {
+      Ft(n.greaterThanEqual(ep), () => {
         e.assign(Ab.sub(n).mul(i1.sub(sv)).div(Ab.sub(ep)).add(sv))
       })
         .ElseIf(n.greaterThanEqual(tp), () => {
@@ -40086,7 +40086,7 @@ const Ab = ce(1),
     t.assign(xt(2, t).sub(1))
     const i = ve(t, 1).toVar()
     return (
-      Dt(e.equal(0), () => {
+      Ft(e.equal(0), () => {
         i.assign(i.zyx)
       })
         .ElseIf(e.equal(1), () => {
@@ -40122,7 +40122,7 @@ const Ab = ce(1),
       u = Xs(l),
       d = ve(ov(n, a, u, i, r, s)).toVar()
     return (
-      Dt(c.notEqual(0), () => {
+      Ft(c.notEqual(0), () => {
         const h = ve(ov(n, a, u.add(1), i, r, s)).toVar()
         d.assign(Ln(d, h, c))
       }),
@@ -40138,7 +40138,7 @@ const Ab = ce(1),
     const u = ce(Su(o)).toVar(),
       d = He(TH(a, l).mul(u.sub(2)).add(1)).toVar()
     return (
-      Dt(l.greaterThan(2), () => {
+      Ft(l.greaterThan(2), () => {
         ;(d.y.addAssign(u), l.subAssign(3))
       }),
       d.x.addAssign(l.mul(u)),
@@ -40184,7 +40184,7 @@ const Ab = ce(1),
       CUBEUV_MAX_MIP: d,
     }) => {
       const h = ve(rr(e, t, v0(t, i))).toVar()
-      ;(Dt(ix(h.equals(ve(0))), () => {
+      ;(Ft(ix(h.equals(ve(0))), () => {
         h.assign(ve(i.z, 0, i.x.negate()))
       }),
         h.assign(ql(h)))
@@ -40207,7 +40207,7 @@ const Ab = ce(1),
             )
         ),
         cn({ start: de(1), end: n }, ({ i: p }) => {
-          Dt(p.greaterThanEqual(s), () => {
+          Ft(p.greaterThanEqual(s), () => {
             VM()
           })
           const g = ce(o.mul(ce(p))).toVar()
@@ -40394,7 +40394,7 @@ const i4 = Pe(FH),
   OH = _e(({ texture: n, uv: e }) => {
     const i = ve().toVar()
     return (
-      Dt(e.x.lessThan(1e-4), () => {
+      Ft(e.x.lessThan(1e-4), () => {
         i.assign(ve(1, 0, 0))
       })
         .ElseIf(e.y.lessThan(1e-4), () => {
@@ -41616,13 +41616,13 @@ const X$ = We(q$),
         a = ui(n.rgb.mul(e).add(t), 0).toVar(),
         l = a.pow(i).toVar()
       return (
-        Dt(a.r.greaterThan(0), () => {
+        Ft(a.r.greaterThan(0), () => {
           a.r.assign(l.r)
         }),
-        Dt(a.g.greaterThan(0), () => {
+        Ft(a.g.greaterThan(0), () => {
           a.g.assign(l.g)
         }),
-        Dt(a.b.greaterThan(0), () => {
+        Ft(a.b.greaterThan(0), () => {
           a.b.assign(l.b)
         }),
         a.assign(o.add(a.sub(o).mul(r))),
@@ -41978,7 +41978,7 @@ const fG = (n, e, t = new gt(0, 0, 0), i = 0.003, r = 1) => Fe(new hG(n, e, Fe(t
       s = rr(r.lessThan(0.08), r.sub(xt(6.25, r.mul(r))), 0.04)
     n.subAssign(s)
     const o = ui(n.r, ui(n.g, n.b))
-    Dt(o.lessThan(t), () => n)
+    Ft(o.lessThan(t), () => n)
     const a = Ut(1, t),
       l = Ut(1, a.mul(a).div(o.add(a.sub(t))))
     n.mulAssign(l.div(o))
@@ -42963,7 +42963,7 @@ const Ib = new WeakMap(),
       i = Ji(n).sample(e.xy).rg,
       r = y0(e.z, i.x)
     return (
-      Dt(r.notEqual(ce(1)), () => {
+      Ft(r.notEqual(ce(1)), () => {
         const s = e.z.sub(i.x),
           o = ui(0, i.y.mul(i.y))
         let a = o.div(o.add(s.mul(s)))
@@ -44019,8 +44019,8 @@ const RW = (n, e) => Fe(new IW(n, e)),
     const y = He(He(ce(h), ce(d)).add(g)).toVar(),
       m = He(y.sub(f)).toVar()
     return (
-      Dt(a.equal(de(2)), () => mn(m.x).add(mn(m.y))),
-      Dt(a.equal(de(3)), () => ui(mn(m.x), mn(m.y))),
+      Ft(a.equal(de(2)), () => mn(m.x).add(mn(m.y))),
+      Ft(a.equal(de(3)), () => ui(mn(m.x), mn(m.y))),
       $a(m, m)
     )
   }).setLayout({
@@ -44051,8 +44051,8 @@ const RW = (n, e) => Fe(new IW(n, e)),
     const x = ve(ve(ce(y), ce(g), ce(p)).add(v)).toVar(),
       _ = ve(x.sub(m)).toVar()
     return (
-      Dt(c.equal(de(2)), () => mn(_.x).add(mn(_.y)).add(mn(_.z))),
-      Dt(c.equal(de(3)), () => ui(ui(mn(_.x), mn(_.y)), mn(_.z))),
+      Ft(c.equal(de(2)), () => mn(_.x).add(mn(_.y)).add(mn(_.z))),
+      Ft(c.equal(de(3)), () => ui(ui(mn(_.x), mn(_.y)), mn(_.z))),
       $a(_, _)
     )
   }).setLayout({
@@ -44086,7 +44086,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
           c.assign(Dr(c, h))
         })
       }),
-      Dt(i.equal(de(0)), () => {
+      Ft(i.equal(de(0)), () => {
         c.assign(co(c))
       }),
       c
@@ -44112,14 +44112,14 @@ const RW = (n, e) => Fe(new IW(n, e)),
       cn({ start: -1, end: de(1), name: 'x', condition: '<=' }, ({ x: u }) => {
         cn({ start: -1, end: de(1), name: 'y', condition: '<=' }, ({ y: d }) => {
           const h = ce(Vu(l, u, d, o, a, r, i)).toVar()
-          Dt(h.lessThan(c.x), () => {
+          Ft(h.lessThan(c.x), () => {
             ;(c.y.assign(c.x), c.x.assign(h))
           }).ElseIf(h.lessThan(c.y), () => {
             c.y.assign(h)
           })
         })
       }),
-      Dt(i.equal(de(0)), () => {
+      Ft(i.equal(de(0)), () => {
         c.assign(co(c))
       }),
       c
@@ -44145,7 +44145,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
       cn({ start: -1, end: de(1), name: 'x', condition: '<=' }, ({ x: u }) => {
         cn({ start: -1, end: de(1), name: 'y', condition: '<=' }, ({ y: d }) => {
           const h = ce(Vu(l, u, d, o, a, r, i)).toVar()
-          Dt(h.lessThan(c.x), () => {
+          Ft(h.lessThan(c.x), () => {
             ;(c.z.assign(c.y), c.y.assign(c.x), c.x.assign(h))
           })
             .ElseIf(h.lessThan(c.y), () => {
@@ -44156,7 +44156,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
             })
         })
       }),
-      Dt(i.equal(de(0)), () => {
+      Ft(i.equal(de(0)), () => {
         c.assign(co(c))
       }),
       c
@@ -44188,7 +44188,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
           })
         })
       }),
-      Dt(i.equal(de(0)), () => {
+      Ft(i.equal(de(0)), () => {
         u.assign(co(u))
       }),
       u
@@ -44217,7 +44217,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
         cn({ start: -1, end: de(1), name: 'y', condition: '<=' }, ({ y: h }) => {
           cn({ start: -1, end: de(1), name: 'z', condition: '<=' }, ({ z: f }) => {
             const p = ce(Vu(c, d, h, f, o, a, l, r, i)).toVar()
-            Dt(p.lessThan(u.x), () => {
+            Ft(p.lessThan(u.x), () => {
               ;(u.y.assign(u.x), u.x.assign(p))
             }).ElseIf(p.lessThan(u.y), () => {
               u.y.assign(p)
@@ -44225,7 +44225,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
           })
         })
       }),
-      Dt(i.equal(de(0)), () => {
+      Ft(i.equal(de(0)), () => {
         u.assign(co(u))
       }),
       u
@@ -44254,7 +44254,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
         cn({ start: -1, end: de(1), name: 'y', condition: '<=' }, ({ y: h }) => {
           cn({ start: -1, end: de(1), name: 'z', condition: '<=' }, ({ z: f }) => {
             const p = ce(Vu(c, d, h, f, o, a, l, r, i)).toVar()
-            Dt(p.lessThan(u.x), () => {
+            Ft(p.lessThan(u.x), () => {
               ;(u.z.assign(u.y), u.y.assign(u.x), u.x.assign(p))
             })
               .ElseIf(p.lessThan(u.y), () => {
@@ -44266,7 +44266,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
           })
         })
       }),
-      Dt(i.equal(de(0)), () => {
+      Ft(i.equal(de(0)), () => {
         u.assign(co(u))
       }),
       u
@@ -44286,7 +44286,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
       t = n.z,
       i = ve().toVar()
     return (
-      Dt(e.lessThan(1e-4), () => {
+      Ft(e.lessThan(1e-4), () => {
         i.assign(ve(t, t, t))
       }).Else(() => {
         let r = n.x
@@ -44296,7 +44296,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
           a = t.mul(e.oneMinus()),
           l = t.mul(e.mul(o).oneMinus()),
           c = t.mul(e.mul(o.oneMinus()).oneMinus())
-        Dt(s.equal(de(0)), () => {
+        Ft(s.equal(de(0)), () => {
           i.assign(ve(t, c, a))
         })
           .ElseIf(s.equal(de(1)), () => {
@@ -44331,15 +44331,15 @@ const RW = (n, e) => Fe(new IW(n, e)),
       u = ce().toVar()
     return (
       u.assign(o),
-      Dt(o.greaterThan(0), () => {
+      Ft(o.greaterThan(0), () => {
         c.assign(a.div(o))
       }).Else(() => {
         c.assign(0)
       }),
-      Dt(c.lessThanEqual(0), () => {
+      Ft(c.lessThanEqual(0), () => {
         l.assign(0)
       }).Else(() => {
-        ;(Dt(t.greaterThanEqual(o), () => {
+        ;(Ft(t.greaterThanEqual(o), () => {
           l.assign(i.sub(r).div(a))
         })
           .ElseIf(i.greaterThanEqual(o), () => {
@@ -44349,7 +44349,7 @@ const RW = (n, e) => Fe(new IW(n, e)),
             l.assign(On(4, t.sub(i).div(a)))
           }),
           l.mulAssign(1 / 6),
-          Dt(l.lessThan(0), () => {
+          Ft(l.lessThan(0), () => {
             l.addAssign(1)
           }))
       }),
@@ -44482,7 +44482,7 @@ var O = Object.freeze({
   F_Schlick: XM,
   Fn: _e,
   INFINITY: qk,
-  If: Dt,
+  If: Ft,
   Loop: cn,
   NodeAccess: js,
   NodeShaderStage: qy,
@@ -46168,11 +46168,11 @@ const qQ = 50,
               }
               ;((e.length = _),
                 e.sort((A, I) => (A.data.distanceToNode < I.data.distanceToNode ? -1 : 1)))
-              let C = S * Ft.BytesPerInt
+              let C = S * Ot.BytesPerInt
               for (let A = 0; A < _; A++) {
                 const I = e[A],
                   w = I.data.indexes.length,
-                  M = w * Ft.BytesPerInt
+                  M = w * Ot.BytesPerInt
                 ;(new Uint32Array(this.sortWorkerIndexesToSort.buffer, C - M, w).set(
                   I.data.indexes
                 ),
@@ -46259,7 +46259,7 @@ const qQ = 50,
         (this.splatRenderMode = e.splatRenderMode),
         (this.sceneFadeInRateMultiplier = e.sceneFadeInRateMultiplier || 1),
         (this.splatSortDistanceMapPrecision =
-          e.splatSortDistanceMapPrecision || Ft.DefaultSplatSortDistanceMapPrecision))
+          e.splatSortDistanceMapPrecision || Ot.DefaultSplatSortDistanceMapPrecision))
       const t = this.integerBasedSort ? 20 : 24
       ;((this.splatSortDistanceMapPrecision = gi(this.splatSortDistanceMapPrecision, 10, t)),
         (this.onSplatMeshChangedCallback = null),
@@ -46857,11 +46857,11 @@ const qQ = 50,
                       (this.sortWorkerTransforms = new Float32Array(
                         o.data.transformsBuffer,
                         o.data.transformsOffset,
-                        Ft.MaxScenes * 16
+                        Ot.MaxScenes * 16
                       )))
                     : ((this.sortWorkerIndexesToSort = new Uint32Array(s)),
                       (this.sortWorkerPrecomputedDistances = new i(s)),
-                      (this.sortWorkerTransforms = new Float32Array(Ft.MaxScenes * 16))))
+                      (this.sortWorkerTransforms = new Float32Array(Ot.MaxScenes * 16))))
                 for (let a = 0; a < r; a++) this.sortWorkerIndexesToSort[a] = a
                 if (((this.sortWorker.maxSplatCount = s), this.logLevel >= jc.Info)) {
                   console.log('Sorting web worker ready.')
@@ -49190,22 +49190,22 @@ Bn.getAdapter = o6.getAdapter
 Bn.HttpStatusCode = pv
 Bn.default = Bn
 const {
-  Axios: Cre,
-  AxiosError: Ere,
-  CanceledError: Mre,
-  isCancel: Ire,
-  CancelToken: Rre,
-  VERSION: Nre,
-  all: Pre,
-  Cancel: Lre,
-  isAxiosError: Dre,
-  spread: Fre,
-  toFormData: Ore,
-  AxiosHeaders: Bre,
-  HttpStatusCode: Ure,
-  formToJSON: kre,
-  getAdapter: zre,
-  mergeConfig: Vre,
+  Axios: Ere,
+  AxiosError: Mre,
+  CanceledError: Ire,
+  isCancel: Rre,
+  CancelToken: Nre,
+  VERSION: Pre,
+  all: Lre,
+  Cancel: Dre,
+  isAxiosError: Fre,
+  spread: Ore,
+  toFormData: Bre,
+  AxiosHeaders: Ure,
+  HttpStatusCode: kre,
+  formToJSON: zre,
+  getAdapter: Vre,
+  mergeConfig: Hre,
 } = Bn
 var Bc =
   typeof globalThis < 'u'
@@ -56184,12 +56184,12 @@ class Gq extends Ou {
     else if (e instanceof ArrayBuffer)
       if (l.decode(new Uint8Array(e, 0, 4)) === d6) {
         try {
-          o[Pt.KHR_BINARY_GLTF] = new uX(e)
+          o[Lt.KHR_BINARY_GLTF] = new uX(e)
         } catch (d) {
           r && r(d)
           return
         }
-        s = JSON.parse(o[Pt.KHR_BINARY_GLTF].content)
+        s = JSON.parse(o[Lt.KHR_BINARY_GLTF].content)
       } else s = JSON.parse(l.decode(e))
     else s = e
     if (s.asset === void 0 || s.asset.version[0] < 2) {
@@ -56216,16 +56216,16 @@ class Gq extends Ou {
         const d = s.extensionsUsed[u],
           h = s.extensionsRequired || []
         switch (d) {
-          case Pt.KHR_MATERIALS_UNLIT:
+          case Lt.KHR_MATERIALS_UNLIT:
             o[d] = new jq()
             break
-          case Pt.KHR_DRACO_MESH_COMPRESSION:
+          case Lt.KHR_DRACO_MESH_COMPRESSION:
             o[d] = new dX(s, this.dracoLoader)
             break
-          case Pt.KHR_TEXTURE_TRANSFORM:
+          case Lt.KHR_TEXTURE_TRANSFORM:
             o[d] = new hX()
             break
-          case Pt.KHR_MESH_QUANTIZATION:
+          case Lt.KHR_MESH_QUANTIZATION:
             o[d] = new fX()
             break
           default:
@@ -56260,7 +56260,7 @@ function Wq() {
     },
   }
 }
-const Pt = {
+const Lt = {
   KHR_BINARY_GLTF: 'KHR_binary_glTF',
   KHR_DRACO_MESH_COMPRESSION: 'KHR_draco_mesh_compression',
   KHR_LIGHTS_PUNCTUAL: 'KHR_lights_punctual',
@@ -56287,7 +56287,7 @@ const Pt = {
 class Qq {
   constructor(e) {
     ;((this.parser = e),
-      (this.name = Pt.KHR_LIGHTS_PUNCTUAL),
+      (this.name = Lt.KHR_LIGHTS_PUNCTUAL),
       (this.cache = { refs: {}, uses: {} }))
   }
   _markDefs() {
@@ -56361,7 +56361,7 @@ class Qq {
 }
 class jq {
   constructor() {
-    this.name = Pt.KHR_MATERIALS_UNLIT
+    this.name = Lt.KHR_MATERIALS_UNLIT
   }
   getMaterialType() {
     return Kr
@@ -56382,7 +56382,7 @@ class jq {
 }
 class qq {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_EMISSIVE_STRENGTH))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_EMISSIVE_STRENGTH))
   }
   extendMaterialParams(e, t) {
     const r = this.parser.json.materials[e]
@@ -56393,7 +56393,7 @@ class qq {
 }
 class Xq {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_CLEARCOAT))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_CLEARCOAT))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56424,7 +56424,7 @@ class Xq {
 }
 class Kq {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_DISPERSION))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_DISPERSION))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56439,7 +56439,7 @@ class Kq {
 }
 class Yq {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_IRIDESCENCE))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_IRIDESCENCE))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56469,7 +56469,7 @@ class Yq {
 }
 class Zq {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_SHEEN))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_SHEEN))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56498,7 +56498,7 @@ class Zq {
 }
 class Jq {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_TRANSMISSION))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_TRANSMISSION))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56520,7 +56520,7 @@ class Jq {
 }
 class eX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_VOLUME))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_VOLUME))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56542,7 +56542,7 @@ class eX {
 }
 class tX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_IOR))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_IOR))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56557,7 +56557,7 @@ class tX {
 }
 class nX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_SPECULAR))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_SPECULAR))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56583,7 +56583,7 @@ class nX {
 }
 class iX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.EXT_MATERIALS_BUMP))
+    ;((this.parser = e), (this.name = Lt.EXT_MATERIALS_BUMP))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56604,7 +56604,7 @@ class iX {
 }
 class rX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_MATERIALS_ANISOTROPY))
+    ;((this.parser = e), (this.name = Lt.KHR_MATERIALS_ANISOTROPY))
   }
   getMaterialType(e) {
     const i = this.parser.json.materials[e]
@@ -56627,7 +56627,7 @@ class rX {
 }
 class sX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.KHR_TEXTURE_BASISU))
+    ;((this.parser = e), (this.name = Lt.KHR_TEXTURE_BASISU))
   }
   loadTexture(e) {
     const t = this.parser,
@@ -56648,7 +56648,7 @@ class sX {
 }
 class oX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.EXT_TEXTURE_WEBP), (this.isSupported = null))
+    ;((this.parser = e), (this.name = Lt.EXT_TEXTURE_WEBP), (this.isSupported = null))
   }
   loadTexture(e) {
     const t = this.name,
@@ -56688,7 +56688,7 @@ class oX {
 }
 class aX {
   constructor(e) {
-    ;((this.parser = e), (this.name = Pt.EXT_TEXTURE_AVIF), (this.isSupported = null))
+    ;((this.parser = e), (this.name = Lt.EXT_TEXTURE_AVIF), (this.isSupported = null))
   }
   loadTexture(e) {
     const t = this.name,
@@ -56728,7 +56728,7 @@ class aX {
 }
 class lX {
   constructor(e) {
-    ;((this.name = Pt.EXT_MESHOPT_COMPRESSION), (this.parser = e))
+    ;((this.name = Lt.EXT_MESHOPT_COMPRESSION), (this.parser = e))
   }
   loadBufferView(e) {
     const t = this.parser.json,
@@ -56764,7 +56764,7 @@ class lX {
 }
 class cX {
   constructor(e) {
-    ;((this.name = Pt.EXT_MESH_GPU_INSTANCING), (this.parser = e))
+    ;((this.name = Lt.EXT_MESH_GPU_INSTANCING), (this.parser = e))
   }
   createNodeMesh(e) {
     const t = this.parser.json,
@@ -56823,7 +56823,7 @@ const d6 = 'glTF',
   Jb = { JSON: 1313821514, BIN: 5130562 }
 class uX {
   constructor(e) {
-    ;((this.name = Pt.KHR_BINARY_GLTF), (this.content = null), (this.body = null))
+    ;((this.name = Lt.KHR_BINARY_GLTF), (this.content = null), (this.body = null))
     const t = new DataView(e, 0, _d),
       i = new TextDecoder()
     if (
@@ -56858,7 +56858,7 @@ class uX {
 class dX {
   constructor(e, t) {
     if (!t) throw new Error('THREE.GLTFLoader: No DRACOLoader instance provided.')
-    ;((this.name = Pt.KHR_DRACO_MESH_COMPRESSION),
+    ;((this.name = Lt.KHR_DRACO_MESH_COMPRESSION),
       (this.json = e),
       (this.dracoLoader = t),
       this.dracoLoader.preload())
@@ -56906,7 +56906,7 @@ class dX {
 }
 class hX {
   constructor() {
-    this.name = Pt.KHR_TEXTURE_TRANSFORM
+    this.name = Lt.KHR_TEXTURE_TRANSFORM
   }
   extendTexture(e, t) {
     return (
@@ -56926,7 +56926,7 @@ class hX {
 }
 class fX {
   constructor() {
-    this.name = Pt.KHR_MESH_QUANTIZATION
+    this.name = Lt.KHR_MESH_QUANTIZATION
   }
 }
 class h6 extends kh {
@@ -57101,7 +57101,7 @@ function _X(n, e) {
 }
 function xX(n) {
   let e
-  const t = n.extensions && n.extensions[Pt.KHR_DRACO_MESH_COMPRESSION]
+  const t = n.extensions && n.extensions[Lt.KHR_DRACO_MESH_COMPRESSION]
   if (
     (t
       ? (e = 'draco:' + t.bufferView + ':' + t.indices + ':' + b1(t.attributes))
@@ -57362,7 +57362,7 @@ class bX {
     if (t.type && t.type !== 'arraybuffer')
       throw new Error('THREE.GLTFLoader: ' + t.type + ' buffer type is not supported.')
     if (t.uri === void 0 && e === 0)
-      return Promise.resolve(this.extensions[Pt.KHR_BINARY_GLTF].body)
+      return Promise.resolve(this.extensions[Lt.KHR_BINARY_GLTF].body)
     const r = this.options
     return new Promise(function (s, o) {
       i.load(kd.resolveURL(t.uri, r.path), s, void 0, function () {
@@ -57535,12 +57535,12 @@ class bX {
       if (!o) return null
       if (
         (i.texCoord !== void 0 && i.texCoord > 0 && ((o = o.clone()), (o.channel = i.texCoord)),
-        s.extensions[Pt.KHR_TEXTURE_TRANSFORM])
+        s.extensions[Lt.KHR_TEXTURE_TRANSFORM])
       ) {
-        const a = i.extensions !== void 0 ? i.extensions[Pt.KHR_TEXTURE_TRANSFORM] : void 0
+        const a = i.extensions !== void 0 ? i.extensions[Lt.KHR_TEXTURE_TRANSFORM] : void 0
         if (a) {
           const l = s.associations.get(o)
-          ;((o = s.extensions[Pt.KHR_TEXTURE_TRANSFORM].extendTexture(o, a)),
+          ;((o = s.extensions[Lt.KHR_TEXTURE_TRANSFORM].extendTexture(o, a)),
             s.associations.set(o, l))
         }
       }
@@ -57606,8 +57606,8 @@ class bX {
     const a = {},
       l = s.extensions || {},
       c = []
-    if (l[Pt.KHR_MATERIALS_UNLIT]) {
-      const d = r[Pt.KHR_MATERIALS_UNLIT]
+    if (l[Lt.KHR_MATERIALS_UNLIT]) {
+      const d = r[Lt.KHR_MATERIALS_UNLIT]
       ;((o = d.getMaterialType()), c.push(d.extendParams(a, s, t)))
     } else {
       const d = s.pbrMetallicRoughness || {}
@@ -57685,7 +57685,7 @@ class bX {
       i = this.extensions,
       r = this.primitiveCache
     function s(a) {
-      return i[Pt.KHR_DRACO_MESH_COMPRESSION].decodePrimitive(a, t).then(function (l) {
+      return i[Lt.KHR_DRACO_MESH_COMPRESSION].decodePrimitive(a, t).then(function (l) {
         return n3(l, a, t)
       })
     }
@@ -57697,7 +57697,7 @@ class bX {
       if (d) o.push(d.promise)
       else {
         let h
-        ;(c.extensions && c.extensions[Pt.KHR_DRACO_MESH_COMPRESSION]
+        ;(c.extensions && c.extensions[Lt.KHR_DRACO_MESH_COMPRESSION]
           ? (h = s(c))
           : (h = n3(new ki(), c, t)),
           (r[u] = { primitive: c, promise: h }),
@@ -66324,7 +66324,7 @@ const ba = o5('visionStore', {
         (r, s) => (
           mt(),
           Tt('div', { class: 'access-wrap', onClick: i }, [
-            Ot('span', Eee, [Te(Xe(s2))]),
+            Pt('span', Eee, [Te(Xe(s2))]),
             om(' ' + su(Mee)),
           ])
         )
@@ -66355,7 +66355,7 @@ const Hm = typeof window < 'u',
   Gn = (n) => typeof n == 'number' && isFinite(n),
   Dee = (n) => o2(n) === '[object Date]',
   Iu = (n) => o2(n) === '[object RegExp]',
-  z0 = (n) => Lt(n) && Object.keys(n).length === 0,
+  z0 = (n) => Dt(n) && Object.keys(n).length === 0,
   ei = Object.assign,
   Fee = Object.create,
   dn = (n = null) => Fee(n)
@@ -66417,9 +66417,9 @@ const Rn = Array.isArray,
   Uee = (n) => jt(n) && yn(n.then) && yn(n.catch),
   BI = Object.prototype.toString,
   o2 = (n) => BI.call(n),
-  Lt = (n) => o2(n) === '[object Object]',
+  Dt = (n) => o2(n) === '[object Object]',
   kee = (n) =>
-    n == null ? '' : Rn(n) || (Lt(n) && n.toString === BI) ? JSON.stringify(n, null, 2) : String(n)
+    n == null ? '' : Rn(n) || (Dt(n) && n.toString === BI) ? JSON.stringify(n, null, 2) : String(n)
 function a2(n, e = '') {
   return n.reduce((t, i, r) => (r === 0 ? t + i : t + e + i), '')
 }
@@ -67607,7 +67607,7 @@ function jI(n, e, t) {
     s = []
     let o = [t]
     for (; Rn(o); ) o = cT(s, o, e)
-    const a = Rn(e) || !Lt(e) ? e : e.default ? e.default : null
+    const a = Rn(e) || !Dt(e) ? e : e.default ? e.default : null
     ;((o = st(a) ? [a] : a), Rn(o) && cT(s, o, !1), r.__localeChainCache.set(i, s))
   }
   return s
@@ -67634,7 +67634,7 @@ function Mte(n, e, t) {
   if (!n.includes(e) && ((i = !0), e)) {
     i = e[e.length - 1] !== '!'
     const r = e.replace(/!/g, '')
-    ;(n.push(r), (Rn(t) || Lt(t)) && t[r] && (i = t[r]))
+    ;(n.push(r), (Rn(t) || Dt(t)) && t[r] && (i = t[r]))
   }
   return i
 }
@@ -67805,14 +67805,14 @@ function Wte(n = {}) {
     r = yn(i) ? Eh : i,
     s =
       Rn(n.fallbackLocale) ||
-      Lt(n.fallbackLocale) ||
+      Dt(n.fallbackLocale) ||
       st(n.fallbackLocale) ||
       n.fallbackLocale === !1
         ? n.fallbackLocale
         : r,
-    o = Lt(n.messages) ? n.messages : k1(r),
-    a = Lt(n.datetimeFormats) ? n.datetimeFormats : k1(r),
-    l = Lt(n.numberFormats) ? n.numberFormats : k1(r),
+    o = Dt(n.messages) ? n.messages : k1(r),
+    a = Dt(n.datetimeFormats) ? n.datetimeFormats : k1(r),
+    l = Dt(n.numberFormats) ? n.numberFormats : k1(r),
     c = ei(dn(), n.modifiers, Ute()),
     u = n.pluralRules || dn(),
     d = yn(n.missing) ? n.missing : null,
@@ -67821,7 +67821,7 @@ function Wte(n = {}) {
     p = !!n.fallbackFormat,
     g = !!n.unresolving,
     y = yn(n.postTranslation) ? n.postTranslation : null,
-    m = Lt(n.processor) ? n.processor : null,
+    m = Dt(n.processor) ? n.processor : null,
     v = $t(n.warnHtmlMessage) ? n.warnHtmlMessage : !0,
     x = !!n.escapeParameter,
     _ = yn(n.messageCompiler) ? n.messageCompiler : qI,
@@ -67907,9 +67907,9 @@ function mT(n, ...e) {
     m,
     v = null
   const x = 'datetime format'
-  for (let C = 0; C < g.length && ((m = g[C]), (y = t[m] || {}), (v = y[l]), !Lt(v)); C++)
+  for (let C = 0; C < g.length && ((m = g[C]), (y = t[m] || {}), (v = y[l]), !Dt(v)); C++)
     d2(n, l, m, h, x)
-  if (!Lt(v) || !st(m)) return i ? H0 : l
+  if (!Dt(v) || !st(m)) return i ? H0 : l
   let _ = ''.concat(m, '__').concat(l)
   z0(d) || (_ = ''.concat(_, '__').concat(JSON.stringify(d)))
   let S = a.get(_)
@@ -67967,12 +67967,12 @@ function Fv(...n) {
   return (
     st(t)
       ? (s.key = t)
-      : Lt(t) &&
+      : Dt(t) &&
         Object.keys(t).forEach((l) => {
           JI.includes(l) ? (o[l] = t[l]) : (s[l] = t[l])
         }),
-    st(i) ? (s.locale = i) : Lt(i) && (o = i),
-    Lt(r) && (o = r),
+    st(i) ? (s.locale = i) : Dt(i) && (o = i),
+    Dt(r) && (o = r),
     [s.key || '', a, s, o]
   )
 }
@@ -67997,9 +67997,9 @@ function yT(n, ...e) {
     m,
     v = null
   const x = 'number format'
-  for (let C = 0; C < g.length && ((m = g[C]), (y = t[m] || {}), (v = y[l]), !Lt(v)); C++)
+  for (let C = 0; C < g.length && ((m = g[C]), (y = t[m] || {}), (v = y[l]), !Dt(v)); C++)
     d2(n, l, m, h, x)
-  if (!Lt(v) || !st(m)) return i ? H0 : l
+  if (!Dt(v) || !st(m)) return i ? H0 : l
   let _ = ''.concat(m, '__').concat(l)
   z0(d) || (_ = ''.concat(_, '__').concat(JSON.stringify(d)))
   let S = a.get(_)
@@ -68039,12 +68039,12 @@ function Ov(...n) {
   return (
     st(t)
       ? (s.key = t)
-      : Lt(t) &&
+      : Dt(t) &&
         Object.keys(t).forEach((l) => {
           eR.includes(l) ? (o[l] = t[l]) : (s[l] = t[l])
         }),
-    st(i) ? (s.locale = i) : Lt(i) && (o = i),
-    Lt(r) && (o = r),
+    st(i) ? (s.locale = i) : Dt(i) && (o = i),
+    Dt(r) && (o = r),
     [s.key || '', a, s, o]
   )
 }
@@ -68092,9 +68092,9 @@ function tne(n = {}) {
     return x || (n.parent ? n.parent.message(m) : Xte)
   }
   const d = (m) => (n.modifiers ? n.modifiers[m] : qte),
-    h = Lt(n.processor) && yn(n.processor.normalize) ? n.processor.normalize : Yte,
-    f = Lt(n.processor) && yn(n.processor.interpolate) ? n.processor.interpolate : Zte,
-    p = Lt(n.processor) && st(n.processor.type) ? n.processor.type : Kte,
+    h = Dt(n.processor) && yn(n.processor.normalize) ? n.processor.normalize : Yte,
+    f = Dt(n.processor) && yn(n.processor.interpolate) ? n.processor.interpolate : Zte,
+    p = Dt(n.processor) && st(n.processor.type) ? n.processor.type : Kte,
     y = {
       list: a,
       named: c,
@@ -68237,10 +68237,10 @@ function Bv(...n) {
       ? (r.plural = t)
       : st(t)
         ? (r.default = t)
-        : Lt(t) && !z0(t)
+        : Dt(t) && !z0(t)
           ? (r.named = t)
           : Rn(t) && (r.list = t),
-    Gn(i) ? (r.plural = i) : st(i) ? (r.default = i) : Lt(i) && ei(r, i),
+    Gn(i) ? (r.plural = i) : st(i) ? (r.default = i) : Dt(i) && ei(r, i),
     [s, r]
   )
 }
@@ -68354,7 +68354,7 @@ function Mh(n) {
 }
 function h2(n, e) {
   const { messages: t, __i18n: i, messageResolver: r, flatJson: s } = e,
-    o = Lt(t) ? t : Rn(i) ? dn() : { [n]: dn() }
+    o = Dt(t) ? t : Rn(i) ? dn() : { [n]: dn() }
   if (
     (Rn(i) &&
       i.forEach((a) => {
@@ -68423,14 +68423,14 @@ function f2(n = {}) {
         ? e.fallbackLocale.value
         : st(n.fallbackLocale) ||
             Rn(n.fallbackLocale) ||
-            Lt(n.fallbackLocale) ||
+            Dt(n.fallbackLocale) ||
             n.fallbackLocale === !1
           ? n.fallbackLocale
           : a.value
     ),
     c = s(h2(a.value, n)),
-    u = s(Lt(n.datetimeFormats) ? n.datetimeFormats : { [a.value]: {} }),
-    d = s(Lt(n.numberFormats) ? n.numberFormats : { [a.value]: {} })
+    u = s(Dt(n.datetimeFormats) ? n.datetimeFormats : { [a.value]: {} }),
+    d = s(Dt(n.numberFormats) ? n.numberFormats : { [a.value]: {} })
   let h = e ? e.missingWarn : $t(n.missingWarn) || Iu(n.missingWarn) ? n.missingWarn : !0,
     f = e ? e.fallbackWarn : $t(n.fallbackWarn) || Iu(n.fallbackWarn) ? n.fallbackWarn : !0,
     p = e ? e.fallbackRoot : $t(n.fallbackRoot) ? n.fallbackRoot : !0,
@@ -68440,7 +68440,7 @@ function f2(n = {}) {
     v = yn(n.postTranslation) ? n.postTranslation : null,
     x = e ? e.warnHtmlMessage : $t(n.warnHtmlMessage) ? n.warnHtmlMessage : !0,
     _ = !!n.escapeParameter
-  const S = e ? e.modifiers : Lt(n.modifiers) ? n.modifiers : {}
+  const S = e ? e.modifiers : Dt(n.modifiers) ? n.modifiers : {}
   let C = n.pluralRules || (e && e.pluralRules),
     A
   ;((A = (() => {
@@ -68466,8 +68466,8 @@ function f2(n = {}) {
     }
     ;((G.datetimeFormats = u.value),
       (G.numberFormats = d.value),
-      (G.__datetimeFormatters = Lt(A) ? A.__datetimeFormatters : void 0),
-      (G.__numberFormatters = Lt(A) ? A.__numberFormatters : void 0))
+      (G.__datetimeFormatters = Dt(A) ? A.__datetimeFormatters : void 0),
+      (G.__numberFormatters = Dt(A) ? A.__numberFormatters : void 0))
     const X = Wte(G)
     return (i && fT(X), X)
   })()),
@@ -68774,7 +68774,7 @@ function une(n) {
     t =
       st(n.fallbackLocale) ||
       Rn(n.fallbackLocale) ||
-      Lt(n.fallbackLocale) ||
+      Dt(n.fallbackLocale) ||
       n.fallbackLocale === !1
         ? n.fallbackLocale
         : e,
@@ -68783,14 +68783,14 @@ function une(n) {
     s = $t(n.silentFallbackWarn) || Iu(n.silentFallbackWarn) ? !n.silentFallbackWarn : !0,
     o = $t(n.fallbackRoot) ? n.fallbackRoot : !0,
     a = !!n.formatFallbackMessages,
-    l = Lt(n.modifiers) ? n.modifiers : {},
+    l = Dt(n.modifiers) ? n.modifiers : {},
     c = n.pluralizationRules,
     u = yn(n.postTranslation) ? n.postTranslation : void 0,
     d = st(n.warnHtmlInMessage) ? n.warnHtmlInMessage !== 'off' : !0,
     h = !!n.escapeParameterHtml,
     f = $t(n.sync) ? n.sync : !0
   let p = n.messages
-  if (Lt(n.sharedMessages)) {
+  if (Dt(n.sharedMessages)) {
     const S = n.sharedMessages
     p = Object.keys(S).reduce((A, I) => {
       const w = A[I] || (A[I] = {})
@@ -69167,7 +69167,7 @@ function yne(n) {
 }
 function RT(n) {
   if (st(n)) return { path: n }
-  if (Lt(n)) {
+  if (Dt(n)) {
     if (!('path' in n)) throw Or(ur.REQUIRED_VALUE, 'path')
     return n
   } else throw Or(ur.INVALID_VALUE)
@@ -69179,7 +69179,7 @@ function NT(n) {
   return (st(t) && (o.locale = t), Gn(r) && (o.plural = r), Gn(s) && (o.plural = s), [e, a, o])
 }
 function vne(n, e, ...t) {
-  const i = Lt(t[0]) ? t[0] : {}
+  const i = Dt(t[0]) ? t[0] : {}
   ;(($t(i.globalInstall) ? i.globalInstall : !0) &&
     ([MT.name, 'I18nT'].forEach((s) => n.component(s, MT)),
     [IT.name, 'I18nN'].forEach((s) => n.component(s, IT)),
@@ -69207,7 +69207,7 @@ function xne(n = {}) {
       return __VUE_I18N_LEGACY_API__ && e ? 'legacy' : 'composition'
     },
     async install(d, ...h) {
-      if (((d.__VUE_I18N_SYMBOL__ = o), d.provide(d.__VUE_I18N_SYMBOL__, u), Lt(h[0]))) {
+      if (((d.__VUE_I18N_SYMBOL__ = o), d.provide(d.__VUE_I18N_SYMBOL__, u), Dt(h[0]))) {
         const g = h[0]
         ;((u.__composerExtend = g.__composerExtend), (u.__vueI18nExtend = g.__vueI18nExtend))
       }
@@ -69603,11 +69603,11 @@ function Xne(n, e) {
     Tt('svg', qne, [
       ...(e[0] ||
         (e[0] = [
-          Ot(
+          Pt(
             'g',
             null,
             [
-              Ot('path', {
+              Pt('path', {
                 d: 'M13.802466686534881,1.1380186865348816Q13.89646668653488,1.0444176865348815,13.947366686534881,0.9218876865348815Q13.998366686534881,0.7993576865348816,13.998366686534881,0.6666666865348816Q13.998366686534881,0.6011698865348816,13.98556668653488,0.5369316865348817Q13.972766686534882,0.4726936865348816,13.947666686534882,0.4121826865348816Q13.922666686534882,0.3516706865348816,13.886266686534881,0.2972126865348816Q13.849866686534881,0.2427536865348816,13.803566686534882,0.19644068653488161Q13.757266686534882,0.15012768653488162,13.702766686534881,0.11373968653488165Q13.648366686534882,0.07735168653488156,13.587866686534882,0.052286686534881555Q13.527266686534881,0.02722268653488158,13.463066686534882,0.014444686534881623Q13.398866686534882,0.0016666865348815563,13.333366686534882,0.0016666865348815563Q13.201466686534882,0.0016666865348815563,13.079566686534882,0.051981686534881555Q12.957666686534882,0.10229768653488158,12.864266686534881,0.1953146865348816L12.863066686534882,0.19413268653488158L4.624996686534882,8.392776686534882L1.1369396865348815,4.921396686534882L1.1357636865348817,4.922586686534881Q1.0422996865348817,4.829566686534881,0.9204146865348816,4.779246686534882Q0.7985286865348816,4.728936686534881,0.6666666865348816,4.728936686534881Q0.6011698865348816,4.728936686534881,0.5369316865348817,4.741706686534882Q0.4726936865348816,4.754486686534881,0.4121826865348816,4.779556686534882Q0.3516706865348816,4.804616686534882,0.2972126865348816,4.8410066865348815Q0.2427536865348816,4.8773966865348815,0.19644068653488161,4.9237066865348815Q0.15012768653488162,4.970016686534882,0.11373968653488165,5.024476686534881Q0.07735168653488156,5.078936686534882,0.052286686534881555,5.139446686534882Q0.02722268653488158,5.199956686534882,0.014444686534881623,5.2641966865348815Q0.0016666865348815563,5.328436686534881,0.0016666865348815563,5.3939366865348815Q0.0016666865348815563,5.526626686534882,0.05259268653488158,5.649156686534882Q0.10351768653488158,5.771686686534881,0.1975696865348816,5.865286686534882L0.1963936865348816,5.866466686534881L4.1547266865348815,9.805866686534882Q4.201126686534882,9.852046686534882,4.255616686534882,9.888306686534882Q4.310106686534882,9.924576686534882,4.3706166865348814,9.949556686534882Q4.431126686534881,9.974536686534881,4.495326686534882,9.987266686534882Q4.559536686534882,9.999996686534882,4.624996686534882,9.999996686534882Q4.690456686534882,9.999996686534882,4.754666686534882,9.987266686534882Q4.818876686534882,9.974536686534881,4.879386686534882,9.949556686534882Q4.939886686534882,9.924576686534882,4.994386686534882,9.888306686534882Q5.048876686534881,9.852046686534882,5.0952766865348815,9.805866686534882L13.803566686534882,1.1392006865348816L13.802466686534881,1.1380186865348816Z',
                 'fill-rule': 'evenodd',
                 fill: '#E0E0FC',
@@ -69685,7 +69685,7 @@ function oie(n, e) {
     Tt('svg', sie, [
       ...(e[0] ||
         (e[0] = [
-          Ot(
+          Pt(
             'path',
             {
               d: 'M899.925333 172.080762a48.761905 48.761905 0 0 1 0 28.525714l-207.969523 679.448381a48.761905 48.761905 0 0 1-81.115429 20.187429l-150.552381-150.552381-96.304762 96.329143a24.380952 24.380952 0 0 1-41.593905-17.237334v-214.966857l275.821715-243.370667-355.57181 161.596953-103.253333-103.228953a48.761905 48.761905 0 0 1 20.23619-81.091047L838.997333 139.702857a48.761905 48.761905 0 0 1 60.903619 32.353524z',
@@ -69766,7 +69766,7 @@ function vie(n, e) {
     Tt('svg', yie, [
       ...(e[0] ||
         (e[0] = [
-          Ot(
+          Pt(
             'path',
             {
               d: 'M824 466.56V213.12q0-13.6512-5.2928-26.1632-5.104-12.064-14.3904-21.3536-9.2864-9.2864-21.3504-14.3872-12.5152-5.2928-26.1664-5.2928H246.4q-13.6512 0-26.1664 5.2928-12.064 5.1008-21.3504 14.3872-9.2864 9.2864-14.3904 21.3536Q179.2 199.4688 179.2 213.12v607.296q0 12.8448 5.0592 24.608 4.8576 11.2896 13.6704 19.9552 8.7616 8.6176 20.1184 13.344Q229.7792 883.2 242.56 883.2h217.6a28.8 28.8 0 0 0 0-57.6h-217.6q-2.528 0-4.2432-1.6864-1.5168-1.4912-1.5168-3.4976V213.12q0-3.9744 2.8128-6.784 2.8096-2.816 6.7872-2.816h510.4q3.9776 0 6.7872 2.816 2.8128 2.8096 2.8128 6.784v253.44a28.8 28.8 0 0 0 28.8 28.8 28.8 28.8 0 0 0 28.8-28.8zM466.0064 338.08l-130.2016 278.784A32 32 0 0 0 364.8 662.4h0.176a31.9904 31.9904 0 0 0 28.8192-18.4576L418.048 592h165.4976l15.2896 32.736q3.1008-3.4144 6.3904-6.704 20.3584-20.3616 45.4816-33.472l-115.1168-246.4832q-4.9408-10.5792-14.8704-16.5952-9.168-5.5552-19.9232-5.5552-10.7552 0-19.9232 5.5552-9.9296 6.016-14.8704 16.5952z m34.7936 76.7456L553.6576 528h-105.7152l52.8576-113.1776zM896 750.4c0 87.4816-70.9184 158.4-158.4 158.4S579.2 837.8816 579.2 750.4s70.9184-158.4 158.4-158.4 158.4 70.9184 158.4 158.4z m-116.3648-82.7648a28.9152 28.9152 0 0 1 7.1648-5.232q-5.8048-3.232-12.096-5.7248Q756.8256 649.6 737.6 649.6q-19.2256 0-37.104 7.0784-19.4112 7.6832-34.1728 22.448-14.7616 14.7616-22.4448 34.1696Q636.8 731.1744 636.8 750.4q0 19.232 7.0784 37.104 2.4896 6.2944 5.7248 12.096a28.7552 28.7552 0 0 1 5.232-7.1648l124.8-124.8zM838.4 750.4q0-19.2256-7.0784-37.104-2.4896-6.2912-5.7248-12.096a28.6944 28.6944 0 0 1-5.232 7.168l-124.8 124.8a28.7552 28.7552 0 0 1-7.1648 5.2288q5.8048 3.2352 12.096 5.728Q718.3744 851.2 737.6 851.2q19.2256 0 37.104-7.072 19.4112-7.6896 34.1728-22.4512 14.7616-14.7616 22.4448-34.1728Q838.4 769.632 838.4 750.4z',
@@ -69799,7 +69799,7 @@ function Aie(n, e) {
     Tt('svg', Sie, [
       ...(e[0] ||
         (e[0] = [
-          Ot(
+          Pt(
             'path',
             {
               d: 'M833.6 213.12v253.44a28.8 28.8 0 0 1-28.8 28.8 28.8 28.8 0 0 1-28.8-28.8V213.12q0-3.9744-2.8128-6.784-2.8096-2.816-6.7872-2.816H256q-3.9776 0-6.7872 2.816Q246.4 209.1424 246.4 213.12v607.296q0 2.0064 1.5168 3.4976 1.7152 1.6864 4.2432 1.6864h217.6a28.8 28.8 0 0 1 0 57.6h-217.6q-12.7808 0-24.512-4.8768-11.3568-4.7232-20.1184-13.3408-8.8128-8.6656-13.6704-19.9584Q188.8 833.264 188.8 820.416V213.12q0-13.6512 5.2928-26.1632 5.104-12.064 14.3904-21.3536 9.2864-9.2864 21.3504-14.3872Q242.3456 145.92 256 145.92h510.4q13.6512 0 26.1664 5.2928 12.064 5.1008 21.3504 14.3872 9.2864 9.2864 14.3904 21.3536 5.2928 12.512 5.2928 26.1664zM345.408 613.664l130.1984-278.784q4.9408-10.5824 14.8704-16.5984 9.168-5.5552 19.9232-5.5552 10.7552 0 19.9232 5.5552 9.9296 6.016 14.8704 16.5952l130.2016 278.784a32 32 0 0 1-28.672 45.5392l-0.3232 0.0032c-12.4288 0-23.7344-7.2-28.9952-18.4608L593.1488 588.8h-165.4976l-24.256 51.9424a32.0064 32.0064 0 0 1-28.8192 18.4576l-0.176 0.0032a32 32 0 0 1-28.992-45.5424z m164.992-202.0416L457.5424 524.8h105.7152L510.4 411.6224z m120.2784 329.44l61.3216 61.5872 162.1248-162.8256a31.9936 31.9936 0 0 1 22.608-9.424H876.8a32 32 0 0 1 32 31.936v0.064a32 32 0 0 1-9.3216 22.5792l-184.8 185.6-0.0992 0.0992a31.9936 31.9936 0 0 1-45.2544-0.096l-83.984-84.352-0.016-0.016a31.9904 31.9904 0 0 1-9.2896-21.1104l30.496-33.4336c0.4896-0.0224 0.9792-0.032 1.4688-0.032h0.0704a32 32 0 0 1 22.608 9.4208z',
@@ -69880,12 +69880,12 @@ const bie = si(xie, [['render', Aie]]),
                               },
                               [
                                 ...(I[6] ||
-                                  (I[6] = [Ot('div', { class: 'corner-inner' }, null, -1)])),
+                                  (I[6] = [Pt('div', { class: 'corner-inner' }, null, -1)])),
                               ]
                             ))
                           : hs('', !0),
                         Pc(
-                          Ot(
+                          Pt(
                             'div',
                             { class: Wo(['selectors', { left: Xe(_) }]) },
                             [
@@ -69953,12 +69953,12 @@ const bie = si(xie, [['render', Aie]]),
                               },
                               [
                                 ...(I[7] ||
-                                  (I[7] = [Ot('div', { class: 'corner-inner' }, null, -1)])),
+                                  (I[7] = [Pt('div', { class: 'corner-inner' }, null, -1)])),
                               ]
                             ))
                           : hs('', !0),
                         Pc(
-                          Ot(
+                          Pt(
                             'div',
                             { class: Wo(['selectors', { left: Xe(_) }]) },
                             [
@@ -70006,8 +70006,8 @@ const bie = si(xie, [['render', Aie]]),
                   ),
                 ]))
               : hs('', !0),
-            Ot('div', Nie, [
-              Ot(
+            Pt('div', Nie, [
+              Pt(
                 'div',
                 { class: 'action', onClick: I[4] || (I[4] = (...M) => Xe(y) && Xe(y)(...M)) },
                 [Te(Xe(Ed), { icon: Xe(a) ? Xe(die) : Xe(mie) }, null, 8, ['icon'])]
@@ -70016,7 +70016,7 @@ const bie = si(xie, [['render', Aie]]),
             Xe(x).width > 300
               ? (mt(),
                 Tt('div', Pie, [
-                  Ot(
+                  Pt(
                     'div',
                     { class: 'action', onClick: I[5] || (I[5] = (...M) => Xe(v) && Xe(v)(...M)) },
                     [Te(Xe(Ed), { icon: Xe(l) ? Xe(bie) : Xe(_ie) }, null, 8, ['icon'])]
@@ -70089,7 +70089,7 @@ const bie = si(xie, [['render', Aie]]),
       return (d, h) => (
         mt(),
         Tt('div', Fie, [
-          Ot(
+          Pt(
             'div',
             { class: 'gradio-webrtc-boxContainer', style: Go({ width: a.value }) },
             [
@@ -70103,7 +70103,7 @@ const bie = si(xie, [['render', Aie]]),
                 ),
                 128
               )),
-              h[0] || (h[0] = Ot('div', { class: 'split-container' }, null, -1)),
+              h[0] || (h[0] = Pt('div', { class: 'split-container' }, null, -1)),
               (mt(!0),
               Tt(
                 Hn,
@@ -70141,7 +70141,7 @@ const bie = si(xie, [['render', Aie]]),
       return (t, i) => (
         mt(),
         Tt('div', Uie, [
-          Ot(
+          Pt(
             'div',
             {
               class: Wo([
@@ -70157,8 +70157,8 @@ const bie = si(xie, [['render', Aie]]),
                 : n.streamState === Xe(qi).waiting
                   ? (mt(),
                     Tt('div', zie, [
-                      Ot('div', Vie, [Te(Xe(qd), { 'wrapper-class-name': 'spin-icon' })]),
-                      i[1] || (i[1] = Ot('span', null, '等待中', -1)),
+                      Pt('div', Vie, [Te(Xe(qd), { 'wrapper-class-name': 'spin-icon' })]),
+                      i[1] || (i[1] = Pt('span', null, '等待中', -1)),
                     ]))
                   : (mt(), Tt('div', Hie)),
             ],
@@ -70228,10 +70228,10 @@ const jie = { class: 'chat-input-container' },
       return (h, f) => (
         mt(),
         Tt('div', jie, [
-          Ot('div', { class: 'stop-chat-btn', onClick: u }),
-          Ot('div', qie, [
-            Ot('div', Xie, [
-              Ot(
+          Pt('div', { class: 'stop-chat-btn', onClick: u }),
+          Pt('div', qie, [
+            Pt('div', Xie, [
+              Pt(
                 'textarea',
                 {
                   class: 'chat-input',
@@ -70244,7 +70244,7 @@ const jie = { class: 'chat-input-container' },
                 null,
                 36
               ),
-              Ot('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Xe(o)), 513),
+              Pt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, su(Xe(o)), 513),
             ]),
             h.replying
               ? (mt(), Tt('button', { key: 0, class: 'interrupt-btn', onClick: d }))
@@ -70268,7 +70268,7 @@ const jie = { class: 'chat-input-container' },
         Tt(
           'div',
           { class: Wo(['answer-message-container', e.role]), style: Go(e.style) },
-          [Ot('div', Zie, su(e.message), 1)],
+          [Pt('div', Zie, su(e.message), 1)],
           6
         )
       )
@@ -70302,7 +70302,7 @@ const jie = { class: 'chat-input-container' },
             'div',
             { class: 'chat-records', ref_key: 'containerRef', ref: i },
             [
-              Ot('div', tre, [
+              Pt('div', tre, [
                 (mt(!0),
                 Tt(
                   Hn,
@@ -70339,7 +70339,8 @@ const jie = { class: 'chat-input-container' },
   sre = { class: 'video-content' },
   ore = ['muted'],
   are = { class: 'chat-records-container' },
-  lre = qt({
+  lre = { class: 'chat-records-content' },
+  cre = qt({
     __name: 'index',
     setup(n) {
       const e = ba(),
@@ -70424,17 +70425,17 @@ const jie = { class: 'chat-input-container' },
           'div',
           { class: 'page-container', ref_key: 'wrapRef', ref: i },
           [
-            Ot('div', ire, [
-              Ot(
+            Pt('div', ire, [
+              Pt(
                 'div',
                 {
                   class: 'video-container',
                   style: Go({ visibility: Xe(g) ? 'visible' : 'hidden', aspectRatio: l.value }),
                 },
                 [
-                  Ot('div', rre, [Te(Die)]),
+                  Pt('div', rre, [Te(Die)]),
                   Pc(
-                    Ot(
+                    Pt(
                       'div',
                       {
                         class: Wo(
@@ -70444,7 +70445,7 @@ const jie = { class: 'chat-input-container' },
                         ref: r,
                       },
                       [
-                        Ot(
+                        Pt(
                           'video',
                           {
                             class: 'local-video',
@@ -70466,8 +70467,8 @@ const jie = { class: 'chat-input-container' },
                     ),
                     [[cm, Xe(d) && !Xe(p)]]
                   ),
-                  Ot('div', sre, [
-                    Ot(
+                  Pt('div', sre, [
+                    Pt(
                       'div',
                       {
                         class: 'remote-video-container',
@@ -70497,17 +70498,21 @@ const jie = { class: 'chat-input-container' },
                               )),
                               [[cm, Xe(y) === 'open']]
                             ),
+                        T[0] || (T[0] = Pt('div', { class: 'video-to-chat-gradient' }, null, -1)),
                       ],
                       512
                     ),
-                    Ot('div', are, [
-                      Te(
-                        nre,
-                        { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
-                        null,
-                        8,
-                        ['chatRecords']
-                      ),
+                    Pt('div', are, [
+                      Pt('div', lre, [
+                        T[1] || (T[1] = Pt('div', { class: 'chat-records-top-fade' }, null, -1)),
+                        Te(
+                          nre,
+                          { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
+                          null,
+                          8,
+                          ['chatRecords']
+                        ),
+                      ]),
                     ]),
                   ]),
                 ],
@@ -70551,9 +70556,9 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  cre = si(lre, [['__scopeId', 'data-v-f5eb7dce']]),
-  ure = { class: 'wrap' },
-  dre = qt({
+  ure = si(cre, [['__scopeId', 'data-v-5d0a3b4c']]),
+  dre = { class: 'wrap' },
+  hre = qt({
     __name: 'App',
     setup(n) {
       const e = k0()
@@ -70566,9 +70571,9 @@ const jie = { class: 'chat-input-container' },
             { locale: Xe(Fne)[Xe(uR)] },
             {
               default: gw(() => [
-                Ot('div', ure, [
+                Pt('div', dre, [
                   Xe(e).webcamAccessed ? hs('', !0) : (mt(), ou(Ree, { key: 0 })),
-                  Te(cre),
+                  Te(ure),
                 ]),
               ]),
               _: 1,
@@ -70580,18 +70585,18 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  hre = si(dre, [['__scopeId', 'data-v-45f9c857']])
+  fre = si(hre, [['__scopeId', 'data-v-45f9c857']])
 var Kp = { exports: {} },
-  fre = Kp.exports,
+  pre = Kp.exports,
   FT
-function pre() {
+function mre() {
   return (
     FT ||
       ((FT = 1),
       (function (n, e) {
         ;(function (t, i) {
           n.exports = i()
-        })(fre, function () {
+        })(pre, function () {
           var t = '__v-click-outside',
             i = typeof window < 'u',
             r = typeof navigator < 'u',
@@ -70710,12 +70715,12 @@ function pre() {
     Kp.exports
   )
 }
-var mre = pre()
-const gre = u_(mre),
-  $0 = X9(hre),
-  yre = Z9()
-$0.use(yre)
+var gre = mre()
+const yre = u_(gre),
+  $0 = X9(fre),
+  vre = Z9()
+$0.use(vre)
 $0.use(Bne)
-$0.use(gre)
+$0.use(yre)
 $0.mount('#app')
-export { _re as __vite_legacy_guard }
+export { xre as __vite_legacy_guard }
