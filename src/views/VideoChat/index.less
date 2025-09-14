@@ -84,10 +84,10 @@
   .local-video-container.scaled {
     position: absolute;
     top: auto;
-    left: calc(10px + 25% - 20.83%);
+    left: calc(10px + 25% - 18vw);
     bottom: calc(27.5% + 3px);
-    width: 21.83%;
-    height: auto;
+    width: 18vw;
+    height: 18vw; /* 减小尺寸，使用相同的视口宽度单位确保1:1比例 */
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -96,28 +96,32 @@
     transition: all 0.3s ease;
     
     @media (max-width: 1024px) and (min-width: 769px) {
-      width: 23.33%;
+      width: 20vw;
+      height: 20vw;
       border-radius: 14px;
       border: 2px solid rgba(255, 255, 255, 0.25);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
     }
     
     @media (max-width: 768px) {
-      width: 25%;
+      width: 22vw;
+      height: 22vw;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     
     @media (max-width: 480px) {
-      width: 29.17%;
+      width: 26vw;
+      height: 26vw;
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
     }
 
     @media (max-width: 360px) {
-      width: 33.33%;
+      width: 30vw;
+      height: 30vw;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.5);
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
@@ -198,8 +202,8 @@
   
   .local-video {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     object-position: center center;
   }
   
