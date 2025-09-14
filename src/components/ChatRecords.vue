@@ -1,29 +1,32 @@
 <script setup lang="ts">
-import { nextTick, useTemplateRef, watch } from "vue";
-import ChatMessage from "@/components/ChatMessage.vue";
+import { nextTick, useTemplateRef, watch } from 'vue'
+import ChatMessage from '@/components/ChatMessage.vue'
 
 const props = defineProps<{
   chatRecords: any[]
-}>();
+}>()
 
 let containerRef = useTemplateRef<HTMLElement>('containerRef')
 
-watch(() => props.chatRecords, (val) => {
-  if (props.chatRecords) {
-    nextTick().then(() => {
-      scrollToBottom()
-    })
+watch(
+  () => props.chatRecords,
+  (val) => {
+    if (props.chatRecords) {
+      nextTick().then(() => {
+        scrollToBottom()
+      })
+    }
   }
-})
+)
 function scrollToBottom() {
   // console.log("🚀 ~ scrollToBottom ~ scrollToBottom:")
   if (containerRef.value) {
-    containerRef.value.scrollTop = containerRef.value.scrollHeight;
+    containerRef.value.scrollTop = containerRef.value.scrollHeight
   }
 }
 
 defineExpose({
-  scrollToBottom
+  scrollToBottom,
 })
 </script>
 
@@ -59,6 +62,7 @@ defineExpose({
   // height: 100%;
   height: auto;
   min-height: 100%;
+  padding: 8px 0;
 
   .chat-message {
     margin-bottom: 12px;
@@ -74,6 +78,46 @@ defineExpose({
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  // 平板设备响应式设计
+  @media screen and (max-width: 1024px) and (min-width: 769px) {
+    padding: 10px 0;
+
+    .chat-message {
+      margin-bottom: 14px;
+      max-width: 85%;
+    }
+  }
+
+  // 移动设备响应式设计
+  @media screen and (max-width: 768px) {
+    padding: 12px 0;
+
+    .chat-message {
+      margin-bottom: 16px;
+      max-width: 90%;
+    }
+  }
+
+  // 小屏移动设备响应式设计
+  @media screen and (max-width: 480px) {
+    padding: 14px 0;
+
+    .chat-message {
+      margin-bottom: 18px;
+      max-width: 95%;
+    }
+  }
+
+  // 超小屏设备
+  @media screen and (max-width: 360px) {
+    padding: 16px 0;
+
+    .chat-message {
+      margin-bottom: 20px;
+      max-width: 98%;
     }
   }
 }

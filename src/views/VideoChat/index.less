@@ -153,7 +153,7 @@
     height: 100%;
   }
 }
-.top-actions {
+  .top-actions {
   position: absolute;
   top: 12px;
   left: 50%;
@@ -163,15 +163,32 @@
   justify-content: center;
   align-items: center;
   
-  // 响应式设计
-  @media (max-width: 768px) {
+  // 平板设备响应式设计
+  @media screen and (max-width: 1024px) and (min-width: 769px) {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  // 移动设备响应式设计
+  @media screen and (max-width: 768px) {
     top: 8px;
     left: 50%;
     transform: translateX(-50%);
   }
   
-  @media (max-width: 480px) {
+  // 小屏移动设备响应式设计
+  @media screen and (max-width: 480px) {
     top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: none;
+  }
+
+  // 超小屏设备
+  @media screen and (max-width: 360px) {
+    top: 4px;
     left: 50%;
     transform: translateX(-50%);
     width: auto;

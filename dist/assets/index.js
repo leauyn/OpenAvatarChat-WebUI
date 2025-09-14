@@ -70020,7 +70020,7 @@ const bie = si(xie, [['render', Aie]]),
       }
     },
   }),
-  Rie = si(Iie, [['__scopeId', 'data-v-b28f9260']]),
+  Rie = si(Iie, [['__scopeId', 'data-v-9ec5a9f2']]),
   Nie = { class: 'gradio-webrtc-waveContainer' },
   Pie = qt({
     __name: 'AudioWave',
@@ -70245,12 +70245,12 @@ const $ie = { class: 'chat-input-container' },
                   Te(Xe(Ed), { icon: Xe(aie), color: '#fff' }, null, 8, ['icon']),
                 ])),
           ]),
-          f[0] || (f[0] = kt('div', { class: 'ai-generate-hint' }, ' 内容内 AI生成 ', -1)),
+          f[0] || (f[0] = kt('div', { class: 'ai-generate-hint' }, '内容内 AI生成', -1)),
         ])
       )
     },
   }),
-  jie = si(Qie, [['__scopeId', 'data-v-422c1d19']]),
+  jie = si(Qie, [['__scopeId', 'data-v-16f85393']]),
   qie = { class: 'answer-message-text' },
   Xie = qt({
     __name: 'ChatMessage',
@@ -70267,7 +70267,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  Kie = si(Xie, [['__scopeId', 'data-v-dde1c5d3']]),
+  Kie = si(Xie, [['__scopeId', 'data-v-b135492b']]),
   Yie = { class: 'chat-records-inner' },
   Zie = qt({
     __name: 'ChatRecords',

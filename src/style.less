@@ -1,7 +1,10 @@
 body {
   margin: 0;
   overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.4;
 }
+
 * {
   box-sizing: border-box;
   -webkit-touch-callout: none;
@@ -13,7 +16,33 @@ body {
 img {
   pointer-events: none;
 }
+
 #app {
   width: 100vw;
   height: 100vh;
+}
+
+// 全局响应式字体大小设置
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  body {
+    font-size: 15px;
+  }
 }

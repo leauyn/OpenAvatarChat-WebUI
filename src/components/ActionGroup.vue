@@ -147,10 +147,10 @@ const cameraListShow = ref(false)
 
   .action {
     cursor: pointer;
-    width: 70px !important;
-    height: 70px !important;
-    border-radius: 16px !important;
-    font-size: 34px !important;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    font-size: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,40 +234,122 @@ const cameraListShow = ref(false)
     }
   }
 
-  // 移动端固定尺寸 - 无需响应式
-  .selectors {
-    .selector {
-      height: 70px;
-      line-height: 70px;
-      font-size: 18px;
-      padding-left: 22px;
-      padding-right: 70px;
+  // 平板设备响应式设计
+  @media screen and (max-width: 1024px) and (min-width: 769px) {
+    padding: 6px;
+    gap: 6px;
 
-      .active-icon {
-        width: 60px;
-        height: 60px;
-        right: 18px;
+    .action {
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      border-radius: 14px;
+    }
+
+    .selectors {
+      .selector {
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        padding-left: 18px;
+        padding-right: 60px;
+
+        .active-icon {
+          width: 50px;
+          height: 50px;
+          right: 15px;
+        }
       }
     }
   }
 
-  // 移动端强制样式 - 确保在所有移动设备上生效
-  @media screen and (max-width: 1024px) {
+  // 移动设备响应式设计
+  @media screen and (max-width: 768px) {
+    padding: 6px;
+    gap: 6px;
+    border-radius: 16px;
+
     .action {
-      width: 70px !important;
-      height: 70px !important;
-      font-size: 34px !important;
-      border-radius: 16px !important;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      border-radius: 12px;
+    }
+
+    .selectors {
+      .selector {
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        padding-left: 18px;
+        padding-right: 60px;
+
+        .active-icon {
+          width: 50px;
+          height: 50px;
+          right: 15px;
+        }
+      }
     }
   }
 
-  // 移动设备特定样式
-  @media screen and (max-device-width: 1024px) {
+  // 小屏移动设备响应式设计
+  @media screen and (max-width: 480px) {
+    padding: 4px;
+    gap: 4px;
+    border-radius: 12px;
+
     .action {
-      width: 70px !important;
-      height: 70px !important;
-      font-size: 34px !important;
-      border-radius: 16px !important;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      border-radius: 10px;
+    }
+
+    .selectors {
+      .selector {
+        height: 44px;
+        line-height: 44px;
+        font-size: 14px;
+        padding-left: 16px;
+        padding-right: 50px;
+
+        .active-icon {
+          width: 44px;
+          height: 44px;
+          right: 12px;
+        }
+      }
+    }
+  }
+
+  // 超小屏设备
+  @media screen and (max-width: 360px) {
+    padding: 3px;
+    gap: 3px;
+    border-radius: 10px;
+
+    .action {
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+
+    .selectors {
+      .selector {
+        height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+        padding-left: 14px;
+        padding-right: 45px;
+
+        .active-icon {
+          width: 40px;
+          height: 40px;
+          right: 10px;
+        }
+      }
     }
   }
 }
