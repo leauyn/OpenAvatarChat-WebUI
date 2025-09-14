@@ -9,7 +9,7 @@
       @click="onStartChat"
     >
       <template v-if="streamState === StreamState.closed">
-        <span>Please点击开始对话</span>
+        <span>点击开始对话</span>
       </template>
       <template v-else-if="streamState === StreamState.waiting">
         <div class="waiting-icon-text">
@@ -71,37 +71,37 @@ const emit = defineEmits([])
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100px;
-  max-height: 150px;
-  margin: 20px auto;
-  padding: 0 20px;
+  min-height: 80px;
+  max-height: 120px;
+  margin: 16px auto;
+  padding: 0 16px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
-    min-height: 95px;
-    max-height: 140px;
-    margin: 18px auto;
-    padding: 0 18px;
-  }
-
-  @media (max-width: 768px) {
-    min-height: 90px;
-    max-height: 130px;
-    margin: 16px auto;
-    padding: 0 16px;
-  }
-
-  @media (max-width: 480px) {
-    min-height: 85px;
-    max-height: 120px;
+    min-height: 75px;
+    max-height: 110px;
     margin: 14px auto;
     padding: 0 14px;
   }
 
-  @media (max-width: 360px) {
-    min-height: 80px;
-    max-height: 110px;
+  @media (max-width: 768px) {
+    min-height: 70px;
+    max-height: 100px;
     margin: 12px auto;
     padding: 0 12px;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 65px;
+    max-height: 90px;
+    margin: 10px auto;
+    padding: 0 10px;
+  }
+
+  @media (max-width: 360px) {
+    min-height: 60px;
+    max-height: 80px;
+    margin: 8px auto;
+    padding: 0 8px;
   }
 
   .chat-btn {

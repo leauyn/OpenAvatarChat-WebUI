@@ -70145,7 +70145,7 @@ const bie = si(xie, [['render', Aie]]),
             },
             [
               n.streamState === Ke(qi).closed
-                ? (mt(), Ct('span', Fie, 'Please点击开始对话'))
+                ? (mt(), Ct('span', Fie, '点击开始对话'))
                 : n.streamState === Ke(qi).waiting
                   ? (mt(),
                     Ct('div', Oie, [
@@ -70176,7 +70176,7 @@ const bie = si(xie, [['render', Aie]]),
       )
     },
   }),
-  Vie = si(zie, [['__scopeId', 'data-v-7d9ccc2f']])
+  Vie = si(zie, [['__scopeId', 'data-v-1ac3c442']])
 function Hie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
@@ -70248,12 +70248,12 @@ const $ie = { class: 'chat-input-container' },
                   ])),
             ]),
           ]),
-          f[0] || (f[0] = kt('div', { class: 'ai-generate-hint' }, '内容内 AI生成', -1)),
+          f[0] || (f[0] = kt('div', { class: 'ai-generate-hint' }, '内容由 AI 生成', -1)),
         ])
       )
     },
   }),
-  qie = si(jie, [['__scopeId', 'data-v-e8fe8282']]),
+  qie = si(jie, [['__scopeId', 'data-v-329533fc']]),
   Xie = { class: 'answer-message-text' },
   Kie = qt({
     __name: 'ChatMessage',

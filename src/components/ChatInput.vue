@@ -80,7 +80,7 @@ function onInterrupt() {
       </div>
     </div>
 
-    <div class="ai-generate-hint">内容内 AI生成</div>
+    <div class="ai-generate-hint">内容由 AI 生成</div>
   </div>
 </template>
 
