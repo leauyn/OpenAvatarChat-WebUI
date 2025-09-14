@@ -23,7 +23,7 @@ var Yu = (n, e, t, i) => ({
     return dt(n, e, i)
   },
 })
-function xre() {
+function _re() {
   ;(import.meta.url, import('_').catch(() => 1), (async function* () {})().next())
 }
 ;(function () {
@@ -49190,22 +49190,22 @@ Bn.getAdapter = o6.getAdapter
 Bn.HttpStatusCode = pv
 Bn.default = Bn
 const {
-  Axios: Ere,
-  AxiosError: Mre,
-  CanceledError: Ire,
-  isCancel: Rre,
-  CancelToken: Nre,
-  VERSION: Pre,
-  all: Lre,
-  Cancel: Dre,
-  isAxiosError: Fre,
-  spread: Ore,
-  toFormData: Bre,
-  AxiosHeaders: Ure,
-  HttpStatusCode: kre,
-  formToJSON: zre,
-  getAdapter: Vre,
-  mergeConfig: Hre,
+  Axios: Cre,
+  AxiosError: Ere,
+  CanceledError: Mre,
+  isCancel: Ire,
+  CancelToken: Rre,
+  VERSION: Nre,
+  all: Pre,
+  Cancel: Lre,
+  isAxiosError: Dre,
+  spread: Fre,
+  toFormData: Ore,
+  AxiosHeaders: Bre,
+  HttpStatusCode: Ure,
+  formToJSON: kre,
+  getAdapter: zre,
+  mergeConfig: Vre,
 } = Bn
 var Bc =
   typeof globalThis < 'u'
@@ -70336,11 +70336,10 @@ const jie = { class: 'chat-input-container' },
   }),
   ire = { class: 'content-container' },
   rre = { class: 'top-actions' },
-  sre = { class: 'video-content' },
-  ore = ['muted'],
-  are = { class: 'chat-records-container' },
-  lre = { class: 'chat-records-content' },
-  cre = qt({
+  sre = ['muted'],
+  ore = { class: 'chat-records-container' },
+  are = { class: 'chat-records-content' },
+  lre = qt({
     __name: 'index',
     setup(n) {
       const e = ba(),
@@ -70467,52 +70466,45 @@ const jie = { class: 'chat-input-container' },
                     ),
                     [[cm, Xe(d) && !Xe(p)]]
                   ),
-                  Pt('div', sre, [
-                    Pt(
-                      'div',
-                      {
-                        class: 'remote-video-container',
-                        ref_key: 'remoteVideoContainerRef',
-                        ref: s,
-                      },
-                      [
-                        Xe(m)
-                          ? hs('', !0)
-                          : Pc(
-                              (mt(),
-                              Tt(
-                                'video',
-                                {
-                                  key: 0,
-                                  class: 'remote-video',
-                                  onPlaying: c,
-                                  ref_key: 'remoteVideoRef',
-                                  ref: a,
-                                  autoplay: '',
-                                  playsinline: '',
-                                  muted: Xe(v),
-                                },
-                                null,
-                                40,
-                                ore
-                              )),
-                              [[cm, Xe(y) === 'open']]
-                            ),
-                        T[0] || (T[0] = Pt('div', { class: 'video-to-chat-gradient' }, null, -1)),
-                      ],
-                      512
-                    ),
+                  Pt(
+                    'div',
+                    { class: 'remote-video-container', ref_key: 'remoteVideoContainerRef', ref: s },
+                    [
+                      Xe(m)
+                        ? hs('', !0)
+                        : Pc(
+                            (mt(),
+                            Tt(
+                              'video',
+                              {
+                                key: 0,
+                                class: 'remote-video',
+                                onPlaying: c,
+                                ref_key: 'remoteVideoRef',
+                                ref: a,
+                                autoplay: '',
+                                playsinline: '',
+                                muted: Xe(v),
+                              },
+                              null,
+                              40,
+                              sre
+                            )),
+                            [[cm, Xe(y) === 'open']]
+                          ),
+                    ],
+                    512
+                  ),
+                  Pt('div', ore, [
                     Pt('div', are, [
-                      Pt('div', lre, [
-                        T[1] || (T[1] = Pt('div', { class: 'chat-records-top-fade' }, null, -1)),
-                        Te(
-                          nre,
-                          { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
-                          null,
-                          8,
-                          ['chatRecords']
-                        ),
-                      ]),
+                      T[0] || (T[0] = Pt('div', { class: 'chat-records-top-fade' }, null, -1)),
+                      Te(
+                        nre,
+                        { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
+                        null,
+                        8,
+                        ['chatRecords']
+                      ),
                     ]),
                   ]),
                 ],
@@ -70556,9 +70548,9 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  ure = si(cre, [['__scopeId', 'data-v-5d0a3b4c']]),
-  dre = { class: 'wrap' },
-  hre = qt({
+  cre = si(lre, [['__scopeId', 'data-v-b9d5a9fc']]),
+  ure = { class: 'wrap' },
+  dre = qt({
     __name: 'App',
     setup(n) {
       const e = k0()
@@ -70571,9 +70563,9 @@ const jie = { class: 'chat-input-container' },
             { locale: Xe(Fne)[Xe(uR)] },
             {
               default: gw(() => [
-                Pt('div', dre, [
+                Pt('div', ure, [
                   Xe(e).webcamAccessed ? hs('', !0) : (mt(), ou(Ree, { key: 0 })),
-                  Te(ure),
+                  Te(cre),
                 ]),
               ]),
               _: 1,
@@ -70585,18 +70577,18 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  fre = si(hre, [['__scopeId', 'data-v-45f9c857']])
+  hre = si(dre, [['__scopeId', 'data-v-45f9c857']])
 var Kp = { exports: {} },
-  pre = Kp.exports,
+  fre = Kp.exports,
   FT
-function mre() {
+function pre() {
   return (
     FT ||
       ((FT = 1),
       (function (n, e) {
         ;(function (t, i) {
           n.exports = i()
-        })(pre, function () {
+        })(fre, function () {
           var t = '__v-click-outside',
             i = typeof window < 'u',
             r = typeof navigator < 'u',
@@ -70715,12 +70707,12 @@ function mre() {
     Kp.exports
   )
 }
-var gre = mre()
-const yre = u_(gre),
-  $0 = X9(fre),
-  vre = Z9()
-$0.use(vre)
-$0.use(Bne)
+var mre = pre()
+const gre = u_(mre),
+  $0 = X9(hre),
+  yre = Z9()
 $0.use(yre)
+$0.use(Bne)
+$0.use(gre)
 $0.mount('#app')
-export { xre as __vite_legacy_guard }
+export { _re as __vite_legacy_guard }

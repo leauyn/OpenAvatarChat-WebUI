@@ -30,26 +30,23 @@
             }"
           />
         </div>
-        <div class="video-content">
-          <div class="remote-video-container" ref="remoteVideoContainerRef">
-            <video
-              v-if="!avatarType"
-              class="remote-video"
-              v-show="streamState === 'open'"
-              @playing="onplayingRemoteVideo"
-              ref="remoteVideoRef"
-              autoplay
-              playsinline
-              :muted="volumeMuted"
-            />
-            <div class="video-to-chat-gradient"></div>
-          </div>
+        <div class="remote-video-container" ref="remoteVideoContainerRef">
+          <video
+            v-if="!avatarType"
+            class="remote-video"
+            v-show="streamState === 'open'"
+            @playing="onplayingRemoteVideo"
+            ref="remoteVideoRef"
+            autoplay
+            playsinline
+            :muted="volumeMuted"
+          />
+        </div>
 
-          <div class="chat-records-container">
-            <div class="chat-records-content">
-              <div class="chat-records-top-fade"></div>
-              <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
-            </div>
+        <div class="chat-records-container">
+          <div class="chat-records-content">
+            <div class="chat-records-top-fade"></div>
+            <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
           </div>
         </div>
       </div>

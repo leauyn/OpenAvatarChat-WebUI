@@ -21,8 +21,6 @@
   max-width: calc(100% - 70px - 64px);
   height: 85%;
   margin: 0 70px;
-  display: flex;
-  flex-direction: column;
   
   .local-video-container {
     position: absolute;
@@ -48,47 +46,26 @@
     height: auto;
   }
   
-  .video-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border-radius: 32px;
-    overflow: hidden;
-    background: #fff;
-  }
-  
   .remote-video-container {
-    flex: 0 0 70%;
     width: 100%;
+    height: 100%;
     overflow: hidden;
+    border-radius: 32px;
     transition: all 0.3s linear;
     background: #fff;
     position: relative;
-    
-    .video-to-chat-gradient {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 30%,
-        rgba(248, 249, 250, 0.8) 70%,
-        rgba(248, 249, 250, 1) 100%
-      );
-      z-index: 2;
-      pointer-events: none;
-    }
   }
   
   .chat-records-container {
-    flex: 0 0 30%;
-    width: 100%;
-    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
     background: #f8f9fa;
-    position: relative;
+    border-radius: 0 0 32px 32px;
+    z-index: 5;
+    overflow: hidden;
     
     .chat-records-content {
       height: 100%;
