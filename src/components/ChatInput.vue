@@ -55,27 +55,29 @@ function onInterrupt() {
 
 <template>
   <div class="chat-input-container">
-    <div class="stop-chat-btn" @click="onStop"></div>
+    <div class="chat-input-main">
+      <div class="stop-chat-btn" @click="onStop"></div>
 
-    <div class="chat-input-inner">
-      <div class="chat-input-wrapper">
-        <textarea
-          class="chat-input"
-          ref="chatInputRef"
-          @keydown="on_chat_input_keydown"
-          @input="on_chat_input"
-          :style="`height:${inputHeight}px`"
-        />
-        <div class="rowsDiv" ref="rowsDivRef">{{ inputValue }}</div>
+      <div class="chat-input-inner">
+        <div class="chat-input-wrapper">
+          <textarea
+            class="chat-input"
+            ref="chatInputRef"
+            @keydown="on_chat_input_keydown"
+            @input="on_chat_input"
+            :style="`height:${inputHeight}px`"
+          />
+          <div class="rowsDiv" ref="rowsDivRef">{{ inputValue }}</div>
+        </div>
+        <template v-if="replying">
+          <button class="interrupt-btn" @click="onInterrupt"></button>
+        </template>
+        <template v-else>
+          <button class="send-btn" @click="on_send">
+            <Iconfont :icon="Send" :color="'#fff'"></Iconfont>
+          </button>
+        </template>
       </div>
-      <template v-if="replying">
-        <button class="interrupt-btn" @click="onInterrupt"></button>
-      </template>
-      <template v-else>
-        <button class="send-btn" @click="on_send">
-          <Iconfont :icon="Send" :color="'#fff'"></Iconfont>
-        </button>
-      </template>
     </div>
 
     <div class="ai-generate-hint">内容内 AI生成</div>
@@ -93,7 +95,7 @@ function onInterrupt() {
   min-height: 80px;
   max-height: 120px;
   width: 90%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 16px auto;
   padding: 0 16px;
 
@@ -101,7 +103,7 @@ function onInterrupt() {
     min-height: 75px;
     max-height: 110px;
     width: 92%;
-    max-width: 380px;
+    max-width: 480px;
     margin: 14px auto;
     padding: 0 14px;
   }
@@ -110,7 +112,7 @@ function onInterrupt() {
     min-height: 70px;
     max-height: 100px;
     width: 95%;
-    max-width: 360px;
+    max-width: 460px;
     margin: 12px auto;
     padding: 0 12px;
   }
@@ -119,7 +121,7 @@ function onInterrupt() {
     min-height: 65px;
     max-height: 90px;
     width: 98%;
-    max-width: 340px;
+    max-width: 440px;
     margin: 10px auto;
     padding: 0 10px;
   }
@@ -128,16 +130,31 @@ function onInterrupt() {
     min-height: 60px;
     max-height: 80px;
     width: 100%;
-    max-width: 320px;
+    max-width: 420px;
     margin: 8px auto;
     padding: 0 8px;
+  }
+
+  .chat-input-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 8px;
+    }
   }
 
   .chat-input-inner {
     padding: 0 12px;
     background-color: #fff;
     height: 44px;
-    width: 100%;
+    flex: 1;
     display: flex;
     align-items: center;
     border: 1px solid #e8eaf2;
@@ -146,16 +163,37 @@ function onInterrupt() {
       0 4px 12px -4px rgba(54, 54, 73, 0.04),
       0 4px 16px 0 rgba(51, 51, 71, 0.08),
       0 0 1px 0 rgba(44, 44, 54, 0.02);
+    transition: all 0.2s ease;
 
-    @media (max-width: 768px) {
+    &:focus-within {
+      border-color: #7873f6;
+      box-shadow:
+        0 4px 12px -4px rgba(120, 115, 246, 0.1),
+        0 4px 16px 0 rgba(120, 115, 246, 0.15),
+        0 0 1px 0 rgba(120, 115, 246, 0.2);
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
       height: 40px;
       border-radius: 20px;
       padding: 0 10px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       height: 36px;
       border-radius: 18px;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 480px) {
+      height: 32px;
+      border-radius: 16px;
+      padding: 0 8px;
+    }
+
+    @media (max-width: 360px) {
+      height: 28px;
+      border-radius: 14px;
       padding: 0 8px;
     }
 
@@ -224,12 +262,20 @@ function onInterrupt() {
       &:hover {
         background: #524de1;
         transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(97, 92, 237, 0.3);
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) and (min-width: 769px) {
         height: 24px;
         width: 24px;
         border-radius: 12px;
+        margin-left: 6px;
+      }
+
+      @media (max-width: 768px) {
+        height: 22px;
+        width: 22px;
+        border-radius: 11px;
         margin-left: 6px;
       }
 
@@ -237,6 +283,13 @@ function onInterrupt() {
         height: 20px;
         width: 20px;
         border-radius: 10px;
+        margin-left: 4px;
+      }
+
+      @media (max-width: 360px) {
+        height: 18px;
+        width: 18px;
+        border-radius: 9px;
         margin-left: 4px;
       }
     }
@@ -254,41 +307,76 @@ function onInterrupt() {
 
   .stop-chat-btn {
     cursor: pointer;
-    margin-right: 8px;
-    height: 28px;
-    width: 28px;
+    height: 44px;
+    width: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 14px;
+    border-radius: 22px;
     opacity: 1;
     background: linear-gradient(180deg, #7873f6 0%, #524de1 100%);
     transition: all 0.2s ease;
+    flex-shrink: 0;
 
     &:hover {
       transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(120, 115, 246, 0.3);
     }
 
     &::after {
       content: ' ';
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
       background: #fafafa;
     }
 
+    @media (max-width: 1024px) and (min-width: 769px) {
+      height: 40px;
+      width: 40px;
+      border-radius: 20px;
+
+      &::after {
+        width: 14px;
+        height: 14px;
+        border-radius: 2.5px;
+      }
+    }
+
     @media (max-width: 768px) {
-      height: 24px;
-      width: 24px;
-      border-radius: 12px;
-      margin-right: 6px;
+      height: 36px;
+      width: 36px;
+      border-radius: 18px;
+
+      &::after {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+      }
     }
 
     @media (max-width: 480px) {
-      height: 20px;
-      width: 20px;
-      border-radius: 10px;
-      margin-right: 4px;
+      height: 32px;
+      width: 32px;
+      border-radius: 16px;
+
+      &::after {
+        width: 10px;
+        height: 10px;
+        border-radius: 1.5px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      height: 28px;
+      width: 28px;
+      border-radius: 14px;
+
+      &::after {
+        width: 8px;
+        height: 8px;
+        border-radius: 1px;
+      }
     }
   }
 
