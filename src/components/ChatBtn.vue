@@ -40,29 +40,24 @@ import { Spin } from 'ant-design-vue'
 import { StreamState } from '@/interface/voiceChat'
 import AudioWave from '@/components/AudioWave.vue'
 
-const props = withDefaults(
-  defineProps({
-    streamState: {
-      type: Object,
-      default: () => StreamState.closed,
-    },
-    onStartChat: {
-      type: Function,
-      required: true,
-    },
-    audioSourceCallback: {
-      type: Function,
-      required: true,
-    },
-    waveColor: {
-      type: String,
-      required: true,
-    },
-  }),
-  {
-    streamState: StreamState.closed,
-  }
-)
+const props = defineProps({
+  streamState: {
+    type: Object,
+    default: () => StreamState.closed,
+  },
+  onStartChat: {
+    type: Function,
+    required: true,
+  },
+  audioSourceCallback: {
+    type: Function,
+    required: true,
+  },
+  waveColor: {
+    type: String,
+    required: true,
+  },
+})
 
 const emit = defineEmits([])
 </script>

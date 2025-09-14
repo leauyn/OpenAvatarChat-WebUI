@@ -66336,7 +66336,7 @@ const ba = a5('visionStore', {
     for (const [i, r] of e) t[i] = r
     return t
   },
-  Nee = si(Iee, [['__scopeId', 'data-v-3e18f301']])
+  Nee = si(Iee, [['__scopeId', 'data-v-dbceed4a']])
 /*!
  * shared v11.1.12
  * (c) 2025 kazuya kawaguchi
@@ -70118,7 +70118,7 @@ const Tie = si(Sie, [['render', bie]]),
       )
     },
   }),
-  Bie = si(Oie, [['__scopeId', 'data-v-3adb7926']]),
+  Bie = si(Oie, [['__scopeId', 'data-v-1bcbfa11']]),
   Uie = { class: 'player-controls' },
   kie = { key: 0 },
   zie = { key: 1, class: 'waiting-icon-text' },
@@ -70128,10 +70128,10 @@ const Tie = si(Sie, [['render', bie]]),
   Gie = qt({
     __name: 'ChatBtn',
     props: {
-      streamState: { default: qi.closed },
-      onStartChat: {},
-      audioSourceCallback: {},
-      waveColor: {},
+      streamState: { type: Object, default: () => qi.closed },
+      onStartChat: { type: Function, required: !0 },
+      audioSourceCallback: { type: Function, required: !0 },
+      waveColor: { type: String, required: !0 },
     },
     emits: [],
     setup(n, { emit: e }) {
@@ -70143,37 +70143,37 @@ const Tie = si(Sie, [['render', bie]]),
             {
               class: Js([
                 'chat-btn',
-                t.streamState === Ge(qi).closed && 'start-chat',
-                t.streamState === Ge(qi).open && 'stop-chat',
+                n.streamState === Ge(qi).closed && 'start-chat',
+                n.streamState === Ge(qi).open && 'stop-chat',
               ]),
-              onClick: i[0] || (i[0] = (...r) => t.onStartChat && t.onStartChat(...r)),
+              onClick: i[0] || (i[0] = (...r) => n.onStartChat && n.onStartChat(...r)),
             },
             [
-              t.streamState === Ge(qi).closed
-                ? (ft(), xt('span', kie, ' Please点击开始对话'))
-                : t.streamState === Ge(qi).waiting
+              n.streamState === Ge(qi).closed
+                ? (ft(), xt('span', kie, 'Please点击开始对话'))
+                : n.streamState === Ge(qi).waiting
                   ? (ft(),
                     xt('div', zie, [
-                      zt('div', Vie, [be(Ge(qd), { wrapperClassName: 'spin-icon' })]),
+                      zt('div', Vie, [be(Ge(qd), { 'wrapper-class-name': 'spin-icon' })]),
                       i[1] || (i[1] = zt('span', null, '等待中', -1)),
                     ]))
                   : (ft(), xt('div', Hie)),
             ],
             2
           ),
-          t.streamState === Ge(qi).open
+          n.streamState === Ge(qi).open
             ? (ft(),
               xt('div', $ie, [
                 be(
                   Bie,
                   {
-                    audioSourceCallback: t.audioSourceCallback,
-                    streamState: t.streamState,
-                    waveColor: t.waveColor,
+                    'audio-source-callback': n.audioSourceCallback,
+                    'stream-state': n.streamState,
+                    'wave-color': n.waveColor,
                   },
                   null,
                   8,
-                  ['audioSourceCallback', 'streamState', 'waveColor']
+                  ['audio-source-callback', 'stream-state', 'wave-color']
                 ),
               ]))
             : br('', !0),
@@ -70181,7 +70181,7 @@ const Tie = si(Sie, [['render', bie]]),
       )
     },
   }),
-  Wie = si(Gie, [['__scopeId', 'data-v-d5f0b520']])
+  Wie = si(Gie, [['__scopeId', 'data-v-8a83fff7']])
 function Qie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
