@@ -30,28 +30,22 @@
             }"
           />
         </div>
-        <div class="remote-video-container" ref="remoteVideoContainerRef">
-          <video
-            v-if="!avatarType"
-            class="remote-video"
-            v-show="streamState === 'open'"
-            @playing="onplayingRemoteVideo"
-            ref="remoteVideoRef"
-            autoplay
-            playsinline
-            :muted="volumeMuted"
-          />
-          <div
-            v-if="streamState === 'open' && showChatRecords && !isLandscape"
-            :class="`chat-records-container inline`"
-            :style="
-              !hasCamera || cameraOff ? 'width:80%;padding-bottom:12px;' : 'padding-bottom:12px;'
-            "
-          >
-            <ChatRecords
-              ref="chatRecordsInstanceRef"
-              :chatRecords="chatRecords.filter((_, index) => index >= chatRecords.length - 4)"
+        <div class="video-content">
+          <div class="remote-video-container" ref="remoteVideoContainerRef">
+            <video
+              v-if="!avatarType"
+              class="remote-video"
+              v-show="streamState === 'open'"
+              @playing="onplayingRemoteVideo"
+              ref="remoteVideoRef"
+              autoplay
+              playsinline
+              :muted="volumeMuted"
             />
+          </div>
+
+          <div class="chat-records-container">
+            <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
           </div>
         </div>
       </div>
@@ -72,13 +66,6 @@
           wave-color="#7873F6"
         />
       </template>
-    </div>
-
-    <div
-      v-if="streamState === 'open' && showChatRecords && isLandscape"
-      class="chat-records-container"
-    >
-      <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
     </div>
   </div>
 </template>

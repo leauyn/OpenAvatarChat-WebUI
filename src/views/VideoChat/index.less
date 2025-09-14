@@ -18,10 +18,11 @@
 }
 .video-container {
   position: relative;
-  aspect-ratio: 9 / 16;
   max-width: calc(100% - 70px - 64px);
   height: 85%;
   margin: 0 70px;
+  display: flex;
+  flex-direction: column;
   
   .local-video-container {
     position: absolute;
@@ -47,13 +48,29 @@
     height: auto;
   }
   
-  .remote-video-container {
-    width: 100%;
+  .video-content {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    overflow: hidden;
     border-radius: 32px;
+    overflow: hidden;
+    background: #fff;
+  }
+  
+  .remote-video-container {
+    flex: 0 0 70%;
+    width: 100%;
+    overflow: hidden;
     transition: all 0.3s linear;
     background: #fff;
+  }
+  
+  .chat-records-container {
+    flex: 0 0 30%;
+    width: 100%;
+    overflow: auto;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
   }
   
   .local-video {
@@ -91,19 +108,5 @@
   
   @media (max-width: 480px) {
     top: 8px;
-  }
-}
-.chat-records-container {
-  height: 85%;
-  overflow: auto;
-  aspect-ratio: 9 / 16;
-  z-index: 1;
-
-  &.inline {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 50%;
-    padding: 10px;
   }
 }
