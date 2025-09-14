@@ -61,7 +61,7 @@ function setupAudioContext() {
 }
 
 function updateVisualization() {
-  analyser.getByteFrequencyData(dataArray as Uint8Array)
+  analyser.getByteFrequencyData(dataArray)
 
   // Calculate average amplitude for pulse effect
   const average = Array.from(dataArray).reduce((a, b) => a + b, 0) / dataArray.length

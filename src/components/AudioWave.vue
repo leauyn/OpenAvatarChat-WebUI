@@ -70,7 +70,7 @@ function setupAudioContext() {
 }
 
 function updateVisualization() {
-  analyser.getByteFrequencyData(dataArray as Uint8Array)
+  analyser.getByteFrequencyData(dataArray)
 
   // Update bars
   const bars = document.querySelectorAll('.gradio-webrtc-waveContainer .gradio-webrtc-box')
