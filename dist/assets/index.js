@@ -70492,12 +70492,14 @@ const jie = { class: 'chat-input-container' },
                             )),
                             [[cm, Xe(y) === 'open']]
                           ),
+                      T[0] || (T[0] = Pt('div', { class: 'video-bottom-gradient' }, null, -1)),
                     ],
                     512
                   ),
                   Pt('div', ore, [
+                    T[2] || (T[2] = Pt('div', { class: 'chat-top-gradient' }, null, -1)),
                     Pt('div', are, [
-                      T[0] || (T[0] = Pt('div', { class: 'chat-records-top-fade' }, null, -1)),
+                      T[1] || (T[1] = Pt('div', { class: 'chat-records-top-fade' }, null, -1)),
                       Te(
                         nre,
                         { ref_key: 'chatRecordsInstanceRef', ref: R, chatRecords: Xe(S) },
@@ -70548,7 +70550,7 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  cre = si(lre, [['__scopeId', 'data-v-b9d5a9fc']]),
+  cre = si(lre, [['__scopeId', 'data-v-1771d2aa']]),
   ure = { class: 'wrap' },
   dre = qt({
     __name: 'App',
