@@ -70253,7 +70253,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  qie = si(jie, [['__scopeId', 'data-v-502df2cb']]),
+  qie = si(jie, [['__scopeId', 'data-v-6a8ce624']]),
   Xie = { class: 'answer-message-text' },
   Kie = qt({
     __name: 'ChatMessage',
@@ -70270,7 +70270,7 @@ const $ie = { class: 'chat-input-container' },
       )
     },
   }),
-  Yie = si(Kie, [['__scopeId', 'data-v-4a9aef19']]),
+  Yie = si(Kie, [['__scopeId', 'data-v-0668d768']]),
   Zie = { class: 'chat-records-inner' },
   Jie = qt({
     __name: 'ChatRecords',

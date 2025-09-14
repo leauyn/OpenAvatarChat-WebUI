@@ -208,24 +208,39 @@ function onInterrupt() {
         border: none;
         outline: none;
         color: #26244c;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 400;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+          'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         resize: none;
         padding: 0;
         margin: 6px 0;
-        line-height: 20px;
+        line-height: 1.5;
         max-height: 32px;
         min-height: 20px;
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) and (min-width: 769px) {
           font-size: 13px;
-          line-height: 18px;
+          line-height: 1.5;
+          margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 14px;
+          line-height: 1.5;
           margin: 4px 0;
         }
 
         @media (max-width: 480px) {
-          font-size: 12px;
-          line-height: 16px;
+          font-size: 14px;
+          line-height: 1.5;
+          margin: 3px 0;
+        }
+
+        @media (max-width: 360px) {
+          font-size: 13px;
+          line-height: 1.4;
           margin: 3px 0;
         }
       }
@@ -236,9 +251,12 @@ function onInterrupt() {
         right: 0;
         z-index: -1;
         visibility: hidden;
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 400;
-        line-height: 24px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+          'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        line-height: 1.5;
         white-space: pre-wrap;
         word-wrap: break-word;
       }
@@ -381,19 +399,34 @@ function onInterrupt() {
   }
 
   .ai-generate-hint {
-    margin-top: 4px;
+    margin-top: 6px;
     font-size: 11px;
+    font-weight: 400;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+      'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #8e8ea0;
     text-align: center;
     opacity: 0.7;
+    line-height: 1.4;
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      font-size: 11px;
+      margin-top: 5px;
+    }
 
     @media (max-width: 768px) {
-      font-size: 10px;
-      margin-top: 3px;
+      font-size: 12px;
+      margin-top: 4px;
     }
 
     @media (max-width: 480px) {
-      font-size: 9px;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 10px;
       margin-top: 2px;
     }
   }
