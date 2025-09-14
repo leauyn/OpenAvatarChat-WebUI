@@ -93,30 +93,30 @@ defineExpose({
 
   // 移动设备响应式设计
   @media screen and (max-width: 768px) {
-    padding: 12px 0;
+    padding: 8px 0;
 
     .chat-message {
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       max-width: 90%;
     }
   }
 
   // 小屏移动设备响应式设计
   @media screen and (max-width: 480px) {
-    padding: 14px 0;
+    padding: 6px 0;
 
     .chat-message {
-      margin-bottom: 18px;
+      margin-bottom: 8px;
       max-width: 95%;
     }
   }
 
   // 超小屏设备
   @media screen and (max-width: 360px) {
-    padding: 16px 0;
+    padding: 4px 0;
 
     .chat-message {
-      margin-bottom: 20px;
+      margin-bottom: 6px;
       max-width: 98%;
     }
   }

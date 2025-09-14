@@ -51,26 +51,26 @@ const props = withDefaults(
 
   // 移动设备响应式设计
   @media screen and (max-width: 768px) {
-    padding: 10px 12px;
-    font-size: 14px;
-    line-height: 1.5;
-    border-radius: 12px;
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    border-radius: 10px;
   }
 
   // 小屏移动设备响应式设计
   @media screen and (max-width: 480px) {
-    padding: 12px 14px;
-    font-size: 14px;
-    line-height: 1.5;
-    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    border-radius: 8px;
   }
 
   // 超小屏设备
   @media screen and (max-width: 360px) {
-    padding: 10px 12px;
-    font-size: 13px;
-    line-height: 1.4;
-    border-radius: 8px;
+    padding: 6px 8px;
+    font-size: 11px;
+    line-height: 1.3;
+    border-radius: 6px;
   }
 }
 </style>
