@@ -18,7 +18,7 @@ const track_constraints = {
   video: {
     width: { ideal: 500, min: 320 },
     height: { ideal: 500, min: 320 },
-    aspectRatio: { ideal: 1.0 }, // 强制1:1宽高比
+    aspectRatio: { ideal: 1.0, exact: 1.0 }, // 强制1:1宽高比，使用exact确保严格匹配
   },
   audio: true,
 }
@@ -228,6 +228,48 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       wrapperRect.height = wrapperRef!.clientHeight
       visionState.isLandscape = wrapperRect.width > wrapperRect.height
     },
+    async ensureSquareVideo() {
+      // 检查视频轨道是否应用了正确的约束
+      if (this.stream) {
+        const videoTrack = this.stream.getVideoTracks()[0]
+        if (videoTrack) {
+          const settings = videoTrack.getSettings()
+          console.log('Video settings:', settings)
+
+          // 如果宽高比不是1:1，尝试重新应用约束
+          if (settings.width && settings.height && settings.width !== settings.height) {
+            console.log('Video aspect ratio is not 1:1, attempting to fix...')
+
+            // 停止当前轨道
+            videoTrack.stop()
+
+            // 重新获取视频流，使用更严格的约束
+            const strictConstraints = {
+              video: {
+                width: { exact: 500 },
+                height: { exact: 500 },
+                aspectRatio: { exact: 1.0 },
+                deviceId: settings.deviceId ? { exact: settings.deviceId } : undefined,
+              },
+              audio: false,
+            }
+
+            try {
+              const newStream = await navigator.mediaDevices.getUserMedia(strictConstraints)
+              const newVideoTrack = newStream.getVideoTracks()[0]
+
+              // 替换视频轨道
+              this.stream.removeTrack(videoTrack)
+              this.stream.addTrack(newVideoTrack)
+
+              console.log('Video aspect ratio fixed to 1:1')
+            } catch (error) {
+              console.warn('Failed to fix video aspect ratio:', error)
+            }
+          }
+        }
+      }
+    },
     async updateAvailableDevices() {
       const devices = await getDevices()
       this.availableVideoDevices = setAvailableDevices(devices, 'videoinput')
@@ -257,6 +299,9 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           console.log('local_stream', local_stream)
           this.stream = local_stream
           this.updateAvailableDevices()
+
+          // 手机端额外检查：如果宽高比不正确，尝试重新应用约束
+          this.ensureSquareVideo()
         })
         .then(() => {
           const used_devices = this.stream!.getTracks().map(
@@ -302,6 +347,17 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       const visionState = useVisionStore()
       if (this.streamState === 'closed') {
         this.chatRecords = []
+
+        // 重新创建视频流以确保应用最新的约束
+        const videoDeviceId = this.selectedVideoDevice?.deviceId || ''
+        const audioDeviceId = this.selectedAudioDevice?.deviceId || ''
+        await this.fillStream(audioDeviceId, videoDeviceId)
+
+        // 手机端额外确保视频是正方形
+        setTimeout(() => {
+          this.ensureSquareVideo()
+        }, 1000) // 延迟1秒确保视频流完全初始化
+
         this.peerConnection = new RTCPeerConnection(this.rtcConfig)
         this.peerConnection.addEventListener('connectionstatechange', async (event) => {
           switch (this.peerConnection!.connectionState) {

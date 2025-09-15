@@ -85646,7 +85646,7 @@
               video: {
                 width: { ideal: 500, min: 320 },
                 height: { ideal: 500, min: 320 },
-                aspectRatio: { ideal: 1 },
+                aspectRatio: { ideal: 1, exact: 1 },
               },
               audio: !0,
             },
@@ -85913,6 +85913,73 @@
                       (n.height = t.clientHeight),
                       (e.isLandscape = n.width > n.height)))
                 },
+                ensureSquareVideo: function () {
+                  var e = this
+                  return v(
+                    h().m(function t() {
+                      var n, r, i, a, o, s
+                      return h().w(
+                        function (t) {
+                          for (;;)
+                            switch ((t.p = t.n)) {
+                              case 0:
+                                if (!e.stream) {
+                                  t.n = 4
+                                  break
+                                }
+                                if (!(n = e.stream.getVideoTracks()[0])) {
+                                  t.n = 4
+                                  break
+                                }
+                                if (
+                                  ((r = n.getSettings()),
+                                  console.log('Video settings:', r),
+                                  !r.width || !r.height || r.width === r.height)
+                                ) {
+                                  t.n = 4
+                                  break
+                                }
+                                return (
+                                  console.log(
+                                    'Video aspect ratio is not 1:1, attempting to fix...'
+                                  ),
+                                  n.stop(),
+                                  (i = {
+                                    video: {
+                                      width: { exact: 500 },
+                                      height: { exact: 500 },
+                                      aspectRatio: { exact: 1 },
+                                      deviceId: r.deviceId ? { exact: r.deviceId } : void 0,
+                                    },
+                                    audio: !1,
+                                  }),
+                                  (t.p = 1),
+                                  (t.n = 2),
+                                  navigator.mediaDevices.getUserMedia(i)
+                                )
+                              case 2:
+                                ;((a = t.v),
+                                  (o = a.getVideoTracks()[0]),
+                                  e.stream.removeTrack(n),
+                                  e.stream.addTrack(o),
+                                  console.log('Video aspect ratio fixed to 1:1'),
+                                  (t.n = 4))
+                                break
+                              case 3:
+                                ;((t.p = 3),
+                                  (s = t.v),
+                                  console.warn('Failed to fix video aspect ratio:', s))
+                              case 4:
+                                return t.a(2)
+                            }
+                        },
+                        t,
+                        null,
+                        [[1, 3]]
+                      )
+                    })
+                  )()
+                },
                 updateAvailableDevices: function () {
                   var e = this
                   return v(
@@ -85971,7 +86038,8 @@
                                                 case 0:
                                                   ;(console.log('local_stream', t),
                                                     (n.stream = t),
-                                                    n.updateAvailableDevices())
+                                                    n.updateAvailableDevices(),
+                                                    n.ensureSquareVideo())
                                                 case 1:
                                                   return e.a(2)
                                               }
@@ -86037,17 +86105,33 @@
                   var e = this
                   return v(
                     h().m(function t() {
-                      var n, r
+                      var n, r, i, a, o, s
                       return h().w(function (t) {
                         for (;;)
                           switch (t.n) {
                             case 0:
                               if (((n = Yq()), 'closed' !== e.streamState)) {
-                                t.n = 2
+                                t.n = 3
                                 break
                               }
                               return (
                                 (e.chatRecords = []),
+                                (a =
+                                  (null === (r = e.selectedVideoDevice) || void 0 === r
+                                    ? void 0
+                                    : r.deviceId) || ''),
+                                (o =
+                                  (null === (i = e.selectedAudioDevice) || void 0 === i
+                                    ? void 0
+                                    : i.deviceId) || ''),
+                                (t.n = 1),
+                                e.fillStream(o, a)
+                              )
+                            case 1:
+                              return (
+                                setTimeout(function () {
+                                  e.ensureSquareVideo()
+                                }, 1e3),
                                 (e.peerConnection = new RTCPeerConnection(e.rtcConfig)),
                                 e.peerConnection.addEventListener(
                                   'connectionstatechange',
@@ -86087,7 +86171,7 @@
                                   })()
                                 ),
                                 (e.streamState = xs.waiting),
-                                (t.n = 1),
+                                (t.n = 2),
                                 Kz(e.stream, e.peerConnection, n.remoteVideoRef)
                                   .then(function (t) {
                                     var n = C(t, 2),
@@ -86111,31 +86195,31 @@
                                       iq.error('请检查是否超过数字人并发上限'))
                                   })
                               )
-                            case 1:
-                              t.n = 5
-                              break
                             case 2:
-                              if ('waiting' !== e.streamState) {
-                                t.n = 3
-                                break
-                              }
-                              t.n = 5
+                              t.n = 6
                               break
                             case 3:
+                              if ('waiting' !== e.streamState) {
+                                t.n = 4
+                                break
+                              }
+                              t.n = 6
+                              break
+                            case 4:
                               return (
                                 Yz(e.peerConnection),
                                 (e.streamState = xs.closed),
                                 (e.chatRecords = []),
                                 (e.chatDataChannel = null),
                                 (e.replying = !1),
-                                (t.n = 4),
+                                (t.n = 5),
                                 e.accessDevice()
                               )
-                            case 4:
-                              'lam' === e.avatarType &&
-                                (null === (r = e.localAvatarRenderer) || void 0 === r || r.exit(),
-                                (e.gsLoadPercent = 0))
                             case 5:
+                              'lam' === e.avatarType &&
+                                (null === (s = e.localAvatarRenderer) || void 0 === s || s.exit(),
+                                (e.gsLoadPercent = 0))
+                            case 6:
                               return t.a(2)
                           }
                       }, t)
