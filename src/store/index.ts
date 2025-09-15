@@ -16,8 +16,9 @@ import { useVisionStore } from './vision'
 
 const track_constraints = {
   video: {
-    width: 500,
-    height: 500,
+    width: { ideal: 500, min: 320 },
+    height: { ideal: 500, min: 320 },
+    aspectRatio: { ideal: 1.0 }, // 强制1:1宽高比
   },
   audio: true,
 }

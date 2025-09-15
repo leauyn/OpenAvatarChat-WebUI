@@ -77338,7 +77338,11 @@
                       if (0 === e.n)
                         return (
                           (i = (null == r ? void 0 : r.video) ||
-                            r || { width: { ideal: 500 }, height: { ideal: 500 } }),
+                            r || {
+                              width: { ideal: 500, min: 320 },
+                              height: { ideal: 500, min: 320 },
+                              aspectRatio: { ideal: 1 },
+                            }),
                           (a = (null == r ? void 0 : r.audio) ||
                             r || {
                               echoCancellation: !0,
@@ -85638,7 +85642,14 @@
               },
               actions: {},
             }),
-            Kq = { video: { width: 500, height: 500 }, audio: !0 },
+            Kq = {
+              video: {
+                width: { ideal: 500, min: 320 },
+                height: { ideal: 500, min: 320 },
+                aspectRatio: { ideal: 1 },
+              },
+              audio: !0,
+            },
             Zq = os('videoChatStore', {
               state: function () {
                 return {
