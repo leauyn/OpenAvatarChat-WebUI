@@ -8,7 +8,7 @@
         }"
       >
         <!-- 顶部操作栏 -->
-        <div class="top-actions">
+        <div v-if="webcamAccessed" class="top-actions">
           <ActionGroup />
         </div>
 
