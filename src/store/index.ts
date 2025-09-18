@@ -1,6 +1,7 @@
 import { WS } from '@/helpers/ws'
 import { WsEventTypes } from '@/interface/eventType'
 import { StreamState } from '@/interface/voiceChat'
+import { UserAuthorityInfo } from '@/interface/userInfo'
 import { GaussianAvatar } from '@/utils/gaussianAvatar'
 import {
   createSimulatedAudioTrack,
@@ -10,6 +11,7 @@ import {
   setAvailableDevices,
 } from '@/utils/streamUtils'
 import { setupWebRTC, stop } from '@/utils/webrtcUtils'
+import { getUserAuthorityFromLocalStorage, isInIframe } from '@/utils/localStorageUtils'
 import { message } from 'ant-design-vue'
 import { defineStore } from 'pinia'
 import { useVisionStore } from './vision'
@@ -48,6 +50,11 @@ interface VideoChatState {
     | undefined
   gsLoadPercent: number
 
+  // 用户信息相关
+  userAuthority: UserAuthorityInfo | null
+  isInIframe: boolean
+  parentOrigin: string | null
+
   volumeMuted: boolean
   micMuted: boolean
   cameraOff: boolean
@@ -85,6 +92,12 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       rtcConfig: undefined,
       trackConstraints: track_constraints,
       gsLoadPercent: 0,
+
+      // 用户信息相关
+      userAuthority: null,
+      isInIframe: false,
+      parentOrigin: null,
+
       volumeMuted: false,
       micMuted: false,
       cameraOff: false,
@@ -152,6 +165,9 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       }
     },
     async init() {
+      // 初始化用户信息
+      this.initializeUserInfo()
+
       fetch('/openavatarchat/initconfig')
         .then((res) => res.json())
         .then((config) => {
@@ -172,6 +188,121 @@ export const useVideoChatStore = defineStore('videoChatStore', {
         .catch(() => {
           message.error('服务端链接失败，请检查是否能正确访问到 OpenAvatarChat 服务端')
         })
+    },
+
+    /**
+     * 初始化用户信息
+     * 从 localStorage 获取 wj_oss_authority 数组中的用户信息
+     */
+    initializeUserInfo() {
+      try {
+        console.log('🚀 开始初始化用户信息...')
+
+        // 检查是否在 iframe 中运行
+        this.isInIframe = isInIframe()
+        console.log('🔍 是否在 iframe 中运行:', this.isInIframe)
+
+        // 直接从当前窗口的 localStorage 获取
+        this.loadUserAuthorityFromLocalStorage()
+      } catch (error) {
+        console.error('❌ 初始化用户信息失败:', error)
+      }
+    },
+
+    /**
+     * 从当前窗口的 localStorage 加载用户权限信息
+     */
+    loadUserAuthorityFromLocalStorage() {
+      console.log('📖 从 localStorage 加载用户权限信息...')
+
+      const userAuthority = getUserAuthorityFromLocalStorage()
+      this.userAuthority = userAuthority
+
+      if (userAuthority) {
+        console.log('✅ Store: 成功获取用户权限信息')
+        console.log('   👤 用户姓名 (索引7):', userAuthority.userName)
+        console.log('   🆔 用户ID (索引1):', userAuthority.userId)
+        console.log('   🏫 学校ID (索引5):', userAuthority.schoolId)
+        console.log('   🏢 学校名称 (索引8):', userAuthority.schoolName)
+        console.log('   📚 年级 (索引2):', userAuthority.grade)
+        console.log('   🎒 班级 (索引3):', userAuthority.class)
+        console.log('   📱 手机号 (索引6):', userAuthority.phone)
+        console.log('   🌍 地区 (索引10):', userAuthority.region)
+      } else {
+        console.log('❌ Store: 未找到用户权限信息')
+      }
+    },
+
+    /**
+     * 获取用户姓名
+     */
+    getUserName(): string | null {
+      const userName = this.userAuthority?.userName || null
+      console.log('🔍 Store: 获取用户姓名:', userName)
+      return userName
+    },
+
+    /**
+     * 获取用户ID
+     */
+    getUserId(): string | null {
+      const userId = this.userAuthority?.userId || null
+      console.log('🔍 Store: 获取用户ID:', userId)
+      return userId
+    },
+
+    /**
+     * 获取学校ID
+     */
+    getSchoolId(): string | null {
+      const schoolId = this.userAuthority?.schoolId || null
+      console.log('🔍 Store: 获取学校ID:', schoolId)
+      return schoolId
+    },
+
+    /**
+     * 获取学校名称
+     */
+    getSchoolName(): string | null {
+      const schoolName = this.userAuthority?.schoolName || null
+      console.log('🔍 Store: 获取学校名称:', schoolName)
+      return schoolName
+    },
+
+    /**
+     * 获取年级
+     */
+    getGrade(): string | null {
+      const grade = this.userAuthority?.grade || null
+      console.log('🔍 Store: 获取年级:', grade)
+      return grade
+    },
+
+    /**
+     * 获取班级
+     */
+    getClass(): string | null {
+      const classInfo = this.userAuthority?.class || null
+      console.log('🔍 Store: 获取班级:', classInfo)
+      return classInfo
+    },
+
+    /**
+     * 获取手机号
+     */
+    getPhone(): string | null {
+      const phone = this.userAuthority?.phone || null
+      console.log('🔍 Store: 获取手机号:', phone)
+      return phone
+    },
+
+    /**
+     * 获取地区
+     */
+    getRegion(): string | null {
+      const region = this.userAuthority?.region || null
+      console.log('🔍 Store: 获取地区:', region)
+      return region
     },
     handleCameraOff() {
       this.cameraOff = !this.cameraOff
