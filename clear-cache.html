@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除缓存测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background: #40a9ff;
+        }
+        .btn-danger {
+            background: #ff4d4f;
+        }
+        .btn-danger:hover {
+            background: #ff7875;
+        }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .info {
+            background: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>清除缓存测试页面</h1>
+        
+        <div class="info">
+            <h3>说明</h3>
+            <p>这个页面用于测试和清除缓存，确保获取到最新的代码。</p>
+        </div>
+
+        <div>
+            <button class="btn" onclick="testCurrentPage()">测试当前页面</button>
+            <button class="btn" onclick="clearAllCache()">清除所有缓存</button>
+            <button class="btn btn-danger" onclick="forceReload()">强制重新加载</button>
+            <button class="btn" onclick="testIframe()">测试 iframe 加载</button>
+        </div>
+
+        <div class="log" id="logContainer">
+            <div>点击按钮开始测试...</div>
+        </div>
+
+        <div id="iframeContainer" style="margin-top: 20px;">
+            <h3>iframe 测试</h3>
+            <iframe id="testIframe" width="100%" height="400" frameborder="1" style="border: 1px solid #ddd;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function log(message) {
+            const logContainer = document.getElementById('logContainer');
+            const timestamp = new Date().toLocaleTimeString();
+            logContainer.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logContainer.scrollTop = logContainer.scrollHeight;
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function testCurrentPage() {
+            log('🧪 测试当前页面...');
+            log('🌐 当前 URL: ' + window.location.href);
+            log('🔍 User Agent: ' + navigator.userAgent);
+            log('📅 当前时间: ' + new Date().toISOString());
+            
+            // 测试 URL 参数
+            const urlParams = new URLSearchParams(window.location.search);
+            log('📋 URL 参数:');
+            for (const [key, value] of urlParams.entries()) {
+                log(`  ${key}: ${value}`);
+            }
+            
+            // 测试 localStorage
+            const authorityData = localStorage.getItem('wj_oss_authority');
+            if (authorityData) {
+                log('✅ localStorage 中有 wj_oss_authority 数据: ' + authorityData);
+            } else {
+                log('❌ localStorage 中没有 wj_oss_authority 数据');
+            }
+        }
+
+        function clearAllCache() {
+            log('🧹 开始清除缓存...');
+            
+            try {
+                // 清除 localStorage
+                localStorage.clear();
+                log('✅ localStorage 已清除');
+                
+                // 清除 sessionStorage
+                sessionStorage.clear();
+                log('✅ sessionStorage 已清除');
+                
+                // 尝试清除 Service Worker 缓存
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                        for(let registration of registrations) {
+                            registration.unregister();
+                            log('✅ Service Worker 已注销');
+                        }
+                    });
+                }
+                
+                // 尝试清除 Cache API
+                if ('caches' in window) {
+                    caches.keys().then(function(names) {
+                        for (let name of names) {
+                            caches.delete(name);
+                            log('✅ Cache 已清除: ' + name);
+                        }
+                    });
+                }
+                
+                log('✅ 缓存清除完成');
+            } catch (error) {
+                log('❌ 清除缓存失败: ' + error.message);
+            }
+        }
+
+        function forceReload() {
+            log('🔄 强制重新加载...');
+            
+            // 添加时间戳参数强制刷新
+            const url = new URL(window.location.href);
+            url.searchParams.set('_t', Date.now().toString());
+            
+            log('🌐 新 URL: ' + url.toString());
+            
+            // 强制重新加载
+            window.location.href = url.toString();
+        }
+
+        function testIframe() {
+            log('🧪 测试 iframe 加载...');
+            
+            const iframe = document.getElementById('testIframe');
+            const testUrl = 'https://avatar1.thinnovate.com/ui/index.html?wj_oss_authority=%5B%221%22%2C%229260d788-7e63-41ab-adbb-c163a90fc0a7%22%2C%223%22%2C%221%22%2Cnull%2C%224d8f3a08-e886-43ff-ba7f-93ca0a1b0f96%22%2C%2213666666661%22%2C%22%E8%B4%BE%E5%90%8C%E5%AD%A6%22%2C%22%E4%B8%AD%E5%B0%8F%E5%AD%A6%E7%94%9F%E4%B8%AA%E4%BA%BA%E5%AF%B9%E6%AF%94%E4%B8%AD%E5%B0%8F%E5%AD%A6%22%2Cnull%2C%221%22%2C%222%22%5D&_t=' + Date.now();
+            
+            log('🌐 iframe URL: ' + testUrl);
+            
+            iframe.src = testUrl;
+            
+            iframe.onload = function() {
+                log('✅ iframe 加载完成');
+            };
+            
+            iframe.onerror = function() {
+                log('❌ iframe 加载失败');
+            };
+        }
+
+        // 页面加载时自动测试
+        window.addEventListener('load', function() {
+            log('🚀 页面加载完成');
+            testCurrentPage();
+        });
+    </script>
+</body>
+</html>
