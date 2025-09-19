@@ -75,6 +75,28 @@ body.iframe-mode {
       margin: 0 auto !important;
     }
   }
+  
+  // 确保在 iframe 中聊天记录不被覆盖
+  .chat-records-container {
+    bottom: 140px !important; // 为底部控制栏留出空间
+    z-index: 9999 !important;
+    
+    @media (max-width: 1024px) and (min-width: 769px) {
+      bottom: 130px !important;
+    }
+    
+    @media (max-width: 768px) {
+      bottom: 120px !important;
+    }
+    
+    @media (max-width: 480px) {
+      bottom: 110px !important;
+    }
+    
+    @media (max-width: 360px) {
+      bottom: 100px !important;
+    }
+  }
 }
 
 // 全局响应式字体大小设置
