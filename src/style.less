@@ -25,6 +25,58 @@ img {
   height: 100vh;
 }
 
+// iframe 特定样式，确保底部完全覆盖父应用
+body.iframe-mode {
+  overflow: hidden;
+  
+  #app {
+    position: relative;
+    z-index: 9999;
+  }
+  
+  // 确保在 iframe 中底部控制栏完全覆盖
+  .player-controls {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: #fff !important;
+    z-index: 10000 !important;
+    margin: 0 !important;
+    padding: 16px 0 !important;
+    min-height: 80px !important;
+    max-height: 120px !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
+    
+    // 保持 ChatBtn 的圆形样式
+    .chat-btn {
+      margin: 0 auto !important;
+    }
+  }
+  
+  // 确保在 iframe 中 ChatInput 组件完全覆盖
+  .chat-input-container {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: #fff !important;
+    z-index: 10000 !important;
+    margin: 0 !important;
+    padding: 16px 0 !important;
+    min-height: 80px !important;
+    max-height: 120px !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
+    
+    // 保持 ChatInput 的原有布局
+    .chat-input-main {
+      margin: 0 auto !important;
+    }
+  }
+}
+
 // 全局响应式字体大小设置
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   body {

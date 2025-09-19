@@ -4,8 +4,20 @@ import { antdLocale, locale } from '@/langs'
 import VideoChat from '@/views/VideoChat/index.vue'
 import { ConfigProvider } from 'ant-design-vue'
 import { useVideoChatStore } from './store'
+import { onMounted } from 'vue'
+
 const videoChatState = useVideoChatStore()
 videoChatState.init()
+
+// 检测是否在 iframe 中运行
+onMounted(() => {
+  const isInIframe = window.self !== window.top
+  if (isInIframe) {
+    document.body.classList.add('iframe-mode')
+    console.log('🔍 检测到在 iframe 中运行，应用 iframe 模式样式')
+  }
+})
+
 // import dayjs from 'dayjs';
 // import 'dayjs/locale/zh-cn';
 // dayjs.locale('zh-cn');
