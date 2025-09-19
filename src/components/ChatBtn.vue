@@ -71,35 +71,35 @@ const emit = defineEmits([])
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
-  max-height: 120px;
+  min-height: 100px;
+  max-height: 140px;
   margin: 16px auto;
   padding: 0 16px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
-    min-height: 75px;
-    max-height: 110px;
+    min-height: 95px;
+    max-height: 130px;
     margin: 14px auto;
     padding: 0 14px;
   }
 
   @media (max-width: 768px) {
-    min-height: 70px;
-    max-height: 100px;
+    min-height: 90px;
+    max-height: 120px;
     margin: 12px auto;
     padding: 0 12px;
   }
 
   @media (max-width: 480px) {
-    min-height: 65px;
-    max-height: 90px;
+    min-height: 85px;
+    max-height: 110px;
     margin: 10px auto;
     padding: 0 10px;
   }
 
   @media (max-width: 360px) {
-    min-height: 60px;
-    max-height: 80px;
+    min-height: 80px;
+    max-height: 100px;
     margin: 8px auto;
     padding: 0 8px;
   }

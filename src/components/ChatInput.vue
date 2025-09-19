@@ -92,16 +92,16 @@ function onInterrupt() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
-  max-height: 120px;
+  min-height: 100px;
+  max-height: 140px;
   width: 90%;
   max-width: 500px;
   margin: 16px auto;
   padding: 0 16px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
-    min-height: 75px;
-    max-height: 110px;
+    min-height: 95px;
+    max-height: 130px;
     width: 92%;
     max-width: 480px;
     margin: 14px auto;
@@ -109,8 +109,8 @@ function onInterrupt() {
   }
 
   @media (max-width: 768px) {
-    min-height: 70px;
-    max-height: 100px;
+    min-height: 90px;
+    max-height: 120px;
     width: 95%;
     max-width: 460px;
     margin: 12px auto;
@@ -118,8 +118,8 @@ function onInterrupt() {
   }
 
   @media (max-width: 480px) {
-    min-height: 65px;
-    max-height: 90px;
+    min-height: 85px;
+    max-height: 110px;
     width: 98%;
     max-width: 440px;
     margin: 10px auto;
@@ -127,8 +127,8 @@ function onInterrupt() {
   }
 
   @media (max-width: 360px) {
-    min-height: 60px;
-    max-height: 80px;
+    min-height: 80px;
+    max-height: 100px;
     width: 100%;
     max-width: 420px;
     margin: 8px auto;

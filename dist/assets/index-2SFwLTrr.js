@@ -70473,7 +70473,7 @@ const Iie = si(Cie, [['render', Mie]]),
       )
     },
   }),
-  jie = si(Qie, [['__scopeId', 'data-v-f9de35f4']])
+  jie = si(Qie, [['__scopeId', 'data-v-2b647c0d']])
 function qie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
@@ -70550,7 +70550,7 @@ const Xie = { class: 'chat-input-container' },
       )
     },
   }),
-  ere = si(Jie, [['__scopeId', 'data-v-e4ad1d12']]),
+  ere = si(Jie, [['__scopeId', 'data-v-eeb6eebe']]),
   tre = { class: 'answer-message-text' },
   nre = qt({
     __name: 'ChatMessage',
