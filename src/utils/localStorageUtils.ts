@@ -4,15 +4,30 @@
  */
 
 export interface UserAuthorityInfo {
-  userId?: string
-  userName?: string
-  schoolId?: string
-  schoolName?: string
-  userType?: string
+  // 索引 0: 账号类型 (1: 个人账号, 2: 学校账号)
+  accountType?: string
+  // 索引 1: 未命名字段 (暂时忽略)
+  unknown1?: string
+  // 索引 2: 年级
   grade?: string
-  class?: string
+  // 索引 3: 未命名字段 (暂时忽略)
+  unknown2?: string
+  // 索引 4: 未命名字段 (暂时忽略)
+  unknown3?: string
+  // 索引 5: 用户ID
+  userId?: string
+  // 索引 6: 手机号
   phone?: string
-  region?: string
+  // 索引 7: 姓名
+  userName?: string
+  // 索引 8: 学号/身份标识
+  studentId?: string
+  // 索引 9: 身份证号
+  idNumber?: string
+  // 索引 10: 用户类型 (1: 学生, 2: 老师, 3: 大学生)
+  userType?: string
+  // 索引 11: 人员类型 (1: 学校人员, 2: 社会人员)
+  personnelType?: string
   [key: string]: any
 }
 
@@ -103,43 +118,44 @@ function parseAuthorityData(authorityData: string | null): UserAuthorityInfo | n
     // 根据图片中的数组结构解析数据
     // ["1", "2782e8d3-5f82-4443-9855-6f31dff9766a", "6", "3", null, ...]
     const userInfo: UserAuthorityInfo = {
-      // 索引 0: 用户类型
-      userType: authorityArray[0] || undefined,
-      // 索引 1: 用户ID
-      userId: authorityArray[1] || undefined,
+      // 索引 0: 账号类型 (1: 个人账号, 2: 学校账号)
+      accountType: authorityArray[0] || undefined,
+      // 索引 1: 未命名字段 (暂时忽略)
+      unknown1: authorityArray[1] || undefined,
       // 索引 2: 年级
       grade: authorityArray[2] || undefined,
-      // 索引 3: 班级
-      class: authorityArray[3] || undefined,
-      // 索引 4: 未知字段
-      unknown1: authorityArray[4] || undefined,
-      // 索引 5: 学校ID
-      schoolId: authorityArray[5] || undefined,
+      // 索引 3: 未命名字段 (暂时忽略)
+      unknown2: authorityArray[3] || undefined,
+      // 索引 4: 未命名字段 (暂时忽略)
+      unknown3: authorityArray[4] || undefined,
+      // 索引 5: 用户ID
+      userId: authorityArray[5] || undefined,
       // 索引 6: 手机号
       phone: authorityArray[6] || undefined,
-      // 索引 7: 用户姓名
+      // 索引 7: 姓名
       userName: authorityArray[7] || undefined,
-      // 索引 8: 学校名称/类型
-      schoolName: authorityArray[8] || undefined,
-      // 索引 9: 未知字段
-      unknown2: authorityArray[9] || undefined,
-      // 索引 10: 地区
-      region: authorityArray[10] || undefined,
-      // 索引 11: 其他信息
-      other: authorityArray[11] || undefined,
+      // 索引 8: 学号/身份标识
+      studentId: authorityArray[8] || undefined,
+      // 索引 9: 身份证号
+      idNumber: authorityArray[9] || undefined,
+      // 索引 10: 用户类型 (1: 学生, 2: 老师, 3: 大学生)
+      userType: authorityArray[10] || undefined,
+      // 索引 11: 人员类型 (1: 学校人员, 2: 社会人员)
+      personnelType: authorityArray[11] || undefined,
       // 保留原始数据
       rawData: authorityArray,
     }
 
     console.log('✅ 成功解析用户权限信息:')
+    console.log('   🏷️ 账号类型 (索引0):', userInfo.accountType)
     console.log('   👤 用户姓名 (索引7):', userInfo.userName)
-    console.log('   🆔 用户ID (索引1):', userInfo.userId)
-    console.log('   🏫 学校ID (索引5):', userInfo.schoolId)
-    console.log('   🏢 学校名称 (索引8):', userInfo.schoolName)
+    console.log('   🆔 用户ID (索引5):', userInfo.userId)
+    console.log('   🎓 学号/身份标识 (索引8):', userInfo.studentId)
     console.log('   📚 年级 (索引2):', userInfo.grade)
-    console.log('   🎒 班级 (索引3):', userInfo.class)
     console.log('   📱 手机号 (索引6):', userInfo.phone)
-    console.log('   🌍 地区 (索引10):', userInfo.region)
+    console.log('   🆔 身份证号 (索引9):', userInfo.idNumber)
+    console.log('   👥 用户类型 (索引10):', userInfo.userType)
+    console.log('   🏢 人员类型 (索引11):', userInfo.personnelType)
     console.log('   📊 完整数据:', userInfo)
 
     return userInfo
@@ -147,6 +163,16 @@ function parseAuthorityData(authorityData: string | null): UserAuthorityInfo | n
     console.error('❌ 解析 wj_oss_authority 数据失败:', error)
     return null
   }
+}
+
+/**
+ * 获取账号类型（索引0）
+ */
+export function getAccountType(): string | null {
+  const userInfo = getUserAuthorityFromLocalStorage()
+  const accountType = userInfo?.accountType || null
+  console.log('🔍 获取账号类型:', accountType)
+  return accountType
 }
 
 /**
@@ -160,7 +186,7 @@ export function getUserName(): string | null {
 }
 
 /**
- * 获取用户ID（索引1）
+ * 获取用户ID（索引5）
  */
 export function getUserId(): string | null {
   const userInfo = getUserAuthorityFromLocalStorage()
@@ -170,23 +196,13 @@ export function getUserId(): string | null {
 }
 
 /**
- * 获取学校ID（索引5）
+ * 获取学号/身份标识（索引8）
  */
-export function getSchoolId(): string | null {
+export function getStudentId(): string | null {
   const userInfo = getUserAuthorityFromLocalStorage()
-  const schoolId = userInfo?.schoolId || null
-  console.log('🔍 获取学校ID:', schoolId)
-  return schoolId
-}
-
-/**
- * 获取学校名称（索引8）
- */
-export function getSchoolName(): string | null {
-  const userInfo = getUserAuthorityFromLocalStorage()
-  const schoolName = userInfo?.schoolName || null
-  console.log('🔍 获取学校名称:', schoolName)
-  return schoolName
+  const studentId = userInfo?.studentId || null
+  console.log('🔍 获取学号/身份标识:', studentId)
+  return studentId
 }
 
 /**
@@ -200,16 +216,6 @@ export function getGrade(): string | null {
 }
 
 /**
- * 获取班级（索引3）
- */
-export function getClass(): string | null {
-  const userInfo = getUserAuthorityFromLocalStorage()
-  const classInfo = userInfo?.class || null
-  console.log('🔍 获取班级:', classInfo)
-  return classInfo
-}
-
-/**
  * 获取手机号（索引6）
  */
 export function getPhone(): string | null {
@@ -220,13 +226,33 @@ export function getPhone(): string | null {
 }
 
 /**
- * 获取地区（索引10）
+ * 获取身份证号（索引9）
  */
-export function getRegion(): string | null {
+export function getIdNumber(): string | null {
   const userInfo = getUserAuthorityFromLocalStorage()
-  const region = userInfo?.region || null
-  console.log('🔍 获取地区:', region)
-  return region
+  const idNumber = userInfo?.idNumber || null
+  console.log('🔍 获取身份证号:', idNumber)
+  return idNumber
+}
+
+/**
+ * 获取用户类型（索引10）
+ */
+export function getUserType(): string | null {
+  const userInfo = getUserAuthorityFromLocalStorage()
+  const userType = userInfo?.userType || null
+  console.log('🔍 获取用户类型:', userType)
+  return userType
+}
+
+/**
+ * 获取人员类型（索引11）
+ */
+export function getPersonnelType(): string | null {
+  const userInfo = getUserAuthorityFromLocalStorage()
+  const personnelType = userInfo?.personnelType || null
+  console.log('🔍 获取人员类型:', personnelType)
+  return personnelType
 }
 
 /**

@@ -232,14 +232,15 @@ export const useVideoChatStore = defineStore('videoChatStore', {
 
       if (userAuthority) {
         console.log('✅ Store: 成功获取用户权限信息')
+        console.log('   🏷️ 账号类型 (索引0):', userAuthority.accountType)
         console.log('   👤 用户姓名 (索引7):', userAuthority.userName)
-        console.log('   🆔 用户ID (索引1):', userAuthority.userId)
-        console.log('   🏫 学校ID (索引5):', userAuthority.schoolId)
-        console.log('   🏢 学校名称 (索引8):', userAuthority.schoolName)
+        console.log('   🆔 用户ID (索引5):', userAuthority.userId)
+        console.log('   🎓 学号/身份标识 (索引8):', userAuthority.studentId)
         console.log('   📚 年级 (索引2):', userAuthority.grade)
-        console.log('   🎒 班级 (索引3):', userAuthority.class)
         console.log('   📱 手机号 (索引6):', userAuthority.phone)
-        console.log('   🌍 地区 (索引10):', userAuthority.region)
+        console.log('   🆔 身份证号 (索引9):', userAuthority.idNumber)
+        console.log('   👥 用户类型 (索引10):', userAuthority.userType)
+        console.log('   🏢 人员类型 (索引11):', userAuthority.personnelType)
 
         // 如果有用户ID，自动查询数据库
         if (userAuthority.userId) {
@@ -270,21 +271,48 @@ export const useVideoChatStore = defineStore('videoChatStore', {
     },
 
     /**
-     * 获取学校ID
+     * 获取学号/身份标识
      */
-    getSchoolId(): string | null {
-      const schoolId = this.userAuthority?.schoolId || null
-      console.log('🔍 Store: 获取学校ID:', schoolId)
-      return schoolId
+    getStudentId(): string | null {
+      const studentId = this.userAuthority?.studentId || null
+      console.log('🔍 Store: 获取学号/身份标识:', studentId)
+      return studentId
     },
 
     /**
-     * 获取学校名称
+     * 获取身份证号
      */
-    getSchoolName(): string | null {
-      const schoolName = this.userAuthority?.schoolName || null
-      console.log('🔍 Store: 获取学校名称:', schoolName)
-      return schoolName
+    getIdNumber(): string | null {
+      const idNumber = this.userAuthority?.idNumber || null
+      console.log('🔍 Store: 获取身份证号:', idNumber)
+      return idNumber
+    },
+
+    /**
+     * 获取用户类型
+     */
+    getUserType(): string | null {
+      const userType = this.userAuthority?.userType || null
+      console.log('🔍 Store: 获取用户类型:', userType)
+      return userType
+    },
+
+    /**
+     * 获取人员类型
+     */
+    getPersonnelType(): string | null {
+      const personnelType = this.userAuthority?.personnelType || null
+      console.log('🔍 Store: 获取人员类型:', personnelType)
+      return personnelType
+    },
+
+    /**
+     * 获取账号类型
+     */
+    getAccountType(): string | null {
+      const accountType = this.userAuthority?.accountType || null
+      console.log('🔍 Store: 获取账号类型:', accountType)
+      return accountType
     },
 
     /**
@@ -297,30 +325,12 @@ export const useVideoChatStore = defineStore('videoChatStore', {
     },
 
     /**
-     * 获取班级
-     */
-    getClass(): string | null {
-      const classInfo = this.userAuthority?.class || null
-      console.log('🔍 Store: 获取班级:', classInfo)
-      return classInfo
-    },
-
-    /**
      * 获取手机号
      */
     getPhone(): string | null {
       const phone = this.userAuthority?.phone || null
       console.log('🔍 Store: 获取手机号:', phone)
       return phone
-    },
-
-    /**
-     * 获取地区
-     */
-    getRegion(): string | null {
-      const region = this.userAuthority?.region || null
-      console.log('🔍 Store: 获取地区:', region)
-      return region
     },
 
     /**

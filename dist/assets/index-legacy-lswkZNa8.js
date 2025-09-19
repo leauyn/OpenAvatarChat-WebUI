@@ -77559,30 +77559,31 @@
                         )
                           return (console.warn('❌ wj_oss_authority 不是数组格式'), null)
                         var n = {
-                          userType: t[0] || void 0,
-                          userId: t[1] || void 0,
+                          accountType: t[0] || void 0,
+                          unknown1: t[1] || void 0,
                           grade: t[2] || void 0,
-                          class: t[3] || void 0,
-                          unknown1: t[4] || void 0,
-                          schoolId: t[5] || void 0,
+                          unknown2: t[3] || void 0,
+                          unknown3: t[4] || void 0,
+                          userId: t[5] || void 0,
                           phone: t[6] || void 0,
                           userName: t[7] || void 0,
-                          schoolName: t[8] || void 0,
-                          unknown2: t[9] || void 0,
-                          region: t[10] || void 0,
-                          other: t[11] || void 0,
+                          studentId: t[8] || void 0,
+                          idNumber: t[9] || void 0,
+                          userType: t[10] || void 0,
+                          personnelType: t[11] || void 0,
                           rawData: t,
                         }
                         return (
                           console.log('✅ 成功解析用户权限信息:'),
+                          console.log('   🏷️ 账号类型 (索引0):', n.accountType),
                           console.log('   👤 用户姓名 (索引7):', n.userName),
-                          console.log('   🆔 用户ID (索引1):', n.userId),
-                          console.log('   🏫 学校ID (索引5):', n.schoolId),
-                          console.log('   🏢 学校名称 (索引8):', n.schoolName),
+                          console.log('   🆔 用户ID (索引5):', n.userId),
+                          console.log('   🎓 学号/身份标识 (索引8):', n.studentId),
                           console.log('   📚 年级 (索引2):', n.grade),
-                          console.log('   🎒 班级 (索引3):', n.class),
                           console.log('   📱 手机号 (索引6):', n.phone),
-                          console.log('   🌍 地区 (索引10):', n.region),
+                          console.log('   🆔 身份证号 (索引9):', n.idNumber),
+                          console.log('   👥 用户类型 (索引10):', n.userType),
+                          console.log('   🏢 人员类型 (索引11):', n.personnelType),
                           console.log('   📊 完整数据:', n),
                           n
                         )
@@ -86045,14 +86046,15 @@
                               }
                               if (
                                 (console.log('✅ Store: 成功获取用户权限信息'),
+                                console.log('   🏷️ 账号类型 (索引0):', n.accountType),
                                 console.log('   👤 用户姓名 (索引7):', n.userName),
-                                console.log('   🆔 用户ID (索引1):', n.userId),
-                                console.log('   🏫 学校ID (索引5):', n.schoolId),
-                                console.log('   🏢 学校名称 (索引8):', n.schoolName),
+                                console.log('   🆔 用户ID (索引5):', n.userId),
+                                console.log('   🎓 学号/身份标识 (索引8):', n.studentId),
                                 console.log('   📚 年级 (索引2):', n.grade),
-                                console.log('   🎒 班级 (索引3):', n.class),
                                 console.log('   📱 手机号 (索引6):', n.phone),
-                                console.log('   🌍 地区 (索引10):', n.region),
+                                console.log('   🆔 身份证号 (索引9):', n.idNumber),
+                                console.log('   👥 用户类型 (索引10):', n.userType),
+                                console.log('   🏢 人员类型 (索引11):', n.personnelType),
                                 !n.userId)
                               ) {
                                 t.n = 1
@@ -86089,19 +86091,42 @@
                       null
                   return (console.log('🔍 Store: 获取用户ID:', t), t)
                 },
-                getSchoolId: function () {
+                getStudentId: function () {
                   var e,
                     t =
-                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.schoolId) ||
+                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.studentId) ||
                       null
-                  return (console.log('🔍 Store: 获取学校ID:', t), t)
+                  return (console.log('🔍 Store: 获取学号/身份标识:', t), t)
                 },
-                getSchoolName: function () {
+                getIdNumber: function () {
                   var e,
                     t =
-                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.schoolName) ||
+                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.idNumber) ||
                       null
-                  return (console.log('🔍 Store: 获取学校名称:', t), t)
+                  return (console.log('🔍 Store: 获取身份证号:', t), t)
+                },
+                getUserType: function () {
+                  var e,
+                    t =
+                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.userType) ||
+                      null
+                  return (console.log('🔍 Store: 获取用户类型:', t), t)
+                },
+                getPersonnelType: function () {
+                  var e,
+                    t =
+                      (null === (e = this.userAuthority) || void 0 === e
+                        ? void 0
+                        : e.personnelType) || null
+                  return (console.log('🔍 Store: 获取人员类型:', t), t)
+                },
+                getAccountType: function () {
+                  var e,
+                    t =
+                      (null === (e = this.userAuthority) || void 0 === e
+                        ? void 0
+                        : e.accountType) || null
+                  return (console.log('🔍 Store: 获取账号类型:', t), t)
                 },
                 getGrade: function () {
                   var e,
@@ -86109,24 +86134,11 @@
                       (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.grade) || null
                   return (console.log('🔍 Store: 获取年级:', t), t)
                 },
-                getClass: function () {
-                  var e,
-                    t =
-                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.class) || null
-                  return (console.log('🔍 Store: 获取班级:', t), t)
-                },
                 getPhone: function () {
                   var e,
                     t =
                       (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.phone) || null
                   return (console.log('🔍 Store: 获取手机号:', t), t)
-                },
-                getRegion: function () {
-                  var e,
-                    t =
-                      (null === (e = this.userAuthority) || void 0 === e ? void 0 : e.region) ||
-                      null
-                  return (console.log('🔍 Store: 获取地区:', t), t)
                 },
                 fetchUserResultInfo: function (e) {
                   var t = this

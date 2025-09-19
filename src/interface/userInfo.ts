@@ -3,28 +3,34 @@
  */
 
 export interface UserAuthorityInfo {
-  /** 用户ID (索引1) */
-  userId?: string
-  /** 用户姓名 (索引7) */
-  userName?: string
-  /** 学校ID (索引5) */
-  schoolId?: string
-  /** 学校名称/类型 (索引8) */
-  schoolName?: string
-  /** 用户类型 (索引0) */
-  userType?: string
+  /** 账号类型 (索引0) - 1: 个人账号, 2: 学校账号 */
+  accountType?: string
+  /** 未命名字段 (索引1) - 暂时忽略 */
+  unknown1?: string
   /** 年级 (索引2) */
   grade?: string
-  /** 班级 (索引3) */
-  class?: string
+  /** 未命名字段 (索引3) - 暂时忽略 */
+  unknown2?: string
+  /** 未命名字段 (索引4) - 暂时忽略 */
+  unknown3?: string
+  /** 用户ID (索引5) */
+  userId?: string
   /** 手机号 (索引6) */
   phone?: string
-  /** 地区 (索引10) */
-  region?: string
-  /** 其他信息 (索引11) */
-  other?: string
+  /** 姓名 (索引7) */
+  userName?: string
+  /** 学号/身份标识 (索引8) */
+  studentId?: string
+  /** 身份证号 (索引9) */
+  idNumber?: string
+  /** 用户类型 (索引10) - 1: 学生, 2: 老师, 3: 大学生 */
+  userType?: string
+  /** 人员类型 (索引11) - 1: 学校人员, 2: 社会人员 */
+  personnelType?: string
   /** 原始数组数据 */
   rawData?: any[]
+  /** 允许其他未知属性 */
+  [key: string]: any
 }
 
 export interface UserInfo {
