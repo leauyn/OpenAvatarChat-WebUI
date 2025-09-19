@@ -12,6 +12,8 @@ import {
 } from '@/utils/streamUtils'
 import { setupWebRTC, stop } from '@/utils/webrtcUtils'
 import { getUserAuthorityFromLocalStorage, isInIframe } from '@/utils/localStorageUtils'
+import { getUserResultInfo } from '@/services/databaseService'
+import { UserResultInfo, DatabaseResponse } from '@/interface/databaseTypes'
 import { message } from 'ant-design-vue'
 import { defineStore } from 'pinia'
 import { useVisionStore } from './vision'
@@ -55,6 +57,11 @@ interface VideoChatState {
   isInIframe: boolean
   parentOrigin: string | null
 
+  // 用户数据库记录
+  userResultInfo: UserResultInfo[]
+  userResultInfoLoading: boolean
+  userResultInfoError: string | null
+
   volumeMuted: boolean
   micMuted: boolean
   cameraOff: boolean
@@ -97,6 +104,11 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       userAuthority: null,
       isInIframe: false,
       parentOrigin: null,
+
+      // 用户数据库记录
+      userResultInfo: [],
+      userResultInfoLoading: false,
+      userResultInfoError: null,
 
       volumeMuted: false,
       micMuted: false,
@@ -166,7 +178,7 @@ export const useVideoChatStore = defineStore('videoChatStore', {
     },
     async init() {
       // 初始化用户信息
-      this.initializeUserInfo()
+      await this.initializeUserInfo()
 
       fetch('/openavatarchat/initconfig')
         .then((res) => res.json())
@@ -194,7 +206,7 @@ export const useVideoChatStore = defineStore('videoChatStore', {
      * 初始化用户信息
      * 从 localStorage 获取 wj_oss_authority 数组中的用户信息
      */
-    initializeUserInfo() {
+    async initializeUserInfo() {
       try {
         console.log('🚀 开始初始化用户信息...')
 
@@ -203,7 +215,7 @@ export const useVideoChatStore = defineStore('videoChatStore', {
         console.log('🔍 是否在 iframe 中运行:', this.isInIframe)
 
         // 直接从当前窗口的 localStorage 获取
-        this.loadUserAuthorityFromLocalStorage()
+        await this.loadUserAuthorityFromLocalStorage()
       } catch (error) {
         console.error('❌ 初始化用户信息失败:', error)
       }
@@ -212,7 +224,7 @@ export const useVideoChatStore = defineStore('videoChatStore', {
     /**
      * 从当前窗口的 localStorage 加载用户权限信息
      */
-    loadUserAuthorityFromLocalStorage() {
+    async loadUserAuthorityFromLocalStorage() {
       console.log('📖 从 localStorage 加载用户权限信息...')
 
       const userAuthority = getUserAuthorityFromLocalStorage()
@@ -228,6 +240,12 @@ export const useVideoChatStore = defineStore('videoChatStore', {
         console.log('   🎒 班级 (索引3):', userAuthority.class)
         console.log('   📱 手机号 (索引6):', userAuthority.phone)
         console.log('   🌍 地区 (索引10):', userAuthority.region)
+
+        // 如果有用户ID，自动查询数据库
+        if (userAuthority.userId) {
+          console.log('🔄 检测到用户ID，开始查询数据库...')
+          await this.fetchUserResultInfo(userAuthority.userId)
+        }
       } else {
         console.log('❌ Store: 未找到用户权限信息')
       }
@@ -303,6 +321,91 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       const region = this.userAuthority?.region || null
       console.log('🔍 Store: 获取地区:', region)
       return region
+    },
+
+    /**
+     * 根据用户ID查询用户结果信息
+     */
+    async fetchUserResultInfo(userId?: string): Promise<void> {
+      try {
+        console.log('🚀 开始查询用户结果信息...')
+
+        // 如果没有提供userId，尝试从userAuthority获取
+        const targetUserId = userId || this.userAuthority?.userId
+
+        if (!targetUserId) {
+          console.error('❌ 未提供用户ID，无法查询数据库')
+          this.userResultInfoError = '未提供用户ID'
+          return
+        }
+
+        console.log('📋 查询用户ID:', targetUserId)
+
+        // 设置加载状态
+        this.userResultInfoLoading = true
+        this.userResultInfoError = null
+
+        // 调用数据库服务
+        const response = await getUserResultInfo(targetUserId)
+
+        if (response.resultCode === 200) {
+          this.userResultInfo = response.data
+          console.log('✅ Store: 成功获取用户结果信息')
+          console.log('   📊 记录数量:', response.data.length)
+          console.log('   📋 数据:', response.data)
+        } else {
+          this.userResultInfoError = response.resultMsg || '查询失败'
+          console.error('❌ Store: 查询用户结果信息失败:', response.resultMsg)
+        }
+      } catch (error) {
+        console.error('❌ Store: 查询用户结果信息异常:', error)
+        this.userResultInfoError = error instanceof Error ? error.message : '未知错误'
+      } finally {
+        this.userResultInfoLoading = false
+      }
+    },
+
+    /**
+     * 自动查询当前用户的数据库记录
+     */
+    async fetchCurrentUserResultInfo(): Promise<void> {
+      console.log('🔄 自动查询当前用户的数据库记录...')
+      await this.fetchUserResultInfo()
+    },
+
+    /**
+     * 清除用户结果信息
+     */
+    clearUserResultInfo(): void {
+      console.log('🗑️ 清除用户结果信息')
+      this.userResultInfo = []
+      this.userResultInfoError = null
+    },
+
+    /**
+     * 获取用户结果信息（按名称分组）
+     */
+    getUserResultInfoByName(): Record<string, UserResultInfo[]> {
+      const grouped: Record<string, UserResultInfo[]> = {}
+
+      this.userResultInfo.forEach((record) => {
+        if (!grouped[record.name]) {
+          grouped[record.name] = []
+        }
+        grouped[record.name].push(record)
+      })
+
+      console.log('📊 按名称分组的用户结果信息:', grouped)
+      return grouped
+    },
+
+    /**
+     * 获取特定名称的结果信息
+     */
+    getUserResultInfoBySpecificName(name: string): UserResultInfo[] {
+      const filtered = this.userResultInfo.filter((record) => record.name === name)
+      console.log(`🔍 获取名称 "${name}" 的结果信息:`, filtered)
+      return filtered
     },
     handleCameraOff() {
       this.cameraOff = !this.cameraOff
