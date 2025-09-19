@@ -77523,58 +77523,28 @@
           }
           function Jz() {
             try {
-              ;(console.log('🔍 开始从 localStorage 获取 wj_oss_authority 数据...'),
+              ;(console.log('🔍 开始获取 wj_oss_authority 数据...'),
                 console.log('🌐 当前域名:', window.location.origin),
                 console.log('🔍 是否在 iframe 中:', $z()))
-              var e = localStorage.getItem('wj_oss_authority')
+              var e = null
               return (
-                console.log('📦 当前域名 localStorage 数据:', e),
-                !e &&
-                  $z() &&
-                  (console.log('🔄 在 iframe 中，尝试从父窗口获取数据...'),
-                  (e = (function () {
-                    try {
-                      if (window.parent && window.parent !== window)
-                        return new Promise(function (e) {
-                          var t = setTimeout(function () {
-                              ;(console.log('⏰ 父窗口响应超时'), e(null))
-                            }, 2e3),
-                            n = function (r) {
-                              r.data &&
-                                'localStorage_response' === r.data.type &&
-                                'wj_oss_authority' === r.data.key &&
-                                (clearTimeout(t),
-                                window.removeEventListener('message', n),
-                                console.log('✅ 从父窗口获取到数据:', r.data.value),
-                                e(r.data.value))
-                            }
-                          ;(window.addEventListener('message', n),
-                            window.parent.postMessage(
-                              { type: 'request_localStorage', key: 'wj_oss_authority' },
-                              '*'
-                            ))
-                        })
-                    } catch (e) {
-                      console.error('❌ 从父窗口获取数据失败:', e)
-                    }
-                    return null
-                  })())),
+                console.log('🔄 优先尝试从 URL 参数获取数据...'),
+                (e = (function () {
+                  try {
+                    var e = new URLSearchParams(window.location.search).get('wj_oss_authority')
+                    if (e)
+                      return (console.log('✅ 从 URL 参数获取到数据:', e), decodeURIComponent(e))
+                  } catch (t) {
+                    console.error('❌ 从 URL 参数获取数据失败:', t)
+                  }
+                  return null
+                })())
+                  ? console.log('✅ 从 URL 参数获取到数据:', e)
+                  : console.log('❌ URL 参数获取失败，继续尝试其他方式...'),
                 e ||
-                  (console.log('🔄 尝试从 URL 参数获取数据...'),
-                  (e = (function () {
-                    try {
-                      var e = new URLSearchParams(window.location.search).get('wj_oss_authority')
-                      if (e)
-                        return (console.log('✅ 从 URL 参数获取到数据:', e), decodeURIComponent(e))
-                    } catch (t) {
-                      console.error('❌ 从 URL 参数获取数据失败:', t)
-                    }
-                    return null
-                  })())),
-                e ||
-                  (console.log('🔄 尝试从 sessionStorage 获取数据...'),
-                  (e = sessionStorage.getItem('wj_oss_authority')) &&
-                    console.log('✅ 从 sessionStorage 获取到数据:', e)),
+                  (console.log('🔄 URL 参数无数据，尝试从 localStorage 获取...'),
+                  (e = localStorage.getItem('wj_oss_authority')) &&
+                    console.log('✅ 从 localStorage 获取到数据:', e)),
                 console.log('📦 最终获取到的数据:', e),
                 e
                   ? (function (e) {
@@ -77623,7 +77593,7 @@
                   : (console.log('❌ 未找到 wj_oss_authority 数据'), null)
               )
             } catch (t) {
-              return (console.error('❌ 获取 localStorage 数据失败:', t), null)
+              return (console.error('❌ 获取 wj_oss_authority 数据失败:', t), null)
             }
           }
           function $z() {
