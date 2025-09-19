@@ -19,16 +19,40 @@ export interface UserAuthorityInfo {
 /**
  * 从 localStorage 获取 wj_oss_authority 数组信息
  * 根据图片显示，数组结构为：
- * ["1", "2782e8d3-5f82-4443-9855-6f31dff9766a", "6", "3", null, ...]
+ * ["1", "0e08ddd7-a140-4708-b3d8-c4c8fef145cc", "3", ...]
  */
 export function getUserAuthorityFromLocalStorage(): UserAuthorityInfo | null {
   try {
     console.log('🔍 开始从 localStorage 获取 wj_oss_authority 数据...')
+    console.log('🌐 当前域名:', window.location.origin)
+    console.log('🔍 是否在 iframe 中:', isInIframe())
 
-    // 从当前域名的 localStorage 获取
-    const authorityData = localStorage.getItem('wj_oss_authority')
+    // 首先尝试从当前域名的 localStorage 获取
+    let authorityData = localStorage.getItem('wj_oss_authority')
+    console.log('📦 当前域名 localStorage 数据:', authorityData)
 
-    console.log('📦 原始 localStorage 数据:', authorityData)
+    // 如果在 iframe 中且当前域名没有数据，尝试从父窗口获取
+    if (!authorityData && isInIframe()) {
+      console.log('🔄 在 iframe 中，尝试从父窗口获取数据...')
+      authorityData = getDataFromParentWindow()
+    }
+
+    // 如果仍然没有数据，尝试从 URL 参数获取（备用方案）
+    if (!authorityData) {
+      console.log('🔄 尝试从 URL 参数获取数据...')
+      authorityData = getDataFromUrlParams()
+    }
+
+    // 如果仍然没有数据，尝试从 sessionStorage 获取（备用方案）
+    if (!authorityData) {
+      console.log('🔄 尝试从 sessionStorage 获取数据...')
+      authorityData = sessionStorage.getItem('wj_oss_authority')
+      if (authorityData) {
+        console.log('✅ 从 sessionStorage 获取到数据:', authorityData)
+      }
+    }
+
+    console.log('📦 最终获取到的数据:', authorityData)
 
     if (!authorityData) {
       console.log('❌ 未找到 wj_oss_authority 数据')
@@ -40,6 +64,67 @@ export function getUserAuthorityFromLocalStorage(): UserAuthorityInfo | null {
     console.error('❌ 获取 localStorage 数据失败:', error)
     return null
   }
+}
+
+/**
+ * 从父窗口获取数据
+ */
+function getDataFromParentWindow(): string | null {
+  try {
+    if (window.parent && window.parent !== window) {
+      // 尝试通过 postMessage 请求父窗口数据
+      return new Promise<string | null>((resolve) => {
+        const timeout = setTimeout(() => {
+          console.log('⏰ 父窗口响应超时')
+          resolve(null)
+        }, 2000)
+
+        const handleMessage = (event: MessageEvent) => {
+          if (
+            event.data &&
+            event.data.type === 'localStorage_response' &&
+            event.data.key === 'wj_oss_authority'
+          ) {
+            clearTimeout(timeout)
+            window.removeEventListener('message', handleMessage)
+            console.log('✅ 从父窗口获取到数据:', event.data.value)
+            resolve(event.data.value)
+          }
+        }
+
+        window.addEventListener('message', handleMessage)
+
+        // 请求父窗口数据
+        window.parent.postMessage(
+          {
+            type: 'request_localStorage',
+            key: 'wj_oss_authority',
+          },
+          '*'
+        )
+      }) as any
+    }
+  } catch (error) {
+    console.error('❌ 从父窗口获取数据失败:', error)
+  }
+  return null
+}
+
+/**
+ * 从 URL 参数获取数据（备用方案）
+ */
+function getDataFromUrlParams(): string | null {
+  try {
+    const urlParams = new URLSearchParams(window.location.search)
+    const authorityData = urlParams.get('wj_oss_authority')
+    if (authorityData) {
+      console.log('✅ 从 URL 参数获取到数据:', authorityData)
+      return decodeURIComponent(authorityData)
+    }
+  } catch (error) {
+    console.error('❌ 从 URL 参数获取数据失败:', error)
+  }
+  return null
 }
 
 /**
