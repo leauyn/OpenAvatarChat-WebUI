@@ -13,10 +13,10 @@
       </template>
       <template v-else-if="streamState === StreamState.waiting">
         <div class="waiting-icon-text">
-          <div class="icon" title="spinner">
+          <!-- <div class="icon" title="spinner">
             <Spin wrapper-class-name="spin-icon" />
-          </div>
-          <span>等待中</span>
+          </div> -->
+          <span>等待中...</span>
         </div>
       </template>
       <template v-else>
