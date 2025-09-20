@@ -151,49 +151,83 @@ function onInterrupt() {
   }
 
   .chat-input-inner {
-    padding: 0 12px;
-    background-color: #fff;
+    padding: 0 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
     height: 44px;
     flex: 1;
     display: flex;
     align-items: center;
-    border: 1px solid #e8eaf2;
-    border-radius: 22px;
+    border: 1.5px solid #e1e5f2;
+    border-radius: 24px;
     box-shadow:
-      0 4px 12px -4px rgba(54, 54, 73, 0.04),
-      0 4px 16px 0 rgba(51, 51, 71, 0.08),
-      0 0 1px 0 rgba(44, 44, 54, 0.02);
-    transition: all 0.2s ease;
+      0 2px 8px -2px rgba(54, 54, 73, 0.06),
+      0 4px 20px -4px rgba(51, 51, 71, 0.12),
+      0 1px 3px 0 rgba(44, 44, 54, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(120, 115, 246, 0.02) 0%,
+        rgba(120, 115, 246, 0.01) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
     &:focus-within {
       border-color: #7873f6;
       box-shadow:
-        0 4px 12px -4px rgba(120, 115, 246, 0.1),
-        0 4px 16px 0 rgba(120, 115, 246, 0.15),
-        0 0 1px 0 rgba(120, 115, 246, 0.2);
+        0 4px 16px -4px rgba(120, 115, 246, 0.15),
+        0 8px 32px -8px rgba(120, 115, 246, 0.25),
+        0 2px 8px 0 rgba(120, 115, 246, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      transform: translateY(-1px);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &:hover:not(:focus-within) {
+      border-color: #c7d2fe;
+      box-shadow:
+        0 4px 12px -4px rgba(54, 54, 73, 0.08),
+        0 6px 24px -6px rgba(51, 51, 71, 0.15),
+        0 2px 6px 0 rgba(44, 44, 54, 0.06);
+      transform: translateY(-0.5px);
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
       height: 40px;
-      border-radius: 20px;
-      padding: 0 10px;
+      border-radius: 22px;
+      padding: 0 14px;
     }
 
     @media (max-width: 768px) {
       height: 36px;
-      border-radius: 18px;
-      padding: 0 10px;
+      border-radius: 20px;
+      padding: 0 12px;
     }
 
     @media (max-width: 480px) {
       height: 32px;
-      border-radius: 16px;
-      padding: 0 8px;
+      border-radius: 18px;
+      padding: 0 10px;
     }
 
     @media (max-width: 360px) {
       height: 28px;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 0 8px;
     }
 
@@ -207,18 +241,26 @@ function onInterrupt() {
         width: 100%;
         border: none;
         outline: none;
-        color: #26244c;
-        font-size: 13px;
-        font-weight: 400;
+        color: #1a1a2e;
+        font-size: 14px;
+        font-weight: 500;
         font-family:
           -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
           'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         resize: none;
         padding: 0;
         margin: 6px 0;
-        line-height: 1.5;
+        line-height: 1.6;
         max-height: 32px;
         min-height: 20px;
+        background: transparent;
+        letter-spacing: 0.01em;
+
+        &::placeholder {
+          color: #8b8ba7;
+          font-weight: 400;
+          opacity: 0.8;
+        }
 
         @media (max-width: 1024px) and (min-width: 769px) {
           font-size: 13px;
@@ -266,49 +308,83 @@ function onInterrupt() {
     .interrupt-btn {
       border: none;
       flex: 0 0 auto;
-      background: #615ced;
-      border-radius: 18px;
-      height: 28px;
-      width: 28px;
+      background: linear-gradient(135deg, #7873f6 0%, #615ced 100%);
+      border-radius: 20px;
+      height: 32px;
+      width: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 8px;
+      margin-left: 10px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 2px 8px rgba(120, 115, 246, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
 
       &:hover {
-        background: #524de1;
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(97, 92, 237, 0.3);
+        background: linear-gradient(135deg, #615ced 0%, #524de1 100%);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow:
+          0 6px 20px rgba(120, 115, 246, 0.4),
+          0 3px 8px rgba(0, 0, 0, 0.15);
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &:active {
+        transform: translateY(-1px) scale(1.02);
+        box-shadow:
+          0 4px 12px rgba(120, 115, 246, 0.3),
+          0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       @media (max-width: 1024px) and (min-width: 769px) {
+        height: 28px;
+        width: 28px;
+        border-radius: 16px;
+        margin-left: 8px;
+      }
+
+      @media (max-width: 768px) {
+        height: 26px;
+        width: 26px;
+        border-radius: 14px;
+        margin-left: 8px;
+      }
+
+      @media (max-width: 480px) {
         height: 24px;
         width: 24px;
         border-radius: 12px;
         margin-left: 6px;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 360px) {
         height: 22px;
         width: 22px;
         border-radius: 11px;
         margin-left: 6px;
-      }
-
-      @media (max-width: 480px) {
-        height: 20px;
-        width: 20px;
-        border-radius: 10px;
-        margin-left: 4px;
-      }
-
-      @media (max-width: 360px) {
-        height: 18px;
-        width: 18px;
-        border-radius: 9px;
-        margin-left: 4px;
       }
     }
 
@@ -330,15 +406,49 @@ function onInterrupt() {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 22px;
+    border-radius: 24px;
     opacity: 1;
-    background: linear-gradient(180deg, #7873f6 0%, #524de1 100%);
-    transition: all 0.2s ease;
+    background: linear-gradient(135deg, #7873f6 0%, #615ced 50%, #524de1 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 4px 16px rgba(120, 115, 246, 0.25),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
     &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(120, 115, 246, 0.3);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:
+        0 8px 24px rgba(120, 115, 246, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow:
+        0 6px 16px rgba(120, 115, 246, 0.3),
+        0 3px 8px rgba(0, 0, 0, 0.1);
     }
 
     &::after {
@@ -352,82 +462,95 @@ function onInterrupt() {
     @media (max-width: 1024px) and (min-width: 769px) {
       height: 40px;
       width: 40px;
-      border-radius: 20px;
+      border-radius: 22px;
 
       &::after {
         width: 14px;
         height: 14px;
-        border-radius: 2.5px;
+        border-radius: 3px;
       }
     }
 
     @media (max-width: 768px) {
       height: 36px;
       width: 36px;
-      border-radius: 18px;
+      border-radius: 20px;
 
       &::after {
         width: 12px;
         height: 12px;
-        border-radius: 2px;
+        border-radius: 2.5px;
       }
     }
 
     @media (max-width: 480px) {
       height: 32px;
       width: 32px;
-      border-radius: 16px;
+      border-radius: 18px;
 
       &::after {
         width: 10px;
         height: 10px;
-        border-radius: 1.5px;
+        border-radius: 2px;
       }
     }
 
     @media (max-width: 360px) {
       height: 28px;
       width: 28px;
-      border-radius: 14px;
+      border-radius: 16px;
 
       &::after {
         width: 8px;
         height: 8px;
-        border-radius: 1px;
+        border-radius: 1.5px;
       }
     }
   }
 
   .ai-generate-hint {
-    margin-top: 6px;
-    font-size: 11px;
-    font-weight: 400;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 500;
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #8e8ea0;
+    color: #6b7280;
     text-align: center;
-    opacity: 0.7;
-    line-height: 1.4;
+    opacity: 0.8;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -4px;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #e5e7eb 50%, transparent 100%);
+    }
 
     @media (max-width: 1024px) and (min-width: 769px) {
       font-size: 11px;
-      margin-top: 5px;
+      margin-top: 7px;
     }
 
     @media (max-width: 768px) {
-      font-size: 12px;
-      margin-top: 4px;
+      font-size: 11px;
+      margin-top: 6px;
     }
 
     @media (max-width: 480px) {
-      font-size: 11px;
-      margin-top: 3px;
+      font-size: 10px;
+      margin-top: 5px;
     }
 
     @media (max-width: 360px) {
       font-size: 10px;
-      margin-top: 2px;
+      margin-top: 4px;
     }
   }
 }

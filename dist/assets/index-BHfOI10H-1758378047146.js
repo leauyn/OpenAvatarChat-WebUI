@@ -70587,7 +70587,7 @@ const Kie = { class: 'chat-input-container' },
       )
     },
   }),
-  tre = si(ere, [['__scopeId', 'data-v-eeb6eebe']]),
+  tre = si(ere, [['__scopeId', 'data-v-fda4ff08']]),
   nre = { class: 'answer-message-text' },
   ire = qt({
     __name: 'ChatMessage',
