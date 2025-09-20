@@ -14,7 +14,7 @@
 
         <div
           :class="`local-video-container ${streamState === 'open' ? 'scaled' : ''}`"
-          v-show="hasCamera && !cameraOff"
+          v-show="hasCamera && !cameraOff && streamState === 'open'"
           ref="localVideoContainerRef"
         >
           <video
@@ -28,6 +28,16 @@
               display: !hasCamera || cameraOff ? 'none' : 'block',
             }"
           />
+        </div>
+
+        <!-- 连接过程中的loading状态 -->
+        <div v-if="streamState === 'waiting'" class="connection-loading-container">
+          <div class="loading-content">
+            <div class="loading-spinner">
+              <Spin size="large" />
+            </div>
+            <div class="loading-text">正在连接...</div>
+          </div>
         </div>
         <div class="remote-video-container" ref="remoteVideoContainerRef">
           <video
@@ -76,6 +86,7 @@ import { useVideoChatStore } from '@/store'
 import { useVisionStore } from '@/store/vision'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { Spin } from 'ant-design-vue'
 const visionState = useVisionStore()
 const videoChatState = useVideoChatStore()
 const wrapRef = ref<HTMLDivElement>()
