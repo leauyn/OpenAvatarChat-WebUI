@@ -9,7 +9,13 @@
       >
         <!-- 顶部操作栏 -->
         <div v-if="webcamAccessed" class="top-actions">
+          <div class="left-action">
+            <LeftOutlined class="left-icon" />
+          </div>
           <ActionGroup />
+          <div class="right-action">
+            <SettingOutlined class="setting-icon" />
+          </div>
         </div>
 
         <div
@@ -87,6 +93,7 @@ import { useVisionStore } from '@/store/vision'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { Spin } from 'ant-design-vue'
+import { LeftOutlined, SettingOutlined } from '@ant-design/icons-vue'
 const visionState = useVisionStore()
 const videoChatState = useVideoChatStore()
 const wrapRef = ref<HTMLDivElement>()

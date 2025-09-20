@@ -305,42 +305,78 @@
   .top-actions {
   position: absolute;
   top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   z-index: 10;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
   
   // 平板设备响应式设计
   @media screen and (max-width: 1024px) and (min-width: 769px) {
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 0 14px;
   }
   
   // 移动设备响应式设计
   @media screen and (max-width: 768px) {
     top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 0 12px;
   }
   
   // 小屏移动设备响应式设计
   @media screen and (max-width: 480px) {
     top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    max-width: none;
+    padding: 0 10px;
   }
 
   // 超小屏设备
   @media screen and (max-width: 360px) {
     top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    max-width: none;
+    padding: 0 8px;
+  }
+
+  .left-action, .right-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    .left-icon, .setting-icon {
+      font-size: 32px;
+      color: #fff;
+      background: rgba(88, 87, 87, 0.5);
+      border-radius: 50%;
+      padding: 8px;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(103, 102, 106, 0.7);
+        transform: scale(1.05);
+      }
+
+      @media screen and (max-width: 1024px) and (min-width: 769px) {
+        font-size: 28px;
+        padding: 6px;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 24px;
+        padding: 6px;
+      }
+
+      @media screen and (max-width: 480px) {
+        font-size: 20px;
+        padding: 4px;
+      }
+
+      @media screen and (max-width: 360px) {
+        font-size: 18px;
+        padding: 4px;
+      }
+    }
   }
 }
