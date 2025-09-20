@@ -618,7 +618,11 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           }
         })
         this.streamState = StreamState.waiting
-        await setupWebRTC(this.stream!, this.peerConnection!, visionState.remoteVideoRef!)
+        // 获取用户ID
+        const userId = this.getUserId()
+        console.log('🚀 启动WebRTC连接，用户ID:', userId)
+
+        await setupWebRTC(this.stream!, this.peerConnection!, visionState.remoteVideoRef!, userId)
           .then(([dataChannel, webRTCId]) => {
             this.streamState = StreamState.open
             this.webRTCId = webRTCId as string

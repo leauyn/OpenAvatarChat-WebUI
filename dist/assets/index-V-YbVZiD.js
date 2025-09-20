@@ -58832,34 +58832,52 @@ function s3(n) {
       n.close()
     }, 500))
 }
-async function jX(n, e, t) {
-  ;(n.getTracks().forEach(async (l) => {
-    e.addTrack(l, n)
+async function jX(n, e, t, i) {
+  ;(n.getTracks().forEach(async (h) => {
+    e.addTrack(h, n)
   }),
-    e.addEventListener('track', (l) => {
-      t && t.srcObject !== l.streams[0] && (t.srcObject = l.streams[0])
+    e.addEventListener('track', (h) => {
+      t && t.srcObject !== h.streams[0] && (t.srcObject = h.streams[0])
     }))
-  const i = e.createDataChannel('text'),
-    r = await e.createOffer()
-  await e.setLocalDescription(r)
-  const s = Math.random().toString(36).substring(7)
-  e.onicecandidate = ({ candidate: l }) => {
-    l &&
-      (console.debug('Sending ICE candidate', l),
-      fetch('/webrtc/offer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ candidate: l.toJSON(), webrtc_id: s, type: 'ice-candidate' }),
-      }))
+  const r = e.createDataChannel('text'),
+    s = await e.createOffer()
+  await e.setLocalDescription(s)
+  const o = Math.random().toString(36).substring(7),
+    a = (h) => {
+      const f = { ...h, webrtc_id: o }
+      return (
+        i
+          ? ((f.userId = i), console.log('🔍 前端发送请求体，包含userId:', f))
+          : console.log('⚠️ 前端发送请求体，无userId:', f),
+        f
+      )
+    }
+  e.onicecandidate = ({ candidate: h }) => {
+    if (h) {
+      console.debug('Sending ICE candidate', h)
+      const f = { 'Content-Type': 'application/json' }
+      ;(i && ((f['X-User-ID'] = i), console.log('🔍 前端发送ICE候选，包含用户ID头:', i)),
+        fetch('/webrtc/offer', {
+          method: 'POST',
+          headers: f,
+          body: JSON.stringify(a({ candidate: h.toJSON(), type: 'ice-candidate' })),
+        }))
+    }
   }
-  const a = await (
-    await fetch('/webrtc/offer', {
+  const l = { 'Content-Type': 'application/json' }
+  i && ((l['X-User-ID'] = i), console.log('🔍 前端发送WebRTC offer，包含用户ID头:', i))
+  let c = '/webrtc/offer'
+  i &&
+    ((c += '?userId='.concat(encodeURIComponent(i))),
+    console.log('🔍 前端发送WebRTC offer，包含用户ID参数:', i))
+  const d = await (
+    await fetch(c, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sdp: r.sdp, type: r.type, webrtc_id: s }),
+      headers: l,
+      body: JSON.stringify(a({ sdp: s.sdp, type: s.type })),
     })
   ).json()
-  return (await e.setRemoteDescription(a), [i, s])
+  return (await e.setRemoteDescription(d), [r, o])
 }
 function qX() {
   try {
@@ -66534,7 +66552,7 @@ const Ta = a5('visionStore', {
               this.ensureSquareVideo()
             }, 1e3),
             (this.peerConnection = new RTCPeerConnection(this.rtcConfig)),
-            this.peerConnection.addEventListener('connectionstatechange', async (o) => {
+            this.peerConnection.addEventListener('connectionstatechange', async (a) => {
               switch (this.peerConnection.connectionState) {
                 case 'connected':
                   this.streamState = qi.open
@@ -66544,23 +66562,25 @@ const Ta = a5('visionStore', {
                   break
               }
             }),
-            (this.streamState = qi.waiting),
-            await jX(this.stream, this.peerConnection, n.remoteVideoRef)
-              .then(([o, a]) => {
+            (this.streamState = qi.waiting))
+          const o = this.getUserId()
+          ;(console.log('🚀 启动WebRTC连接，用户ID:', o),
+            await jX(this.stream, this.peerConnection, n.remoteVideoRef, o)
+              .then(([a, l]) => {
                 if (
                   ((this.streamState = qi.open),
-                  (this.webRTCId = a),
-                  (this.chatDataChannel = o),
+                  (this.webRTCId = l),
+                  (this.chatDataChannel = a),
                   this.avatarType && this.avatarWSRoute)
                 ) {
-                  const l = this.initWebsocket(this.avatarWSRoute, this.webRTCId)
-                  this.avatarType === 'lam' && (this.localAvatarRenderer = this.doGaussianRender(l))
+                  const c = this.initWebsocket(this.avatarWSRoute, this.webRTCId)
+                  this.avatarType === 'lam' && (this.localAvatarRenderer = this.doGaussianRender(c))
                 }
               })
-              .catch((o) => {
-                ;(console.info('catching', o),
+              .catch((a) => {
+                ;(console.info('catching', a),
                   (this.streamState = qi.closed),
-                  Gs.error(o),
+                  Gs.error(a),
                   Gs.error('请检查是否超过数字人并发上限'))
               }))
         } else

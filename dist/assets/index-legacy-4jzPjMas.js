@@ -77442,14 +77442,14 @@
                 e.close()
               }, 500))
           }
-          function Kz(e, t, n) {
+          function Kz(e, t, n, r) {
             return Zz.apply(this, arguments)
           }
           function Zz() {
             return (
               (Zz = v(
-                h().m(function e(t, n, r) {
-                  var i, a, o, s, u
+                h().m(function e(t, n, r, i) {
+                  var a, o, u, l, c, d, f, p
                   return h().w(function (e) {
                     for (;;)
                       switch (e.n) {
@@ -77478,42 +77478,63 @@
                             n.addEventListener('track', function (e) {
                               r && r.srcObject !== e.streams[0] && (r.srcObject = e.streams[0])
                             }),
-                            (i = n.createDataChannel('text')),
+                            (a = n.createDataChannel('text')),
                             (e.n = 1),
                             n.createOffer()
                           )
                         case 1:
-                          return ((a = e.v), (e.n = 2), n.setLocalDescription(a))
+                          return ((o = e.v), (e.n = 2), n.setLocalDescription(o))
                         case 2:
                           return (
-                            (o = Math.random().toString(36).substring(7)),
+                            (u = Math.random().toString(36).substring(7)),
+                            (l = function (e) {
+                              var t = s(s({}, e), {}, { webrtc_id: u })
+                              return (
+                                i
+                                  ? ((t.userId = i),
+                                    console.log('🔍 前端发送请求体，包含userId:', t))
+                                  : console.log('⚠️ 前端发送请求体，无userId:', t),
+                                t
+                              )
+                            }),
                             (n.onicecandidate = function (e) {
                               var t = e.candidate
-                              t &&
-                                (console.debug('Sending ICE candidate', t),
-                                fetch('/webrtc/offer', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({
-                                    candidate: t.toJSON(),
-                                    webrtc_id: o,
-                                    type: 'ice-candidate',
-                                  }),
-                                }))
+                              if (t) {
+                                console.debug('Sending ICE candidate', t)
+                                var n = { 'Content-Type': 'application/json' }
+                                ;(i &&
+                                  ((n['X-User-ID'] = i),
+                                  console.log('🔍 前端发送ICE候选，包含用户ID头:', i)),
+                                  fetch('/webrtc/offer', {
+                                    method: 'POST',
+                                    headers: n,
+                                    body: JSON.stringify(
+                                      l({ candidate: t.toJSON(), type: 'ice-candidate' })
+                                    ),
+                                  }))
+                              }
                             }),
+                            (c = { 'Content-Type': 'application/json' }),
+                            i &&
+                              ((c['X-User-ID'] = i),
+                              console.log('🔍 前端发送WebRTC offer，包含用户ID头:', i)),
+                            (d = '/webrtc/offer'),
+                            i &&
+                              ((d += '?userId='.concat(encodeURIComponent(i))),
+                              console.log('🔍 前端发送WebRTC offer，包含用户ID参数:', i)),
                             (e.n = 3),
-                            fetch('/webrtc/offer', {
+                            fetch(d, {
                               method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({ sdp: a.sdp, type: a.type, webrtc_id: o }),
+                              headers: c,
+                              body: JSON.stringify(l({ sdp: o.sdp, type: o.type })),
                             })
                           )
                         case 3:
-                          return ((s = e.v), (e.n = 4), s.json())
+                          return ((f = e.v), (e.n = 4), f.json())
                         case 4:
-                          return ((u = e.v), (e.n = 5), n.setRemoteDescription(u))
+                          return ((p = e.v), (e.n = 5), n.setRemoteDescription(p))
                         case 5:
-                          return e.a(2, [i, o])
+                          return e.a(2, [a, u])
                       }
                   }, e)
                 })
@@ -86532,7 +86553,7 @@
                   var e = this
                   return v(
                     h().m(function t() {
-                      var n, r, i, a, o, s
+                      var n, r, i, a, o, s, u
                       return h().w(function (t) {
                         for (;;)
                           switch (t.n) {
@@ -86598,8 +86619,10 @@
                                   })()
                                 ),
                                 (e.streamState = xs.waiting),
+                                (s = e.getUserId()),
+                                console.log('🚀 启动WebRTC连接，用户ID:', s),
                                 (t.n = 2),
-                                Kz(e.stream, e.peerConnection, n.remoteVideoRef)
+                                Kz(e.stream, e.peerConnection, n.remoteVideoRef, s)
                                   .then(function (t) {
                                     var n = C(t, 2),
                                       r = n[0],
@@ -86644,7 +86667,7 @@
                               )
                             case 5:
                               'lam' === e.avatarType &&
-                                (null === (s = e.localAvatarRenderer) || void 0 === s || s.exit(),
+                                (null === (u = e.localAvatarRenderer) || void 0 === u || u.exit(),
                                 (e.gsLoadPercent = 0))
                             case 6:
                               return t.a(2)
