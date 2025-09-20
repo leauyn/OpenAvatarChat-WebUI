@@ -12,11 +12,11 @@
           <div class="left-action">
             <LeftOutlined class="left-icon" />
           </div>
-          <div class="center-actions">
+          <div class="right-actions">
             <ActionGroup />
-          </div>
-          <div class="right-action">
-            <SettingOutlined class="setting-icon" />
+            <div class="setting-action">
+              <SettingOutlined class="setting-icon" />
+            </div>
           </div>
         </div>
 

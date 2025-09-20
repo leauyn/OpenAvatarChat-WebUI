@@ -6,7 +6,11 @@
     class="action-button"
     @click="handleCameraOff"
   >
-    <Iconfont :icon="cameraOff ? CameraOff : CameraOn" class="action-icon" />
+    <Iconfont
+      :icon="cameraOff ? CameraOff : CameraOn"
+      :fontSize="iconFontSize"
+      class="action-icon"
+    />
     <div
       v-if="streamState === 'closed'"
       class="corner"
@@ -48,7 +52,7 @@
     class="action-button"
     @click="handleMicMuted"
   >
-    <Iconfont :icon="micMuted ? MicOff : MicOn" class="action-icon" />
+    <Iconfont :icon="micMuted ? MicOff : MicOn" :fontSize="iconFontSize" class="action-icon" />
     <div
       v-if="streamState === 'closed'"
       class="corner"
@@ -85,19 +89,27 @@
 
   <!-- 音量按钮 -->
   <div class="action-button" @click="handleVolumeMute">
-    <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" class="action-icon" />
+    <Iconfont
+      :icon="volumeMuted ? VolumeOff : VolumeOn"
+      :fontSize="iconFontSize"
+      class="action-icon"
+    />
   </div>
 
   <!-- 字幕按钮 -->
   <div v-if="wrapperRect.width > 300" class="action-button" @click="handleSubtitleToggle">
-    <Iconfont :icon="showChatRecords ? SubtitleOn : SubtitleOff" class="action-icon" />
+    <Iconfont
+      :icon="showChatRecords ? SubtitleOn : SubtitleOff"
+      :fontSize="iconFontSize"
+      class="action-icon"
+    />
   </div>
 </template>
 <script setup lang="ts">
 import { useVideoChatStore } from '@/store'
 import { useVisionStore } from '@/store/vision'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import Iconfont, {
   CameraOff,
   CameraOn,
@@ -136,6 +148,20 @@ const {
 const { wrapperRect, isLandscape } = storeToRefs(visionStore)
 const micListShow = ref(false)
 const cameraListShow = ref(false)
+
+// 响应式字体大小计算
+const iconFontSize = computed(() => {
+  const width = wrapperRect.value.width
+  let size = 32
+
+  if (width <= 360) size = 18
+  else if (width <= 480) size = 20
+  else if (width <= 768) size = 24
+  else if (width <= 1024) size = 28
+
+  console.log('Icon font size:', size, 'Screen width:', width)
+  return size
+})
 </script>
 
 <style lang="less" scoped>
@@ -148,37 +174,50 @@ const cameraListShow = ref(false)
   position: relative;
 
   .action-icon {
-    font-size: 32px;
     color: #fff;
     background: rgba(88, 87, 87, 0.5);
     border-radius: 50%;
     padding: 8px;
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
 
     &:hover {
       background: rgba(103, 102, 106, 0.7);
       transform: scale(1.05);
     }
 
+    // 确保图标大小正确
+    :deep(.icon) {
+      font-size: inherit !important;
+    }
+
     @media screen and (max-width: 1024px) and (min-width: 769px) {
-      font-size: 28px;
       padding: 6px;
+      min-width: 44px;
+      min-height: 44px;
     }
 
     @media screen and (max-width: 768px) {
-      font-size: 24px;
       padding: 6px;
+      min-width: 40px;
+      min-height: 40px;
     }
 
     @media screen and (max-width: 480px) {
-      font-size: 20px;
       padding: 4px;
+      min-width: 36px;
+      min-height: 36px;
     }
 
     @media screen and (max-width: 360px) {
-      font-size: 18px;
       padding: 4px;
+      min-width: 32px;
+      min-height: 32px;
     }
   }
 

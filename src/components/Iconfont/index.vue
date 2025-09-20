@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="icon"
-    class="icon"
-    :style="{ fontSize: fontSize + 'px', color }"
-  ></component>
+  <component :is="icon" class="icon" :style="{ fontSize: fontSize + 'px', color }"></component>
 </template>
 
 <script setup lang="ts">
@@ -27,5 +23,11 @@ const emit = defineEmits([])
   overflow: hidden;
   color: inherit;
   font-size: inherit;
+
+  // 确保 SVG 图标使用相对单位而不是固定像素
+  :deep(svg) {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 </style>
