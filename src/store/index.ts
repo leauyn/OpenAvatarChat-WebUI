@@ -580,7 +580,8 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           console.log(this.hasCamera, this.hasMic)
           this.webcamAccessed = true
           this.localStream = this.stream
-          if (node) {
+          // 只有在连接成功后（streamState === 'open'）才显示视频
+          if (node && this.streamState === 'open') {
             node.srcObject = this.localStream
             node.muted = true
             node?.play()
@@ -607,6 +608,12 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           switch (this.peerConnection!.connectionState) {
             case 'connected':
               this.streamState = StreamState.open
+              // 连接成功后显示视频
+              if (visionState.localVideoRef && this.localStream) {
+                visionState.localVideoRef.srcObject = this.localStream
+                visionState.localVideoRef.muted = true
+                visionState.localVideoRef?.play()
+              }
               break
             case 'disconnected':
               this.streamState = StreamState.closed
@@ -627,6 +634,13 @@ export const useVideoChatStore = defineStore('videoChatStore', {
             this.streamState = StreamState.open
             this.webRTCId = webRTCId as string
             this.chatDataChannel = dataChannel as any
+
+            // 连接成功后显示视频
+            if (visionState.localVideoRef && this.localStream) {
+              visionState.localVideoRef.srcObject = this.localStream
+              visionState.localVideoRef.muted = true
+              visionState.localVideoRef?.play()
+            }
 
             if (this.avatarType && this.avatarWSRoute) {
               const ws = this.initWebsocket(this.avatarWSRoute, this.webRTCId)
