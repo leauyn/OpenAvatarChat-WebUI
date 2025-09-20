@@ -70421,7 +70421,7 @@ const Nie = bi(Mie, [['render', Rie]]),
       }
     },
   }),
-  Bie = bi(Oie, [['__scopeId', 'data-v-a4e3197e']]),
+  Bie = bi(Oie, [['__scopeId', 'data-v-81893ff0']]),
   Uie = { class: 'gradio-webrtc-waveContainer' },
   kie = qt({
     __name: 'AudioWave',
