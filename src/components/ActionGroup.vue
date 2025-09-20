@@ -95,15 +95,6 @@
       class="action-icon"
     />
   </div>
-
-  <!-- 字幕按钮 -->
-  <div v-if="wrapperRect.width > 300" class="action-button" @click="handleSubtitleToggle">
-    <Iconfont
-      :icon="showChatRecords ? SubtitleOn : SubtitleOff"
-      :fontSize="iconFontSize"
-      class="action-icon"
-    />
-  </div>
 </template>
 <script setup lang="ts">
 import { useVideoChatStore } from '@/store'
@@ -116,8 +107,6 @@ import Iconfont, {
   CheckIcon,
   MicOff,
   MicOn,
-  SubtitleOff,
-  SubtitleOn,
   VolumeOff,
   VolumeOn,
 } from './Iconfont'
