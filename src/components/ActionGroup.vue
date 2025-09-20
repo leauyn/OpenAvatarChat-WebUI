@@ -1,92 +1,96 @@
 <template>
-  <div class="action-group">
+  <!-- 摄像头按钮 -->
+  <div
+    v-if="hasCamera"
+    v-click-outside="() => (cameraListShow = false)"
+    class="action-button"
+    @click="handleCameraOff"
+  >
+    <Iconfont :icon="cameraOff ? CameraOff : CameraOn" class="action-icon" />
     <div
-      v-if="hasCamera"
-      v-click-outside="() => (cameraListShow = false)"
-      class="action"
-      @click="handleCameraOff"
+      v-if="streamState === 'closed'"
+      class="corner"
+      @click.stop.prevent="() => (cameraListShow = !cameraListShow)"
     >
-      <Iconfont :icon="cameraOff ? CameraOff : CameraOn" />
+      <div class="corner-inner" />
+    </div>
+    <div
+      v-show="cameraListShow && streamState === 'closed'"
+      class="selectors"
+      :class="{ left: isLandscape }"
+    >
       <div
-        v-if="streamState === 'closed'"
-        class="corner"
-        @click.stop.prevent="() => (cameraListShow = !cameraListShow)"
+        v-for="device in availableVideoDevices"
+        :key="device.deviceId"
+        class="selector"
+        @click.stop="
+          () => {
+            handleDeviceChange(device.deviceId)
+            cameraListShow = false
+          }
+        "
       >
-        <div class="corner-inner" />
-      </div>
-      <div
-        v-show="cameraListShow && streamState === 'closed'"
-        class="selectors"
-        :class="{ left: isLandscape }"
-      >
+        {{ device.label }}
         <div
-          v-for="device in availableVideoDevices"
-          :key="device.deviceId"
-          class="selector"
-          @click.stop="
-            () => {
-              handleDeviceChange(device.deviceId)
-              cameraListShow = false
-            }
-          "
+          v-if="selectedVideoDevice && device.deviceId === selectedVideoDevice.deviceId"
+          class="active-icon"
         >
-          {{ device.label }}
-          <div
-            v-if="selectedVideoDevice && device.deviceId === selectedVideoDevice.deviceId"
-            class="active-icon"
-          >
-            <CheckIcon />
-          </div>
+          <CheckIcon />
         </div>
       </div>
     </div>
-    <div
-      v-if="hasMic"
-      v-click-outside="() => (micListShow = false)"
-      class="action"
-      @click="handleMicMuted"
-    >
-      <Iconfont :icon="micMuted ? MicOff : MicOn" />
-      <div
-        v-if="streamState === 'closed'"
-        class="corner"
-        @click.stop.prevent="() => (micListShow = !micListShow)"
-      >
-        <div class="corner-inner" />
-      </div>
-      <div
-        v-show="micListShow && streamState === 'closed'"
-        class="selectors"
-        :class="{ left: isLandscape }"
-      >
-        <div
-          v-for="device in availableAudioDevices"
-          :key="device.deviceId"
-          class="selector"
-          @click.stop="
-            (e) => {
-              handleDeviceChange(device.deviceId)
-              micListShow = false
-            }
-          "
-        >
-          {{ device.label }}
-          <div
-            v-if="selectedAudioDevice && device.deviceId === selectedAudioDevice.deviceId"
-            class="active-icon"
-          >
-            <CheckIcon />
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <div class="action" @click="handleVolumeMute">
-      <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" />
+  <!-- 麦克风按钮 -->
+  <div
+    v-if="hasMic"
+    v-click-outside="() => (micListShow = false)"
+    class="action-button"
+    @click="handleMicMuted"
+  >
+    <Iconfont :icon="micMuted ? MicOff : MicOn" class="action-icon" />
+    <div
+      v-if="streamState === 'closed'"
+      class="corner"
+      @click.stop.prevent="() => (micListShow = !micListShow)"
+    >
+      <div class="corner-inner" />
     </div>
-    <div v-if="wrapperRect.width > 300" class="action" @click="handleSubtitleToggle">
-      <Iconfont :icon="showChatRecords ? SubtitleOn : SubtitleOff" />
+    <div
+      v-show="micListShow && streamState === 'closed'"
+      class="selectors"
+      :class="{ left: isLandscape }"
+    >
+      <div
+        v-for="device in availableAudioDevices"
+        :key="device.deviceId"
+        class="selector"
+        @click.stop="
+          (e) => {
+            handleDeviceChange(device.deviceId)
+            micListShow = false
+          }
+        "
+      >
+        {{ device.label }}
+        <div
+          v-if="selectedAudioDevice && device.deviceId === selectedAudioDevice.deviceId"
+          class="active-icon"
+        >
+          <CheckIcon />
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- 音量按钮 -->
+  <div class="action-button" @click="handleVolumeMute">
+    <Iconfont :icon="volumeMuted ? VolumeOff : VolumeOn" class="action-icon" />
+  </div>
+
+  <!-- 字幕按钮 -->
+  <div v-if="wrapperRect.width > 300" class="action-button" @click="handleSubtitleToggle">
+    <Iconfont :icon="showChatRecords ? SubtitleOn : SubtitleOff" class="action-icon" />
   </div>
 </template>
 <script setup lang="ts">
@@ -135,117 +139,121 @@ const cameraListShow = ref(false)
 </script>
 
 <style lang="less" scoped>
-.action-group {
-  border-radius: 20px;
-  background: rgba(88, 87, 87, 0.5);
-  padding: 8px;
-  backdrop-filter: blur(8px);
+.action-button {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
 
-  .action {
-    cursor: pointer;
-    width: 70px;
-    height: 70px;
-    border-radius: 16px;
-    font-size: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  .action-icon {
+    font-size: 32px;
     color: #fff;
-    transition: background-color 0.2s ease;
-    flex-shrink: 0;
+    background: rgba(88, 87, 87, 0.5);
+    border-radius: 50%;
+    padding: 8px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
 
     &:hover {
-      background: #67666a;
+      background: rgba(103, 102, 106, 0.7);
+      transform: scale(1.05);
     }
 
-    .corner {
-      position: absolute;
-      right: 0px;
-      bottom: 0px;
-      padding: 3px;
-
-      .corner-inner {
-        width: 6px;
-        height: 6px;
-        border-top: 3px transparent solid;
-        border-left: 3px transparent solid;
-        border-bottom: 3px #fff solid;
-        border-right: 3px #fff solid;
-      }
+    @media screen and (max-width: 1024px) and (min-width: 769px) {
+      font-size: 28px;
+      padding: 6px;
     }
 
-    .selectors {
-      position: absolute;
-      top: 0;
-      left: calc(100%);
-      margin-left: 3px;
-      max-height: 150px;
-      min-width: 200px;
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+      padding: 6px;
+    }
 
-      &.left {
-        left: 0;
-        margin-left: -3px;
-        transform: translateX(-100%);
-      }
+    @media screen and (max-width: 480px) {
+      font-size: 20px;
+      padding: 4px;
+    }
 
-      border-radius: 12px;
-      width: max-content;
+    @media screen and (max-width: 360px) {
+      font-size: 18px;
+      padding: 4px;
+    }
+  }
+
+  .corner {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    padding: 3px;
+
+    .corner-inner {
+      width: 6px;
+      height: 6px;
+      border-top: 3px transparent solid;
+      border-left: 3px transparent solid;
+      border-bottom: 3px #fff solid;
+      border-right: 3px #fff solid;
+    }
+  }
+
+  .selectors {
+    position: absolute;
+    top: 0;
+    left: calc(100%);
+    margin-left: 3px;
+    max-height: 150px;
+    min-width: 200px;
+
+    &.left {
+      left: 0;
+      margin-left: -3px;
+      transform: translateX(-100%);
+    }
+
+    border-radius: 12px;
+    width: max-content;
+    overflow: hidden;
+    overflow-y: auto;
+    background: rgba(90, 90, 90, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+
+    .selector {
+      max-width: 250px;
       overflow: hidden;
-      overflow-y: auto;
-      background: rgba(90, 90, 90, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      position: relative;
+      cursor: pointer;
+      height: 42px;
+      line-height: 42px;
+      color: #fff;
+      font-size: 14px;
+      padding-left: 15px;
+      padding-right: 50px;
+      transition: background-color 0.2s ease;
 
-      .selector {
-        max-width: 250px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        position: relative;
-        cursor: pointer;
-        height: 42px;
-        line-height: 42px;
-        color: #fff;
-        font-size: 14px;
-        padding-left: 15px;
-        padding-right: 50px;
-        transition: background-color 0.2s ease;
+      &:hover {
+        background: #67666a;
+      }
 
-        &:hover {
-          background: #67666a;
-        }
-
-        .active-icon {
-          position: absolute;
-          right: 10px;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          top: 0;
-        }
+      .active-icon {
+        position: absolute;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
       }
     }
   }
 
   // 平板设备响应式设计
   @media screen and (max-width: 1024px) and (min-width: 769px) {
-    padding: 6px;
-    gap: 6px;
-
-    .action {
-      width: 60px;
-      height: 60px;
-      font-size: 28px;
-      border-radius: 14px;
-    }
-
     .selectors {
       .selector {
         height: 50px;
@@ -265,17 +273,6 @@ const cameraListShow = ref(false)
 
   // 移动设备响应式设计
   @media screen and (max-width: 768px) {
-    padding: 6px;
-    gap: 6px;
-    border-radius: 16px;
-
-    .action {
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      border-radius: 12px;
-    }
-
     .selectors {
       .selector {
         height: 50px;
@@ -295,17 +292,6 @@ const cameraListShow = ref(false)
 
   // 小屏移动设备响应式设计
   @media screen and (max-width: 480px) {
-    padding: 4px;
-    gap: 4px;
-    border-radius: 12px;
-
-    .action {
-      width: 44px;
-      height: 44px;
-      font-size: 20px;
-      border-radius: 10px;
-    }
-
     .selectors {
       .selector {
         height: 44px;
@@ -325,17 +311,6 @@ const cameraListShow = ref(false)
 
   // 超小屏设备
   @media screen and (max-width: 360px) {
-    padding: 3px;
-    gap: 3px;
-    border-radius: 10px;
-
-    .action {
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      border-radius: 8px;
-    }
-
     .selectors {
       .selector {
         height: 40px;
