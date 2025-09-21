@@ -103,44 +103,44 @@ function onInterrupt() {
   justify-content: center;
   align-items: center;
   min-height: 100px;
-  max-height: 140px;
-  width: 90%;
-  max-width: 500px;
+  max-height: 100px;
+  width: 500px;
+  min-width: 400px;
   margin: 16px auto;
   padding: 0 16px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
     min-height: 95px;
-    max-height: 130px;
-    width: 92%;
-    max-width: 480px;
+    max-height: 95px;
+    width: 480px;
+    min-width: 380px;
     margin: 14px auto;
     padding: 0 14px;
   }
 
   @media (max-width: 768px) {
     min-height: 90px;
-    max-height: 120px;
-    width: 95%;
-    max-width: 460px;
+    max-height: 90px;
+    width: 460px;
+    min-width: 360px;
     margin: 12px auto;
     padding: 0 12px;
   }
 
   @media (max-width: 480px) {
     min-height: 85px;
-    max-height: 110px;
-    width: 98%;
-    max-width: 440px;
+    max-height: 85px;
+    width: 440px;
+    min-width: 340px;
     margin: 10px auto;
     padding: 0 10px;
   }
 
   @media (max-width: 360px) {
     min-height: 80px;
-    max-height: 100px;
-    width: 100%;
-    max-width: 420px;
+    max-height: 80px;
+    width: 420px;
+    min-width: 320px;
     margin: 8px auto;
     padding: 0 8px;
   }
@@ -150,17 +150,28 @@ function onInterrupt() {
     align-items: center;
     gap: 24px;
     width: 100%;
+    height: 100%;
     padding: 12px 20px;
     justify-content: space-between;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) and (min-width: 769px) {
       gap: 20px;
-      padding: 10px 16px;
+      padding: 10px 18px;
+    }
+
+    @media (max-width: 768px) {
+      gap: 18px;
+      padding: 8px 16px;
     }
 
     @media (max-width: 480px) {
       gap: 16px;
-      padding: 8px 14px;
+      padding: 6px 14px;
+    }
+
+    @media (max-width: 360px) {
+      gap: 14px;
+      padding: 4px 12px;
     }
   }
 
@@ -176,7 +187,6 @@ function onInterrupt() {
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    flex-shrink: 0;
 
     &:hover {
       background: rgba(103, 102, 106, 0.7);
@@ -244,12 +254,13 @@ function onInterrupt() {
   .chat-input-inner {
     padding: 0 24px;
     background: #f8f9fa;
-    height: 60px;
+    min-height: 69px;
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
     border: 1px solid #e9ecef;
-    border-radius: 30px;
+    border-radius: 34px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -295,26 +306,26 @@ function onInterrupt() {
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
-      height: 56px;
-      border-radius: 28px;
+      min-height: 63px;
+      border-radius: 31px;
       padding: 0 20px;
     }
 
     @media (max-width: 768px) {
-      height: 52px;
-      border-radius: 26px;
+      min-height: 58px;
+      border-radius: 29px;
       padding: 0 18px;
     }
 
     @media (max-width: 480px) {
-      height: 48px;
-      border-radius: 24px;
+      min-height: 52px;
+      border-radius: 26px;
       padding: 0 16px;
     }
 
     @media (max-width: 360px) {
-      height: 44px;
-      border-radius: 22px;
+      min-height: 46px;
+      border-radius: 23px;
       padding: 0 14px;
     }
 
@@ -394,21 +405,20 @@ function onInterrupt() {
     .send-btn,
     .interrupt-btn {
       border: none;
-      flex: 0 0 auto;
-      background: #7873f6;
+      background: rgba(120, 115, 246, 0.8);
       border-radius: 50%;
       height: 48px;
       width: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
       box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
 
       &:hover {
-        background: #615ced;
+        background: rgba(120, 115, 246, 1);
         transform: scale(1.05);
         box-shadow: 0 4px 12px rgba(120, 115, 246, 0.4);
       }
@@ -420,25 +430,21 @@ function onInterrupt() {
       @media (max-width: 1024px) and (min-width: 769px) {
         height: 44px;
         width: 44px;
-        margin-left: 10px;
       }
 
       @media (max-width: 768px) {
         height: 40px;
         width: 40px;
-        margin-left: 10px;
       }
 
       @media (max-width: 480px) {
         height: 36px;
         width: 36px;
-        margin-left: 8px;
       }
 
       @media (max-width: 360px) {
         height: 32px;
         width: 32px;
-        margin-left: 8px;
       }
     }
 
@@ -450,6 +456,11 @@ function onInterrupt() {
         border-radius: 2px;
         background: #ffffff;
         display: block;
+        transition: all 0.3s ease;
+      }
+
+      &:hover &::after {
+        transform: scale(1.1);
       }
     }
   }

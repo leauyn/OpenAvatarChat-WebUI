@@ -286,6 +286,26 @@ const emit = defineEmits([])
       padding: 12px 20px;
       justify-content: space-between;
 
+      @media (max-width: 1024px) and (min-width: 769px) {
+        gap: 20px;
+        padding: 10px 18px;
+      }
+
+      @media (max-width: 768px) {
+        gap: 18px;
+        padding: 8px 16px;
+      }
+
+      @media (max-width: 480px) {
+        gap: 16px;
+        padding: 6px 14px;
+      }
+
+      @media (max-width: 360px) {
+        gap: 14px;
+        padding: 4px 12px;
+      }
+
       // 左侧键盘按钮
       .keyboard-button {
         width: 48px;

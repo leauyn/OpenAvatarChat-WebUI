@@ -70612,7 +70612,7 @@ const Nie = bi(Mie, [['render', Rie]]),
       )
     },
   }),
-  jie = bi(Qie, [['__scopeId', 'data-v-7e8321c7']]),
+  jie = bi(Qie, [['__scopeId', 'data-v-1c4253f6']]),
   qie =
     "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20stroke='%23000'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%3e%3cpath%20d='M12%2019v3m7-12v2a7%207%200%200%201-14%200v-2'/%3e%3crect%20width='6'%20height='13'%20x='9'%20y='2'%20rx='3'/%3e%3c/g%3e%3c/svg%3e"
 function Xie(n, e, t) {
@@ -70694,7 +70694,7 @@ const Kie = { class: 'chat-input-container' },
       )
     },
   }),
-  tre = bi(ere, [['__scopeId', 'data-v-a4b560af']]),
+  tre = bi(ere, [['__scopeId', 'data-v-12eefd85']]),
   nre = { class: 'answer-message-text' },
   ire = qt({
     __name: 'ChatMessage',
