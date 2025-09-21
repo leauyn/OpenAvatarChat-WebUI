@@ -72,18 +72,21 @@ function onInterrupt() {
             @keydown="on_chat_input_keydown"
             @input="on_chat_input"
             :style="`height:${inputHeight}px`"
+            placeholder="输入消息..."
           />
           <div class="rowsDiv" ref="rowsDivRef">{{ inputValue }}</div>
         </div>
-        <template v-if="replying">
-          <button class="interrupt-btn" @click="onInterrupt"></button>
-        </template>
-        <template v-else>
-          <button class="send-btn" @click="on_send">
-            <Iconfont :icon="Send" :color="'#fff'"></Iconfont>
-          </button>
-        </template>
       </div>
+
+      <!-- 右侧发送/中断按钮 -->
+      <template v-if="replying">
+        <button class="interrupt-btn" @click="onInterrupt"></button>
+      </template>
+      <template v-else>
+        <button class="send-btn" @click="on_send">
+          <Iconfont :icon="Send" :color="'#fff'"></Iconfont>
+        </button>
+      </template>
     </div>
 
     <div class="ai-generate-hint">内容由 AI 生成</div>
@@ -144,59 +147,81 @@ function onInterrupt() {
   .chat-input-main {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 24px;
     width: 100%;
+    padding: 12px 20px;
+    justify-content: space-between;
 
     @media (max-width: 768px) {
-      gap: 10px;
+      gap: 20px;
+      padding: 10px 16px;
     }
 
     @media (max-width: 480px) {
-      gap: 8px;
+      gap: 16px;
+      padding: 8px 14px;
     }
   }
 
   .mic-button {
-    width: 44px;
-    height: 44px;
-    background: #f5f5f5;
-    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    background: rgba(88, 87, 87, 0.5);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     flex-shrink: 0;
 
     &:hover {
-      background: #e8e8e8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      background: rgba(103, 102, 106, 0.7);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     &:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transform: scale(0.95);
     }
 
     .mic-icon {
-      width: 20px;
-      height: 20px;
-      filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg)
-        brightness(60%) contrast(100%);
-      transition: all 0.2s ease;
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+        brightness(100%) contrast(100%);
+      transition: all 0.3s ease;
     }
 
     &:hover .mic-icon {
-      filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg)
-        brightness(40%) contrast(100%);
+      transform: scale(1.1);
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
+      width: 44px;
+      height: 44px;
+
+      .mic-icon {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
       width: 40px;
       height: 40px;
+
+      .mic-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      width: 36px;
+      height: 36px;
 
       .mic-icon {
         width: 18px;
@@ -204,51 +229,27 @@ function onInterrupt() {
       }
     }
 
-    @media (max-width: 768px) {
-      width: 36px;
-      height: 36px;
+    @media (max-width: 360px) {
+      width: 32px;
+      height: 32px;
 
       .mic-icon {
         width: 16px;
         height: 16px;
       }
     }
-
-    @media (max-width: 480px) {
-      width: 32px;
-      height: 32px;
-
-      .mic-icon {
-        width: 14px;
-        height: 14px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      width: 28px;
-      height: 28px;
-
-      .mic-icon {
-        width: 12px;
-        height: 12px;
-      }
-    }
   }
 
   .chat-input-inner {
-    padding: 0 16px;
-    background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
-    height: 44px;
+    padding: 0 24px;
+    background: #f8f9fa;
+    height: 69px;
     flex: 1;
     display: flex;
     align-items: center;
-    border: 1.5px solid #e1e5f2;
-    border-radius: 24px;
-    box-shadow:
-      0 2px 8px -2px rgba(54, 54, 73, 0.06),
-      0 4px 20px -4px rgba(51, 51, 71, 0.12),
-      0 1px 3px 0 rgba(44, 44, 54, 0.04),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid #e9ecef;
+    border-radius: 34px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -293,27 +294,27 @@ function onInterrupt() {
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
-      height: 40px;
-      border-radius: 22px;
-      padding: 0 14px;
+      height: 63px;
+      border-radius: 31px;
+      padding: 0 20px;
     }
 
     @media (max-width: 768px) {
-      height: 36px;
-      border-radius: 20px;
-      padding: 0 12px;
+      height: 58px;
+      border-radius: 29px;
+      padding: 0 18px;
     }
 
     @media (max-width: 480px) {
-      height: 32px;
-      border-radius: 18px;
-      padding: 0 10px;
+      height: 52px;
+      border-radius: 26px;
+      padding: 0 16px;
     }
 
     @media (max-width: 360px) {
-      height: 28px;
-      border-radius: 16px;
-      padding: 0 8px;
+      height: 46px;
+      border-radius: 23px;
+      padding: 0 14px;
     }
 
     .chat-input-wrapper {
@@ -393,83 +394,51 @@ function onInterrupt() {
     .interrupt-btn {
       border: none;
       flex: 0 0 auto;
-      background: linear-gradient(135deg, #7873f6 0%, #615ced 100%);
-      border-radius: 20px;
-      height: 32px;
-      width: 32px;
+      background: rgba(120, 115, 246, 0.8);
+      border-radius: 50%;
+      height: 48px;
+      width: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 10px;
+      margin-left: 12px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      box-shadow:
-        0 2px 8px rgba(120, 115, 246, 0.2),
-        0 1px 3px rgba(0, 0, 0, 0.1);
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.2) 0%,
-          rgba(255, 255, 255, 0.1) 100%
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
 
       &:hover {
-        background: linear-gradient(135deg, #615ced 0%, #524de1 100%);
-        transform: translateY(-2px) scale(1.05);
-        box-shadow:
-          0 6px 20px rgba(120, 115, 246, 0.4),
-          0 3px 8px rgba(0, 0, 0, 0.15);
-
-        &::before {
-          opacity: 1;
-        }
+        background: rgba(120, 115, 246, 1);
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(120, 115, 246, 0.4);
       }
 
       &:active {
-        transform: translateY(-1px) scale(1.02);
-        box-shadow:
-          0 4px 12px rgba(120, 115, 246, 0.3),
-          0 2px 4px rgba(0, 0, 0, 0.1);
+        transform: scale(0.95);
       }
 
       @media (max-width: 1024px) and (min-width: 769px) {
-        height: 28px;
-        width: 28px;
-        border-radius: 16px;
-        margin-left: 8px;
+        height: 44px;
+        width: 44px;
+        margin-left: 10px;
       }
 
       @media (max-width: 768px) {
-        height: 26px;
-        width: 26px;
-        border-radius: 14px;
-        margin-left: 8px;
+        height: 40px;
+        width: 40px;
+        margin-left: 10px;
       }
 
       @media (max-width: 480px) {
-        height: 24px;
-        width: 24px;
-        border-radius: 12px;
-        margin-left: 6px;
+        height: 36px;
+        width: 36px;
+        margin-left: 8px;
       }
 
       @media (max-width: 360px) {
-        height: 22px;
-        width: 22px;
-        border-radius: 11px;
-        margin-left: 6px;
+        height: 32px;
+        width: 32px;
+        margin-left: 8px;
       }
     }
 
@@ -798,7 +767,7 @@ function onInterrupt() {
   }
 
   .ai-generate-hint {
-    margin-top: 8px;
+    margin-top: 12px;
     font-size: 12px;
     font-weight: 500;
     font-family:

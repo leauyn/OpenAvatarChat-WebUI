@@ -70675,26 +70675,27 @@ const Kie = { class: 'chat-input-container' },
                     onKeydown: a,
                     onInput: c,
                     style: Go('height:'.concat(Ye(i), 'px')),
+                    placeholder: '输入消息...',
                   },
                   null,
                   36
                 ),
                 Ct('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, ou(Ye(o)), 513),
               ]),
-              d.replying
-                ? (_t(), It('button', { key: 0, class: 'interrupt-btn', onClick: u }))
-                : (_t(),
-                  It('button', { key: 1, class: 'send-btn', onClick: l }, [
-                    Ae(Ye(Xp), { icon: Ye(bie), color: '#fff' }, null, 8, ['icon']),
-                  ])),
             ]),
+            d.replying
+              ? (_t(), It('button', { key: 0, class: 'interrupt-btn', onClick: u }))
+              : (_t(),
+                It('button', { key: 1, class: 'send-btn', onClick: l }, [
+                  Ae(Ye(Xp), { icon: Ye(bie), color: '#fff' }, null, 8, ['icon']),
+                ])),
           ]),
           h[1] || (h[1] = Ct('div', { class: 'ai-generate-hint' }, '内容由 AI 生成', -1)),
         ])
       )
     },
   }),
-  tre = bi(ere, [['__scopeId', 'data-v-4fccce0d']]),
+  tre = bi(ere, [['__scopeId', 'data-v-a296e772']]),
   nre = { class: 'answer-message-text' },
   ire = qt({
     __name: 'ChatMessage',
