@@ -24,7 +24,7 @@
         <div class="stop-chat-container">
           <!-- 左侧键盘按钮 -->
           <div class="keyboard-button">
-            <Iconfont :icon="Keyboard" :fontSize="20" :color="'#666'" />
+            <img src="/src/assets/lucide--keyboard.svg" alt="键盘" class="keyboard-icon" />
           </div>
 
           <!-- 中间录音状态区域 -->
@@ -282,86 +282,190 @@ const emit = defineEmits([])
     .stop-chat-container {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
       width: 100%;
       height: 100%;
+      padding: 8px;
 
       // 左侧键盘按钮
       .keyboard-button {
-        width: 60px;
-        height: 60px;
-        background: #f8f9fa;
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.3s ease;
-        border: 2px solid #e9ecef;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.12),
+          0 4px 12px rgba(0, 0, 0, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 255, 255, 0.05) 100%
+          );
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
 
         &:hover {
-          background: #e9ecef;
-          transform: scale(1.05);
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+          background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+          transform: translateY(-2px) scale(1.05);
+          box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.18),
+            0 6px 16px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          border-color: rgba(0, 0, 0, 0.12);
+
+          &::before {
+            opacity: 1;
+          }
+        }
+
+        &:active {
+          transform: translateY(-1px) scale(1.02);
+          box-shadow:
+            0 6px 20px rgba(0, 0, 0, 0.15),
+            0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .keyboard-icon {
+          width: 24px;
+          height: 24px;
+          filter: brightness(0) saturate(100%) invert(27%) sepia(8%) saturate(1000%)
+            hue-rotate(169deg) brightness(95%) contrast(89%);
+          transition: all 0.3s ease;
+        }
+
+        &:hover .keyboard-icon {
+          filter: brightness(0) saturate(100%) invert(15%) sepia(5%) saturate(1200%)
+            hue-rotate(169deg) brightness(90%) contrast(95%);
+          transform: scale(1.1);
         }
 
         @media (max-width: 1024px) and (min-width: 769px) {
-          width: 56px;
-          height: 56px;
+          width: 60px;
+          height: 60px;
+
+          .keyboard-icon {
+            width: 22px;
+            height: 22px;
+          }
         }
 
         @media (max-width: 768px) {
-          width: 52px;
-          height: 52px;
+          width: 56px;
+          height: 56px;
+
+          .keyboard-icon {
+            width: 20px;
+            height: 20px;
+          }
         }
 
         @media (max-width: 480px) {
-          width: 48px;
-          height: 48px;
+          width: 52px;
+          height: 52px;
+
+          .keyboard-icon {
+            width: 18px;
+            height: 18px;
+          }
         }
 
         @media (max-width: 360px) {
-          width: 44px;
-          height: 44px;
+          width: 48px;
+          height: 48px;
+
+          .keyboard-icon {
+            width: 16px;
+            height: 16px;
+          }
         }
       }
 
       // 中间录音状态区域
       .recording-status {
         flex: 1;
-        height: 60px;
-        background: #ffffff;
-        border: 2px solid #e9ecef;
-        border-radius: 30px;
+        height: 64px;
+        background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 32px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 24px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        justify-content: center;
+        padding: 0 28px;
+        box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.12),
+          0 4px 16px rgba(0, 0, 0, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            145deg,
+            rgba(120, 115, 246, 0.02) 0%,
+            rgba(120, 115, 246, 0.01) 100%
+          );
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+          box-shadow:
+            0 12px 40px rgba(0, 0, 0, 0.15),
+            0 6px 20px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+          &::before {
+            opacity: 1;
+          }
+        }
 
         @media (max-width: 1024px) and (min-width: 769px) {
+          height: 60px;
+          border-radius: 30px;
+          padding: 0 24px;
+        }
+
+        @media (max-width: 768px) {
           height: 56px;
           border-radius: 28px;
           padding: 0 20px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
           height: 52px;
           border-radius: 26px;
           padding: 0 18px;
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 360px) {
           height: 48px;
           border-radius: 24px;
           padding: 0 16px;
-        }
-
-        @media (max-width: 360px) {
-          height: 44px;
-          border-radius: 22px;
-          padding: 0 14px;
         }
 
         .recording-text {
@@ -396,46 +500,46 @@ const emit = defineEmits([])
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-left: 16px;
+          position: relative;
 
           :deep(.gradio-webrtc-waveContainer) {
-            min-height: 40px;
-            max-height: 50px;
+            min-height: 48px;
+            max-height: 56px;
+            filter: drop-shadow(0 2px 8px rgba(120, 115, 246, 0.2));
+          }
+
+          :deep(.gradio-webrtc-box) {
+            background: linear-gradient(135deg, #7873f6 0%, #615ced 100%) !important;
+            border-radius: 6px !important;
+            box-shadow: 0 2px 4px rgba(120, 115, 246, 0.3) !important;
+            transition: all 0.1s ease !important;
           }
 
           @media (max-width: 1024px) and (min-width: 769px) {
-            margin-left: 14px;
-
             :deep(.gradio-webrtc-waveContainer) {
-              min-height: 36px;
-              max-height: 46px;
+              min-height: 44px;
+              max-height: 52px;
             }
           }
 
           @media (max-width: 768px) {
-            margin-left: 12px;
-
             :deep(.gradio-webrtc-waveContainer) {
-              min-height: 32px;
-              max-height: 42px;
+              min-height: 40px;
+              max-height: 48px;
             }
           }
 
           @media (max-width: 480px) {
-            margin-left: 10px;
-
             :deep(.gradio-webrtc-waveContainer) {
-              min-height: 28px;
-              max-height: 38px;
+              min-height: 36px;
+              max-height: 44px;
             }
           }
 
           @media (max-width: 360px) {
-            margin-left: 8px;
-
             :deep(.gradio-webrtc-waveContainer) {
-              min-height: 24px;
-              max-height: 34px;
+              min-height: 32px;
+              max-height: 40px;
             }
           }
         }
@@ -443,72 +547,116 @@ const emit = defineEmits([])
 
       // 右侧停止按钮
       .stop-button {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #7873f6 0%, #615ced 100%);
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(145deg, #7873f6 0%, #615ced 50%, #524de1 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 16px rgba(120, 115, 246, 0.3);
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow:
+          0 8px 24px rgba(120, 115, 246, 0.4),
+          0 4px 12px rgba(120, 115, 246, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.3) 0%,
+            rgba(255, 255, 255, 0.1) 100%
+          );
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
 
         &:hover {
-          transform: scale(1.05);
-          box-shadow: 0 6px 20px rgba(120, 115, 246, 0.4);
+          background: linear-gradient(145deg, #615ced 0%, #524de1 50%, #4338ca 100%);
+          transform: translateY(-2px) scale(1.05);
+          box-shadow:
+            0 12px 32px rgba(120, 115, 246, 0.5),
+            0 6px 16px rgba(120, 115, 246, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+          &::before {
+            opacity: 1;
+          }
         }
 
         &:active {
-          transform: scale(0.98);
-        }
-
-        @media (max-width: 1024px) and (min-width: 769px) {
-          width: 56px;
-          height: 56px;
-        }
-
-        @media (max-width: 768px) {
-          width: 52px;
-          height: 52px;
-        }
-
-        @media (max-width: 480px) {
-          width: 48px;
-          height: 48px;
-        }
-
-        @media (max-width: 360px) {
-          width: 44px;
-          height: 44px;
+          transform: translateY(-1px) scale(1.02);
+          box-shadow:
+            0 6px 20px rgba(120, 115, 246, 0.4),
+            0 3px 8px rgba(120, 115, 246, 0.3);
         }
 
         .stop-icon {
-          width: 16px;
-          height: 16px;
-          background: #ffffff;
-          border-radius: 3px;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          width: 18px;
+          height: 18px;
+          background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+          border-radius: 4px;
+          box-shadow:
+            0 2px 6px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 1;
+        }
 
-          @media (max-width: 1024px) and (min-width: 769px) {
+        &:hover .stop-icon {
+          transform: scale(1.1);
+          box-shadow:
+            0 3px 8px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+          width: 60px;
+          height: 60px;
+
+          .stop-icon {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          width: 56px;
+          height: 56px;
+
+          .stop-icon {
             width: 14px;
             height: 14px;
           }
+        }
 
-          @media (max-width: 768px) {
+        @media (max-width: 480px) {
+          width: 52px;
+          height: 52px;
+
+          .stop-icon {
             width: 12px;
             height: 12px;
           }
+        }
 
-          @media (max-width: 480px) {
+        @media (max-width: 360px) {
+          width: 48px;
+          height: 48px;
+
+          .stop-icon {
             width: 10px;
             height: 10px;
-          }
-
-          @media (max-width: 360px) {
-            width: 8px;
-            height: 8px;
           }
         }
       }
