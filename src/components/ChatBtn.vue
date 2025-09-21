@@ -369,64 +369,114 @@ const emit = defineEmits([])
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 16px;
-        min-height: 86px; // 48px * 1.8 ≈ 86px
+        padding: 0 24px;
+        min-height: 69px; // 86px * 0.8 ≈ 69px (减少1/5)
         background: #f8f9fa;
-        border-radius: 43px; // 高度的一半，保持圆形
+        border-radius: 34px; // 高度的一半，保持圆形
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border: 1px solid #e9ecef;
 
         // 优化AudioWave组件的显示
         :deep(.gradio-webrtc-waveContainer) {
-          min-height: 48px;
-          max-height: 64px;
+          min-height: 56px;
+          max-height: 72px;
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         :deep(.gradio-webrtc-boxContainer) {
-          height: 48px;
-          --boxSize: 3px;
-          --gutter: 3px;
+          height: 56px;
+          --boxSize: 4px;
+          --gutter: 4px;
         }
 
         :deep(.gradio-webrtc-box) {
           background: #7873f6 !important;
-          border-radius: 2px !important;
+          border-radius: 3px !important;
           transition: all 0.1s ease !important;
         }
 
         :deep(.split-container) {
-          width: 100px;
+          width: 120px;
 
           .recording-text {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
             color: #2c3e50;
             font-family:
               -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
               'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            letter-spacing: 0.01em;
+            letter-spacing: 0.02em;
             white-space: nowrap;
             text-align: center;
           }
         }
 
         @media (max-width: 1024px) and (min-width: 769px) {
-          padding: 0 14px;
-          min-height: 79px; // 44px * 1.8 ≈ 79px
-          border-radius: 39px; // 高度的一半
+          padding: 0 20px;
+          min-height: 63px; // 79px * 0.8 ≈ 63px (减少1/5)
+          border-radius: 31px; // 高度的一半
 
           :deep(.gradio-webrtc-waveContainer) {
-            min-height: 44px;
-            max-height: 60px;
+            min-height: 50px;
+            max-height: 66px;
           }
 
           :deep(.gradio-webrtc-boxContainer) {
-            height: 44px;
+            height: 50px;
             --boxSize: 3px;
             --gutter: 3px;
+          }
+
+          :deep(.split-container) {
+            width: 110px;
+
+            .recording-text {
+              font-size: 15px;
+            }
+          }
+        }
+
+        @media (max-width: 768px) {
+          padding: 0 18px;
+          min-height: 58px; // 72px * 0.8 ≈ 58px (减少1/5)
+          border-radius: 29px; // 高度的一半
+
+          :deep(.gradio-webrtc-waveContainer) {
+            min-height: 46px;
+            max-height: 62px;
+          }
+
+          :deep(.gradio-webrtc-boxContainer) {
+            height: 46px;
+            --boxSize: 3px;
+            --gutter: 3px;
+          }
+
+          :deep(.split-container) {
+            width: 100px;
+
+            .recording-text {
+              font-size: 14px;
+            }
+          }
+        }
+
+        @media (max-width: 480px) {
+          padding: 0 16px;
+          min-height: 52px; // 65px * 0.8 ≈ 52px (减少1/5)
+          border-radius: 26px; // 高度的一半
+
+          :deep(.gradio-webrtc-waveContainer) {
+            min-height: 42px;
+            max-height: 58px;
+          }
+
+          :deep(.gradio-webrtc-boxContainer) {
+            height: 42px;
+            --boxSize: 2px;
+            --gutter: 2px;
           }
 
           :deep(.split-container) {
@@ -438,18 +488,18 @@ const emit = defineEmits([])
           }
         }
 
-        @media (max-width: 768px) {
-          padding: 0 12px;
-          min-height: 72px; // 40px * 1.8 = 72px
-          border-radius: 36px; // 高度的一半
+        @media (max-width: 360px) {
+          padding: 0 14px;
+          min-height: 46px; // 58px * 0.8 ≈ 46px (减少1/5)
+          border-radius: 23px; // 高度的一半
 
           :deep(.gradio-webrtc-waveContainer) {
-            min-height: 40px;
-            max-height: 56px;
+            min-height: 38px;
+            max-height: 54px;
           }
 
           :deep(.gradio-webrtc-boxContainer) {
-            height: 40px;
+            height: 38px;
             --boxSize: 2px;
             --gutter: 2px;
           }
@@ -459,56 +509,6 @@ const emit = defineEmits([])
 
             .recording-text {
               font-size: 12px;
-            }
-          }
-        }
-
-        @media (max-width: 480px) {
-          padding: 0 10px;
-          min-height: 65px; // 36px * 1.8 ≈ 65px
-          border-radius: 32px; // 高度的一半
-
-          :deep(.gradio-webrtc-waveContainer) {
-            min-height: 36px;
-            max-height: 52px;
-          }
-
-          :deep(.gradio-webrtc-boxContainer) {
-            height: 36px;
-            --boxSize: 2px;
-            --gutter: 2px;
-          }
-
-          :deep(.split-container) {
-            width: 70px;
-
-            .recording-text {
-              font-size: 11px;
-            }
-          }
-        }
-
-        @media (max-width: 360px) {
-          padding: 0 8px;
-          min-height: 58px; // 32px * 1.8 ≈ 58px
-          border-radius: 29px; // 高度的一半
-
-          :deep(.gradio-webrtc-waveContainer) {
-            min-height: 32px;
-            max-height: 48px;
-          }
-
-          :deep(.gradio-webrtc-boxContainer) {
-            height: 32px;
-            --boxSize: 2px;
-            --gutter: 2px;
-          }
-
-          :deep(.split-container) {
-            width: 60px;
-
-            .recording-text {
-              font-size: 10px;
             }
           }
         }
