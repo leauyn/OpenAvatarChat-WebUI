@@ -20,18 +20,32 @@
         </div>
       </template>
       <template v-else>
-        <div class="stop-chat-inner" />
+        <!-- 新的停止聊天UI界面 - 三个独立组件 -->
+        <div class="stop-chat-container">
+          <!-- 左侧键盘按钮 -->
+          <div class="keyboard-button">
+            <Iconfont :icon="Keyboard" :fontSize="20" :color="'#666'" />
+          </div>
+
+          <!-- 中间录音状态区域 -->
+          <div class="recording-status">
+            <div class="audio-wave-container">
+              <AudioWave
+                :audio-source-callback="audioSourceCallback"
+                :stream-state="streamState"
+                :wave-color="'#7873f6'"
+                :num-bars="12"
+              />
+            </div>
+          </div>
+
+          <!-- 右侧停止按钮 -->
+          <div class="stop-button">
+            <div class="stop-icon"></div>
+          </div>
+        </div>
       </template>
     </div>
-    <template v-if="streamState === StreamState.open">
-      <div class="input-audio-wave">
-        <AudioWave
-          :audio-source-callback="audioSourceCallback"
-          :stream-state="streamState"
-          :wave-color="waveColor"
-        />
-      </div>
-    </template>
   </div>
 </template>
 
@@ -39,6 +53,7 @@
 import { Spin } from 'ant-design-vue'
 import { StreamState } from '@/interface/voiceChat'
 import AudioWave from '@/components/AudioWave.vue'
+import Iconfont, { Keyboard } from '@/components/Iconfont'
 
 const props = defineProps({
   streamState: {
@@ -228,52 +243,274 @@ const emit = defineEmits([])
   }
 
   .stop-chat {
-    width: 64px;
+    width: 500px;
+    min-width: 400px;
+    height: 60px;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
 
     @media (max-width: 1024px) and (min-width: 769px) {
-      width: 60px;
+      width: 480px;
+      min-width: 380px;
+      height: 56px;
     }
 
     @media (max-width: 768px) {
-      width: 56px;
+      width: 460px;
+      min-width: 360px;
+      height: 52px;
     }
 
     @media (max-width: 480px) {
-      width: 52px;
+      width: 440px;
+      min-width: 340px;
+      height: 48px;
     }
 
     @media (max-width: 360px) {
-      width: 48px;
+      width: 420px;
+      min-width: 320px;
+      height: 44px;
     }
 
     .stop-chat-inner {
-      width: 25px;
-      height: 25px;
-      border-radius: 6.25px;
-      background: #fafafa;
+      display: none; // 隐藏原来的停止按钮
+    }
 
-      @media (max-width: 1024px) and (min-width: 769px) {
-        width: 23px;
-        height: 23px;
-        border-radius: 5.75px;
+    // 新的停止聊天容器样式
+    .stop-chat-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      height: 100%;
+
+      // 左侧键盘按钮
+      .keyboard-button {
+        width: 60px;
+        height: 60px;
+        background: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid #e9ecef;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          background: #e9ecef;
+          transform: scale(1.05);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+          width: 56px;
+          height: 56px;
+        }
+
+        @media (max-width: 768px) {
+          width: 52px;
+          height: 52px;
+        }
+
+        @media (max-width: 480px) {
+          width: 48px;
+          height: 48px;
+        }
+
+        @media (max-width: 360px) {
+          width: 44px;
+          height: 44px;
+        }
       }
 
-      @media (max-width: 768px) {
-        width: 21px;
-        height: 21px;
-        border-radius: 5.25px;
+      // 中间录音状态区域
+      .recording-status {
+        flex: 1;
+        height: 60px;
+        background: #ffffff;
+        border: 2px solid #e9ecef;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+          height: 56px;
+          border-radius: 28px;
+          padding: 0 20px;
+        }
+
+        @media (max-width: 768px) {
+          height: 52px;
+          border-radius: 26px;
+          padding: 0 18px;
+        }
+
+        @media (max-width: 480px) {
+          height: 48px;
+          border-radius: 24px;
+          padding: 0 16px;
+        }
+
+        @media (max-width: 360px) {
+          height: 44px;
+          border-radius: 22px;
+          padding: 0 14px;
+        }
+
+        .recording-text {
+          font-size: 16px;
+          font-weight: 600;
+          color: #2c3e50;
+          font-family:
+            -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+            'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          letter-spacing: 0.02em;
+          white-space: nowrap;
+
+          @media (max-width: 1024px) and (min-width: 769px) {
+            font-size: 15px;
+          }
+
+          @media (max-width: 768px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 13px;
+          }
+
+          @media (max-width: 360px) {
+            font-size: 12px;
+          }
+        }
+
+        .audio-wave-container {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 16px;
+
+          :deep(.gradio-webrtc-waveContainer) {
+            min-height: 40px;
+            max-height: 50px;
+          }
+
+          @media (max-width: 1024px) and (min-width: 769px) {
+            margin-left: 14px;
+
+            :deep(.gradio-webrtc-waveContainer) {
+              min-height: 36px;
+              max-height: 46px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            margin-left: 12px;
+
+            :deep(.gradio-webrtc-waveContainer) {
+              min-height: 32px;
+              max-height: 42px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            margin-left: 10px;
+
+            :deep(.gradio-webrtc-waveContainer) {
+              min-height: 28px;
+              max-height: 38px;
+            }
+          }
+
+          @media (max-width: 360px) {
+            margin-left: 8px;
+
+            :deep(.gradio-webrtc-waveContainer) {
+              min-height: 24px;
+              max-height: 34px;
+            }
+          }
+        }
       }
 
-      @media (max-width: 480px) {
-        width: 19px;
-        height: 19px;
-        border-radius: 4.75px;
-      }
+      // 右侧停止按钮
+      .stop-button {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #7873f6 0%, #615ced 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(120, 115, 246, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.2);
 
-      @media (max-width: 360px) {
-        width: 17px;
-        height: 17px;
-        border-radius: 4.25px;
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 6px 20px rgba(120, 115, 246, 0.4);
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+          width: 56px;
+          height: 56px;
+        }
+
+        @media (max-width: 768px) {
+          width: 52px;
+          height: 52px;
+        }
+
+        @media (max-width: 480px) {
+          width: 48px;
+          height: 48px;
+        }
+
+        @media (max-width: 360px) {
+          width: 44px;
+          height: 44px;
+        }
+
+        .stop-icon {
+          width: 16px;
+          height: 16px;
+          background: #ffffff;
+          border-radius: 3px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+          @media (max-width: 1024px) and (min-width: 769px) {
+            width: 14px;
+            height: 14px;
+          }
+
+          @media (max-width: 768px) {
+            width: 12px;
+            height: 12px;
+          }
+
+          @media (max-width: 480px) {
+            width: 10px;
+            height: 10px;
+          }
+
+          @media (max-width: 360px) {
+            width: 8px;
+            height: 8px;
+          }
+        }
       }
     }
   }

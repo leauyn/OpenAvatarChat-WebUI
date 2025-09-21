@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import Iconfont, { Send } from '@/components/Iconfont'
+import Iconfont, { Send, Keyboard } from '@/components/Iconfont'
 import { insertStringAt } from '@/utils/utils'
 import { useTemplateRef } from 'vue'
 
 const props = withDefaults(
   defineProps<{
     replying: boolean
+    micEnabled?: boolean
   }>(),
-  {}
+  {
+    micEnabled: false,
+  }
 )
 const emit = defineEmits(['send', 'stop', 'interrupt'])
 
@@ -56,7 +59,30 @@ function onInterrupt() {
 <template>
   <div class="chat-input-container">
     <div class="chat-input-main">
-      <div class="stop-chat-btn" @click="onStop"></div>
+      <!-- 麦克风开启时的UI -->
+      <div v-if="micEnabled" class="mic-enabled-ui" @click="onStop">
+        <div class="mic-ui-content">
+          <div class="keyboard-icon">
+            <Iconfont :icon="Keyboard" :fontSize="20" :color="'#7873f6'" />
+          </div>
+          <div class="mic-text">自动录音中</div>
+          <div class="wave-indicator">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+        </div>
+        <div class="stop-button">
+          <div class="stop-icon"></div>
+        </div>
+      </div>
+
+      <!-- 原来的停止按钮 -->
+      <div v-else class="stop-chat-btn" @click="onStop"></div>
 
       <div class="chat-input-inner">
         <div class="chat-input-wrapper">
@@ -395,6 +421,319 @@ function onInterrupt() {
         height: 12px;
         border-radius: 2px;
         background: #fafafa;
+      }
+    }
+  }
+
+  // 麦克风开启时的UI样式
+  .mic-enabled-ui {
+    cursor: pointer;
+    height: 44px;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+    border: 1.5px solid #e1e5f2;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 2px 8px -2px rgba(54, 54, 73, 0.06),
+      0 4px 20px -4px rgba(51, 51, 71, 0.12),
+      0 1px 3px 0 rgba(44, 44, 54, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    padding: 0 16px;
+    gap: 12px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(120, 115, 246, 0.05) 0%,
+        rgba(120, 115, 246, 0.02) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 4px 16px -4px rgba(120, 115, 246, 0.15),
+        0 8px 32px -8px rgba(120, 115, 246, 0.25),
+        0 2px 8px 0 rgba(120, 115, 246, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border-color: #c7d2fe;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow:
+        0 2px 8px -2px rgba(54, 54, 73, 0.08),
+        0 4px 16px -4px rgba(51, 51, 71, 0.15),
+        0 1px 3px 0 rgba(44, 44, 54, 0.06);
+    }
+
+    .mic-ui-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+
+      .keyboard-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7873f6;
+      }
+
+      .mic-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: #1a1a2e;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+          'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        letter-spacing: 0.01em;
+      }
+
+      .wave-indicator {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-left: auto;
+
+        .wave-bar {
+          width: 3px;
+          height: 12px;
+          background: linear-gradient(135deg, #7873f6 0%, #615ced 100%);
+          border-radius: 2px;
+          animation: waveAnimation 1.5s ease-in-out infinite;
+
+          &:nth-child(1) {
+            animation-delay: 0s;
+          }
+          &:nth-child(2) {
+            animation-delay: 0.1s;
+          }
+          &:nth-child(3) {
+            animation-delay: 0.2s;
+          }
+          &:nth-child(4) {
+            animation-delay: 0.3s;
+          }
+          &:nth-child(5) {
+            animation-delay: 0.4s;
+          }
+          &:nth-child(6) {
+            animation-delay: 0.5s;
+          }
+          &:nth-child(7) {
+            animation-delay: 0.6s;
+          }
+        }
+      }
+    }
+
+    .stop-button {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #7873f6 0%, #615ced 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow:
+        0 2px 8px rgba(120, 115, 246, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+
+      .stop-icon {
+        width: 12px;
+        height: 12px;
+        background: #fafafa;
+        border-radius: 2px;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow:
+          0 4px 12px rgba(120, 115, 246, 0.3),
+          0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    @keyframes waveAnimation {
+      0%,
+      100% {
+        height: 8px;
+        opacity: 0.6;
+      }
+      50% {
+        height: 16px;
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      height: 40px;
+      min-width: 180px;
+      border-radius: 22px;
+      padding: 0 14px;
+      gap: 10px;
+
+      .mic-ui-content {
+        gap: 10px;
+
+        .keyboard-icon {
+          width: 18px;
+          height: 18px;
+        }
+
+        .mic-text {
+          font-size: 13px;
+        }
+
+        .wave-indicator .wave-bar {
+          width: 2.5px;
+          height: 10px;
+        }
+      }
+
+      .stop-button {
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+
+        .stop-icon {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      height: 36px;
+      min-width: 160px;
+      border-radius: 20px;
+      padding: 0 12px;
+      gap: 8px;
+
+      .mic-ui-content {
+        gap: 8px;
+
+        .keyboard-icon {
+          width: 16px;
+          height: 16px;
+        }
+
+        .mic-text {
+          font-size: 12px;
+        }
+
+        .wave-indicator .wave-bar {
+          width: 2px;
+          height: 8px;
+        }
+      }
+
+      .stop-button {
+        width: 26px;
+        height: 26px;
+        border-radius: 13px;
+
+        .stop-icon {
+          width: 9px;
+          height: 9px;
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      height: 32px;
+      min-width: 140px;
+      border-radius: 18px;
+      padding: 0 10px;
+      gap: 6px;
+
+      .mic-ui-content {
+        gap: 6px;
+
+        .keyboard-icon {
+          width: 14px;
+          height: 14px;
+        }
+
+        .mic-text {
+          font-size: 11px;
+        }
+
+        .wave-indicator .wave-bar {
+          width: 1.5px;
+          height: 6px;
+        }
+      }
+
+      .stop-button {
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+
+        .stop-icon {
+          width: 8px;
+          height: 8px;
+        }
+      }
+    }
+
+    @media (max-width: 360px) {
+      height: 28px;
+      min-width: 120px;
+      border-radius: 16px;
+      padding: 0 8px;
+      gap: 4px;
+
+      .mic-ui-content {
+        gap: 4px;
+
+        .keyboard-icon {
+          width: 12px;
+          height: 12px;
+        }
+
+        .mic-text {
+          font-size: 10px;
+        }
+
+        .wave-indicator .wave-bar {
+          width: 1px;
+          height: 4px;
+        }
+      }
+
+      .stop-button {
+        width: 22px;
+        height: 22px;
+        border-radius: 11px;
+
+        .stop-icon {
+          width: 7px;
+          height: 7px;
+        }
       }
     }
   }

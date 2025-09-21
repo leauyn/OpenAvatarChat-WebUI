@@ -3,6 +3,7 @@ import Iconfont from './index.vue'
 import CameraOff from './icons/CameraOff.vue'
 import CameraOn from './icons/CameraOn.vue'
 import CheckIcon from './icons/Check.vue'
+import Keyboard from './icons/Keyboard.vue'
 import MicOff from './icons/MicOff.vue'
 import MicOn from './icons/MicOn.vue'
 import PictureInPicture from './icons/PictureInPicture.vue'
@@ -18,6 +19,7 @@ export {
   CameraOff,
   CameraOn,
   CheckIcon,
+  Keyboard,
   MicOff,
   MicOn,
   PictureInPicture,

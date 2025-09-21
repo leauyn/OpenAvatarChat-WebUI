@@ -101,7 +101,9 @@ function transformIndex(index: number): number {
       <template v-for="(_, index) in Array(numBars / 2)" :key="index">
         <div class="gradio-webrtc-box"></div>
       </template>
-      <div class="split-container"></div>
+      <div class="split-container">
+        <div class="recording-text">自动录音中</div>
+      </div>
       <template v-for="(_, index) in Array(numBars / 2)" :key="index">
         <div class="gradio-webrtc-box"></div>
       </template>
@@ -129,6 +131,21 @@ function transformIndex(index: number): number {
 
 .split-container {
   width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .recording-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c3e50;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+      'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    text-align: center;
+  }
 }
 
 .gradio-webrtc-box {

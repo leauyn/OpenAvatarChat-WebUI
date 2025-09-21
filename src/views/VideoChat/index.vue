@@ -68,6 +68,7 @@
       <template v-if="(!hasMic || micMuted) && streamState === 'open'" class="chat-input-wrapper">
         <ChatInput
           :replying="replying"
+          :micEnabled="hasMic && !micMuted"
           @interrupt="onInterrupt"
           @send="onSend"
           @stop="videoChatState.startWebRTC"
