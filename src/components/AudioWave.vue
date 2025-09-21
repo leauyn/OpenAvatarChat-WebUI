@@ -137,7 +137,7 @@ function transformIndex(index: number): number {
 
   .recording-text {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: #2c3e50;
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',

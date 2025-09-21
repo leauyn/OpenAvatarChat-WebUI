@@ -70620,7 +70620,7 @@ const Lie = bi(Rie, [['render', Pie]]),
                               'audio-source-callback': n.audioSourceCallback,
                               'stream-state': n.streamState,
                               'wave-color': '#7873f6',
-                              'num-bars': 12,
+                              'num-bars': 16,
                             },
                             null,
                             8,
@@ -70643,7 +70643,7 @@ const Lie = bi(Rie, [['render', Pie]]),
       )
     },
   }),
-  Xie = bi(qie, [['__scopeId', 'data-v-09109be3']])
+  Xie = bi(qie, [['__scopeId', 'data-v-7e8321c7']])
 function Kie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)

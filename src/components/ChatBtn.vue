@@ -33,7 +33,7 @@
               :audio-source-callback="audioSourceCallback"
               :stream-state="streamState"
               :wave-color="'#7873f6'"
-              :num-bars="12"
+              :num-bars="16"
             />
           </div>
 
@@ -387,8 +387,8 @@ const emit = defineEmits([])
 
         :deep(.gradio-webrtc-boxContainer) {
           height: 56px;
-          --boxSize: 4px;
-          --gutter: 4px;
+          --boxSize: 5px;
+          --gutter: 6px;
         }
 
         :deep(.gradio-webrtc-box) {
@@ -398,7 +398,7 @@ const emit = defineEmits([])
         }
 
         :deep(.split-container) {
-          width: 120px;
+          width: 100px;
 
           .recording-text {
             font-size: 16px;
@@ -425,12 +425,12 @@ const emit = defineEmits([])
 
           :deep(.gradio-webrtc-boxContainer) {
             height: 50px;
-            --boxSize: 3px;
-            --gutter: 3px;
+            --boxSize: 4px;
+            --gutter: 5px;
           }
 
           :deep(.split-container) {
-            width: 110px;
+            width: 90px;
 
             .recording-text {
               font-size: 15px;
@@ -450,12 +450,12 @@ const emit = defineEmits([])
 
           :deep(.gradio-webrtc-boxContainer) {
             height: 46px;
-            --boxSize: 3px;
-            --gutter: 3px;
+            --boxSize: 4px;
+            --gutter: 5px;
           }
 
           :deep(.split-container) {
-            width: 100px;
+            width: 80px;
 
             .recording-text {
               font-size: 14px;
@@ -475,12 +475,12 @@ const emit = defineEmits([])
 
           :deep(.gradio-webrtc-boxContainer) {
             height: 42px;
-            --boxSize: 2px;
-            --gutter: 2px;
+            --boxSize: 3px;
+            --gutter: 4px;
           }
 
           :deep(.split-container) {
-            width: 90px;
+            width: 70px;
 
             .recording-text {
               font-size: 13px;
@@ -500,12 +500,12 @@ const emit = defineEmits([])
 
           :deep(.gradio-webrtc-boxContainer) {
             height: 38px;
-            --boxSize: 2px;
-            --gutter: 2px;
+            --boxSize: 3px;
+            --gutter: 4px;
           }
 
           :deep(.split-container) {
-            width: 80px;
+            width: 60px;
 
             .recording-text {
               font-size: 12px;
