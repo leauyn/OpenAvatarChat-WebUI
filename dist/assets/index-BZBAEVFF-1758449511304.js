@@ -23,7 +23,7 @@ var Yu = (n, e, t, i) => ({
     return dt(n, e, i)
   },
 })
-function Dre() {
+function Lre() {
   ;(import.meta.url, import('_').catch(() => 1), (async function* () {})().next())
 }
 ;(function () {
@@ -80,7 +80,7 @@ const un = {},
   },
   ER = Object.prototype.hasOwnProperty,
   tn = (n, e) => ER.call(n, e),
-  _t = Array.isArray,
+  vt = Array.isArray,
   $c = (n) => jm(n) === '[object Map]',
   GT = (n) => jm(n) === '[object Set]',
   Et = (n) => typeof n == 'function',
@@ -135,7 +135,7 @@ const Km = () =>
             ? global
             : {})
 function Go(n) {
-  if (_t(n)) {
+  if (vt(n)) {
     const e = {}
     for (let t = 0; t < n.length; t++) {
       const i = n[t],
@@ -166,7 +166,7 @@ function OR(n) {
 function Wo(n) {
   let e = ''
   if (wn(n)) e = n
-  else if (_t(n))
+  else if (vt(n))
     for (let t = 0; t < n.length; t++) {
       const i = Wo(n[t])
       i && (e += i + ' ')
@@ -185,7 +185,7 @@ const KT = (n) => !!(n && n.__v_isRef === !0),
       ? n
       : n == null
         ? ''
-        : _t(n) || (gn(n) && (n.toString === QT || !Et(n.toString)))
+        : vt(n) || (gn(n) && (n.toString === QT || !Et(n.toString)))
           ? KT(n)
             ? ou(n.value)
             : JSON.stringify(n, YT, 2)
@@ -204,7 +204,7 @@ const KT = (n) => !!(n && n.__v_isRef === !0),
           ? { ['Set('.concat(e.size, ')')]: [...e.values()].map((t) => Xg(t)) }
           : Va(e)
             ? Xg(e)
-            : gn(e) && !_t(e) && !jT(e)
+            : gn(e) && !vt(e) && !jT(e)
               ? String(e)
               : e,
   Xg = (n, e = '') => {
@@ -552,7 +552,7 @@ function Po(n, e, t, i, r, s) {
   }
   if ((Kv(), e === 'clear')) o.forEach(a)
   else {
-    const l = _t(n),
+    const l = vt(n),
       c = l && qv(t)
     if (l && t === 'length') {
       const u = Number(i)
@@ -591,7 +591,7 @@ const $R = {
     return Yg(this, Symbol.iterator, mi)
   },
   concat(...n) {
-    return Jl(this).concat(...n.map((e) => (_t(e) ? Jl(e) : e)))
+    return Jl(this).concat(...n.map((e) => (vt(e) ? Jl(e) : e)))
   },
   entries() {
     return Yg(this, 'entries', (n) => ((n[1] = mi(n[1])), n))
@@ -760,7 +760,7 @@ class cw {
         Object.getPrototypeOf(e) === Object.getPrototypeOf(i)
         ? e
         : void 0
-    const o = _t(e)
+    const o = vt(e)
     if (!r) {
       let l
       if (o && (l = $R[t])) return l
@@ -788,10 +788,10 @@ class uw extends cw {
     let s = e[t]
     if (!this._isShallow) {
       const l = Ba(s)
-      if ((!Zr(i) && !Ba(i) && ((s = Bt(s)), (i = Bt(i))), !_t(e) && bn(s) && !bn(i)))
+      if ((!Zr(i) && !Ba(i) && ((s = Bt(s)), (i = Bt(i))), !vt(e) && bn(s) && !bn(i)))
         return (l || (s.value = i), !0)
     }
-    const o = _t(e) && qv(t) ? Number(t) < e.length : tn(e, t),
+    const o = vt(e) && qv(t) ? Number(t) < e.length : tn(e, t),
       a = Reflect.set(e, t, i, bn(e) ? e : r)
     return (e === Bt(r) && (o ? La(i, s) && Po(e, 'set', t, i) : Po(e, 'add', t, i)), a)
   }
@@ -806,7 +806,7 @@ class uw extends cw {
     return ((!Va(t) || !lw.has(t)) && Li(e, 'has', t), i)
   }
   ownKeys(e) {
-    return (Li(e, 'iterate', _t(e) ? 'length' : Il), Reflect.ownKeys(e))
+    return (Li(e, 'iterate', vt(e) ? 'length' : Il), Reflect.ownKeys(e))
   }
 }
 class jR extends cw {
@@ -1051,7 +1051,7 @@ function gw(n) {
   return ko(n) ? n : new Proxy(n, l8)
 }
 function c8(n) {
-  const e = _t(n) ? new Array(n.length) : {}
+  const e = vt(n) ? new Array(n.length) : {}
   for (const t in n) e[t] = yw(n, t)
   return e
 }
@@ -1143,7 +1143,7 @@ function g8(n, e, t = un) {
       ? ((d = () => n.value), (p = Zr(n)))
       : ko(n)
         ? ((d = () => c(n)), (p = !0))
-        : _t(n)
+        : vt(n)
           ? ((g = !0),
             (p = n.some((_) => ko(_) || Zr(_))),
             (d = () =>
@@ -1231,7 +1231,7 @@ function g8(n, e, t = un) {
 function Lo(n, e = 1 / 0, t) {
   if (e <= 0 || !gn(n) || n.__v_skip || ((t = t || new Map()), (t.get(n) || 0) >= e)) return n
   if ((t.set(n, e), e--, bn(n))) Lo(n.value, e, t)
-  else if (_t(n)) for (let i = 0; i < n.length; i++) Lo(n[i], e, t)
+  else if (vt(n)) for (let i = 0; i < n.length; i++) Lo(n[i], e, t)
   else if (GT(n) || $c(n))
     n.forEach((i) => {
       Lo(i, e, t)
@@ -1266,7 +1266,7 @@ function As(n, e, t, i) {
       r
     )
   }
-  if (_t(n)) {
+  if (vt(n)) {
     const r = []
     for (let s = 0; s < n.length; s++) r.push(As(n[s], e, t, i))
     return r
@@ -1332,7 +1332,7 @@ function _w() {
   em || (em = vw.then(Sw))
 }
 function _8(n) {
-  ;(_t(n)
+  ;(vt(n)
     ? Gc.push(...n)
     : _a && n.id === -1
       ? _a.splice(wc + 1, 0, n)
@@ -1645,7 +1645,7 @@ function W1(n, e, t, i, r) {
     },
     A = (T, M) => {
       const I = M[1]
-      ;(C(T, M), _t(T) ? T.every((L) => L.length <= 1) && I() : T.length <= 1 && I())
+      ;(C(T, M), vt(T) ? T.every((L) => L.length <= 1) && I() : T.length <= 1 && I())
     },
     R = {
       mode: o,
@@ -1731,8 +1731,8 @@ function nm(n) {
 }
 const im = new WeakMap()
 function Nd(n, e, t, i, r = !1) {
-  if (_t(n)) {
-    n.forEach((p, g) => Nd(p, e && (_t(e) ? e[g] : e), t, i, r))
+  if (vt(n)) {
+    n.forEach((p, g) => Nd(p, e && (vt(e) ? e[g] : e), t, i, r))
     return
   }
   if (Pd(i) && !r) {
@@ -1766,8 +1766,8 @@ function Nd(n, e, t, i, r = !1) {
       const y = () => {
         if (n.f) {
           const m = p ? (f(l) ? d[l] : u[l]) : l.value
-          if (r) _t(m) && jv(m, s)
-          else if (_t(m)) m.includes(s) || m.push(s)
+          if (r) vt(m) && jv(m, s)
+          else if (vt(m)) m.includes(s) || m.push(s)
           else if (p) ((u[l] = [s]), f(l) && (d[l] = u[l]))
           else {
             const v = [s]
@@ -1878,7 +1878,7 @@ function F2(n, e) {
 function th(n, e, t, i) {
   let r
   const s = t,
-    o = _t(n)
+    o = vt(n)
   if (o || wn(n)) {
     const a = o && ko(n)
     let l = !1,
@@ -2002,7 +2002,7 @@ const Q1 = (n) => (n ? (Jw(n) ? ig(n) : Q1(n.parent)) : null),
     },
   }
 function O2(n) {
-  return _t(n) ? n.reduce((e, t) => ((e[t] = null), e), {}) : n
+  return vt(n) ? n.reduce((e, t) => ((e[t] = null), e), {}) : n
 }
 let j1 = !0
 function B8(n) {
@@ -2070,7 +2070,7 @@ function B8(n) {
   }
   u && B2(u, n, 'c')
   function V(W, ee) {
-    _t(ee) ? ee.forEach((se) => W(se.bind(t))) : ee && W(ee.bind(t))
+    vt(ee) ? ee.forEach((se) => W(se.bind(t))) : ee && W(ee.bind(t))
   }
   if (
     (V(Pw, d),
@@ -2085,7 +2085,7 @@ function B8(n) {
     V(eg, v),
     V(Fh, _),
     V(I8, T),
-    _t(M))
+    vt(M))
   )
     if (M.length) {
       const W = n.exposed || (n.exposed = {})
@@ -2104,7 +2104,7 @@ function B8(n) {
     T && Iw(n))
 }
 function U8(n, e, t = qs) {
-  _t(n) && (n = q1(n))
+  vt(n) && (n = q1(n))
   for (const i in n) {
     const r = n[i]
     let s
@@ -2124,7 +2124,7 @@ function U8(n, e, t = qs) {
   }
 }
 function B2(n, e, t) {
-  As(_t(n) ? n.map((i) => i.bind(e.proxy)) : n.bind(e.proxy), e, t)
+  As(vt(n) ? n.map((i) => i.bind(e.proxy)) : n.bind(e.proxy), e, t)
 }
 function Ow(n, e, t, i) {
   let r = i.includes('.') ? qw(t, i) : () => t[i]
@@ -2133,7 +2133,7 @@ function Ow(n, e, t, i) {
     Et(s) && Jn(r, s)
   } else if (Et(n)) Jn(r, n.bind(t))
   else if (gn(n))
-    if (_t(n)) n.forEach((s) => Ow(s, e, t, i))
+    if (vt(n)) n.forEach((s) => Ow(s, e, t, i))
     else {
       const s = Et(n.handler) ? n.handler.bind(t) : e[n.handler]
       Et(s) && Jn(r, s, n)
@@ -2208,7 +2208,7 @@ function z8(n, e) {
   return bd(q1(n), q1(e))
 }
 function q1(n) {
-  if (_t(n)) {
+  if (vt(n)) {
     const e = {}
     for (let t = 0; t < n.length; t++) e[n[t]] = n[t]
     return e
@@ -2223,7 +2223,7 @@ function bd(n, e) {
 }
 function k2(n, e) {
   return n
-    ? _t(n) && _t(e)
+    ? vt(n) && vt(e)
       ? [...new Set([...n, ...e])]
       : ti(Object.create(null), O2(n), O2(e != null ? e : {}))
     : e
@@ -2465,7 +2465,7 @@ function $w(n, e, t = !1) {
       n.mixins && n.mixins.forEach(u))
   }
   if (!s && !l) return (gn(n) && i.set(n, Hc), Hc)
-  if (_t(s))
+  if (vt(s))
     for (let u = 0; u < s.length; u++) {
       const d = ns(s[u])
       z2(d) && (o[d] = un)
@@ -2475,11 +2475,11 @@ function $w(n, e, t = !1) {
       const d = ns(u)
       if (z2(d)) {
         const h = s[u],
-          f = (o[d] = _t(h) || Et(h) ? { type: h } : ti({}, h)),
+          f = (o[d] = vt(h) || Et(h) ? { type: h } : ti({}, h)),
           p = f.type
         let g = !1,
           y = !0
-        if (_t(p))
+        if (vt(p))
           for (let m = 0; m < p.length; ++m) {
             const v = p[m],
               x = Et(v) && v.name
@@ -2499,7 +2499,7 @@ function z2(n) {
   return n[0] !== '$' && !Ed(n)
 }
 const o_ = (n) => n === '_' || n === '_ctx' || n === '$stable',
-  a_ = (n) => (_t(n) ? n.map(zs) : [zs(n)]),
+  a_ = (n) => (vt(n) ? n.map(zs) : [zs(n)]),
   q8 = (n, e, t) => {
     if (e._n) return e
     const i = bw((...r) => a_(e(...r)), t)
@@ -3101,7 +3101,7 @@ function J8(n, e) {
 function l_(n, e, t = !1) {
   const i = n.children,
     r = e.children
-  if (_t(i) && _t(r))
+  if (vt(i) && vt(r))
     for (let s = 0; s < i.length; s++) {
       const o = i[s]
       let a = r[s]
@@ -3239,7 +3239,7 @@ function Xw(n, e, t = !1) {
   }
   return !s && !a
     ? (gn(n) && i.set(n, null), null)
-    : (_t(s) ? s.forEach((l) => (o[l] = null)) : ti(o, s), gn(n) && i.set(n, o), o)
+    : (vt(s) ? s.forEach((l) => (o[l] = null)) : ti(o, s), gn(n) && i.set(n, o), o)
 }
 function ng(n, e) {
   return !n || !Qm(e)
@@ -3342,7 +3342,7 @@ function uN({ vnode: n, parent: e }, t) {
 }
 const Kw = (n) => n.__isSuspense
 function dN(n, e) {
-  e && e.pendingBranch ? (_t(n) ? e.effects.push(...n) : e.effects.push(n)) : _8(n)
+  e && e.pendingBranch ? (vt(n) ? e.effects.push(...n) : e.effects.push(n)) : _8(n)
 }
 const Fn = Symbol.for('v-fgt'),
   Pu = Symbol.for('v-txt'),
@@ -3364,7 +3364,7 @@ function Yw(n) {
   return ((n.dynamicChildren = nh > 0 ? Mr || Hc : null), hN(), nh > 0 && Mr && Mr.push(n), n)
 }
 function wt(n, e, t, i, r, s) {
-  return Yw(vt(n, e, t, i, r, s, !0))
+  return Yw(xt(n, e, t, i, r, s, !0))
 }
 function au(n, e, t, i, r) {
   return Yw(Ae(n, e, t, i, r, !0))
@@ -3380,7 +3380,7 @@ const Zw = ({ key: n }) => (n != null ? n : null),
     typeof n == 'number' && (n = '' + n),
     n != null ? (wn(n) || bn(n) || Et(n) ? { i: Er, r: n, k: e, f: !!t } : n) : null
   )
-function vt(n, e = null, t = null, i = 0, r = null, s = n === Fn ? 0 : 1, o = !1, a = !1) {
+function xt(n, e = null, t = null, i = 0, r = null, s = n === Fn ? 0 : 1, o = !1, a = !1) {
   const l = {
     __v_isVNode: !0,
     __v_skip: !0,
@@ -3431,10 +3431,10 @@ function fN(n, e = null, t = null, i = 0, r = null, s = !1) {
     e = pN(e)
     let { class: a, style: l } = e
     ;(a && !wn(a) && (e.class = Wo(a)),
-      gn(l) && (n_(l) && !_t(l) && (l = ti({}, l)), (e.style = Go(l))))
+      gn(l) && (n_(l) && !vt(l) && (l = ti({}, l)), (e.style = Go(l))))
   }
   const o = wn(n) ? 1 : Kw(n) ? 128 : x8(n) ? 64 : gn(n) ? 4 : Et(n) ? 2 : 0
-  return vt(n, e, t, i, r, o, s, !0)
+  return xt(n, e, t, i, r, o, s, !0)
 }
 function pN(n) {
   return n ? (n_(n) || Vw(n) ? ti({}, n) : n) : null
@@ -3448,7 +3448,7 @@ function qo(n, e, t = !1, i = !1) {
       type: n.type,
       props: c,
       key: c && Zw(c),
-      ref: e && e.ref ? (t && s ? (_t(s) ? s.concat(Sp(e)) : [s, Sp(e)]) : Sp(e)) : s,
+      ref: e && e.ref ? (t && s ? (vt(s) ? s.concat(Sp(e)) : [s, Sp(e)]) : Sp(e)) : s,
       scopeId: n.scopeId,
       slotScopeIds: n.slotScopeIds,
       children: a,
@@ -3488,7 +3488,7 @@ function qr(n = '', e = !1) {
 function zs(n) {
   return n == null || typeof n == 'boolean'
     ? Ae(Js)
-    : _t(n)
+    : vt(n)
       ? Ae(Fn, null, n.slice())
       : lu(n)
         ? xa(n)
@@ -3501,7 +3501,7 @@ function u_(n, e) {
   let t = 0
   const { shapeFlag: i } = n
   if (e == null) e = null
-  else if (_t(e)) t = 16
+  else if (vt(e)) t = 16
   else if (typeof e == 'object')
     if (i & 65) {
       const r = e.default
@@ -3530,7 +3530,7 @@ function mN(...n) {
       else if (Qm(r)) {
         const s = e[r],
           o = i[r]
-        o && s !== o && !(_t(s) && s.includes(o)) && (e[r] = s ? [].concat(s, o) : o)
+        o && s !== o && !(vt(s) && s.includes(o)) && (e[r] = s ? [].concat(s, o) : o)
       } else r !== '' && (e[r] = i[r])
   }
   return e
@@ -3741,7 +3741,7 @@ function Ua(n, e, t) {
     },
     r = arguments.length
   return r === 2
-    ? gn(e) && !_t(e)
+    ? gn(e) && !vt(e)
       ? lu(e)
         ? i(n, null, [e])
         : i(n, e)
@@ -3844,9 +3844,9 @@ const t5 = Y1 ? (n) => Y1.createHTML(n) : (n) => n,
   },
   IN = ti({}, b8, n5),
   Ja = (n, e = []) => {
-    _t(n) ? n.forEach((t) => t(...e)) : n && n(...e)
+    vt(n) ? n.forEach((t) => t(...e)) : n && n(...e)
   },
-  q2 = (n) => (n ? (_t(n) ? n.some((e) => e.length > 1) : n.length > 1) : !1)
+  q2 = (n) => (n ? (vt(n) ? n.some((e) => e.length > 1) : n.length > 1) : !1)
 function RN(n) {
   const e = {}
   for (const L in n) L in n5 || (e[L] = n[L])
@@ -4058,7 +4058,7 @@ function ON(n, e, t) {
 }
 const J2 = /\s*!important$/
 function Ap(n, e, t) {
-  if (_t(t)) t.forEach((i) => Ap(n, e, i))
+  if (vt(t)) t.forEach((i) => Ap(n, e, i))
   else if ((t == null && (t = ''), e.startsWith('--'))) n.setProperty(e, t)
   else {
     const i = BN(n, e)
@@ -4159,7 +4159,7 @@ function GN(n, e) {
   return ((t.value = n), (t.attached = $N()), t)
 }
 function WN(n, e) {
-  if (_t(e)) {
+  if (vt(e)) {
     const t = n.stopImmediatePropagation
     return (
       (n.stopImmediatePropagation = () => {
@@ -23179,7 +23179,7 @@ function bB(n, e, t, i, r, s, o) {
       De = !!T.alphaMap,
       Ke = T.alphaTest > 0,
       et = !!T.alphaHash,
-      xt = !!T.extensions
+      _t = !!T.extensions
     let hn = _s
     T.toneMapped && (Ee === null || Ee.isXRRenderTarget === !0) && (hn = n.toneMapping)
     const Ti = {
@@ -23312,9 +23312,9 @@ function bB(n, e, t, i, r, s, o) {
       depthPacking: T.depthPacking || 0,
       index0AttributeName: T.index0AttributeName,
       extensionClipCullDistance:
-        xt && T.extensions.clipCullDistance === !0 && i.has('WEBGL_clip_cull_distance'),
+        _t && T.extensions.clipCullDistance === !0 && i.has('WEBGL_clip_cull_distance'),
       extensionMultiDraw:
-        ((xt && T.extensions.multiDraw === !0) || Be) && i.has('WEBGL_multi_draw'),
+        ((_t && T.extensions.multiDraw === !0) || Be) && i.has('WEBGL_multi_draw'),
       rendererExtensionParallelShaderCompile: i.has('KHR_parallel_shader_compile'),
       customProgramCacheKey: T.customProgramCacheKey(),
     }
@@ -24190,10 +24190,10 @@ function BB(n, e) {
       setLocked: function (Ke) {
         pe = Ke
       },
-      setClear: function (Ke, et, xt, hn, Ti) {
-        ;(Ti === !0 && ((Ke *= hn), (et *= hn), (xt *= hn)),
-          Ze.set(Ke, et, xt, hn),
-          De.equals(Ze) === !1 && (n.clearColor(Ke, et, xt, hn), De.copy(Ze)))
+      setClear: function (Ke, et, _t, hn, Ti) {
+        ;(Ti === !0 && ((Ke *= hn), (et *= hn), (_t *= hn)),
+          Ze.set(Ke, et, _t, hn),
+          De.equals(Ze) === !1 && (n.clearColor(Ke, et, _t, hn), De.copy(Ze)))
       },
       reset: function () {
         ;((pe = !1), (Ce = null), De.set(-1, 0, 0, 0))
@@ -24209,10 +24209,10 @@ function BB(n, e) {
     return {
       setReversed: function (et) {
         if (Ze !== et) {
-          const xt = e.get('EXT_clip_control')
+          const _t = e.get('EXT_clip_control')
           Ze
-            ? xt.clipControlEXT(xt.LOWER_LEFT_EXT, xt.ZERO_TO_ONE_EXT)
-            : xt.clipControlEXT(xt.LOWER_LEFT_EXT, xt.NEGATIVE_ONE_TO_ONE_EXT)
+            ? _t.clipControlEXT(_t.LOWER_LEFT_EXT, _t.ZERO_TO_ONE_EXT)
+            : _t.clipControlEXT(_t.LOWER_LEFT_EXT, _t.NEGATIVE_ONE_TO_ONE_EXT)
           const hn = Ke
           ;((Ke = null), this.setClear(hn))
         }
@@ -24278,7 +24278,7 @@ function BB(n, e) {
       De = null,
       Ke = null,
       et = null,
-      xt = null,
+      _t = null,
       hn = null,
       Ti = null
     return {
@@ -24293,8 +24293,8 @@ function BB(n, e) {
           (n.stencilFunc(on, os, ho), (Ce = on), (De = os), (Ke = ho))
       },
       setOp: function (on, os, ho) {
-        ;(et !== on || xt !== os || hn !== ho) &&
-          (n.stencilOp(on, os, ho), (et = on), (xt = os), (hn = ho))
+        ;(et !== on || _t !== os || hn !== ho) &&
+          (n.stencilOp(on, os, ho), (et = on), (_t = os), (hn = ho))
       },
       setLocked: function (on) {
         pe = on
@@ -24309,7 +24309,7 @@ function BB(n, e) {
           (De = null),
           (Ke = null),
           (et = null),
-          (xt = null),
+          (_t = null),
           (hn = null),
           (Ti = null))
       },
@@ -24361,10 +24361,10 @@ function BB(n, e) {
     ;(n.bindTexture(pe, et),
       n.texParameteri(pe, n.TEXTURE_MIN_FILTER, n.NEAREST),
       n.texParameteri(pe, n.TEXTURE_MAG_FILTER, n.NEAREST))
-    for (let xt = 0; xt < Ce; xt++)
+    for (let _t = 0; _t < Ce; _t++)
       pe === n.TEXTURE_3D || pe === n.TEXTURE_2D_ARRAY
         ? n.texImage3D(Ze, 0, n.RGBA, 1, 1, De, 0, n.RGBA, n.UNSIGNED_BYTE, Ke)
-        : n.texImage2D(Ze + xt, 0, n.RGBA, 1, 1, 0, n.RGBA, n.UNSIGNED_BYTE, Ke)
+        : n.texImage2D(Ze + _t, 0, n.RGBA, 1, 1, 0, n.RGBA, n.UNSIGNED_BYTE, Ke)
     return et
   }
   const we = {}
@@ -24403,7 +24403,7 @@ function BB(n, e) {
       ;((Ce = h.get(Ze)), Ce === void 0 && ((Ce = []), h.set(Ze, Ce)))
       const Ke = pe.textures
       if (Ce.length !== Ke.length || Ce[0] !== n.COLOR_ATTACHMENT0) {
-        for (let et = 0, xt = Ke.length; et < xt; et++) Ce[et] = n.COLOR_ATTACHMENT0 + et
+        for (let et = 0, _t = Ke.length; et < _t; et++) Ce[et] = n.COLOR_ATTACHMENT0 + et
         ;((Ce.length = Ke.length), (De = !0))
       }
     } else Ce[0] !== n.BACK && ((Ce[0] = n.BACK), (De = !0))
@@ -24431,7 +24431,7 @@ function BB(n, e) {
     [tP]: n.CONSTANT_ALPHA,
     [nP]: n.ONE_MINUS_CONSTANT_ALPHA,
   }
-  function b(pe, Ze, Ce, De, Ke, et, xt, hn, Ti, on) {
+  function b(pe, Ze, Ce, De, Ke, et, _t, hn, Ti, on) {
     if (pe === Da) {
       g === !0 && (Re(n.BLEND), (g = !1))
       return
@@ -24487,14 +24487,14 @@ function BB(n, e) {
     }
     ;((Ke = Ke || Ze),
       (et = et || Ce),
-      (xt = xt || De),
+      (_t = _t || De),
       (Ze !== m || Ke !== _) && (n.blendEquationSeparate(te[Ze], te[Ke]), (m = Ze), (_ = Ke)),
-      (Ce !== v || De !== x || et !== S || xt !== C) &&
-        (n.blendFuncSeparate(re[Ce], re[De], re[et], re[xt]),
+      (Ce !== v || De !== x || et !== S || _t !== C) &&
+        (n.blendFuncSeparate(re[Ce], re[De], re[et], re[_t]),
         (v = Ce),
         (x = De),
         (S = et),
-        (C = xt)),
+        (C = _t)),
       (hn.equals(A) === !1 || Ti !== R) &&
         (n.blendColor(hn.r, hn.g, hn.b, Ti), A.copy(hn), (R = Ti)),
       (y = pe),
@@ -25213,7 +25213,7 @@ function UB(n, e, t, i, r, s, o) {
                     if (D.layerUpdates.size > 0) {
                       const Ke = fA(Le.width, Le.height, D.format, D.type)
                       for (const et of D.layerUpdates) {
-                        const xt = Le.data.subarray(
+                        const _t = Le.data.subarray(
                           (et * Ke) / Le.data.BYTES_PER_ELEMENT,
                           ((et + 1) * Ke) / Le.data.BYTES_PER_ELEMENT
                         )
@@ -25227,7 +25227,7 @@ function UB(n, e, t, i, r, s, o) {
                           Le.height,
                           1,
                           $,
-                          xt
+                          _t
                         )
                       }
                       D.clearLayerUpdates()
@@ -25505,7 +25505,7 @@ function UB(n, e, t, i, r, s, o) {
                   $[De].data
                 )
             for (let Ke = 0; Ke < Ce.length; Ke++) {
-              const xt = Ce[Ke].image[De].image
+              const _t = Ce[Ke].image[De].image
               Je
                 ? pe &&
                   t.texSubImage2D(
@@ -25513,22 +25513,22 @@ function UB(n, e, t, i, r, s, o) {
                     Ke + 1,
                     0,
                     0,
-                    xt.width,
-                    xt.height,
+                    _t.width,
+                    _t.height,
                     Ue,
                     Le,
-                    xt.data
+                    _t.data
                   )
                 : t.texImage2D(
                     n.TEXTURE_CUBE_MAP_POSITIVE_X + De,
                     Ke + 1,
                     Ve,
-                    xt.width,
-                    xt.height,
+                    _t.width,
+                    _t.height,
                     0,
                     Ue,
                     Le,
-                    xt.data
+                    _t.data
                   )
             }
           } else {
@@ -27171,9 +27171,9 @@ class QB {
         K.statusMessage
       )
     }
-    function xt(K) {
+    function _t(K) {
       const ge = K.target
-      ;(ge.removeEventListener('dispose', xt), hn(ge))
+      ;(ge.removeEventListener('dispose', _t), hn(ge))
     }
     function hn(K) {
       ;(Ti(K), j.remove(K))
@@ -27558,7 +27558,7 @@ class QB {
         (be.envMap = (K.isMeshStandardMaterial ? Q : D).get(K.envMap || be.environment)),
         (be.envMapRotation =
           be.environment !== null && K.envMap === null ? ge.environmentRotation : K.envMapRotation),
-        At === void 0 && (K.addEventListener('dispose', xt), (At = new Map()), (be.programs = At)))
+        At === void 0 && (K.addEventListener('dispose', _t), (At = new Map()), (be.programs = At)))
       let Tt = At.get(at)
       if (Tt !== void 0) {
         if (be.currentProgram === Tt && be.lightsStateVersion === nt) return (w2(K, ot), Tt)
@@ -31033,19 +31033,19 @@ class Zf extends so {
           if (i.zoomToCursor && C) {
             let et = null
             if (i.object.isPerspectiveCamera) {
-              const xt = $.length()
-              et = se(xt * c)
-              const hn = xt - et
+              const _t = $.length()
+              et = se(_t * c)
+              const hn = _t - et
               ;(i.object.position.addScaledVector(_, hn), i.object.updateMatrixWorld())
             } else if (i.object.isOrthographicCamera) {
-              const xt = new Y(S.x, S.y, 0)
-              ;(xt.unproject(i.object),
+              const _t = new Y(S.x, S.y, 0)
+              ;(_t.unproject(i.object),
                 (i.object.zoom = Math.max(i.minZoom, Math.min(i.maxZoom, i.object.zoom / c))),
                 i.object.updateProjectionMatrix(),
                 (Ke = !0))
               const hn = new Y(S.x, S.y, 0)
               ;(hn.unproject(i.object),
-                i.object.position.sub(hn).add(xt),
+                i.object.position.sub(hn).add(_t),
                 i.object.updateMatrixWorld(),
                 (et = $.length()))
             } else
@@ -49190,22 +49190,22 @@ Un.getAdapter = f6.getAdapter
 Un.HttpStatusCode = mv
 Un.default = Un
 const {
-  Axios: Vre,
-  AxiosError: Hre,
-  CanceledError: $re,
-  isCancel: Gre,
-  CancelToken: Wre,
-  VERSION: Qre,
-  all: jre,
-  Cancel: qre,
-  isAxiosError: Xre,
-  spread: Kre,
-  toFormData: Yre,
-  AxiosHeaders: Zre,
-  HttpStatusCode: Jre,
-  formToJSON: ese,
-  getAdapter: tse,
-  mergeConfig: nse,
+  Axios: zre,
+  AxiosError: Vre,
+  CanceledError: Hre,
+  isCancel: $re,
+  CancelToken: Gre,
+  VERSION: Wre,
+  all: Qre,
+  Cancel: jre,
+  isAxiosError: qre,
+  spread: Xre,
+  toFormData: Kre,
+  AxiosHeaders: Yre,
+  HttpStatusCode: Zre,
+  formToJSON: Jre,
+  getAdapter: ese,
+  mergeConfig: tse,
 } = Un
 var Uc =
   typeof globalThis < 'u'
@@ -66754,7 +66754,7 @@ const Ta = f5('visionStore', {
         (r, s) => (
           mt(),
           wt('div', { class: 'access-wrap', onClick: i }, [
-            vt('span', $ee, [Ae(Xe(l2))]),
+            xt('span', $ee, [Ae(Xe(l2))]),
             om(' ' + ou(Gee)),
           ])
         )
@@ -70033,11 +70033,11 @@ function die(n, e) {
     wt('svg', uie, [
       ...(e[0] ||
         (e[0] = [
-          vt(
+          xt(
             'g',
             null,
             [
-              vt('path', {
+              xt('path', {
                 d: 'M13.802466686534881,1.1380186865348816Q13.89646668653488,1.0444176865348815,13.947366686534881,0.9218876865348815Q13.998366686534881,0.7993576865348816,13.998366686534881,0.6666666865348816Q13.998366686534881,0.6011698865348816,13.98556668653488,0.5369316865348817Q13.972766686534882,0.4726936865348816,13.947666686534882,0.4121826865348816Q13.922666686534882,0.3516706865348816,13.886266686534881,0.2972126865348816Q13.849866686534881,0.2427536865348816,13.803566686534882,0.19644068653488161Q13.757266686534882,0.15012768653488162,13.702766686534881,0.11373968653488165Q13.648366686534882,0.07735168653488156,13.587866686534882,0.052286686534881555Q13.527266686534881,0.02722268653488158,13.463066686534882,0.014444686534881623Q13.398866686534882,0.0016666865348815563,13.333366686534882,0.0016666865348815563Q13.201466686534882,0.0016666865348815563,13.079566686534882,0.051981686534881555Q12.957666686534882,0.10229768653488158,12.864266686534881,0.1953146865348816L12.863066686534882,0.19413268653488158L4.624996686534882,8.392776686534882L1.1369396865348815,4.921396686534882L1.1357636865348817,4.922586686534881Q1.0422996865348817,4.829566686534881,0.9204146865348816,4.779246686534882Q0.7985286865348816,4.728936686534881,0.6666666865348816,4.728936686534881Q0.6011698865348816,4.728936686534881,0.5369316865348817,4.741706686534882Q0.4726936865348816,4.754486686534881,0.4121826865348816,4.779556686534882Q0.3516706865348816,4.804616686534882,0.2972126865348816,4.8410066865348815Q0.2427536865348816,4.8773966865348815,0.19644068653488161,4.9237066865348815Q0.15012768653488162,4.970016686534882,0.11373968653488165,5.024476686534881Q0.07735168653488156,5.078936686534882,0.052286686534881555,5.139446686534882Q0.02722268653488158,5.199956686534882,0.014444686534881623,5.2641966865348815Q0.0016666865348815563,5.328436686534881,0.0016666865348815563,5.3939366865348815Q0.0016666865348815563,5.526626686534882,0.05259268653488158,5.649156686534882Q0.10351768653488158,5.771686686534881,0.1975696865348816,5.865286686534882L0.1963936865348816,5.866466686534881L4.1547266865348815,9.805866686534882Q4.201126686534882,9.852046686534882,4.255616686534882,9.888306686534882Q4.310106686534882,9.924576686534882,4.3706166865348814,9.949556686534882Q4.431126686534881,9.974536686534881,4.495326686534882,9.987266686534882Q4.559536686534882,9.999996686534882,4.624996686534882,9.999996686534882Q4.690456686534882,9.999996686534882,4.754666686534882,9.987266686534882Q4.818876686534882,9.974536686534881,4.879386686534882,9.949556686534882Q4.939886686534882,9.924576686534882,4.994386686534882,9.888306686534882Q5.048876686534881,9.852046686534882,5.0952766865348815,9.805866686534882L13.803566686534882,1.1392006865348816L13.802466686534881,1.1380186865348816Z',
                 'fill-rule': 'evenodd',
                 fill: '#E0E0FC',
@@ -70071,13 +70071,13 @@ const zT = bi(cie, [['render', die]]),
         wt('svg', hie, [
           ...(t[0] ||
             (t[0] = [
-              vt(
+              xt(
                 'path',
                 { d: 'M10 8h.01M12 12h.01M14 8h.01M16 12h.01M18 8h.01M6 8h.01M7 16h10m-9-4h.01' },
                 null,
                 -1
               ),
-              vt('rect', { width: '20', height: '16', x: '2', y: '4', rx: '2' }, null, -1),
+              xt('rect', { width: '20', height: '16', x: '2', y: '4', rx: '2' }, null, -1),
             ])),
         ])
       )
@@ -70146,7 +70146,7 @@ function Tie(n, e) {
     wt('svg', bie, [
       ...(e[0] ||
         (e[0] = [
-          vt(
+          xt(
             'path',
             {
               d: 'M899.925333 172.080762a48.761905 48.761905 0 0 1 0 28.525714l-207.969523 679.448381a48.761905 48.761905 0 0 1-81.115429 20.187429l-150.552381-150.552381-96.304762 96.329143a24.380952 24.380952 0 0 1-41.593905-17.237334v-214.966857l275.821715-243.370667-355.57181 161.596953-103.253333-103.228953a48.761905 48.761905 0 0 1 20.23619-81.091047L838.997333 139.702857a48.761905 48.761905 0 0 1 60.903619 32.353524z',
@@ -70293,12 +70293,12 @@ const Lie = bi(Rie, [['render', Pie]]),
                               },
                               [
                                 ...(T[5] ||
-                                  (T[5] = [vt('div', { class: 'corner-inner' }, null, -1)])),
+                                  (T[5] = [xt('div', { class: 'corner-inner' }, null, -1)])),
                               ]
                             ))
                           : qr('', !0),
                         Lc(
-                          vt(
+                          xt(
                             'div',
                             { class: Wo(['selectors', { left: Xe(_) }]) },
                             [
@@ -70377,12 +70377,12 @@ const Lie = bi(Rie, [['render', Pie]]),
                               },
                               [
                                 ...(T[6] ||
-                                  (T[6] = [vt('div', { class: 'corner-inner' }, null, -1)])),
+                                  (T[6] = [xt('div', { class: 'corner-inner' }, null, -1)])),
                               ]
                             ))
                           : qr('', !0),
                         Lc(
-                          vt(
+                          xt(
                             'div',
                             { class: Wo(['selectors', { left: Xe(_) }]) },
                             [
@@ -70429,7 +70429,7 @@ const Lie = bi(Rie, [['render', Pie]]),
                     [[M, () => (S.value = !1)]]
                   )
                 : qr('', !0),
-              vt(
+              xt(
                 'div',
                 {
                   class: 'action-button',
@@ -70515,7 +70515,7 @@ const Lie = bi(Rie, [['render', Pie]]),
       return (d, h) => (
         mt(),
         wt('div', Vie, [
-          vt(
+          xt(
             'div',
             { class: 'gradio-webrtc-boxContainer', style: Go({ width: a.value }) },
             [
@@ -70530,10 +70530,10 @@ const Lie = bi(Rie, [['render', Pie]]),
                 128
               )),
               h[0] ||
-                (h[0] = vt(
+                (h[0] = xt(
                   'div',
                   { class: 'split-container' },
-                  [vt('div', { class: 'recording-text' }, '自动录音中')],
+                  [xt('div', { class: 'recording-text' }, '自动录音中')],
                   -1
                 )),
               (mt(!0),
@@ -70559,8 +70559,7 @@ const Lie = bi(Rie, [['render', Pie]]),
   Qie = { key: 1, class: 'waiting-icon-text' },
   jie = { key: 2, class: 'stop-chat-container' },
   qie = { class: 'recording-status' },
-  Xie = { class: 'audio-wave-container' },
-  Kie = Wt({
+  Xie = Wt({
     __name: 'ChatBtn',
     props: {
       streamState: { type: String, default: tr.closed },
@@ -70573,7 +70572,7 @@ const Lie = bi(Rie, [['render', Pie]]),
       return (t, i) => (
         mt(),
         wt('div', Gie, [
-          vt(
+          xt(
             'div',
             {
               class: Wo([
@@ -70588,37 +70587,35 @@ const Lie = bi(Rie, [['render', Pie]]),
                 ? (mt(), wt('span', Wie, '点击开始对话'))
                 : n.streamState === Xe(tr).waiting
                   ? (mt(),
-                    wt('div', Qie, [...(i[1] || (i[1] = [vt('span', null, '等待中...', -1)]))]))
+                    wt('div', Qie, [...(i[1] || (i[1] = [xt('span', null, '等待中...', -1)]))]))
                   : (mt(),
                     wt('div', jie, [
                       i[2] ||
-                        (i[2] = vt(
+                        (i[2] = xt(
                           'div',
                           { class: 'keyboard-button' },
-                          [vt('img', { src: zie, alt: '键盘', class: 'keyboard-icon' })],
+                          [xt('img', { src: zie, alt: '键盘', class: 'keyboard-icon' })],
                           -1
                         )),
-                      vt('div', qie, [
-                        vt('div', Xie, [
-                          Ae(
-                            $ie,
-                            {
-                              'audio-source-callback': n.audioSourceCallback,
-                              'stream-state': n.streamState,
-                              'wave-color': '#7873f6',
-                              'num-bars': 12,
-                            },
-                            null,
-                            8,
-                            ['audio-source-callback', 'stream-state']
-                          ),
-                        ]),
+                      xt('div', qie, [
+                        Ae(
+                          $ie,
+                          {
+                            'audio-source-callback': n.audioSourceCallback,
+                            'stream-state': n.streamState,
+                            'wave-color': '#7873f6',
+                            'num-bars': 12,
+                          },
+                          null,
+                          8,
+                          ['audio-source-callback', 'stream-state']
+                        ),
                       ]),
                       i[3] ||
-                        (i[3] = vt(
+                        (i[3] = xt(
                           'div',
                           { class: 'stop-button' },
-                          [vt('div', { class: 'stop-icon' })],
+                          [xt('div', { class: 'stop-icon' })],
                           -1
                         )),
                     ])),
@@ -70629,19 +70626,19 @@ const Lie = bi(Rie, [['render', Pie]]),
       )
     },
   }),
-  Yie = bi(Kie, [['__scopeId', 'data-v-e4049bdd']])
-function Zie(n, e, t) {
+  Kie = bi(Xie, [['__scopeId', 'data-v-e6f31e9a']])
+function Yie(n, e, t) {
   return t < 0 || t > n.length
     ? (console.error('索引超出范围'), n)
     : n.substring(0, t) + e + n.substring(t)
 }
-const Jie = { class: 'chat-input-container' },
-  ere = { class: 'chat-input-main' },
-  tre = { class: 'mic-ui-content' },
-  nre = { class: 'keyboard-icon' },
-  ire = { class: 'chat-input-inner' },
-  rre = { class: 'chat-input-wrapper' },
-  sre = Wt({
+const Zie = { class: 'chat-input-container' },
+  Jie = { class: 'chat-input-main' },
+  ere = { class: 'mic-ui-content' },
+  tre = { class: 'keyboard-icon' },
+  nre = { class: 'chat-input-inner' },
+  ire = { class: 'chat-input-wrapper' },
+  rre = Wt({
     __name: 'ChatInput',
     props: { replying: { type: Boolean }, micEnabled: { type: Boolean, default: !1 } },
     emits: ['send', 'stop', 'interrupt'],
@@ -70655,7 +70652,7 @@ const Jie = { class: 'chat-input-container' },
         h.key === 'Enter' &&
           (h.altKey
             ? s.value &&
-              ((s.value.value = Zie(s.value.value, '\n', s.value.selectionStart || 0)),
+              ((s.value.value = Yie(s.value.value, '\n', s.value.selectionStart || 0)),
               s.value.dispatchEvent(new InputEvent('input')))
             : (h.preventDefault(), l()))
       }
@@ -70675,13 +70672,13 @@ const Jie = { class: 'chat-input-container' },
       }
       return (h, f) => (
         mt(),
-        wt('div', Jie, [
-          vt('div', ere, [
+        wt('div', Zie, [
+          xt('div', Jie, [
             h.micEnabled
               ? (mt(),
                 wt('div', { key: 0, class: 'mic-enabled-ui', onClick: u }, [
-                  vt('div', tre, [
-                    vt('div', nre, [
+                  xt('div', ere, [
+                    xt('div', tre, [
                       Ae(Xe(qd), { icon: Xe(fie), fontSize: 20, color: '#7873f6' }, null, 8, [
                         'icon',
                       ]),
@@ -70693,17 +70690,17 @@ const Jie = { class: 'chat-input-container' },
                       )),
                   ]),
                   f[1] ||
-                    (f[1] = vt(
+                    (f[1] = xt(
                       'div',
                       { class: 'stop-button' },
-                      [vt('div', { class: 'stop-icon' })],
+                      [xt('div', { class: 'stop-icon' })],
                       -1
                     )),
                 ]))
               : (mt(), wt('div', { key: 1, class: 'stop-chat-btn', onClick: u })),
-            vt('div', ire, [
-              vt('div', rre, [
-                vt(
+            xt('div', nre, [
+              xt('div', ire, [
+                xt(
                   'textarea',
                   {
                     class: 'chat-input',
@@ -70716,7 +70713,7 @@ const Jie = { class: 'chat-input-container' },
                   null,
                   36
                 ),
-                vt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, ou(Xe(o)), 513),
+                xt('div', { class: 'rowsDiv', ref_key: 'rowsDivRef', ref: r }, ou(Xe(o)), 513),
               ]),
               h.replying
                 ? (mt(), wt('button', { key: 0, class: 'interrupt-btn', onClick: d }))
@@ -70726,14 +70723,14 @@ const Jie = { class: 'chat-input-container' },
                   ])),
             ]),
           ]),
-          f[2] || (f[2] = vt('div', { class: 'ai-generate-hint' }, '内容由 AI 生成', -1)),
+          f[2] || (f[2] = xt('div', { class: 'ai-generate-hint' }, '内容由 AI 生成', -1)),
         ])
       )
     },
   }),
-  ore = bi(sre, [['__scopeId', 'data-v-6f692a86']]),
-  are = { class: 'answer-message-text' },
-  lre = Wt({
+  sre = bi(rre, [['__scopeId', 'data-v-6f692a86']]),
+  ore = { class: 'answer-message-text' },
+  are = Wt({
     __name: 'ChatMessage',
     props: { message: {}, role: {}, style: {} },
     setup(n) {
@@ -70742,15 +70739,15 @@ const Jie = { class: 'chat-input-container' },
         wt(
           'div',
           { class: Wo(['answer-message-container', e.role]), style: Go(e.style) },
-          [vt('div', are, ou(e.message), 1)],
+          [xt('div', ore, ou(e.message), 1)],
           6
         )
       )
     },
   }),
-  cre = bi(lre, [['__scopeId', 'data-v-a0d752ce']]),
-  ure = { class: 'chat-records-inner' },
-  dre = Wt({
+  lre = bi(are, [['__scopeId', 'data-v-a0d752ce']]),
+  cre = { class: 'chat-records-inner' },
+  ure = Wt({
     __name: 'ChatRecords',
     props: { chatRecords: {} },
     setup(n, { expose: e }) {
@@ -70776,7 +70773,7 @@ const Jie = { class: 'chat-input-container' },
             'div',
             { class: 'chat-records', ref_key: 'containerRef', ref: i },
             [
-              vt('div', ure, [
+              xt('div', cre, [
                 (mt(!0),
                 wt(
                   Fn,
@@ -70789,7 +70786,7 @@ const Jie = { class: 'chat-input-container' },
                         'div',
                         { key: a.id, class: Wo('chat-message '.concat(a.role)) },
                         [
-                          Ae(cre, { message: a.message, role: a.role }, null, 8, [
+                          Ae(lre, { message: a.message, role: a.role }, null, 8, [
                             'message',
                             'role',
                           ]),
@@ -70808,17 +70805,17 @@ const Jie = { class: 'chat-input-container' },
       )
     },
   }),
-  hre = { class: 'content-container' },
-  fre = { key: 0, class: 'top-actions' },
-  pre = { class: 'left-action' },
-  mre = { class: 'right-actions' },
-  gre = { class: 'setting-action' },
-  yre = { key: 1, class: 'connection-loading-container' },
-  vre = { class: 'loading-content' },
-  _re = { class: 'loading-spinner' },
-  xre = ['muted'],
-  Sre = { key: 2, class: 'chat-records-container' },
-  Are = Wt({
+  dre = { class: 'content-container' },
+  hre = { key: 0, class: 'top-actions' },
+  fre = { class: 'left-action' },
+  pre = { class: 'right-actions' },
+  mre = { class: 'setting-action' },
+  gre = { key: 1, class: 'connection-loading-container' },
+  yre = { class: 'loading-content' },
+  vre = { class: 'loading-spinner' },
+  _re = ['muted'],
+  xre = { key: 2, class: 'chat-records-container' },
+  Sre = Wt({
     __name: 'index',
     setup(n) {
       const e = Ta(),
@@ -70904,23 +70901,23 @@ const Jie = { class: 'chat-input-container' },
           'div',
           { class: 'page-container', ref_key: 'wrapRef', ref: i },
           [
-            vt('div', hre, [
-              vt(
+            xt('div', dre, [
+              xt(
                 'div',
                 { class: 'video-container', style: Go({ aspectRatio: l.value }) },
                 [
                   Xe(g)
                     ? (mt(),
-                      wt('div', fre, [
-                        vt('div', pre, [Ae(Xe(s2), { class: 'left-icon' })]),
-                        vt('div', mre, [
+                      wt('div', hre, [
+                        xt('div', fre, [Ae(Xe(s2), { class: 'left-icon' })]),
+                        xt('div', pre, [
                           Ae(kie),
-                          vt('div', gre, [Ae(Xe(a2), { class: 'setting-icon' })]),
+                          xt('div', mre, [Ae(Xe(a2), { class: 'setting-icon' })]),
                         ]),
                       ]))
                     : qr('', !0),
                   Lc(
-                    vt(
+                    xt(
                       'div',
                       {
                         class: Wo(
@@ -70930,7 +70927,7 @@ const Jie = { class: 'chat-input-container' },
                         ref: r,
                       },
                       [
-                        vt(
+                        xt(
                           'video',
                           {
                             class: 'local-video',
@@ -70954,14 +70951,14 @@ const Jie = { class: 'chat-input-container' },
                   ),
                   Xe(y) === 'waiting'
                     ? (mt(),
-                      wt('div', yre, [
-                        vt('div', vre, [
-                          vt('div', _re, [Ae(Xe(jd), { size: 'large' })]),
-                          F[0] || (F[0] = vt('div', { class: 'loading-text' }, '正在连接...', -1)),
+                      wt('div', gre, [
+                        xt('div', yre, [
+                          xt('div', vre, [Ae(Xe(jd), { size: 'large' })]),
+                          F[0] || (F[0] = xt('div', { class: 'loading-text' }, '正在连接...', -1)),
                         ]),
                       ]))
                     : qr('', !0),
-                  vt(
+                  xt(
                     'div',
                     { class: 'remote-video-container', ref_key: 'remoteVideoContainerRef', ref: s },
                     [
@@ -70983,7 +70980,7 @@ const Jie = { class: 'chat-input-container' },
                               },
                               null,
                               40,
-                              xre
+                              _re
                             )),
                             [[cm, Xe(y) === 'open']]
                           ),
@@ -70992,9 +70989,9 @@ const Jie = { class: 'chat-input-container' },
                   ),
                   R.value
                     ? (mt(),
-                      wt('div', Sre, [
+                      wt('div', xre, [
                         Ae(
-                          dre,
+                          ure,
                           { ref_key: 'chatRecordsInstanceRef', ref: L, chatRecords: Xe(S) },
                           null,
                           8,
@@ -71008,7 +71005,7 @@ const Jie = { class: 'chat-input-container' },
               (!Xe(h) || Xe(f)) && Xe(y) === 'open'
                 ? (mt(),
                   au(
-                    ore,
+                    sre,
                     {
                       key: 0,
                       replying: Xe(x),
@@ -71024,7 +71021,7 @@ const Jie = { class: 'chat-input-container' },
                 : Xe(g)
                   ? (mt(),
                     au(
-                      Yie,
+                      Kie,
                       {
                         key: 1,
                         onStartChat: T,
@@ -71044,9 +71041,9 @@ const Jie = { class: 'chat-input-container' },
       )
     },
   }),
-  bre = bi(Are, [['__scopeId', 'data-v-6c35ff0d']]),
-  Tre = { class: 'wrap' },
-  wre = Wt({
+  Are = bi(Sre, [['__scopeId', 'data-v-6c35ff0d']]),
+  bre = { class: 'wrap' },
+  Tre = Wt({
     __name: 'App',
     setup(n) {
       const e = kg()
@@ -71064,9 +71061,9 @@ const Jie = { class: 'chat-input-container' },
             { locale: Xe(Yne)[Xe(vR)] },
             {
               default: bw(() => [
-                vt('div', Tre, [
+                xt('div', bre, [
                   Xe(e).webcamAccessed ? qr('', !0) : (mt(), au(Qee, { key: 0 })),
-                  Ae(bre),
+                  Ae(Are),
                 ]),
               ]),
               _: 1,
@@ -71078,18 +71075,18 @@ const Jie = { class: 'chat-input-container' },
       )
     },
   }),
-  Cre = bi(wre, [['__scopeId', 'data-v-7e26f29b']])
+  wre = bi(Tre, [['__scopeId', 'data-v-7e26f29b']])
 var Kp = { exports: {} },
-  Ere = Kp.exports,
+  Cre = Kp.exports,
   VT
-function Mre() {
+function Ere() {
   return (
     VT ||
       ((VT = 1),
       (function (n, e) {
         ;(function (t, i) {
           n.exports = i()
-        })(Ere, function () {
+        })(Cre, function () {
           var t = '__v-click-outside',
             i = typeof window < 'u',
             r = typeof navigator < 'u',
@@ -71208,9 +71205,9 @@ function Mre() {
     Kp.exports
   )
 }
-var Ire = Mre()
-const Rre = d_(Ire),
-  Nre = () => {
+var Mre = Ere()
+const Ire = d_(Mre),
+  Rre = () => {
     const n = []
     for (let e = 0; e < localStorage.length; e++) {
       const t = localStorage.key(e)
@@ -71224,11 +71221,11 @@ const Rre = d_(Ire),
   z1 = localStorage.getItem('app_version'),
   HT = localStorage.getItem('last_app_version')
 ;(!z1 || (HT && z1 !== HT)) &&
-  (Nre(), localStorage.setItem('last_app_version', z1 || Date.now().toString()))
-const $g = i9(Cre),
-  Pre = o9()
-$g.use(Pre)
+  (Rre(), localStorage.setItem('last_app_version', z1 || Date.now().toString()))
+const $g = i9(wre),
+  Nre = o9()
+$g.use(Nre)
 $g.use(Jne)
-$g.use(Rre)
+$g.use(Ire)
 $g.mount('#app')
-export { Dre as __vite_legacy_guard }
+export { Lre as __vite_legacy_guard }

@@ -29,14 +29,12 @@
 
           <!-- 中间录音状态区域 -->
           <div class="recording-status">
-            <div class="audio-wave-container">
-              <AudioWave
-                :audio-source-callback="audioSourceCallback"
-                :stream-state="streamState"
-                :wave-color="'#7873f6'"
-                :num-bars="12"
-              />
-            </div>
+            <AudioWave
+              :audio-source-callback="audioSourceCallback"
+              :stream-state="streamState"
+              :wave-color="'#7873f6'"
+              :num-bars="12"
+            />
           </div>
 
           <!-- 右侧停止按钮 -->
@@ -282,84 +280,51 @@ const emit = defineEmits([])
     .stop-chat-container {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       width: 100%;
       height: 100%;
-      padding: 8px;
+      padding: 12px 20px;
+      justify-content: space-between;
 
       // 左侧键盘按钮
       .keyboard-button {
-        width: 64px;
-        height: 64px;
-        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        width: 48px;
+        height: 48px;
+        background: rgba(88, 87, 87, 0.5);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow:
-          0 8px 24px rgba(0, 0, 0, 0.12),
-          0 4px 12px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        position: relative;
-        overflow: hidden;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0.05) 100%
-          );
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
+        transition: all 0.3s ease;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
         &:hover {
-          background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
-          transform: translateY(-2px) scale(1.05);
-          box-shadow:
-            0 12px 32px rgba(0, 0, 0, 0.18),
-            0 6px 16px rgba(0, 0, 0, 0.12),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
-          border-color: rgba(0, 0, 0, 0.12);
-
-          &::before {
-            opacity: 1;
-          }
+          background: rgba(103, 102, 106, 0.7);
+          transform: scale(1.05);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         &:active {
-          transform: translateY(-1px) scale(1.02);
-          box-shadow:
-            0 6px 20px rgba(0, 0, 0, 0.15),
-            0 3px 8px rgba(0, 0, 0, 0.1);
+          transform: scale(0.95);
         }
 
         .keyboard-icon {
           width: 24px;
           height: 24px;
-          filter: brightness(0) saturate(100%) invert(27%) sepia(8%) saturate(1000%)
-            hue-rotate(169deg) brightness(95%) contrast(89%);
+          filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+            brightness(100%) contrast(100%);
           transition: all 0.3s ease;
         }
 
         &:hover .keyboard-icon {
-          filter: brightness(0) saturate(100%) invert(15%) sepia(5%) saturate(1200%)
-            hue-rotate(169deg) brightness(90%) contrast(95%);
           transform: scale(1.1);
         }
 
         @media (max-width: 1024px) and (min-width: 769px) {
-          width: 60px;
-          height: 60px;
+          width: 44px;
+          height: 44px;
 
           .keyboard-icon {
             width: 22px;
@@ -368,8 +333,8 @@ const emit = defineEmits([])
         }
 
         @media (max-width: 768px) {
-          width: 56px;
-          height: 56px;
+          width: 40px;
+          height: 40px;
 
           .keyboard-icon {
             width: 20px;
@@ -378,8 +343,8 @@ const emit = defineEmits([])
         }
 
         @media (max-width: 480px) {
-          width: 52px;
-          height: 52px;
+          width: 36px;
+          height: 36px;
 
           .keyboard-icon {
             width: 18px;
@@ -388,8 +353,8 @@ const emit = defineEmits([])
         }
 
         @media (max-width: 360px) {
-          width: 48px;
-          height: 48px;
+          width: 32px;
+          height: 32px;
 
           .keyboard-icon {
             width: 16px;
@@ -401,145 +366,141 @@ const emit = defineEmits([])
       // 中间录音状态区域
       .recording-status {
         flex: 1;
-        height: 64px;
-        background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-radius: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 28px;
-        box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.12),
-          0 4px 16px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(10px);
+        padding: 0 16px;
+        min-height: 48px;
 
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            145deg,
-            rgba(120, 115, 246, 0.02) 0%,
-            rgba(120, 115, 246, 0.01) 100%
-          );
-          opacity: 0;
-          transition: opacity 0.3s ease;
+        // 优化AudioWave组件的显示
+        :deep(.gradio-webrtc-waveContainer) {
+          min-height: 48px;
+          max-height: 64px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
-        &:hover {
-          box-shadow:
-            0 12px 40px rgba(0, 0, 0, 0.15),
-            0 6px 20px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        :deep(.gradio-webrtc-boxContainer) {
+          height: 48px;
+          --boxSize: 3px;
+          --gutter: 3px;
+        }
 
-          &::before {
-            opacity: 1;
+        :deep(.gradio-webrtc-box) {
+          background: #7873f6 !important;
+          border-radius: 2px !important;
+          transition: all 0.1s ease !important;
+        }
+
+        :deep(.split-container) {
+          width: 100px;
+
+          .recording-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c3e50;
+            font-family:
+              -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+              'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+            text-align: center;
           }
         }
 
         @media (max-width: 1024px) and (min-width: 769px) {
-          height: 60px;
-          border-radius: 30px;
-          padding: 0 24px;
+          padding: 0 14px;
+          min-height: 44px;
+
+          :deep(.gradio-webrtc-waveContainer) {
+            min-height: 44px;
+            max-height: 60px;
+          }
+
+          :deep(.gradio-webrtc-boxContainer) {
+            height: 44px;
+            --boxSize: 3px;
+            --gutter: 3px;
+          }
+
+          :deep(.split-container) {
+            width: 90px;
+
+            .recording-text {
+              font-size: 13px;
+            }
+          }
         }
 
         @media (max-width: 768px) {
-          height: 56px;
-          border-radius: 28px;
-          padding: 0 20px;
+          padding: 0 12px;
+          min-height: 40px;
+
+          :deep(.gradio-webrtc-waveContainer) {
+            min-height: 40px;
+            max-height: 56px;
+          }
+
+          :deep(.gradio-webrtc-boxContainer) {
+            height: 40px;
+            --boxSize: 2px;
+            --gutter: 2px;
+          }
+
+          :deep(.split-container) {
+            width: 80px;
+
+            .recording-text {
+              font-size: 12px;
+            }
+          }
         }
 
         @media (max-width: 480px) {
-          height: 52px;
-          border-radius: 26px;
-          padding: 0 18px;
+          padding: 0 10px;
+          min-height: 36px;
+
+          :deep(.gradio-webrtc-waveContainer) {
+            min-height: 36px;
+            max-height: 52px;
+          }
+
+          :deep(.gradio-webrtc-boxContainer) {
+            height: 36px;
+            --boxSize: 2px;
+            --gutter: 2px;
+          }
+
+          :deep(.split-container) {
+            width: 70px;
+
+            .recording-text {
+              font-size: 11px;
+            }
+          }
         }
 
         @media (max-width: 360px) {
-          height: 48px;
-          border-radius: 24px;
-          padding: 0 16px;
-        }
-
-        .recording-text {
-          font-size: 16px;
-          font-weight: 600;
-          color: #2c3e50;
-          font-family:
-            -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
-            'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-          letter-spacing: 0.02em;
-          white-space: nowrap;
-
-          @media (max-width: 1024px) and (min-width: 769px) {
-            font-size: 15px;
-          }
-
-          @media (max-width: 768px) {
-            font-size: 14px;
-          }
-
-          @media (max-width: 480px) {
-            font-size: 13px;
-          }
-
-          @media (max-width: 360px) {
-            font-size: 12px;
-          }
-        }
-
-        .audio-wave-container {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: relative;
+          padding: 0 8px;
+          min-height: 32px;
 
           :deep(.gradio-webrtc-waveContainer) {
-            min-height: 48px;
-            max-height: 56px;
-            filter: drop-shadow(0 2px 8px rgba(120, 115, 246, 0.2));
+            min-height: 32px;
+            max-height: 48px;
           }
 
-          :deep(.gradio-webrtc-box) {
-            background: linear-gradient(135deg, #7873f6 0%, #615ced 100%) !important;
-            border-radius: 6px !important;
-            box-shadow: 0 2px 4px rgba(120, 115, 246, 0.3) !important;
-            transition: all 0.1s ease !important;
+          :deep(.gradio-webrtc-boxContainer) {
+            height: 32px;
+            --boxSize: 2px;
+            --gutter: 2px;
           }
 
-          @media (max-width: 1024px) and (min-width: 769px) {
-            :deep(.gradio-webrtc-waveContainer) {
-              min-height: 44px;
-              max-height: 52px;
-            }
-          }
+          :deep(.split-container) {
+            width: 60px;
 
-          @media (max-width: 768px) {
-            :deep(.gradio-webrtc-waveContainer) {
-              min-height: 40px;
-              max-height: 48px;
-            }
-          }
-
-          @media (max-width: 480px) {
-            :deep(.gradio-webrtc-waveContainer) {
-              min-height: 36px;
-              max-height: 44px;
-            }
-          }
-
-          @media (max-width: 360px) {
-            :deep(.gradio-webrtc-waveContainer) {
-              min-height: 32px;
-              max-height: 40px;
+            .recording-text {
+              font-size: 10px;
             }
           }
         }
@@ -547,82 +508,43 @@ const emit = defineEmits([])
 
       // 右侧停止按钮
       .stop-button {
-        width: 64px;
-        height: 64px;
-        background: linear-gradient(145deg, #7873f6 0%, #615ced 50%, #524de1 100%);
+        width: 48px;
+        height: 48px;
+        background: rgba(120, 115, 246, 0.8);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow:
-          0 8px 24px rgba(120, 115, 246, 0.4),
-          0 4px 12px rgba(120, 115, 246, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        position: relative;
-        overflow: hidden;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0.1) 100%
-          );
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
+        transition: all 0.3s ease;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
 
         &:hover {
-          background: linear-gradient(145deg, #615ced 0%, #524de1 50%, #4338ca 100%);
-          transform: translateY(-2px) scale(1.05);
-          box-shadow:
-            0 12px 32px rgba(120, 115, 246, 0.5),
-            0 6px 16px rgba(120, 115, 246, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-
-          &::before {
-            opacity: 1;
-          }
+          background: rgba(120, 115, 246, 1);
+          transform: scale(1.05);
+          box-shadow: 0 4px 12px rgba(120, 115, 246, 0.4);
         }
 
         &:active {
-          transform: translateY(-1px) scale(1.02);
-          box-shadow:
-            0 6px 20px rgba(120, 115, 246, 0.4),
-            0 3px 8px rgba(120, 115, 246, 0.3);
+          transform: scale(0.95);
         }
 
         .stop-icon {
           width: 18px;
           height: 18px;
-          background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-          border-radius: 4px;
-          box-shadow:
-            0 2px 6px rgba(0, 0, 0, 0.15),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+          background: #ffffff;
+          border-radius: 2px;
           transition: all 0.3s ease;
-          position: relative;
-          z-index: 1;
         }
 
         &:hover .stop-icon {
           transform: scale(1.1);
-          box-shadow:
-            0 3px 8px rgba(0, 0, 0, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
         @media (max-width: 1024px) and (min-width: 769px) {
-          width: 60px;
-          height: 60px;
+          width: 44px;
+          height: 44px;
 
           .stop-icon {
             width: 16px;
@@ -631,8 +553,8 @@ const emit = defineEmits([])
         }
 
         @media (max-width: 768px) {
-          width: 56px;
-          height: 56px;
+          width: 40px;
+          height: 40px;
 
           .stop-icon {
             width: 14px;
@@ -641,8 +563,8 @@ const emit = defineEmits([])
         }
 
         @media (max-width: 480px) {
-          width: 52px;
-          height: 52px;
+          width: 36px;
+          height: 36px;
 
           .stop-icon {
             width: 12px;
@@ -651,8 +573,8 @@ const emit = defineEmits([])
         }
 
         @media (max-width: 360px) {
-          width: 48px;
-          height: 48px;
+          width: 32px;
+          height: 32px;
 
           .stop-icon {
             width: 10px;
