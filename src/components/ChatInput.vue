@@ -88,9 +88,10 @@ function onInterrupt() {
         </button>
       </template>
     </div>
-
-    <div class="ai-generate-hint">内容由 AI 生成</div>
   </div>
+
+  <!-- 暂时注释掉AI生成提示，避免对video-container造成挤压 -->
+  <!-- <div class="ai-generate-hint">内容由 AI 生成</div> -->
 </template>
 
 <style scoped lang="less">
@@ -243,12 +244,12 @@ function onInterrupt() {
   .chat-input-inner {
     padding: 0 24px;
     background: #f8f9fa;
-    height: 69px;
+    height: 60px;
     flex: 1;
     display: flex;
     align-items: center;
     border: 1px solid #e9ecef;
-    border-radius: 34px;
+    border-radius: 30px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -294,26 +295,26 @@ function onInterrupt() {
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
-      height: 63px;
-      border-radius: 31px;
+      height: 56px;
+      border-radius: 28px;
       padding: 0 20px;
     }
 
     @media (max-width: 768px) {
-      height: 58px;
-      border-radius: 29px;
+      height: 52px;
+      border-radius: 26px;
       padding: 0 18px;
     }
 
     @media (max-width: 480px) {
-      height: 52px;
-      border-radius: 26px;
+      height: 48px;
+      border-radius: 24px;
       padding: 0 16px;
     }
 
     @media (max-width: 360px) {
-      height: 46px;
-      border-radius: 23px;
+      height: 44px;
+      border-radius: 22px;
       padding: 0 14px;
     }
 
@@ -335,9 +336,9 @@ function onInterrupt() {
           'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         resize: none;
         padding: 0;
-        margin: 6px 0;
-        line-height: 1.6;
-        max-height: 32px;
+        margin: 0;
+        line-height: 1.4;
+        max-height: 48px;
         min-height: 20px;
         background: transparent;
         letter-spacing: 0.01em;
@@ -350,26 +351,26 @@ function onInterrupt() {
 
         @media (max-width: 1024px) and (min-width: 769px) {
           font-size: 13px;
-          line-height: 1.5;
-          margin: 5px 0;
+          line-height: 1.4;
+          max-height: 44px;
         }
 
         @media (max-width: 768px) {
           font-size: 14px;
-          line-height: 1.5;
-          margin: 4px 0;
+          line-height: 1.4;
+          max-height: 40px;
         }
 
         @media (max-width: 480px) {
           font-size: 14px;
-          line-height: 1.5;
-          margin: 3px 0;
+          line-height: 1.4;
+          max-height: 36px;
         }
 
         @media (max-width: 360px) {
           font-size: 13px;
           line-height: 1.4;
-          margin: 3px 0;
+          max-height: 32px;
         }
       }
 
@@ -394,7 +395,7 @@ function onInterrupt() {
     .interrupt-btn {
       border: none;
       flex: 0 0 auto;
-      background: rgba(120, 115, 246, 0.8);
+      background: #7873f6;
       border-radius: 50%;
       height: 48px;
       width: 48px;
@@ -404,11 +405,10 @@ function onInterrupt() {
       margin-left: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
-      backdrop-filter: blur(8px);
       box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
 
       &:hover {
-        background: rgba(120, 115, 246, 1);
+        background: #615ced;
         transform: scale(1.05);
         box-shadow: 0 4px 12px rgba(120, 115, 246, 0.4);
       }
@@ -444,11 +444,12 @@ function onInterrupt() {
 
     .interrupt-btn {
       &::after {
-        content: ' ';
-        width: 12px;
-        height: 12px;
+        content: '';
+        width: 18px;
+        height: 18px;
         border-radius: 2px;
-        background: #fafafa;
+        background: #ffffff;
+        display: block;
       }
     }
   }
@@ -767,18 +768,23 @@ function onInterrupt() {
   }
 
   .ai-generate-hint {
-    margin-top: 12px;
-    font-size: 12px;
-    font-weight: 500;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 400;
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #6b7280;
+    color: #9ca3af;
     text-align: center;
-    opacity: 0.8;
-    line-height: 1.5;
+    opacity: 0.7;
+    line-height: 1.2;
     letter-spacing: 0.01em;
-    position: relative;
+    white-space: nowrap;
+    pointer-events: none;
 
     &::before {
       content: '';
@@ -792,22 +798,22 @@ function onInterrupt() {
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
-      font-size: 11px;
-      margin-top: 7px;
+      font-size: 9px;
+      margin-top: 6px;
     }
 
     @media (max-width: 768px) {
-      font-size: 11px;
+      font-size: 9px;
       margin-top: 6px;
     }
 
     @media (max-width: 480px) {
-      font-size: 10px;
-      margin-top: 5px;
+      font-size: 8px;
+      margin-top: 4px;
     }
 
     @media (max-width: 360px) {
-      font-size: 10px;
+      font-size: 8px;
       margin-top: 4px;
     }
   }

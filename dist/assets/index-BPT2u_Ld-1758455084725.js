@@ -70690,12 +70690,11 @@ const Kie = { class: 'chat-input-container' },
                   Ae(Ye(Xp), { icon: Ye(bie), color: '#fff' }, null, 8, ['icon']),
                 ])),
           ]),
-          h[1] || (h[1] = Ct('div', { class: 'ai-generate-hint' }, '内容由 AI 生成', -1)),
         ])
       )
     },
   }),
-  tre = bi(ere, [['__scopeId', 'data-v-a296e772']]),
+  tre = bi(ere, [['__scopeId', 'data-v-a4b560af']]),
   nre = { class: 'answer-message-text' },
   ire = qt({
     __name: 'ChatMessage',
