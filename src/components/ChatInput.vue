@@ -59,30 +59,10 @@ function onInterrupt() {
 <template>
   <div class="chat-input-container">
     <div class="chat-input-main">
-      <!-- 麦克风开启时的UI -->
-      <div v-if="micEnabled" class="mic-enabled-ui" @click="onStop">
-        <div class="mic-ui-content">
-          <div class="keyboard-icon">
-            <Iconfont :icon="Keyboard" :fontSize="20" :color="'#7873f6'" />
-          </div>
-          <div class="mic-text">自动录音中</div>
-          <div class="wave-indicator">
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-          </div>
-        </div>
-        <div class="stop-button">
-          <div class="stop-icon"></div>
-        </div>
+      <!-- 左侧麦克风图标 -->
+      <div class="mic-button">
+        <img src="/src/assets/lucide--mic.svg" alt="麦克风" class="mic-icon" />
       </div>
-
-      <!-- 原来的停止按钮 -->
-      <div v-else class="stop-chat-btn" @click="onStop"></div>
 
       <div class="chat-input-inner">
         <div class="chat-input-wrapper">
@@ -173,6 +153,85 @@ function onInterrupt() {
 
     @media (max-width: 480px) {
       gap: 8px;
+    }
+  }
+
+  .mic-button {
+    width: 44px;
+    height: 44px;
+    background: #f5f5f5;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+
+    &:hover {
+      background: #e8e8e8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .mic-icon {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg)
+        brightness(60%) contrast(100%);
+      transition: all 0.2s ease;
+    }
+
+    &:hover .mic-icon {
+      filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg)
+        brightness(40%) contrast(100%);
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      width: 40px;
+      height: 40px;
+
+      .mic-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 36px;
+      height: 36px;
+
+      .mic-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      width: 32px;
+      height: 32px;
+
+      .mic-icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      width: 28px;
+      height: 28px;
+
+      .mic-icon {
+        width: 12px;
+        height: 12px;
+      }
     }
   }
 
@@ -734,115 +793,6 @@ function onInterrupt() {
           width: 7px;
           height: 7px;
         }
-      }
-    }
-  }
-
-  .stop-chat-btn {
-    cursor: pointer;
-    height: 44px;
-    width: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 24px;
-    opacity: 1;
-    background: linear-gradient(135deg, #7873f6 0%, #615ced 50%, #524de1 100%);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-    box-shadow:
-      0 4px 16px rgba(120, 115, 246, 0.25),
-      0 2px 8px rgba(0, 0, 0, 0.1);
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.25) 0%,
-        rgba(255, 255, 255, 0.1) 100%
-      );
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    &:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow:
-        0 8px 24px rgba(120, 115, 246, 0.4),
-        0 4px 12px rgba(0, 0, 0, 0.15);
-
-      &::before {
-        opacity: 1;
-      }
-    }
-
-    &:active {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow:
-        0 6px 16px rgba(120, 115, 246, 0.3),
-        0 3px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    &::after {
-      content: ' ';
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      background: #fafafa;
-    }
-
-    @media (max-width: 1024px) and (min-width: 769px) {
-      height: 40px;
-      width: 40px;
-      border-radius: 22px;
-
-      &::after {
-        width: 14px;
-        height: 14px;
-        border-radius: 3px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      height: 36px;
-      width: 36px;
-      border-radius: 20px;
-
-      &::after {
-        width: 12px;
-        height: 12px;
-        border-radius: 2.5px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      height: 32px;
-      width: 32px;
-      border-radius: 18px;
-
-      &::after {
-        width: 10px;
-        height: 10px;
-        border-radius: 2px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      height: 28px;
-      width: 28px;
-      border-radius: 16px;
-
-      &::after {
-        width: 8px;
-        height: 8px;
-        border-radius: 1.5px;
       }
     }
   }
