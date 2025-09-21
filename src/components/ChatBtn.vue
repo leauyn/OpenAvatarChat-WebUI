@@ -23,12 +23,12 @@
         <!-- 新的停止聊天UI界面 - 三个独立组件 -->
         <div class="stop-chat-container">
           <!-- 左侧键盘按钮 -->
-          <div class="keyboard-button">
+          <div class="keyboard-button" @click.stop>
             <img src="/src/assets/lucide--keyboard.svg" alt="键盘" class="keyboard-icon" />
           </div>
 
           <!-- 中间录音状态区域 -->
-          <div class="recording-status">
+          <div class="recording-status" @click.stop>
             <AudioWave
               :audio-source-callback="audioSourceCallback"
               :stream-state="streamState"
@@ -370,7 +370,11 @@ const emit = defineEmits([])
         align-items: center;
         justify-content: center;
         padding: 0 16px;
-        min-height: 48px;
+        min-height: 86px; // 48px * 1.8 ≈ 86px
+        background: #f8f9fa;
+        border-radius: 43px; // 高度的一半，保持圆形
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e9ecef;
 
         // 优化AudioWave组件的显示
         :deep(.gradio-webrtc-waveContainer) {
@@ -411,7 +415,8 @@ const emit = defineEmits([])
 
         @media (max-width: 1024px) and (min-width: 769px) {
           padding: 0 14px;
-          min-height: 44px;
+          min-height: 79px; // 44px * 1.8 ≈ 79px
+          border-radius: 39px; // 高度的一半
 
           :deep(.gradio-webrtc-waveContainer) {
             min-height: 44px;
@@ -435,7 +440,8 @@ const emit = defineEmits([])
 
         @media (max-width: 768px) {
           padding: 0 12px;
-          min-height: 40px;
+          min-height: 72px; // 40px * 1.8 = 72px
+          border-radius: 36px; // 高度的一半
 
           :deep(.gradio-webrtc-waveContainer) {
             min-height: 40px;
@@ -459,7 +465,8 @@ const emit = defineEmits([])
 
         @media (max-width: 480px) {
           padding: 0 10px;
-          min-height: 36px;
+          min-height: 65px; // 36px * 1.8 ≈ 65px
+          border-radius: 32px; // 高度的一半
 
           :deep(.gradio-webrtc-waveContainer) {
             min-height: 36px;
@@ -483,7 +490,8 @@ const emit = defineEmits([])
 
         @media (max-width: 360px) {
           padding: 0 8px;
-          min-height: 32px;
+          min-height: 58px; // 32px * 1.8 ≈ 58px
+          border-radius: 29px; // 高度的一半
 
           :deep(.gradio-webrtc-waveContainer) {
             min-height: 32px;
