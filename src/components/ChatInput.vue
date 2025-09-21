@@ -84,7 +84,7 @@ function onInterrupt() {
       </template>
       <template v-else>
         <button class="send-btn" @click="on_send">
-          <Iconfont :icon="Send" :color="'#fff'"></Iconfont>
+          <img src="/src/assets/lucide--send.svg" alt="发送" class="send-icon" />
         </button>
       </template>
     </div>
@@ -401,67 +401,96 @@ function onInterrupt() {
         word-wrap: break-word;
       }
     }
+  }
 
-    .send-btn,
-    .interrupt-btn {
-      border: none;
-      background: rgba(120, 115, 246, 0.8);
-      border-radius: 50%;
-      height: 48px;
-      width: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+  .send-btn,
+  .interrupt-btn {
+    width: 48px;
+    height: 48px;
+    background: rgba(120, 115, 246, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
+
+    &:hover {
+      background: rgba(120, 115, 246, 1);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(120, 115, 246, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    .send-icon {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
       transition: all 0.3s ease;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
+    }
 
-      &:hover {
-        background: rgba(120, 115, 246, 1);
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(120, 115, 246, 0.4);
-      }
+    &:hover .send-icon {
+      transform: scale(1.1);
+    }
 
-      &:active {
-        transform: scale(0.95);
-      }
+    @media (max-width: 1024px) and (min-width: 769px) {
+      width: 44px;
+      height: 44px;
 
-      @media (max-width: 1024px) and (min-width: 769px) {
-        height: 44px;
-        width: 44px;
-      }
-
-      @media (max-width: 768px) {
-        height: 40px;
-        width: 40px;
-      }
-
-      @media (max-width: 480px) {
-        height: 36px;
-        width: 36px;
-      }
-
-      @media (max-width: 360px) {
-        height: 32px;
-        width: 32px;
+      .send-icon {
+        width: 22px;
+        height: 22px;
       }
     }
 
-    .interrupt-btn {
-      &::after {
-        content: '';
+    @media (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+
+      .send-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      width: 36px;
+      height: 36px;
+
+      .send-icon {
         width: 18px;
         height: 18px;
-        border-radius: 2px;
-        background: #ffffff;
-        display: block;
-        transition: all 0.3s ease;
       }
+    }
 
-      &:hover &::after {
-        transform: scale(1.1);
+    @media (max-width: 360px) {
+      width: 32px;
+      height: 32px;
+
+      .send-icon {
+        width: 16px;
+        height: 16px;
       }
+    }
+  }
+
+  .interrupt-btn {
+    &::after {
+      content: ' ';
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      background: #fafafa;
+      transition: all 0.3s ease;
+    }
+
+    &:hover &::after {
+      transform: scale(1.1);
     }
   }
 
