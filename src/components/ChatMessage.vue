@@ -33,13 +33,22 @@ const props = withDefaults(
     'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   &.human {
-    background: rgba(221, 221, 221, 0.8);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    color: #374151;
+    border: 1px solid rgba(229, 231, 235, 0.6);
+    backdrop-filter: blur(8px);
     margin-right: 0;
   }
 
   &.avatar {
-    background: #7873f6;
-    color: #ffffff;
+    background: linear-gradient(
+      135deg,
+      rgba(120, 115, 246, 0.15) 0%,
+      rgba(120, 115, 246, 0.08) 100%
+    );
+    color: #4a4a4a;
+    border: 1px solid rgba(120, 115, 246, 0.2);
+    backdrop-filter: blur(10px);
   }
 
   // 平板设备响应式设计

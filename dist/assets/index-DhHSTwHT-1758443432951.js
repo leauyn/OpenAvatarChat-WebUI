@@ -70667,7 +70667,7 @@ const Xie = { class: 'chat-input-container' },
       )
     },
   }),
-  ire = bi(nre, [['__scopeId', 'data-v-57261938']]),
+  ire = bi(nre, [['__scopeId', 'data-v-c8ba3382']]),
   rre = { class: 'chat-records-inner' },
   sre = qt({
     __name: 'ChatRecords',
