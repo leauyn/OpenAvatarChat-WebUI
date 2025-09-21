@@ -12,7 +12,7 @@ const props = withDefaults(
     micEnabled: false,
   }
 )
-const emit = defineEmits(['send', 'stop', 'interrupt'])
+const emit = defineEmits(['send', 'stop', 'interrupt', 'switchToVoice'])
 
 let inputHeight = 24
 let rowsDivRef = useTemplateRef<HTMLDivElement>('rowsDivRef')
@@ -54,13 +54,17 @@ function onStop() {
 function onInterrupt() {
   emit('interrupt')
 }
+
+function onSwitchToVoice() {
+  emit('switchToVoice')
+}
 </script>
 
 <template>
   <div class="chat-input-container">
     <div class="chat-input-main">
       <!-- 左侧麦克风图标 -->
-      <div class="mic-button">
+      <div class="mic-button" @click="onSwitchToVoice">
         <img src="/src/assets/lucide--mic.svg" alt="麦克风" class="mic-icon" />
       </div>
 

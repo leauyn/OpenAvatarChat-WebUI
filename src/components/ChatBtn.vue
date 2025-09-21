@@ -3,15 +3,15 @@
     <div
       :class="[
         'chat-btn',
-        streamState === StreamState.closed && 'start-chat',
-        streamState === StreamState.open && 'stop-chat',
+        streamState === 'closed' && 'start-chat',
+        streamState === 'open' && 'stop-chat',
       ]"
       @click="onStartChat"
     >
-      <template v-if="streamState === StreamState.closed">
+      <template v-if="streamState === 'closed'">
         <span>点击开始对话</span>
       </template>
-      <template v-else-if="streamState === StreamState.waiting">
+      <template v-else-if="streamState === 'waiting'">
         <div class="waiting-icon-text">
           <!-- <div class="icon" title="spinner">
             <Spin wrapper-class-name="spin-icon" />
@@ -23,7 +23,7 @@
         <!-- 新的停止聊天UI界面 - 三个独立组件 -->
         <div class="stop-chat-container">
           <!-- 左侧键盘按钮 -->
-          <div class="keyboard-button" @click.stop>
+          <div class="keyboard-button" @click.stop="onSwitchToText">
             <img src="/src/assets/lucide--keyboard.svg" alt="键盘" class="keyboard-icon" />
           </div>
 
@@ -31,7 +31,7 @@
           <div class="recording-status" @click.stop>
             <AudioWave
               :audio-source-callback="audioSourceCallback"
-              :stream-state="streamState"
+              :stream-state="streamState as any"
               :wave-color="'#7873f6'"
               :num-bars="16"
             />
@@ -53,26 +53,18 @@ import { StreamState } from '@/interface/voiceChat'
 import AudioWave from '@/components/AudioWave.vue'
 import Iconfont, { Keyboard } from '@/components/Iconfont'
 
-const props = defineProps({
-  streamState: {
-    type: String,
-    default: StreamState.closed,
-  },
-  onStartChat: {
-    type: Function,
-    required: true,
-  },
-  audioSourceCallback: {
-    type: Function,
-    required: true,
-  },
-  waveColor: {
-    type: String,
-    required: true,
-  },
-})
+const props = defineProps<{
+  streamState: string
+  onStartChat: () => void
+  audioSourceCallback: () => MediaStream
+  waveColor: string
+}>()
 
-const emit = defineEmits([])
+const emit = defineEmits(['switchToText'])
+
+function onSwitchToText() {
+  emit('switchToText')
+}
 </script>
 
 <style scoped lang="less"></style>

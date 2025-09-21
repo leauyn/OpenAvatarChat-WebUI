@@ -72,6 +72,7 @@
           @interrupt="onInterrupt"
           @send="onSend"
           @stop="videoChatState.startWebRTC"
+          @switchToVoice="onSwitchToVoice"
         />
       </template>
       <template v-else-if="webcamAccessed">
@@ -80,6 +81,7 @@
           :audio-source-callback="audioSourceCallback"
           :streamState="streamState as string"
           wave-color="#7873F6"
+          @switchToText="onSwitchToText"
         />
       </template>
     </div>
@@ -208,6 +210,16 @@ function onSend(message: string) {
   videoChatState.chatDataChannel.send(JSON.stringify({ type: 'chat', data: message }))
   videoChatState.replying = true
   chatRecordsInstanceRef.value?.scrollToBottom()
+}
+
+function onSwitchToVoice() {
+  // 切换到语音模式：将 micMuted 设置为 false
+  videoChatState.micMuted = false
+}
+
+function onSwitchToText() {
+  // 切换到文本模式：将 micMuted 设置为 true
+  videoChatState.micMuted = true
 }
 </script>
 <style lang="less" scoped>
