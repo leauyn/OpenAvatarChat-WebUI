@@ -13,7 +13,7 @@
             <LeftOutlined class="left-icon" />
           </div>
           <div class="right-actions">
-            <ActionGroup />
+            <ActionGroup :isStartupMode="streamState !== 'open'" />
             <div class="setting-action">
               <SettingOutlined class="setting-icon" />
             </div>

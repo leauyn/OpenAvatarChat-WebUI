@@ -4,6 +4,7 @@
     v-if="hasCamera"
     v-click-outside="() => (cameraListShow = false)"
     class="action-button"
+    :class="{ 'startup-mode': isStartupMode }"
     @click="handleCameraOff"
   >
     <Iconfont
@@ -50,6 +51,7 @@
     v-if="hasMic"
     v-click-outside="() => (micListShow = false)"
     class="action-button"
+    :class="{ 'startup-mode': isStartupMode }"
     @click="handleMicMuted"
   >
     <Iconfont :icon="micMuted ? MicOff : MicOn" :fontSize="iconFontSize" class="action-icon" />
@@ -88,7 +90,7 @@
   </div>
 
   <!-- 音量按钮 -->
-  <div class="action-button" @click="handleVolumeMute">
+  <div class="action-button" :class="{ 'startup-mode': isStartupMode }" @click="handleVolumeMute">
     <Iconfont
       :icon="volumeMuted ? VolumeOff : VolumeOn"
       :fontSize="iconFontSize"
@@ -110,6 +112,15 @@ import Iconfont, {
   VolumeOff,
   VolumeOn,
 } from './Iconfont'
+
+// 定义 props
+interface Props {
+  isStartupMode?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isStartupMode: false,
+})
 const videoChatStore = useVideoChatStore()
 const visionStore = useVisionStore()
 const {
@@ -138,10 +149,10 @@ const { wrapperRect, isLandscape } = storeToRefs(visionStore)
 const micListShow = ref(false)
 const cameraListShow = ref(false)
 
-// 响应式字体大小计算
+// 响应式字体大小计算 - 与 LeftOutlined 和 SettingOutlined 完全一致
 const iconFontSize = computed(() => {
   const width = wrapperRect.value.width
-  let size = 32
+  let size = 32 // 默认与 LeftOutlined 的 font-size 一致
 
   if (width <= 360) size = 18
   else if (width <= 480) size = 20
@@ -163,21 +174,26 @@ const iconFontSize = computed(() => {
   position: relative;
 
   .action-icon {
-    color: #fff;
-    background: rgba(88, 87, 87, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     padding: 8px;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 48px;
     min-height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
     &:hover {
-      background: rgba(103, 102, 106, 0.7);
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
       transform: scale(1.05);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     // 确保图标大小正确
@@ -189,21 +205,86 @@ const iconFontSize = computed(() => {
       padding: 6px;
       min-width: 44px;
       min-height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
     @media screen and (max-width: 768px) {
       padding: 6px;
       min-width: 40px;
       min-height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
     @media screen and (max-width: 480px) {
       padding: 4px;
       min-width: 36px;
       min-height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
     }
 
     @media screen and (max-width: 360px) {
+      padding: 4px;
+      min-width: 32px;
+      min-height: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  // 启动模式样式 - 适合白色背景，与 LeftOutlined 和 SettingOutlined 保持一致
+  &.startup-mode .action-icon {
+    color: #fff;
+    background: rgba(88, 87, 87, 0.5);
+    border: none;
+    box-shadow: none;
+    backdrop-filter: blur(8px);
+    font-size: 32px; // 默认与 LeftOutlined 的 font-size 一致
+
+    &:hover {
+      background: rgba(103, 102, 106, 0.7);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    // 对于填充类型的图标，调整填充颜色和透明度
+    :deep(svg path[fill]) {
+      fill: currentColor;
+      fill-opacity: 1;
+    }
+
+    // 对于描边类型的图标，调整描边粗细
+    :deep(svg path[stroke]) {
+      stroke: currentColor;
+      stroke-width: 1.5;
+    }
+
+    // 启动模式响应式样式 - 与 LeftOutlined 和 SettingOutlined 完全一致
+    @media screen and (max-width: 1024px) and (min-width: 769px) {
+      font-size: 28px;
+      padding: 6px;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+      padding: 6px;
+      min-width: 40px;
+      min-height: 40px;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 20px;
+      padding: 4px;
+      min-width: 36px;
+      min-height: 36px;
+    }
+
+    @media screen and (max-width: 360px) {
+      font-size: 18px;
       padding: 4px;
       min-width: 32px;
       min-height: 32px;
@@ -244,8 +325,10 @@ const iconFontSize = computed(() => {
     width: max-content;
     overflow: hidden;
     overflow-y: auto;
-    background: rgba(90, 90, 90, 0.5);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 
     .selector {
@@ -257,14 +340,15 @@ const iconFontSize = computed(() => {
       cursor: pointer;
       height: 42px;
       line-height: 42px;
-      color: #fff;
+      color: rgba(255, 255, 255, 0.9);
       font-size: 14px;
       padding-left: 15px;
       padding-right: 50px;
-      transition: background-color 0.2s ease;
+      transition: all 0.2s ease;
 
       &:hover {
-        background: #67666a;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
       }
 
       .active-icon {
