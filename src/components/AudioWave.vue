@@ -102,7 +102,7 @@ function transformIndex(index: number): number {
         <div class="gradio-webrtc-box"></div>
       </template>
       <div class="split-container">
-        <div class="recording-text">自动录音中</div>
+        <div class="recording-text">语音交流中</div>
       </div>
       <template v-for="(_, index) in Array(numBars / 2)" :key="index">
         <div class="gradio-webrtc-box"></div>
@@ -137,7 +137,7 @@ function transformIndex(index: number): number {
 
   .recording-text {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     color: #2c3e50;
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',

@@ -70476,7 +70476,7 @@ const Eie = zi(Tie, [['render', Cie]]),
                 (h[0] = Ct(
                   'div',
                   { class: 'split-container' },
-                  [Ct('div', { class: 'recording-text' }, '自动录音中')],
+                  [Ct('div', { class: 'recording-text' }, '语音交流中')],
                   -1
                 )),
               (_t(!0),
@@ -70496,7 +70496,7 @@ const Eie = zi(Tie, [['render', Cie]]),
       )
     },
   }),
-  Bie = zi(Oie, [['__scopeId', 'data-v-e835793a']]),
+  Bie = zi(Oie, [['__scopeId', 'data-v-4e9fc8d2']]),
   Uie = { class: 'player-controls' },
   kie = { key: 0 },
   zie = { key: 1, class: 'waiting-icon-text' },
