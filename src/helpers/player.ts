@@ -29,14 +29,10 @@ interface ISamples {
   startTime?: number
 }
 export class Player {
-  static isTypedArray(
-    data: Int8Array | Int16Array | Int32Array | Float32Array,
-  ) {
+  static isTypedArray(data: Int8Array | Int16Array | Int32Array | Float32Array) {
     // 检测输入的数据是否为 TypedArray 类型或 ArrayBuffer 类型
     return (
-      (data.byteLength &&
-        data.buffer &&
-        data.buffer.constructor === ArrayBuffer) ||
+      (data.byteLength && data.buffer && data.buffer.constructor === ArrayBuffer) ||
       data.constructor === ArrayBuffer
     )
   }
@@ -60,11 +56,7 @@ export class Player {
   samplesList: ISamples[] = []
 
   startTime?: number
-  typedArray?:
-    | typeof Int8Array
-    | typeof Int16Array
-    | typeof Int32Array
-    | typeof Float32Array
+  typedArray?: typeof Int8Array | typeof Int16Array | typeof Int32Array | typeof Float32Array
 
   _firstStartRelativeTime?: number
   _firstStartAbsoluteTime?: number
@@ -127,7 +119,7 @@ export class Player {
     const audioBuffer = this.audioCtx!.createBuffer(
       this.option.channels,
       length,
-      this.option.sampleRate,
+      this.option.sampleRate
     )
 
     for (let channel = 0; channel < this.option.channels; channel++) {
@@ -209,7 +201,7 @@ export class Player {
     if (data.constructor === ArrayBuffer) {
       data = new TargetArray(data)
     } else {
-      data = new TargetArray(data.buffer)
+      data = new TargetArray(data.buffer as ArrayBuffer)
     }
 
     const float32 = new Float32Array(data.length)
@@ -224,13 +216,10 @@ export class Player {
     return float32
   }
 
-  private _isSupported(
-    data: Int8Array | Int16Array | Int32Array | Float32Array,
-  ) {
+  private _isSupported(data: Int8Array | Int16Array | Int32Array | Float32Array) {
     // 数据类型是否支持
     // 目前支持 ArrayBuffer 或者 TypedArray
-    if (!Player.isTypedArray(data))
-      throw new Error('请传入ArrayBuffer或者任意TypedArray')
+    if (!Player.isTypedArray(data)) throw new Error('请传入ArrayBuffer或者任意TypedArray')
     return true
   }
 
@@ -244,9 +233,7 @@ export class Player {
       Float32: 1,
     }
     if (!inputCodecs[this.option.inputCodec])
-      throw new Error(
-        'wrong codec.please input one of these codecs:Int8,Int16,Int32,Float32',
-      )
+      throw new Error('wrong codec.please input one of these codecs:Int8,Int16,Int32,Float32')
     return inputCodecs[this.option.inputCodec]
   }
 
@@ -262,9 +249,7 @@ export class Player {
       Float32: Float32Array,
     }
     if (!typedArrays[this.option.inputCodec])
-      throw new Error(
-        'wrong codec.please input one of these codecs:Int8,Int16,Int32,Float32',
-      )
+      throw new Error('wrong codec.please input one of these codecs:Int8,Int16,Int32,Float32')
     return typedArrays[this.option.inputCodec]
   }
 }

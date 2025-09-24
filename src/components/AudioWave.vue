@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { StreamState } from '@/interface/voiceChat';
-import { computed, onUnmounted, watch } from 'vue';
+import { StreamState } from '@/interface/voiceChat'
+import { computed, onUnmounted, watch } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    streamState: StreamState;
+    streamState: StreamState
     // onStartChat: any;
-    audioSourceCallback: () => MediaStream | null;
-    numBars?: number;
-    icon?: string;
-    iconButtonColor?: string;
-    pulseColor?: string;
-    waveColor?: string;
-    pulseScale?: number;
+    audioSourceCallback: () => MediaStream | null
+    numBars?: number
+    icon?: string
+    iconButtonColor?: string
+    pulseColor?: string
+    waveColor?: string
+    pulseScale?: number
   }>(),
   {
     streamState: StreamState.closed,
@@ -21,77 +21,77 @@ const props = withDefaults(
     pulseColor: 'var(--color-accent)',
     waveColor: 'var(--color-accent)',
     pulseScale: 1,
-  },
-);
-const emit = defineEmits([]);
+  }
+)
+const emit = defineEmits([])
 
-let audioContext: AudioContext;
-let analyser: AnalyserNode;
-let dataArray: Uint8Array;
-let animationId: number;
+let audioContext: AudioContext
+let analyser: AnalyserNode
+let dataArray: Uint8Array
+let animationId: number
 
 const containerWidth = computed(() => {
-  return props.icon ? '128px' : `calc((var(--boxSize) + var(--gutter)) * ${props.numBars} + 80px)`;
-});
+  return props.icon ? '128px' : `calc((var(--boxSize) + var(--gutter)) * ${props.numBars} + 80px)`
+})
 
 watch(
   () => props.streamState,
   () => {
-    console.log(111111);
-    if (props.streamState === 'open') setupAudioContext();
+    console.log(111111)
+    if (props.streamState === 'open') setupAudioContext()
   },
-  { immediate: true },
-);
+  { immediate: true }
+)
 
 onUnmounted(() => {
   if (animationId) {
-    cancelAnimationFrame(animationId);
+    cancelAnimationFrame(animationId)
   }
   if (audioContext) {
-    audioContext.close();
+    audioContext.close()
   }
-});
+})
 
 function setupAudioContext() {
   // @ts-ignore
-  audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  analyser = audioContext.createAnalyser();
-  const streamSource = props.audioSourceCallback();
-  if (!streamSource) return;
-  const source = audioContext.createMediaStreamSource(streamSource);
+  audioContext = new (window.AudioContext || window.webkitAudioContext)()
+  analyser = audioContext.createAnalyser()
+  const streamSource = props.audioSourceCallback()
+  if (!streamSource) return
+  const source = audioContext.createMediaStreamSource(streamSource)
 
-  source.connect(analyser);
+  source.connect(analyser)
 
-  analyser.fftSize = 64;
-  analyser.smoothingTimeConstant = 0.8;
-  dataArray = new Uint8Array(analyser.frequencyBinCount);
+  analyser.fftSize = 64
+  analyser.smoothingTimeConstant = 0.8
+  dataArray = new Uint8Array(analyser.frequencyBinCount)
 
-  updateVisualization();
+  updateVisualization()
 }
 
 function updateVisualization() {
-  analyser.getByteFrequencyData(dataArray);
+  analyser.getByteFrequencyData(dataArray)
 
   // Update bars
-  const bars = document.querySelectorAll('.gradio-webrtc-waveContainer .gradio-webrtc-box');
+  const bars = document.querySelectorAll('.gradio-webrtc-waveContainer .gradio-webrtc-box')
   for (let i = 0; i < bars.length; i++) {
-    const barHeight = dataArray[transformIndex(i)] / 255;
-    const bar = bars[i] as HTMLDivElement;
-    bar.style.transform = `scaleY(${Math.max(0.1, barHeight)})`;
-    bar.style.background = props.waveColor;
-    bar.style.opacity = '0.5';
+    const barHeight = dataArray[transformIndex(i)] / 255
+    const bar = bars[i] as HTMLDivElement
+    bar.style.transform = `scaleY(${Math.max(0.1, barHeight)})`
+    bar.style.background = props.waveColor
+    bar.style.opacity = '0.5'
   }
 
-  animationId = requestAnimationFrame(updateVisualization);
+  animationId = requestAnimationFrame(updateVisualization)
 }
 
 // 声波高度从两侧向中间收拢
 function transformIndex(index: number): number {
-  const mapping = [0, 2, 4, 6, 8, 10, 12, 14, 15, 13, 11, 9, 7, 5, 3, 1];
+  const mapping = [0, 2, 4, 6, 8, 10, 12, 14, 15, 13, 11, 9, 7, 5, 3, 1]
   if (index < 0 || index >= mapping.length) {
-    throw new Error('Index must be between 0 and 15');
+    throw new Error('Index must be between 0 and 15')
   }
-  return mapping[index];
+  return mapping[index]
 }
 </script>
 
@@ -101,7 +101,9 @@ function transformIndex(index: number): number {
       <template v-for="(_, index) in Array(numBars / 2)" :key="index">
         <div class="gradio-webrtc-box"></div>
       </template>
-      <div class="split-container"></div>
+      <div class="split-container">
+        <div class="recording-text">语音交流中</div>
+      </div>
       <template v-for="(_, index) in Array(numBars / 2)" :key="index">
         <div class="gradio-webrtc-box"></div>
       </template>
@@ -129,6 +131,21 @@ function transformIndex(index: number): number {
 
 .split-container {
   width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .recording-text {
+    font-size: 14px;
+    font-weight: 300;
+    color: #2c3e50;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+      'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    text-align: center;
+  }
 }
 
 .gradio-webrtc-box {

@@ -6,7 +6,7 @@ export function createPeerConnection(
     muted: boolean
     autoplay: boolean
     play: () => Promise<any>
-  },
+  }
 ) {
   // register some listeners to help debugging
   pc.addEventListener(
@@ -14,7 +14,7 @@ export function createPeerConnection(
     () => {
       console.debug(pc.iceGatheringState)
     },
-    false,
+    false
   )
 
   pc.addEventListener(
@@ -22,7 +22,7 @@ export function createPeerConnection(
     () => {
       console.debug(pc.iceConnectionState)
     },
-    false,
+    false
   )
 
   pc.addEventListener(
@@ -30,7 +30,7 @@ export function createPeerConnection(
     () => {
       console.debug(pc.signalingState)
     },
-    false,
+    false
   )
 
   // connect audio / video from server to local
@@ -69,7 +69,7 @@ export async function start(
   on_change_cb: (msg: 'change' | 'tick') => void = () => {},
   rtp_params = {},
   additional_message_cb: (msg: object) => void = () => {},
-  reject_cb: (msg: object) => void = () => {},
+  reject_cb: (msg: object) => void = () => {}
 ) {
   pc = createPeerConnection(pc, node)
   const data_channel = pc.createDataChannel('text')
@@ -127,7 +127,7 @@ export async function start(
 function make_offer(
   server_fn: any,
   body: { sdp: string; type: RTCSdpType; webrtc_id: string },
-  reject_cb: (msg: object) => void = () => {},
+  reject_cb: (msg: object) => void = () => {}
 ): Promise<any> {
   return new Promise((resolve, reject) => {
     server_fn(body).then((data: any) => {
@@ -146,7 +146,7 @@ async function negotiate(
   pc: RTCPeerConnection,
   server_fn: any,
   webrtc_id: string,
-  reject_cb: (msg: object) => void = () => {},
+  reject_cb: (msg: object) => void = () => {}
 ): Promise<void> {
   pc.onicecandidate = ({ candidate }) => {
     if (candidate) {
@@ -173,7 +173,7 @@ async function negotiate(
           type: offer.type,
           webrtc_id,
         },
-        reject_cb,
+        reject_cb
       )
     })
     .then((response) => {
@@ -213,6 +213,7 @@ export async function setupWebRTC(
   stream: MediaStream,
   peerConnection: RTCPeerConnection,
   remoteNode: HTMLVideoElement,
+  userId?: string
 ) {
   //  Send audio-video stream to server
   stream.getTracks().forEach(async (track) => {
@@ -234,32 +235,64 @@ export async function setupWebRTC(
 
   const webrtc_id = Math.random().toString(36).substring(7)
 
+  // 构建请求体，包含用户ID
+  const buildRequestBody = (baseData: any) => {
+    const body = { ...baseData, webrtc_id }
+    if (userId) {
+      body.userId = userId
+      console.log('🔍 前端发送请求体，包含userId:', body)
+    } else {
+      console.log('⚠️ 前端发送请求体，无userId:', body)
+    }
+    return body
+  }
+
   // Send ICE candidates to server
   // (especially needed when server is behind firewall)
   peerConnection.onicecandidate = ({ candidate }) => {
     if (candidate) {
       console.debug('Sending ICE candidate', candidate)
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+      if (userId) {
+        headers['X-User-ID'] = userId
+        console.log('🔍 前端发送ICE候选，包含用户ID头:', userId)
+      }
       fetch('/webrtc/offer', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          candidate: candidate.toJSON(),
-          webrtc_id,
-          type: 'ice-candidate',
-        }),
+        headers,
+        body: JSON.stringify(
+          buildRequestBody({
+            candidate: candidate.toJSON(),
+            type: 'ice-candidate',
+          })
+        ),
       })
     }
   }
 
   // Send offer to server
-  const response = await fetch('/webrtc/offer', {
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  if (userId) {
+    headers['X-User-ID'] = userId
+    console.log('🔍 前端发送WebRTC offer，包含用户ID头:', userId)
+  }
+
+  // 构建URL，包含用户ID参数
+  let url = '/webrtc/offer'
+  if (userId) {
+    url += `?userId=${encodeURIComponent(userId)}`
+    console.log('🔍 前端发送WebRTC offer，包含用户ID参数:', userId)
+  }
+
+  const response = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      sdp: offer.sdp,
-      type: offer.type,
-      webrtc_id,
-    }),
+    headers,
+    body: JSON.stringify(
+      buildRequestBody({
+        sdp: offer.sdp,
+        type: offer.type,
+      })
+    ),
   })
 
   // Handle server response

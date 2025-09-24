@@ -8,7 +8,7 @@ export function handleError(error: string): void {
 
 export function setLocalStream(
   local_stream: MediaStream | null,
-  video_source: HTMLVideoElement,
+  video_source: HTMLVideoElement
 ): void {
   video_source.srcObject = local_stream
   video_source.muted = true
@@ -21,12 +21,13 @@ export async function getStream(
   track_constraints?: {
     video: MediaTrackConstraints | boolean
     audio: MediaTrackConstraints | boolean
-  },
+  }
 ): Promise<MediaStream> {
   const video_fallback_constraints = (track_constraints as any)?.video ||
     track_constraints || {
-      width: { ideal: 500 },
-      height: { ideal: 500 },
+      width: { ideal: 500, min: 320 },
+      height: { ideal: 500, min: 320 },
+      aspectRatio: { ideal: 1.0 }, // 强制1:1宽高比
     }
   const audio_fallback_constraints = (track_constraints as any)?.audio ||
     track_constraints || {
@@ -35,31 +36,21 @@ export async function getStream(
       autoGainControl: true,
     }
   const constraints = {
-    video:
-      typeof video === 'object'
-        ? { ...video, ...video_fallback_constraints }
-        : video,
-    audio:
-      typeof audio === 'object'
-        ? { ...audio, ...audio_fallback_constraints }
-        : audio,
+    video: typeof video === 'object' ? { ...video, ...video_fallback_constraints } : video,
+    audio: typeof audio === 'object' ? { ...audio, ...audio_fallback_constraints } : audio,
   }
   console.log(constraints, 'constraints')
-  return navigator.mediaDevices
-    .getUserMedia(constraints)
-    .then((local_stream: MediaStream) => {
-      console.log(local_stream)
-      return local_stream
-    })
+  return navigator.mediaDevices.getUserMedia(constraints).then((local_stream: MediaStream) => {
+    console.log(local_stream)
+    return local_stream
+  })
 }
 
 export function setAvailableDevices(
   devices: MediaDeviceInfo[],
-  kind: 'videoinput' | 'audioinput' = 'videoinput',
+  kind: 'videoinput' | 'audioinput' = 'videoinput'
 ): MediaDeviceInfo[] {
-  const cameras = devices.filter(
-    (device: MediaDeviceInfo) => device.kind === kind,
-  )
+  const cameras = devices.filter((device: MediaDeviceInfo) => device.kind === kind)
 
   return cameras
 }

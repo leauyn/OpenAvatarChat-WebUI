@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字段映射测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .field-mapping {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .field-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .field-item:last-child {
+            border-bottom: none;
+        }
+        .index {
+            font-weight: bold;
+            color: #007bff;
+            min-width: 60px;
+        }
+        .field-name {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .description {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        .test-data {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>字段映射测试</h1>
+        
+        <div class="field-mapping">
+            <h3>新的字段映射关系</h3>
+            <div class="field-item">
+                <span class="index">索引 0</span>
+                <span class="field-name">accountType</span>
+                <span class="description">账号类型 (1: 个人账号, 2: 学校账号)</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 1</span>
+                <span class="field-name">unknown1</span>
+                <span class="description">未命名字段 (暂时忽略)</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 2</span>
+                <span class="field-name">grade</span>
+                <span class="description">年级</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 3</span>
+                <span class="field-name">unknown2</span>
+                <span class="description">未命名字段 (暂时忽略)</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 4</span>
+                <span class="field-name">unknown3</span>
+                <span class="description">未命名字段 (暂时忽略)</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 5</span>
+                <span class="field-name">userId</span>
+                <span class="description">用户ID</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 6</span>
+                <span class="field-name">phone</span>
+                <span class="description">手机号</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 7</span>
+                <span class="field-name">userName</span>
+                <span class="description">姓名</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 8</span>
+                <span class="field-name">studentId</span>
+                <span class="description">学号/身份标识</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 9</span>
+                <span class="field-name">idNumber</span>
+                <span class="description">身份证号</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 10</span>
+                <span class="field-name">userType</span>
+                <span class="description">用户类型 (1: 学生, 2: 老师, 3: 大学生)</span>
+            </div>
+            <div class="field-item">
+                <span class="index">索引 11</span>
+                <span class="field-name">personnelType</span>
+                <span class="description">人员类型 (1: 学校人员, 2: 社会人员)</span>
+            </div>
+        </div>
+
+        <div class="test-data">
+            <h3>测试数据</h3>
+            <p>示例数组: <code>["1", "0e08ddd7-a140-4708-b3d8-c4c8fef145cc", "3", "1", null, "4d8f3a08-e886-43ff-ba7f-93ca0a1b0f96", "13666666661", "贾同学", "中小学生个人对比中小学生", null, "1", "2"]</code></p>
+        </div>
+
+        <div>
+            <button class="test-button" onclick="testFieldMapping()">测试字段映射</button>
+            <button class="test-button" onclick="clearResults()">清除结果</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function testFieldMapping() {
+            const resultDiv = document.getElementById('result');
+            
+            // 模拟测试数据
+            const testData = ["1", "0e08ddd7-a140-4708-b3d8-c4c8fef145cc", "3", "1", null, "4d8f3a08-e886-43ff-ba7f-93ca0a1b0f96", "13666666661", "贾同学", "中小学生个人对比中小学生", null, "1", "2"];
+            
+            try {
+                // 模拟解析逻辑
+                const userInfo = {
+                    accountType: testData[0] || undefined,
+                    unknown1: testData[1] || undefined,
+                    grade: testData[2] || undefined,
+                    unknown2: testData[3] || undefined,
+                    unknown3: testData[4] || undefined,
+                    userId: testData[5] || undefined,
+                    phone: testData[6] || undefined,
+                    userName: testData[7] || undefined,
+                    studentId: testData[8] || undefined,
+                    idNumber: testData[9] || undefined,
+                    userType: testData[10] || undefined,
+                    personnelType: testData[11] || undefined,
+                    rawData: testData
+                };
+
+                let resultHtml = '<div class="result"><h3>解析结果</h3>';
+                resultHtml += '<p><strong>🏷️ 账号类型 (索引0):</strong> ' + (userInfo.accountType || '未设置') + '</p>';
+                resultHtml += '<p><strong>👤 用户姓名 (索引7):</strong> ' + (userInfo.userName || '未设置') + '</p>';
+                resultHtml += '<p><strong>🆔 用户ID (索引5):</strong> ' + (userInfo.userId || '未设置') + '</p>';
+                resultHtml += '<p><strong>🎓 学号/身份标识 (索引8):</strong> ' + (userInfo.studentId || '未设置') + '</p>';
+                resultHtml += '<p><strong>📚 年级 (索引2):</strong> ' + (userInfo.grade || '未设置') + '</p>';
+                resultHtml += '<p><strong>📱 手机号 (索引6):</strong> ' + (userInfo.phone || '未设置') + '</p>';
+                resultHtml += '<p><strong>🆔 身份证号 (索引9):</strong> ' + (userInfo.idNumber || '未设置') + '</p>';
+                resultHtml += '<p><strong>👥 用户类型 (索引10):</strong> ' + (userInfo.userType || '未设置') + '</p>';
+                resultHtml += '<p><strong>🏢 人员类型 (索引11):</strong> ' + (userInfo.personnelType || '未设置') + '</p>';
+                resultHtml += '<p><strong>📊 完整数据:</strong></p>';
+                resultHtml += '<pre>' + JSON.stringify(userInfo, null, 2) + '</pre>';
+                resultHtml += '</div>';
+
+                resultDiv.innerHTML = resultHtml;
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="result error"><h3>解析错误</h3><p>' + error.message + '</p></div>';
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        // 页面加载时自动运行测试
+        window.onload = function() {
+            testFieldMapping();
+        };
+    </script>
+</body>
+</html>

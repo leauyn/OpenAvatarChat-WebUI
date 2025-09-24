@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>清除手机端缓存</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 10px;
+            min-width: 150px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .back-link {
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 清除手机端缓存</h1>
+        <div class="description">
+            如果手机端显示异常，请点击下方按钮清除缓存并重新加载页面。
+        </div>
+        
+        <button class="btn" onclick="clearAllCache()">清除缓存并重新加载</button>
+        <button class="btn" onclick="clearCacheOnly()">仅清除缓存</button>
+        
+        <div id="status" class="status" style="display: none;"></div>
+        
+        <div class="back-link">
+            <a href="index.html">← 返回主页面</a>
+        </div>
+    </div>
+
+    <script>
+        function showStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
+
+        function clearAllCache() {
+            try {
+                // 清除localStorage
+                localStorage.clear();
+                
+                // 清除sessionStorage
+                sessionStorage.clear();
+                
+                // 清除IndexedDB
+                if ('indexedDB' in window) {
+                    indexedDB.databases().then(databases => {
+                        databases.forEach(db => {
+                            indexedDB.deleteDatabase(db.name);
+                        });
+                    });
+                }
+                
+                // 清除Service Worker缓存
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        registrations.forEach(registration => {
+                            registration.unregister();
+                        });
+                    });
+                }
+                
+                // 清除浏览器缓存（通过重新加载）
+                showStatus('缓存已清除，正在重新加载...', 'success');
+                
+                setTimeout(() => {
+                    // 强制重新加载，忽略缓存
+                    window.location.reload(true);
+                }, 1000);
+                
+            } catch (error) {
+                showStatus('清除缓存时出错: ' + error.message, 'error');
+            }
+        }
+
+        function clearCacheOnly() {
+            try {
+                // 清除localStorage
+                localStorage.clear();
+                
+                // 清除sessionStorage
+                sessionStorage.clear();
+                
+                showStatus('缓存已清除！请手动刷新页面。', 'success');
+                
+            } catch (error) {
+                showStatus('清除缓存时出错: ' + error.message, 'error');
+            }
+        }
+
+        // 页面加载时显示当前缓存状态
+        window.onload = function() {
+            const cacheSize = JSON.stringify(localStorage).length + JSON.stringify(sessionStorage).length;
+            showStatus(`当前缓存大小: ${Math.round(cacheSize / 1024)}KB`, 'info');
+        };
+    </script>
+</body>
+</html>

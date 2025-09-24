@@ -1,6 +1,7 @@
 import { WS } from '@/helpers/ws'
 import { WsEventTypes } from '@/interface/eventType'
 import { StreamState } from '@/interface/voiceChat'
+import { UserAuthorityInfo } from '@/interface/userInfo'
 import { GaussianAvatar } from '@/utils/gaussianAvatar'
 import {
   createSimulatedAudioTrack,
@@ -10,14 +11,18 @@ import {
   setAvailableDevices,
 } from '@/utils/streamUtils'
 import { setupWebRTC, stop } from '@/utils/webrtcUtils'
+import { getUserAuthorityFromLocalStorage, isInIframe } from '@/utils/localStorageUtils'
+import { getUserResultInfo } from '@/services/databaseService'
+import { UserResultInfo, DatabaseResponse } from '@/interface/databaseTypes'
 import { message } from 'ant-design-vue'
 import { defineStore } from 'pinia'
 import { useVisionStore } from './vision'
 
 const track_constraints = {
   video: {
-    width: 500,
-    height: 500,
+    width: { ideal: 500, min: 320 },
+    height: { ideal: 500, min: 320 },
+    aspectRatio: { ideal: 1.0, exact: 1.0 }, // 强制1:1宽高比，使用exact确保严格匹配
   },
   audio: true,
 }
@@ -46,6 +51,16 @@ interface VideoChatState {
       }
     | undefined
   gsLoadPercent: number
+
+  // 用户信息相关
+  userAuthority: UserAuthorityInfo | null
+  isInIframe: boolean
+  parentOrigin: string | null
+
+  // 用户数据库记录
+  userResultInfo: UserResultInfo[]
+  userResultInfoLoading: boolean
+  userResultInfoError: string | null
 
   volumeMuted: boolean
   micMuted: boolean
@@ -84,6 +99,17 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       rtcConfig: undefined,
       trackConstraints: track_constraints,
       gsLoadPercent: 0,
+
+      // 用户信息相关
+      userAuthority: null,
+      isInIframe: false,
+      parentOrigin: null,
+
+      // 用户数据库记录
+      userResultInfo: [],
+      userResultInfoLoading: false,
+      userResultInfoError: null,
+
       volumeMuted: false,
       micMuted: false,
       cameraOff: false,
@@ -151,6 +177,9 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       }
     },
     async init() {
+      // 初始化用户信息
+      await this.initializeUserInfo()
+
       fetch('/openavatarchat/initconfig')
         .then((res) => res.json())
         .then((config) => {
@@ -171,6 +200,222 @@ export const useVideoChatStore = defineStore('videoChatStore', {
         .catch(() => {
           message.error('服务端链接失败，请检查是否能正确访问到 OpenAvatarChat 服务端')
         })
+    },
+
+    /**
+     * 初始化用户信息
+     * 从 localStorage 获取 wj_oss_authority 数组中的用户信息
+     */
+    async initializeUserInfo() {
+      try {
+        console.log('🚀 开始初始化用户信息...')
+
+        // 检查是否在 iframe 中运行
+        this.isInIframe = isInIframe()
+        console.log('🔍 是否在 iframe 中运行:', this.isInIframe)
+
+        // 直接从当前窗口的 localStorage 获取
+        await this.loadUserAuthorityFromLocalStorage()
+      } catch (error) {
+        console.error('❌ 初始化用户信息失败:', error)
+      }
+    },
+
+    /**
+     * 从当前窗口的 localStorage 加载用户权限信息
+     */
+    async loadUserAuthorityFromLocalStorage() {
+      console.log('📖 从 localStorage 加载用户权限信息...')
+
+      const userAuthority = getUserAuthorityFromLocalStorage()
+      this.userAuthority = userAuthority
+
+      if (userAuthority) {
+        console.log('✅ Store: 成功获取用户权限信息')
+        console.log('   🏷️ 账号类型 (索引0):', userAuthority.accountType)
+        console.log('   👤 用户姓名 (索引7):', userAuthority.userName)
+        console.log('   🆔 用户ID (索引5):', userAuthority.userId)
+        console.log('   🎓 学号/身份标识 (索引8):', userAuthority.studentId)
+        console.log('   📚 年级 (索引2):', userAuthority.grade)
+        console.log('   📱 手机号 (索引6):', userAuthority.phone)
+        console.log('   🆔 身份证号 (索引9):', userAuthority.idNumber)
+        console.log('   👥 用户类型 (索引10):', userAuthority.userType)
+        console.log('   🏢 人员类型 (索引11):', userAuthority.personnelType)
+
+        // 如果有用户ID，自动查询数据库
+        if (userAuthority.userId) {
+          console.log('🔄 检测到用户ID，开始查询数据库...')
+          await this.fetchUserResultInfo(userAuthority.userId)
+        }
+      } else {
+        console.log('❌ Store: 未找到用户权限信息')
+      }
+    },
+
+    /**
+     * 获取用户姓名
+     */
+    getUserName(): string | null {
+      const userName = this.userAuthority?.userName || null
+      console.log('🔍 Store: 获取用户姓名:', userName)
+      return userName
+    },
+
+    /**
+     * 获取用户ID
+     */
+    getUserId(): string | null {
+      const userId = this.userAuthority?.userId || null
+      console.log('🔍 Store: 获取用户ID:', userId)
+      return userId
+    },
+
+    /**
+     * 获取学号/身份标识
+     */
+    getStudentId(): string | null {
+      const studentId = this.userAuthority?.studentId || null
+      console.log('🔍 Store: 获取学号/身份标识:', studentId)
+      return studentId
+    },
+
+    /**
+     * 获取身份证号
+     */
+    getIdNumber(): string | null {
+      const idNumber = this.userAuthority?.idNumber || null
+      console.log('🔍 Store: 获取身份证号:', idNumber)
+      return idNumber
+    },
+
+    /**
+     * 获取用户类型
+     */
+    getUserType(): string | null {
+      const userType = this.userAuthority?.userType || null
+      console.log('🔍 Store: 获取用户类型:', userType)
+      return userType
+    },
+
+    /**
+     * 获取人员类型
+     */
+    getPersonnelType(): string | null {
+      const personnelType = this.userAuthority?.personnelType || null
+      console.log('🔍 Store: 获取人员类型:', personnelType)
+      return personnelType
+    },
+
+    /**
+     * 获取账号类型
+     */
+    getAccountType(): string | null {
+      const accountType = this.userAuthority?.accountType || null
+      console.log('🔍 Store: 获取账号类型:', accountType)
+      return accountType
+    },
+
+    /**
+     * 获取年级
+     */
+    getGrade(): string | null {
+      const grade = this.userAuthority?.grade || null
+      console.log('🔍 Store: 获取年级:', grade)
+      return grade
+    },
+
+    /**
+     * 获取手机号
+     */
+    getPhone(): string | null {
+      const phone = this.userAuthority?.phone || null
+      console.log('🔍 Store: 获取手机号:', phone)
+      return phone
+    },
+
+    /**
+     * 根据用户ID查询用户结果信息
+     */
+    async fetchUserResultInfo(userId?: string): Promise<void> {
+      try {
+        console.log('🚀 开始查询用户结果信息...')
+
+        // 如果没有提供userId，尝试从userAuthority获取
+        const targetUserId = userId || this.userAuthority?.userId
+
+        if (!targetUserId) {
+          console.error('❌ 未提供用户ID，无法查询数据库')
+          this.userResultInfoError = '未提供用户ID'
+          return
+        }
+
+        console.log('📋 查询用户ID:', targetUserId)
+
+        // 设置加载状态
+        this.userResultInfoLoading = true
+        this.userResultInfoError = null
+
+        // 调用数据库服务
+        const response = await getUserResultInfo(targetUserId)
+
+        if (response.resultCode === 200) {
+          this.userResultInfo = response.data
+          console.log('✅ Store: 成功获取用户结果信息')
+          console.log('   📊 记录数量:', response.data.length)
+          console.log('   📋 数据:', response.data)
+        } else {
+          this.userResultInfoError = response.resultMsg || '查询失败'
+          console.error('❌ Store: 查询用户结果信息失败:', response.resultMsg)
+        }
+      } catch (error) {
+        console.error('❌ Store: 查询用户结果信息异常:', error)
+        this.userResultInfoError = error instanceof Error ? error.message : '未知错误'
+      } finally {
+        this.userResultInfoLoading = false
+      }
+    },
+
+    /**
+     * 自动查询当前用户的数据库记录
+     */
+    async fetchCurrentUserResultInfo(): Promise<void> {
+      console.log('🔄 自动查询当前用户的数据库记录...')
+      await this.fetchUserResultInfo()
+    },
+
+    /**
+     * 清除用户结果信息
+     */
+    clearUserResultInfo(): void {
+      console.log('🗑️ 清除用户结果信息')
+      this.userResultInfo = []
+      this.userResultInfoError = null
+    },
+
+    /**
+     * 获取用户结果信息（按名称分组）
+     */
+    getUserResultInfoByName(): Record<string, UserResultInfo[]> {
+      const grouped: Record<string, UserResultInfo[]> = {}
+
+      this.userResultInfo.forEach((record) => {
+        if (!grouped[record.name]) {
+          grouped[record.name] = []
+        }
+        grouped[record.name].push(record)
+      })
+
+      console.log('📊 按名称分组的用户结果信息:', grouped)
+      return grouped
+    },
+
+    /**
+     * 获取特定名称的结果信息
+     */
+    getUserResultInfoBySpecificName(name: string): UserResultInfo[] {
+      const filtered = this.userResultInfo.filter((record) => record.name === name)
+      console.log(`🔍 获取名称 "${name}" 的结果信息:`, filtered)
+      return filtered
     },
     handleCameraOff() {
       this.cameraOff = !this.cameraOff
@@ -227,6 +472,48 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       wrapperRect.height = wrapperRef!.clientHeight
       visionState.isLandscape = wrapperRect.width > wrapperRect.height
     },
+    async ensureSquareVideo() {
+      // 检查视频轨道是否应用了正确的约束
+      if (this.stream) {
+        const videoTrack = this.stream.getVideoTracks()[0]
+        if (videoTrack) {
+          const settings = videoTrack.getSettings()
+          console.log('Video settings:', settings)
+
+          // 如果宽高比不是1:1，尝试重新应用约束
+          if (settings.width && settings.height && settings.width !== settings.height) {
+            console.log('Video aspect ratio is not 1:1, attempting to fix...')
+
+            // 停止当前轨道
+            videoTrack.stop()
+
+            // 重新获取视频流，使用更严格的约束
+            const strictConstraints = {
+              video: {
+                width: { exact: 500 },
+                height: { exact: 500 },
+                aspectRatio: { exact: 1.0 },
+                deviceId: settings.deviceId ? { exact: settings.deviceId } : undefined,
+              },
+              audio: false,
+            }
+
+            try {
+              const newStream = await navigator.mediaDevices.getUserMedia(strictConstraints)
+              const newVideoTrack = newStream.getVideoTracks()[0]
+
+              // 替换视频轨道
+              this.stream.removeTrack(videoTrack)
+              this.stream.addTrack(newVideoTrack)
+
+              console.log('Video aspect ratio fixed to 1:1')
+            } catch (error) {
+              console.warn('Failed to fix video aspect ratio:', error)
+            }
+          }
+        }
+      }
+    },
     async updateAvailableDevices() {
       const devices = await getDevices()
       this.availableVideoDevices = setAvailableDevices(devices, 'videoinput')
@@ -256,6 +543,9 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           console.log('local_stream', local_stream)
           this.stream = local_stream
           this.updateAvailableDevices()
+
+          // 手机端额外检查：如果宽高比不正确，尝试重新应用约束
+          this.ensureSquareVideo()
         })
         .then(() => {
           const used_devices = this.stream!.getTracks().map(
@@ -290,7 +580,8 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           console.log(this.hasCamera, this.hasMic)
           this.webcamAccessed = true
           this.localStream = this.stream
-          if (node) {
+          // 只有在连接成功后（streamState === 'open'）才显示视频
+          if (node && this.streamState === 'open') {
             node.srcObject = this.localStream
             node.muted = true
             node?.play()
@@ -301,11 +592,28 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       const visionState = useVisionStore()
       if (this.streamState === 'closed') {
         this.chatRecords = []
+
+        // 重新创建视频流以确保应用最新的约束
+        const videoDeviceId = this.selectedVideoDevice?.deviceId || ''
+        const audioDeviceId = this.selectedAudioDevice?.deviceId || ''
+        await this.fillStream(audioDeviceId, videoDeviceId)
+
+        // 手机端额外确保视频是正方形
+        setTimeout(() => {
+          this.ensureSquareVideo()
+        }, 1000) // 延迟1秒确保视频流完全初始化
+
         this.peerConnection = new RTCPeerConnection(this.rtcConfig)
         this.peerConnection.addEventListener('connectionstatechange', async (event) => {
           switch (this.peerConnection!.connectionState) {
             case 'connected':
               this.streamState = StreamState.open
+              // 连接成功后显示视频
+              if (visionState.localVideoRef && this.localStream) {
+                visionState.localVideoRef.srcObject = this.localStream
+                visionState.localVideoRef.muted = true
+                visionState.localVideoRef?.play()
+              }
               break
             case 'disconnected':
               this.streamState = StreamState.closed
@@ -317,11 +625,22 @@ export const useVideoChatStore = defineStore('videoChatStore', {
           }
         })
         this.streamState = StreamState.waiting
-        await setupWebRTC(this.stream!, this.peerConnection!, visionState.remoteVideoRef!)
+        // 获取用户ID
+        const userId = this.getUserId()
+        console.log('🚀 启动WebRTC连接，用户ID:', userId)
+
+        await setupWebRTC(this.stream!, this.peerConnection!, visionState.remoteVideoRef!, userId)
           .then(([dataChannel, webRTCId]) => {
             this.streamState = StreamState.open
             this.webRTCId = webRTCId as string
             this.chatDataChannel = dataChannel as any
+
+            // 连接成功后显示视频
+            if (visionState.localVideoRef && this.localStream) {
+              visionState.localVideoRef.srcObject = this.localStream
+              visionState.localVideoRef.muted = true
+              visionState.localVideoRef?.play()
+            }
 
             if (this.avatarType && this.avatarWSRoute) {
               const ws = this.initWebsocket(this.avatarWSRoute, this.webRTCId)

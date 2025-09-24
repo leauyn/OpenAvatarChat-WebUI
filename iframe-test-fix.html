@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe 底部覆盖测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .parent-content {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            color: white;
+        }
+        
+        .top-content {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .bottom-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+        
+        .iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            border: 3px solid #ff6b6b;
+            box-sizing: border-box;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #45a049;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+        }
+        
+        .btn-danger:hover {
+            background: #da190b;
+        }
+        
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent-content">
+        <div class="top-content">
+            <h1>父应用内容</h1>
+            <p>这是父应用的顶部内容区域</p>
+            <p>iframe 应该完全覆盖这个区域</p>
+        </div>
+        
+        <div class="bottom-content">
+            <h3>父应用底部内容</h3>
+            <p>这个区域包含"首页"、"登录"等按钮</p>
+            <p>数字人应用的底部控制栏应该完全覆盖这个区域</p>
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button style="background: #2196F3; color: white; border: none; padding: 8px 16px; border-radius: 4px;">首页</button>
+                <button style="background: #FF9800; color: white; border: none; padding: 8px 16px; border-radius: 4px;">登录</button>
+                <button style="background: #9C27B0; color: white; border: none; padding: 8px 16px; border-radius: 4px;">设置</button>
+            </div>
+            <div style="margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 5px;">
+                <p style="margin: 0; font-size: 12px;">测试说明：</p>
+                <p style="margin: 5px 0 0 0; font-size: 12px;">1. 点击"打开数字人应用"查看 ChatBtn 组件</p>
+                <p style="margin: 5px 0 0 0; font-size: 12px;">2. 在数字人应用中点击开始对话，查看 ChatInput 组件</p>
+                <p style="margin: 5px 0 0 0; font-size: 12px;">3. 检查两个组件是否都能完全覆盖父应用内容</p>
+                <p style="margin: 5px 0 0 0; font-size: 12px;">4. 检查聊天记录是否完整显示，不被底部控制栏覆盖</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="iframe-container" id="iframeContainer" style="display: none;">
+        <iframe id="avatarIframe" src=""></iframe>
+    </div>
+    
+    <div class="controls">
+        <h4>测试控制</h4>
+        <button class="btn" onclick="openIframe()">打开数字人应用</button>
+        <button class="btn btn-danger" onclick="closeIframe()">关闭</button>
+        <button class="btn" onclick="testUrlParams()">测试URL参数</button>
+        
+        <div class="status" id="status">
+            状态: 未打开
+        </div>
+    </div>
+
+    <script>
+        function updateStatus(message) {
+            document.getElementById('status').textContent = '状态: ' + message;
+        }
+        
+        function openIframe() {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('avatarIframe');
+            
+            // 构建测试URL，包含用户权限数据
+            const authorityData = JSON.stringify([
+                "1", // 用户类型
+                "9260d788-7e63-41ab-adbb-c163a90fc0a7", // 用户ID (索引1)
+                "3", // 年级
+                "1", // 班级
+                null,
+                "4d8f3a08-e886-43ff-ba7f-93ca0a1b0f96", // 学校ID (索引5)
+                "13666666661", // 手机号
+                "贾同学", // 用户姓名 (索引7)
+                "中小学生个人对比中小学", // 学校名称 (索引8)
+                null,
+                "1", // 地区
+                "2" // 其他信息
+            ]);
+            
+            const encodedData = encodeURIComponent(authorityData);
+            const iframeUrl = `https://avatar1.thinnovate.com/ui/index.html?wj_oss_authority=${encodedData}&_t=${Date.now()}`;
+            
+            iframe.src = iframeUrl;
+            iframeContainer.style.display = 'block';
+            
+            updateStatus('已打开，检查底部是否覆盖父应用');
+            console.log('iframe URL:', iframeUrl);
+        }
+        
+        function closeIframe() {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('avatarIframe');
+            
+            iframeContainer.style.display = 'none';
+            iframe.src = 'about:blank';
+            
+            updateStatus('已关闭');
+        }
+        
+        function testUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            console.log('当前页面URL参数:');
+            for (const [key, value] of urlParams.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+            
+            updateStatus('URL参数已输出到控制台');
+        }
+        
+        // 页面加载完成
+        window.addEventListener('load', function() {
+            updateStatus('页面加载完成，点击"打开数字人应用"开始测试');
+            console.log('测试页面加载完成');
+            console.log('父应用URL:', window.location.href);
+        });
+    </script>
+</body>
+</html>
