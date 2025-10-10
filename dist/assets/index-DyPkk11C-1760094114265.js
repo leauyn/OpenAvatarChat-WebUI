@@ -71015,7 +71015,7 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  vre = zi(yre, [['__scopeId', 'data-v-7e26f29b']])
+  vre = zi(yre, [['__scopeId', 'data-v-7f8a9b31']])
 var Xp = { exports: {} },
   _re = Xp.exports,
   HT
