@@ -76,8 +76,8 @@
   
   // PC端优化：确保有足够的高度显示完整数字人，类似移动端布局
   @media (min-width: 1025px) {
-    min-height: calc(100vh - 180px); // 减去顶部和底部UI的高度
-    max-height: calc(100vh - 140px);
+    min-height: calc(100vh - 120px); // 减少底部UI高度，增加数字人显示区域
+    max-height: calc(100vh - 100px); // 减少最大高度限制
     border-radius: 8px; // 添加圆角，与content-container保持一致
   }
   
@@ -283,6 +283,16 @@
     
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+    
+    // PC端优化：减少聊天记录容器高度，减少空白间距
+    @media (min-width: 1025px) {
+      height: 15%; // 大幅减少高度
+      min-height: 80px; // 减少最小高度
+      max-height: 100px; // 设置最大高度限制
+      margin: 0 20px 0 20px; // 增加左右边距
+      padding: 12px; // 减少内边距
+      border-radius: 12px 12px 0 0; // 调整圆角
+    }
     
     @media (max-width: 1024px) and (min-width: 769px) {
       height: 26.664%;

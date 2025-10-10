@@ -83,9 +83,9 @@ function onSwitchToText() {
 
   // PC端优化：减少底部按钮区域占用空间
   @media (min-width: 1025px) {
-    min-height: 60px; // 进一步减少最小高度
-    max-height: 80px; // 进一步减少最大高度
-    margin: 8px auto; // 减少上下边距
+    min-height: 50px; // 进一步减少最小高度
+    max-height: 70px; // 进一步减少最大高度
+    margin: 4px auto; // 大幅减少上下边距
     padding: 0 20px;
   }
 
@@ -250,9 +250,9 @@ function onSwitchToText() {
 
     // PC端优化：减少停止聊天按钮的尺寸
     @media (min-width: 1025px) {
-      width: 400px;
-      min-width: 300px;
-      height: 40px; // 进一步减少高度
+      width: 380px;
+      min-width: 280px;
+      height: 35px; // 进一步减少高度
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
@@ -411,9 +411,9 @@ function onSwitchToText() {
 
         // PC端优化：减少录音状态区域高度
         @media (min-width: 1025px) {
-          min-height: 35px; // 进一步减少高度
-          border-radius: 17px; // 调整圆角
-          padding: 0 16px; // 减少内边距
+          min-height: 28px; // 进一步减少高度
+          border-radius: 14px; // 调整圆角
+          padding: 0 12px; // 减少内边距
         }
 
         // 优化AudioWave组件的显示
@@ -426,8 +426,8 @@ function onSwitchToText() {
 
           // PC端优化：减少AudioWave容器高度
           @media (min-width: 1025px) {
-            min-height: 25px; // 进一步减少最小高度
-            max-height: 35px; // 进一步减少最大高度
+            min-height: 20px; // 进一步减少最小高度
+            max-height: 28px; // 进一步减少最大高度
           }
         }
 
@@ -438,9 +438,9 @@ function onSwitchToText() {
 
           // PC端优化：减少AudioWave盒子高度
           @media (min-width: 1025px) {
-            height: 25px; // 进一步减少高度
-            --boxSize: 3px; // 减小盒子尺寸
-            --gutter: 3px; // 减小间距
+            height: 20px; // 进一步减少高度
+            --boxSize: 2px; // 减小盒子尺寸
+            --gutter: 2px; // 减小间距
           }
         }
 
