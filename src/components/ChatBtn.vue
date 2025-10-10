@@ -81,10 +81,18 @@ function onSwitchToText() {
   margin: 16px auto;
   padding: 0 16px;
 
+  // PC端优化：减少底部按钮区域占用空间
+  @media (min-width: 1025px) {
+    min-height: 80px;
+    max-height: 100px;
+    margin: 12px auto;
+    padding: 0 20px;
+  }
+
   @media (max-width: 1024px) and (min-width: 769px) {
-    min-height: 95px;
-    max-height: 130px;
-    margin: 14px auto;
+    min-height: 85px;
+    max-height: 110px;
+    margin: 12px auto;
     padding: 0 14px;
   }
 
@@ -240,6 +248,13 @@ function onSwitchToText() {
     border-radius: 0;
     padding: 0;
 
+    // PC端优化：减少停止聊天按钮的尺寸
+    @media (min-width: 1025px) {
+      width: 450px;
+      min-width: 350px;
+      height: 50px;
+    }
+
     @media (max-width: 1024px) and (min-width: 769px) {
       width: 480px;
       min-width: 380px;
@@ -388,6 +403,13 @@ function onSwitchToText() {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border: 1px solid #e9ecef;
 
+        // PC端优化：减少录音状态区域高度
+        @media (min-width: 1025px) {
+          min-height: 50px;
+          border-radius: 25px;
+          padding: 0 20px;
+        }
+
         // 优化AudioWave组件的显示
         :deep(.gradio-webrtc-waveContainer) {
           min-height: 56px;
@@ -395,12 +417,25 @@ function onSwitchToText() {
           display: flex;
           align-items: center;
           justify-content: center;
+
+          // PC端优化：减少AudioWave容器高度
+          @media (min-width: 1025px) {
+            min-height: 40px;
+            max-height: 50px;
+          }
         }
 
         :deep(.gradio-webrtc-boxContainer) {
           height: 56px;
           --boxSize: 5px;
           --gutter: 6px;
+
+          // PC端优化：减少AudioWave盒子高度
+          @media (min-width: 1025px) {
+            height: 40px;
+            --boxSize: 4px;
+            --gutter: 5px;
+          }
         }
 
         :deep(.gradio-webrtc-box) {

@@ -430,10 +430,10 @@
       o = (Xr.exports = t[e] || n(e, {}))
     return (
       (o.versions || (o.versions = [])).push({
-        version: '3.45.1',
+        version: '3.46.0',
         mode: r ? 'pure' : 'global',
-        copyright: '© 2014-2025 Denis Pushkarev (zloirock.ru)',
-        license: 'https://github.com/zloirock/core-js/blob/v3.45.1/LICENSE',
+        copyright: '© 2014-2025 Denis Pushkarev (zloirock.ru), 2025 CoreJS Company (core-js.io)',
+        license: 'https://github.com/zloirock/core-js/blob/v3.46.0/LICENSE',
         source: 'https://github.com/zloirock/core-js',
       }),
       Xr.exports
