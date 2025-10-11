@@ -411,7 +411,7 @@ function onSwitchToText() {
 
         // PC端优化：减少录音状态区域高度
         @media (min-width: 1025px) {
-          min-height: 28px; // 进一步减少高度
+          min-height: 48px; // 进一步减少高度
           border-radius: 14px; // 调整圆角
           padding: 0 12px; // 减少内边距
         }
@@ -426,8 +426,8 @@ function onSwitchToText() {
 
           // PC端优化：减少AudioWave容器高度
           @media (min-width: 1025px) {
-            min-height: 20px; // 进一步减少最小高度
-            max-height: 28px; // 进一步减少最大高度
+            min-height: 30px; // 进一步减少最小高度
+            max-height: 36px; // 进一步减少最大高度
           }
         }
 
