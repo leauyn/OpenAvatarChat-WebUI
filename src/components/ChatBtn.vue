@@ -438,7 +438,7 @@ function onSwitchToText() {
 
           // PC端优化：减少AudioWave盒子高度
           @media (min-width: 1025px) {
-            height: 20px; // 进一步减少高度
+            height: 36px; // 进一步减少高度
             --boxSize: 2px; // 减小盒子尺寸
             --gutter: 2px; // 减小间距
           }

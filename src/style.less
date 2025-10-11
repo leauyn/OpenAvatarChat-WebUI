@@ -106,6 +106,26 @@ body.iframe-mode {
   }
 }
 
+/* 专门为 PC 端的 iframe 模式添加的覆盖样式 */
+@media (min-width: 1025px) {
+  body.iframe-mode .player-controls {
+    /* 1. 设置一个具体的最大宽度，而不是 100% */
+    width: 100% !important; /* 保持100%，但限制最大宽度 */
+    max-width: 480px!important; /* 例如最大宽度为 800px，你可以根据设计调整 */
+
+    /* 2. 保持 left 和 right 为 0 */
+    left: 0 !important;
+    right: 0 !important;
+
+    /* 3. 使用 margin: auto 实现水平居中 */
+    /* 这里的 auto 会覆盖原先的 margin: 0 */
+    margin: 0 auto !important;
+
+    /* 4. (可选) 恢复左右内边距，让内容不会贴着边缘 */
+    padding: 16px 20px !important;
+  }
+}
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 14px;
