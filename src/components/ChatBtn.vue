@@ -458,11 +458,11 @@ function onSwitchToText() {
           --boxSize: 5px;
           --gutter: 6px;
 
-          // PC端优化：减少AudioWave盒子高度
+          // PC端优化：增加波形宽度，提升美观度
           @media (min-width: 1025px) {
             height: 36px; // 进一步减少高度
-            --boxSize: 2px; // 减小盒子尺寸
-            --gutter: 2px; // 减小间距
+            --boxSize: 4px; // 增加盒子尺寸，让波形更宽更美观
+            --gutter: 3px; // 增加间距，让波形更舒展
           }
         }
 
@@ -473,7 +473,7 @@ function onSwitchToText() {
         }
 
         :deep(.split-container) {
-          width: 100px;
+          width: 120px; // 增加文字区域宽度，给波形更多空间
 
           .recording-text {
             font-size: 16px;
