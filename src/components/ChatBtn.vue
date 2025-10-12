@@ -258,10 +258,10 @@ function onSwitchToText() {
     padding: 0;
     border: 1px solid transparent; // 添加透明边框，保持与chat-input-inner一致的box模型
 
-    // PC端优化：减少停止聊天按钮的尺寸，与chat-input-container保持一致
+    // PC端优化：增加宽度20%，与chat-input-container保持一致
     @media (min-width: 1025px) {
-      width: 380px;
-      min-width: 280px;
+      width: 456px; // 380px * 1.2 = 456px
+      min-width: 336px; // 280px * 1.2 = 336px
       height: 35px; // 进一步减少高度
       padding: 0 20px; // 添加与chat-input-container相同的padding
     }

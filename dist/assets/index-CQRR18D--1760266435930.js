@@ -70575,7 +70575,7 @@ const Eie = zi(Tie, [['render', Cie]]),
       )
     },
   }),
-  $ie = zi(Hie, [['__scopeId', 'data-v-1bc8d4fe']]),
+  $ie = zi(Hie, [['__scopeId', 'data-v-9acc499f']]),
   Gie =
     "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20stroke='%23000'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%3e%3cpath%20d='M12%2019v3m7-12v2a7%207%200%200%201-14%200v-2'/%3e%3crect%20width='6'%20height='13'%20x='9'%20y='2'%20rx='3'/%3e%3c/g%3e%3c/svg%3e",
   Wie =
@@ -70660,7 +70660,7 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  Zie = zi(Yie, [['__scopeId', 'data-v-95cf46db']]),
+  Zie = zi(Yie, [['__scopeId', 'data-v-ca4165d0']]),
   Jie = { class: 'answer-message-text' },
   ere = qt({
     __name: 'ChatMessage',
