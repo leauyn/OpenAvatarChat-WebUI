@@ -333,6 +333,17 @@ function onSwitchToText() {
         backdrop-filter: blur(8px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
+        // PC端优化：减少键盘按钮尺寸以匹配容器高度
+        @media (min-width: 1025px) {
+          width: 36px;
+          height: 36px;
+
+          .keyboard-icon {
+            width: 18px;
+            height: 18px;
+          }
+        }
+
         &:hover {
           background: rgba(103, 102, 106, 0.7);
           transform: scale(1.05);
@@ -580,6 +591,17 @@ function onSwitchToText() {
         transition: all 0.3s ease;
         backdrop-filter: blur(8px);
         box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
+
+        // PC端优化：减少停止按钮尺寸以匹配容器高度
+        @media (min-width: 1025px) {
+          width: 36px;
+          height: 36px;
+
+          .stop-icon {
+            width: 12px;
+            height: 12px;
+          }
+        }
 
         &:hover {
           background: rgba(120, 115, 246, 1);

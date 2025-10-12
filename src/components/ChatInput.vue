@@ -113,6 +113,14 @@ function onSwitchToVoice() {
   margin: 16px auto;
   padding: 0 16px;
 
+  // PC端优化：与player-controls保持一致的高度
+  @media (min-width: 1025px) {
+    min-height: 50px;
+    max-height: 70px;
+    margin: 4px auto;
+    padding: 0 20px;
+  }
+
   @media (max-width: 1024px) and (min-width: 769px) {
     min-height: 95px;
     max-height: 95px;
@@ -158,6 +166,12 @@ function onSwitchToVoice() {
     padding: 12px 20px;
     justify-content: space-between;
 
+    // PC端优化：减少内边距以匹配容器高度
+    @media (min-width: 1025px) {
+      gap: 16px;
+      padding: 6px 16px;
+    }
+
     @media (max-width: 1024px) and (min-width: 769px) {
       gap: 20px;
       padding: 10px 18px;
@@ -191,6 +205,17 @@ function onSwitchToVoice() {
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    // PC端优化：减少麦克风按钮尺寸以匹配容器高度
+    @media (min-width: 1025px) {
+      width: 36px;
+      height: 36px;
+
+      .mic-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
 
     &:hover {
       background: rgba(103, 102, 106, 0.7);
@@ -269,6 +294,13 @@ function onSwitchToVoice() {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+
+    // PC端优化：减少输入框高度以匹配容器
+    @media (min-width: 1025px) {
+      min-height: 48px;
+      border-radius: 14px;
+      padding: 0 12px;
+    }
 
     &::before {
       content: '';
@@ -420,6 +452,17 @@ function onSwitchToVoice() {
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
+
+    // PC端优化：减少按钮尺寸以匹配容器高度
+    @media (min-width: 1025px) {
+      width: 36px;
+      height: 36px;
+
+      .send-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
 
     &:hover {
       background: rgba(120, 115, 246, 1);
