@@ -136,7 +136,7 @@ function onSwitchToVoice() {
     min-height: 90px;
     max-height: 90px;
     width: calc(100vw - 24px);
-    max-width: 460px;
+    max-width: 660px;
     min-width: 300px;
     margin: 12px auto;
     padding: 0 12px;
@@ -184,6 +184,7 @@ function onSwitchToVoice() {
 
     @media (max-width: 768px) {
       gap: 12px;
+      max-width: 500px;
       padding: 6px 12px;
     }
 

@@ -100,7 +100,7 @@ function onSwitchToText() {
     min-height: 90px;
     max-height: 120px;
     width: calc(100vw - 24px);
-    max-width: 460px;
+    max-width: 660px;
     min-width: 300px;
     margin: 12px auto;
     padding: 0 12px;
@@ -275,6 +275,7 @@ function onSwitchToText() {
     @media (max-width: 768px) {
       width: 100%;
       min-width: 300px;
+      max-width: 500px;
       height: 52px;
     }
 
