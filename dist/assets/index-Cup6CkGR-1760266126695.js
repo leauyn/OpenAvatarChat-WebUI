@@ -70392,7 +70392,7 @@ const Eie = zi(Tie, [['render', Cie]]),
       }
     },
   }),
-  Lie = zi(Pie, [['__scopeId', 'data-v-e5dc0a28']]),
+  Lie = zi(Pie, [['__scopeId', 'data-v-a9d49b08']]),
   Die =
     "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20stroke='currentColor'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%3e%3cpath%20d='M10%208h.01M12%2012h.01M14%208h.01M16%2012h.01M18%208h.01M6%208h.01M7%2016h10m-9-4h.01'/%3e%3crect%20width='20'%20height='16'%20x='2'%20y='4'%20rx='2'/%3e%3c/g%3e%3c/svg%3e",
   Fie = { class: 'gradio-webrtc-waveContainer' },

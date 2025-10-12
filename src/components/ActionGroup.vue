@@ -201,6 +201,15 @@ const iconFontSize = computed(() => {
       font-size: inherit !important;
     }
 
+    // PC端优化：与setting-icon保持一致
+    @media (min-width: 1025px) {
+      padding: 6px;
+      min-width: 40px;
+      min-height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
     @media screen and (max-width: 1024px) and (min-width: 769px) {
       padding: 6px;
       min-width: 44px;
