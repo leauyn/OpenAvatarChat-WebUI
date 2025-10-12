@@ -64,7 +64,7 @@ body.iframe-mode {
     width: 100% !important;
     background: #fff !important;
     z-index: 10000 !important;
-    margin: 0 !important;
+    margin: 0 !important; // 移动端保持0，PC端会被覆盖
     padding: 16px 0 !important;
     min-height: 100px !important;
     max-height: 140px !important;
@@ -108,7 +108,8 @@ body.iframe-mode {
 
 /* 专门为 PC 端的 iframe 模式添加的覆盖样式 */
 @media (min-width: 1025px) {
-  body.iframe-mode .player-controls {
+  /* 使用更高特异性的选择器确保覆盖通用iframe样式 */
+  body.iframe-mode .content-container .bottom-components-container .player-controls {
     /* 1. 设置一个具体的最大宽度，适应新的456px宽度 */
     width: 100% !important; /* 保持100%，但限制最大宽度 */
     max-width: 500px !important; /* 增加最大宽度以适应456px + padding */
@@ -125,8 +126,8 @@ body.iframe-mode {
     padding: 16px 20px !important;
   }
 
-  /* 为 chat-input-container 添加相同的居中设置 */
-  body.iframe-mode .chat-input-container {
+  /* 为 chat-input-container 添加相同的居中设置，使用更高特异性 */
+  body.iframe-mode .content-container .bottom-components-container .chat-input-container {
     /* 1. 设置一个具体的最大宽度，适应新的456px宽度 */
     width: 100% !important; /* 保持100%，但限制最大宽度 */
     max-width: 500px !important; /* 增加最大宽度以适应456px + padding */
