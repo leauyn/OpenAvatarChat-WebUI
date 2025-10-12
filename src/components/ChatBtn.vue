@@ -85,6 +85,7 @@ function onSwitchToText() {
   @media (min-width: 1025px) {
     min-height: 50px; // 进一步减少最小高度
     max-height: 70px; // 进一步减少最大高度
+    max-width: 660px;
     margin: 0; // 移除margin，由父容器控制布局
     padding: 0 20px;
   }
@@ -262,6 +263,7 @@ function onSwitchToText() {
     @media (min-width: 1025px) {
       width: 456px; // 380px * 1.2 = 456px
       min-width: 336px; // 280px * 1.2 = 336px
+      max-width: 500px;
       height: 35px; // 进一步减少高度
       padding: 0 20px; // 添加与chat-input-container相同的padding
     }

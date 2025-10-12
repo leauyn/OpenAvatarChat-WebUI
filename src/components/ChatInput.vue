@@ -117,6 +117,7 @@ function onSwitchToVoice() {
   @media (min-width: 1025px) {
     min-height: 50px;
     max-height: 70px;
+    max-width: 660px;
     width: 456px; // 380px * 1.2 = 456px，与player-controls保持一致
     min-width: 336px; // 280px * 1.2 = 336px，与player-controls保持一致
     margin: 0; // 移除margin，由父容器控制布局
@@ -174,6 +175,7 @@ function onSwitchToVoice() {
     // PC端优化：减少内边距以匹配容器高度
     @media (min-width: 1025px) {
       gap: 16px;
+      max-width: 500px;
       padding: 6px 16px;
     }
 
