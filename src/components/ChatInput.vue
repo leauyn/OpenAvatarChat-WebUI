@@ -133,8 +133,9 @@ function onSwitchToVoice() {
   @media (max-width: 768px) {
     min-height: 90px;
     max-height: 90px;
-    width: 460px;
-    min-width: 360px;
+    width: calc(100vw - 24px);
+    max-width: 460px;
+    min-width: 300px;
     margin: 12px auto;
     padding: 0 12px;
   }
@@ -142,8 +143,9 @@ function onSwitchToVoice() {
   @media (max-width: 480px) {
     min-height: 85px;
     max-height: 85px;
-    width: 440px;
-    min-width: 340px;
+    width: calc(100vw - 20px);
+    max-width: 440px;
+    min-width: 280px;
     margin: 10px auto;
     padding: 0 10px;
   }
@@ -151,8 +153,9 @@ function onSwitchToVoice() {
   @media (max-width: 360px) {
     min-height: 80px;
     max-height: 80px;
-    width: 420px;
-    min-width: 320px;
+    width: calc(100vw - 16px);
+    max-width: 420px;
+    min-width: 260px;
     margin: 8px auto;
     padding: 0 8px;
   }
@@ -178,18 +181,18 @@ function onSwitchToVoice() {
     }
 
     @media (max-width: 768px) {
-      gap: 18px;
-      padding: 8px 16px;
+      gap: 12px;
+      padding: 6px 12px;
     }
 
     @media (max-width: 480px) {
-      gap: 16px;
-      padding: 6px 14px;
+      gap: 10px;
+      padding: 4px 10px;
     }
 
     @media (max-width: 360px) {
-      gap: 14px;
-      padding: 4px 12px;
+      gap: 8px;
+      padding: 2px 8px;
     }
   }
 
@@ -250,16 +253,6 @@ function onSwitchToVoice() {
     }
 
     @media (max-width: 768px) {
-      width: 40px;
-      height: 40px;
-
-      .mic-icon {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
       width: 36px;
       height: 36px;
 
@@ -269,13 +262,23 @@ function onSwitchToVoice() {
       }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
       width: 32px;
       height: 32px;
 
       .mic-icon {
         width: 16px;
         height: 16px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      width: 28px;
+      height: 28px;
+
+      .mic-icon {
+        width: 14px;
+        height: 14px;
       }
     }
   }
@@ -496,16 +499,6 @@ function onSwitchToVoice() {
     }
 
     @media (max-width: 768px) {
-      width: 40px;
-      height: 40px;
-
-      .send-icon {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
       width: 36px;
       height: 36px;
 
@@ -515,13 +508,23 @@ function onSwitchToVoice() {
       }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
       width: 32px;
       height: 32px;
 
       .send-icon {
         width: 16px;
         height: 16px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      width: 28px;
+      height: 28px;
+
+      .send-icon {
+        width: 14px;
+        height: 14px;
       }
     }
   }

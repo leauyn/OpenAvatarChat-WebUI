@@ -99,6 +99,9 @@ function onSwitchToText() {
   @media (max-width: 768px) {
     min-height: 90px;
     max-height: 120px;
+    width: calc(100vw - 24px);
+    max-width: 460px;
+    min-width: 300px;
     margin: 12px auto;
     padding: 0 12px;
   }
@@ -106,6 +109,9 @@ function onSwitchToText() {
   @media (max-width: 480px) {
     min-height: 85px;
     max-height: 110px;
+    width: calc(100vw - 20px);
+    max-width: 440px;
+    min-width: 280px;
     margin: 10px auto;
     padding: 0 10px;
   }
@@ -113,6 +119,9 @@ function onSwitchToText() {
   @media (max-width: 360px) {
     min-height: 80px;
     max-height: 100px;
+    width: calc(100vw - 16px);
+    max-width: 420px;
+    min-width: 260px;
     margin: 8px auto;
     padding: 0 8px;
   }
@@ -262,20 +271,20 @@ function onSwitchToText() {
     }
 
     @media (max-width: 768px) {
-      width: 460px;
-      min-width: 360px;
+      width: 100%;
+      min-width: 300px;
       height: 52px;
     }
 
     @media (max-width: 480px) {
-      width: 440px;
-      min-width: 340px;
+      width: 100%;
+      min-width: 280px;
       height: 48px;
     }
 
     @media (max-width: 360px) {
-      width: 420px;
-      min-width: 320px;
+      width: 100%;
+      min-width: 260px;
       height: 44px;
     }
 
@@ -305,18 +314,18 @@ function onSwitchToText() {
       }
 
       @media (max-width: 768px) {
-        gap: 18px;
-        padding: 8px 16px;
+        gap: 12px;
+        padding: 6px 12px;
       }
 
       @media (max-width: 480px) {
-        gap: 16px;
-        padding: 6px 14px;
+        gap: 10px;
+        padding: 4px 10px;
       }
 
       @media (max-width: 360px) {
-        gap: 14px;
-        padding: 4px 12px;
+        gap: 8px;
+        padding: 2px 8px;
       }
 
       // 左侧键盘按钮
@@ -377,16 +386,6 @@ function onSwitchToText() {
         }
 
         @media (max-width: 768px) {
-          width: 40px;
-          height: 40px;
-
-          .keyboard-icon {
-            width: 20px;
-            height: 20px;
-          }
-        }
-
-        @media (max-width: 480px) {
           width: 36px;
           height: 36px;
 
@@ -396,13 +395,23 @@ function onSwitchToText() {
           }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
           width: 32px;
           height: 32px;
 
           .keyboard-icon {
             width: 16px;
             height: 16px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          width: 28px;
+          height: 28px;
+
+          .keyboard-icon {
+            width: 14px;
+            height: 14px;
           }
         }
       }
@@ -636,16 +645,6 @@ function onSwitchToText() {
         }
 
         @media (max-width: 768px) {
-          width: 40px;
-          height: 40px;
-
-          .stop-icon {
-            width: 14px;
-            height: 14px;
-          }
-        }
-
-        @media (max-width: 480px) {
           width: 36px;
           height: 36px;
 
@@ -655,13 +654,23 @@ function onSwitchToText() {
           }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
           width: 32px;
           height: 32px;
 
           .stop-icon {
             width: 10px;
             height: 10px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          width: 28px;
+          height: 28px;
+
+          .stop-icon {
+            width: 8px;
+            height: 8px;
           }
         }
       }
