@@ -58,7 +58,7 @@
   // PC端优化：类似移动端的垂直布局
   @media (min-width: 1025px) {
     min-height: 100vh; // 全屏高度
-    justify-content: space-around;
+    justify-content: flex-start; // 改为flex-start，避免space-around导致的高度跳动
     max-width: 480px; // 限制最大宽度，类似移动端
     margin: 0 auto; // 居中显示
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); // 添加阴影效果
@@ -67,6 +67,39 @@
     overflow: hidden; // 隐藏溢出内容
   }
 }
+
+// 底部组件固定容器，确保高度稳定
+.bottom-components-container {
+  flex: 0 0 auto; // 固定高度，不伸缩
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+  // PC端优化：固定底部区域高度，避免跳动
+  @media (min-width: 1025px) {
+    height: 80px; // 固定高度
+    justify-content: center;
+    align-items: center;
+  }
+  
+  // 移动端保持原有布局
+  @media (max-width: 1024px) {
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  // 确保内部组件能够正确显示
+  .player-controls,
+  .chat-input-container {
+    // PC端优化：确保组件在固定容器中正确显示
+    @media (min-width: 1025px) {
+      margin: 0; // 移除margin，避免影响固定容器布局
+    }
+  }
+}
+
 .video-container {
   position: relative;
   width: 100%;
@@ -76,8 +109,8 @@
   
   // PC端优化：确保有足够的高度显示完整数字人，类似移动端布局
   @media (min-width: 1025px) {
-    min-height: calc(100vh - 120px); // 减少底部UI高度，增加数字人显示区域
-    max-height: calc(100vh - 100px); // 减少最大高度限制
+    min-height: calc(100vh - 80px); // 减去固定底部容器高度
+    max-height: calc(100vh - 80px); // 减去固定底部容器高度
     border-radius: 8px; // 添加圆角，与content-container保持一致
   }
   

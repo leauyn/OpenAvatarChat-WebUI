@@ -65,25 +65,28 @@
         </div>
       </div>
 
-      <template v-if="(!hasMic || micMuted) && streamState === 'open'" class="chat-input-wrapper">
-        <ChatInput
-          :replying="replying"
-          :micEnabled="hasMic && !micMuted"
-          @interrupt="onInterrupt"
-          @send="onSend"
-          @stop="videoChatState.startWebRTC"
-          @switchToVoice="onSwitchToVoice"
-        />
-      </template>
-      <template v-else-if="webcamAccessed">
-        <ChatBtn
-          @start-chat="onStartChat"
-          :audio-source-callback="audioSourceCallback"
-          :streamState="streamState as string"
-          wave-color="#7873F6"
-          @switchToText="onSwitchToText"
-        />
-      </template>
+      <!-- 底部组件固定容器，确保高度稳定 -->
+      <div class="bottom-components-container">
+        <template v-if="(!hasMic || micMuted) && streamState === 'open'" class="chat-input-wrapper">
+          <ChatInput
+            :replying="replying"
+            :micEnabled="hasMic && !micMuted"
+            @interrupt="onInterrupt"
+            @send="onSend"
+            @stop="videoChatState.startWebRTC"
+            @switchToVoice="onSwitchToVoice"
+          />
+        </template>
+        <template v-else-if="webcamAccessed">
+          <ChatBtn
+            @start-chat="onStartChat"
+            :audio-source-callback="audioSourceCallback"
+            :streamState="streamState as string"
+            wave-color="#7873F6"
+            @switchToText="onSwitchToText"
+          />
+        </template>
+      </div>
     </div>
   </div>
 </template>

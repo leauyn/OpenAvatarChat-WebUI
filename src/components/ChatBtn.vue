@@ -85,7 +85,7 @@ function onSwitchToText() {
   @media (min-width: 1025px) {
     min-height: 50px; // 进一步减少最小高度
     max-height: 70px; // 进一步减少最大高度
-    margin: 4px auto; // 大幅减少上下边距
+    margin: 0; // 移除margin，由父容器控制布局
     padding: 0 20px;
   }
 

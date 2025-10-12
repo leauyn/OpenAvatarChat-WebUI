@@ -117,7 +117,7 @@ function onSwitchToVoice() {
   @media (min-width: 1025px) {
     min-height: 50px;
     max-height: 70px;
-    margin: 4px auto;
+    margin: 0; // 移除margin，由父容器控制布局
     padding: 0 20px;
   }
 
