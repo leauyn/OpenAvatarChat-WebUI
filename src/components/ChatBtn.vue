@@ -256,12 +256,14 @@ function onSwitchToText() {
     background: transparent;
     border-radius: 0;
     padding: 0;
+    border: 1px solid transparent; // 添加透明边框，保持与chat-input-inner一致的box模型
 
-    // PC端优化：减少停止聊天按钮的尺寸
+    // PC端优化：减少停止聊天按钮的尺寸，与chat-input-container保持一致
     @media (min-width: 1025px) {
       width: 380px;
       min-width: 280px;
       height: 35px; // 进一步减少高度
+      padding: 0 20px; // 添加与chat-input-container相同的padding
     }
 
     @media (max-width: 1024px) and (min-width: 769px) {
@@ -429,11 +431,11 @@ function onSwitchToText() {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border: 1px solid #e9ecef;
 
-        // PC端优化：减少录音状态区域高度
+        // PC端优化：减少录音状态区域高度，与chat-input-inner保持一致
         @media (min-width: 1025px) {
           min-height: 48px; // 进一步减少高度
           border-radius: 14px; // 调整圆角
-          padding: 0 12px; // 减少内边距
+          padding: 0 12px !important; // 强制减少内边距，与chat-input-inner保持一致
         }
 
         // 优化AudioWave组件的显示
