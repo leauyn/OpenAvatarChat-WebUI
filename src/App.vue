@@ -35,11 +35,18 @@ onMounted(() => {
   background-image: url(@/assets/background.png);
   height: 100vh;
   width: 100vw;
-  background-size: 100% 100%;
+  background-size: cover; // 改为cover确保背景正确填充
+  background-position: center center; // 居中显示背景
   background-repeat: no-repeat;
   position: relative;
   *::-webkit-scrollbar {
     display: none;
+  }
+
+  // PC端优化：确保背景在PC端也能正确显示
+  @media (min-width: 1025px) {
+    background-size: cover;
+    background-position: center center;
   }
 }
 </style>

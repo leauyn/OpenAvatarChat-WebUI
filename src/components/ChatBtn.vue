@@ -81,16 +81,28 @@ function onSwitchToText() {
   margin: 16px auto;
   padding: 0 16px;
 
+  // PC端优化：减少底部按钮区域占用空间
+  @media (min-width: 1025px) {
+    min-height: 50px; // 进一步减少最小高度
+    max-height: 70px; // 进一步减少最大高度
+    max-width: 660px;
+    margin: 0; // 移除margin，由父容器控制布局
+    padding: 0 20px;
+  }
+
   @media (max-width: 1024px) and (min-width: 769px) {
-    min-height: 95px;
-    max-height: 130px;
-    margin: 14px auto;
+    min-height: 85px;
+    max-height: 110px;
+    margin: 12px auto;
     padding: 0 14px;
   }
 
   @media (max-width: 768px) {
     min-height: 90px;
     max-height: 120px;
+    width: calc(100vw - 24px);
+    max-width: 660px;
+    min-width: 300px;
     margin: 12px auto;
     padding: 0 12px;
   }
@@ -98,6 +110,9 @@ function onSwitchToText() {
   @media (max-width: 480px) {
     min-height: 85px;
     max-height: 110px;
+    width: calc(100vw - 20px);
+    max-width: 440px;
+    min-width: 280px;
     margin: 10px auto;
     padding: 0 10px;
   }
@@ -105,6 +120,9 @@ function onSwitchToText() {
   @media (max-width: 360px) {
     min-height: 80px;
     max-height: 100px;
+    width: calc(100vw - 16px);
+    max-width: 420px;
+    min-width: 260px;
     margin: 8px auto;
     padding: 0 8px;
   }
@@ -239,6 +257,16 @@ function onSwitchToText() {
     background: transparent;
     border-radius: 0;
     padding: 0;
+    border: 1px solid transparent; // 添加透明边框，保持与chat-input-inner一致的box模型
+
+    // PC端优化：增加宽度20%，与chat-input-container保持一致
+    @media (min-width: 1025px) {
+      width: 456px; // 380px * 1.2 = 456px
+      min-width: 336px; // 280px * 1.2 = 336px
+      max-width: 500px;
+      height: 35px; // 进一步减少高度
+      padding: 0 20px; // 添加与chat-input-container相同的padding
+    }
 
     @media (max-width: 1024px) and (min-width: 769px) {
       width: 480px;
@@ -247,20 +275,21 @@ function onSwitchToText() {
     }
 
     @media (max-width: 768px) {
-      width: 460px;
-      min-width: 360px;
+      width: 100%;
+      min-width: 300px;
+      max-width: 500px;
       height: 52px;
     }
 
     @media (max-width: 480px) {
-      width: 440px;
-      min-width: 340px;
+      width: 100%;
+      min-width: 280px;
       height: 48px;
     }
 
     @media (max-width: 360px) {
-      width: 420px;
-      min-width: 320px;
+      width: 100%;
+      min-width: 260px;
       height: 44px;
     }
 
@@ -278,24 +307,30 @@ function onSwitchToText() {
       padding: 12px 20px;
       justify-content: space-between;
 
+      // PC端优化：减少容器内边距
+      @media (min-width: 1025px) {
+        gap: 16px; // 减少间距
+        padding: 6px 16px; // 减少内边距
+      }
+
       @media (max-width: 1024px) and (min-width: 769px) {
         gap: 20px;
         padding: 10px 18px;
       }
 
       @media (max-width: 768px) {
-        gap: 18px;
-        padding: 8px 16px;
+        gap: 12px;
+        padding: 6px 12px;
       }
 
       @media (max-width: 480px) {
-        gap: 16px;
-        padding: 6px 14px;
+        gap: 10px;
+        padding: 4px 10px;
       }
 
       @media (max-width: 360px) {
-        gap: 14px;
-        padding: 4px 12px;
+        gap: 8px;
+        padding: 2px 8px;
       }
 
       // 左侧键盘按钮
@@ -311,6 +346,17 @@ function onSwitchToText() {
         transition: all 0.3s ease;
         backdrop-filter: blur(8px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+        // PC端优化：减少键盘按钮尺寸以匹配容器高度
+        @media (min-width: 1025px) {
+          width: 36px;
+          height: 36px;
+
+          .keyboard-icon {
+            width: 18px;
+            height: 18px;
+          }
+        }
 
         &:hover {
           background: rgba(103, 102, 106, 0.7);
@@ -345,16 +391,6 @@ function onSwitchToText() {
         }
 
         @media (max-width: 768px) {
-          width: 40px;
-          height: 40px;
-
-          .keyboard-icon {
-            width: 20px;
-            height: 20px;
-          }
-        }
-
-        @media (max-width: 480px) {
           width: 36px;
           height: 36px;
 
@@ -364,13 +400,23 @@ function onSwitchToText() {
           }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
           width: 32px;
           height: 32px;
 
           .keyboard-icon {
             width: 16px;
             height: 16px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          width: 28px;
+          height: 28px;
+
+          .keyboard-icon {
+            width: 14px;
+            height: 14px;
           }
         }
       }
@@ -388,6 +434,13 @@ function onSwitchToText() {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border: 1px solid #e9ecef;
 
+        // PC端优化：减少录音状态区域高度，与chat-input-inner保持一致
+        @media (min-width: 1025px) {
+          min-height: 48px; // 进一步减少高度
+          border-radius: 14px; // 调整圆角
+          padding: 0 12px !important; // 强制减少内边距，与chat-input-inner保持一致
+        }
+
         // 优化AudioWave组件的显示
         :deep(.gradio-webrtc-waveContainer) {
           min-height: 56px;
@@ -395,12 +448,25 @@ function onSwitchToText() {
           display: flex;
           align-items: center;
           justify-content: center;
+
+          // PC端优化：减少AudioWave容器高度
+          @media (min-width: 1025px) {
+            min-height: 30px; // 进一步减少最小高度
+            max-height: 36px; // 进一步减少最大高度
+          }
         }
 
         :deep(.gradio-webrtc-boxContainer) {
           height: 56px;
           --boxSize: 5px;
           --gutter: 6px;
+
+          // PC端优化：增加波形宽度，提升美观度
+          @media (min-width: 1025px) {
+            height: 36px; // 进一步减少高度
+            --boxSize: 4px; // 增加盒子尺寸，让波形更宽更美观
+            --gutter: 3px; // 增加间距，让波形更舒展
+          }
         }
 
         :deep(.gradio-webrtc-box) {
@@ -410,7 +476,7 @@ function onSwitchToText() {
         }
 
         :deep(.split-container) {
-          width: 100px;
+          width: 120px; // 增加文字区域宽度，给波形更多空间
 
           .recording-text {
             font-size: 16px;
@@ -540,6 +606,17 @@ function onSwitchToText() {
         backdrop-filter: blur(8px);
         box-shadow: 0 2px 8px rgba(120, 115, 246, 0.3);
 
+        // PC端优化：减少停止按钮尺寸以匹配容器高度
+        @media (min-width: 1025px) {
+          width: 36px;
+          height: 36px;
+
+          .stop-icon {
+            width: 12px;
+            height: 12px;
+          }
+        }
+
         &:hover {
           background: rgba(120, 115, 246, 1);
           transform: scale(1.05);
@@ -573,16 +650,6 @@ function onSwitchToText() {
         }
 
         @media (max-width: 768px) {
-          width: 40px;
-          height: 40px;
-
-          .stop-icon {
-            width: 14px;
-            height: 14px;
-          }
-        }
-
-        @media (max-width: 480px) {
           width: 36px;
           height: 36px;
 
@@ -592,13 +659,23 @@ function onSwitchToText() {
           }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 480px) {
           width: 32px;
           height: 32px;
 
           .stop-icon {
             width: 10px;
             height: 10px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          width: 28px;
+          height: 28px;
+
+          .stop-icon {
+            width: 8px;
+            height: 8px;
           }
         }
       }

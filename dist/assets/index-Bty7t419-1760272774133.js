@@ -23,7 +23,7 @@ var Zu = (n, e, t, i) => ({
     return dt(n, e, i)
   },
 })
-function Cre() {
+function Ere() {
   ;(import.meta.url, import('_').catch(() => 1), (async function* () {})().next())
 }
 ;(function () {
@@ -49183,22 +49183,22 @@ Un.getAdapter = f6.getAdapter
 Un.HttpStatusCode = gv
 Un.default = Un
 const {
-  Axios: Lre,
-  AxiosError: Dre,
-  CanceledError: Fre,
-  isCancel: Ore,
-  CancelToken: Bre,
-  VERSION: Ure,
-  all: kre,
-  Cancel: zre,
-  isAxiosError: Vre,
-  spread: Hre,
-  toFormData: $re,
-  AxiosHeaders: Gre,
-  HttpStatusCode: Wre,
-  formToJSON: Qre,
-  getAdapter: jre,
-  mergeConfig: qre,
+  Axios: Dre,
+  AxiosError: Fre,
+  CanceledError: Ore,
+  isCancel: Bre,
+  CancelToken: Ure,
+  VERSION: kre,
+  all: zre,
+  Cancel: Vre,
+  isAxiosError: Hre,
+  spread: $re,
+  toFormData: Gre,
+  AxiosHeaders: Wre,
+  HttpStatusCode: Qre,
+  formToJSON: jre,
+  getAdapter: qre,
+  mergeConfig: Xre,
 } = Un
 var Uc =
   typeof globalThis < 'u'
@@ -70392,7 +70392,7 @@ const Eie = zi(Tie, [['render', Cie]]),
       }
     },
   }),
-  Lie = zi(Pie, [['__scopeId', 'data-v-e5dc0a28']]),
+  Lie = zi(Pie, [['__scopeId', 'data-v-a9d49b08']]),
   Die =
     "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20stroke='currentColor'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%3e%3cpath%20d='M10%208h.01M12%2012h.01M14%208h.01M16%2012h.01M18%208h.01M6%208h.01M7%2016h10m-9-4h.01'/%3e%3crect%20width='20'%20height='16'%20x='2'%20y='4'%20rx='2'/%3e%3c/g%3e%3c/svg%3e",
   Fie = { class: 'gradio-webrtc-waveContainer' },
@@ -70575,7 +70575,7 @@ const Eie = zi(Tie, [['render', Cie]]),
       )
     },
   }),
-  $ie = zi(Hie, [['__scopeId', 'data-v-a09d000b']]),
+  $ie = zi(Hie, [['__scopeId', 'data-v-a8803199']]),
   Gie =
     "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20stroke='%23000'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%3e%3cpath%20d='M12%2019v3m7-12v2a7%207%200%200%201-14%200v-2'/%3e%3crect%20width='6'%20height='13'%20x='9'%20y='2'%20rx='3'/%3e%3c/g%3e%3c/svg%3e",
   Wie =
@@ -70660,7 +70660,7 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  Zie = zi(Yie, [['__scopeId', 'data-v-a99d55e2']]),
+  Zie = zi(Yie, [['__scopeId', 'data-v-8d73ea49']]),
   Jie = { class: 'answer-message-text' },
   ere = qt({
     __name: 'ChatMessage',
@@ -70747,7 +70747,8 @@ const jie = { class: 'chat-input-container' },
   dre = { class: 'loading-spinner' },
   hre = ['muted'],
   fre = { key: 2, class: 'chat-records-container' },
-  pre = qt({
+  pre = { class: 'bottom-components-container' },
+  mre = qt({
     __name: 'index',
     setup(n) {
       const e = Ta(),
@@ -70940,40 +70941,42 @@ const jie = { class: 'chat-input-container' },
                 ],
                 4
               ),
-              (!tt(h) || tt(f)) && tt(y) === 'open'
-                ? (_t(),
-                  au(
-                    Zie,
-                    {
-                      key: 0,
-                      replying: tt(x),
-                      micEnabled: tt(h) && !tt(f),
-                      onInterrupt: I,
-                      onSend: U,
-                      onStop: tt(t).startWebRTC,
-                      onSwitchToVoice: w,
-                    },
-                    null,
-                    8,
-                    ['replying', 'micEnabled', 'onStop']
-                  ))
-                : tt(g)
+              Ct('div', pre, [
+                (!tt(h) || tt(f)) && tt(y) === 'open'
                   ? (_t(),
                     au(
-                      $ie,
+                      Zie,
                       {
-                        key: 1,
-                        onStartChat: T,
-                        'audio-source-callback': u,
-                        streamState: tt(y),
-                        'wave-color': '#7873F6',
-                        onSwitchToText: F,
+                        key: 0,
+                        replying: tt(x),
+                        micEnabled: tt(h) && !tt(f),
+                        onInterrupt: I,
+                        onSend: U,
+                        onStop: tt(t).startWebRTC,
+                        onSwitchToVoice: w,
                       },
                       null,
                       8,
-                      ['streamState']
+                      ['replying', 'micEnabled', 'onStop']
                     ))
-                  : jr('', !0),
+                  : tt(g)
+                    ? (_t(),
+                      au(
+                        $ie,
+                        {
+                          key: 1,
+                          onStartChat: T,
+                          'audio-source-callback': u,
+                          streamState: tt(y),
+                          'wave-color': '#7873F6',
+                          onSwitchToText: F,
+                        },
+                        null,
+                        8,
+                        ['streamState']
+                      ))
+                    : jr('', !0),
+              ]),
             ]),
           ],
           512
@@ -70981,9 +70984,9 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  mre = zi(pre, [['__scopeId', 'data-v-69f21c1d']]),
-  gre = { class: 'wrap' },
-  yre = qt({
+  gre = zi(mre, [['__scopeId', 'data-v-b4722265']]),
+  yre = { class: 'wrap' },
+  vre = qt({
     __name: 'App',
     setup(n) {
       const e = U0()
@@ -71001,9 +71004,9 @@ const jie = { class: 'chat-input-container' },
             { locale: tt(Yne)[tt(vR)] },
             {
               default: bw(() => [
-                Ct('div', gre, [
+                Ct('div', yre, [
                   tt(e).webcamAccessed ? jr('', !0) : (_t(), au(Qee, { key: 0 })),
-                  Ae(mre),
+                  Ae(gre),
                 ]),
               ]),
               _: 1,
@@ -71015,18 +71018,18 @@ const jie = { class: 'chat-input-container' },
       )
     },
   }),
-  vre = zi(yre, [['__scopeId', 'data-v-7e26f29b']])
+  _re = zi(vre, [['__scopeId', 'data-v-87a1b29c']])
 var Xp = { exports: {} },
-  _re = Xp.exports,
+  xre = Xp.exports,
   HT
-function xre() {
+function Sre() {
   return (
     HT ||
       ((HT = 1),
       (function (n, e) {
         ;(function (t, i) {
           n.exports = i()
-        })(_re, function () {
+        })(xre, function () {
           var t = '__v-click-outside',
             i = typeof window < 'u',
             r = typeof navigator < 'u',
@@ -71145,9 +71148,9 @@ function xre() {
     Xp.exports
   )
 }
-var Sre = xre()
-const Are = h_(Sre),
-  bre = () => {
+var Are = Sre()
+const bre = h_(Are),
+  Tre = () => {
     const n = []
     for (let e = 0; e < localStorage.length; e++) {
       const t = localStorage.key(e)
@@ -71161,11 +71164,11 @@ const Are = h_(Sre),
   z1 = localStorage.getItem('app_version'),
   $T = localStorage.getItem('last_app_version')
 ;(!z1 || ($T && z1 !== $T)) &&
-  (bre(), localStorage.setItem('last_app_version', z1 || Date.now().toString()))
-const H0 = i9(vre),
-  Tre = o9()
-H0.use(Tre)
+  (Tre(), localStorage.setItem('last_app_version', z1 || Date.now().toString()))
+const H0 = i9(_re),
+  wre = o9()
+H0.use(wre)
 H0.use(Jne)
-H0.use(Are)
+H0.use(bre)
 H0.mount('#app')
-export { Cre as __vite_legacy_guard }
+export { Ere as __vite_legacy_guard }
