@@ -14,6 +14,8 @@ import { setupWebRTC, stop } from '@/utils/webrtcUtils'
 import { getUserAuthorityFromLocalStorage, isInIframe } from '@/utils/localStorageUtils'
 import { getUserResultInfo } from '@/services/databaseService'
 import { UserResultInfo, DatabaseResponse } from '@/interface/databaseTypes'
+import { permissionManager } from '@/utils/permissionManager'
+import { permissionListener, PermissionChangeEvent } from '@/utils/permissionListener'
 import { message } from 'ant-design-vue'
 import { defineStore } from 'pinia'
 import { useVisionStore } from './vision'
@@ -128,6 +130,36 @@ export const useVideoChatStore = defineStore('videoChatStore', {
   },
   getters: {},
   actions: {
+    /**
+     * 检查权限状态（新增方法）
+     */
+    async checkPermissions() {
+      try {
+        console.log('🔍 开始检查权限状态...')
+        const result = await permissionManager.checkCurrentPermissions()
+
+        this.hasCameraPermission = result.camera
+        this.hasMicPermission = result.microphone
+
+        console.log('✅ 权限检查完成:', {
+          camera: result.camera,
+          microphone: result.microphone,
+          needsPrompt: result.needsPrompt,
+        })
+
+        return result
+      } catch (error) {
+        console.error('❌ 权限检查失败:', error)
+        this.hasCameraPermission = false
+        this.hasMicPermission = false
+        return {
+          camera: false,
+          microphone: false,
+          needsPrompt: true,
+        }
+      }
+    },
+
     async accessDevice() {
       try {
         const visionState = useVisionStore()
@@ -135,50 +167,91 @@ export const useVideoChatStore = defineStore('videoChatStore', {
         this.micMuted = false
         this.cameraOff = false
         this.volumeMuted = false
+
         if (!navigator.mediaDevices) {
           message.error('无法获取媒体设备，请确保用localhost访问或https协议访问')
           return
         }
-        await navigator.mediaDevices
-          .getUserMedia({
-            audio: true,
-          })
-          .catch(() => {
-            console.log('no audio permission')
-            this.hasMicPermission = false
-          })
-        await navigator.mediaDevices
-          .getUserMedia({
-            video: true,
-          })
-          .catch(() => {
-            console.log('no video permission')
-            this.hasCameraPermission = false
-          })
-        const devices = await getDevices()
-        this.devices = devices
-        console.log('🚀 ~ access_webcam ~ devices:', devices)
-        const videoDeviceId =
-          this.selectedVideoDevice &&
-          devices.some((device) => device.deviceId === this.selectedVideoDevice?.deviceId)
-            ? this.selectedVideoDevice.deviceId
-            : ''
-        const audioDeviceId =
-          this.selectedAudioDevice &&
-          devices.some((device) => device.deviceId === this.selectedAudioDevice?.deviceId)
-            ? this.selectedAudioDevice.deviceId
-            : ''
-        console.log(videoDeviceId, audioDeviceId, ' access web device')
-        this.fillStream(audioDeviceId, videoDeviceId)
+
+        // 先检查权限状态
+        const permissionResult = await this.checkPermissions()
+
+        // 如果权限已授权，直接获取设备
+        if (permissionResult.camera && permissionResult.microphone) {
+          console.log('✅ 权限已授权，直接获取设备')
+          await this.getDevicesAndStream()
+          this.webcamAccessed = true
+          return
+        }
+
+        // 如果权限未授权，尝试请求权限
+        console.log('🔄 权限未授权，尝试请求权限...')
+
+        let cameraPermission = false
+        let microphonePermission = false
+
+        try {
+          await navigator.mediaDevices.getUserMedia({ audio: true })
+          microphonePermission = true
+          console.log('✅ 麦克风权限获取成功')
+        } catch (error) {
+          console.log('❌ 麦克风权限被拒绝:', error)
+          this.hasMicPermission = false
+        }
+
+        try {
+          await navigator.mediaDevices.getUserMedia({ video: true })
+          cameraPermission = true
+          console.log('✅ 摄像头权限获取成功')
+        } catch (error) {
+          console.log('❌ 摄像头权限被拒绝:', error)
+          this.hasCameraPermission = false
+        }
+
+        // 更新权限状态
+        permissionManager.updatePermissionState(cameraPermission, microphonePermission)
+        this.hasCameraPermission = cameraPermission
+        this.hasMicPermission = microphonePermission
+
+        // 获取设备并创建流
+        await this.getDevicesAndStream()
         this.webcamAccessed = true
       } catch (err: any) {
         console.log(err)
         message.error(err)
       }
     },
+
+    /**
+     * 获取设备并创建流（提取的公共方法）
+     */
+    async getDevicesAndStream() {
+      const devices = await getDevices()
+      this.devices = devices
+      console.log('🚀 ~ access_webcam ~ devices:', devices)
+
+      const videoDeviceId =
+        this.selectedVideoDevice &&
+        devices.some((device) => device.deviceId === this.selectedVideoDevice?.deviceId)
+          ? this.selectedVideoDevice.deviceId
+          : ''
+      const audioDeviceId =
+        this.selectedAudioDevice &&
+        devices.some((device) => device.deviceId === this.selectedAudioDevice?.deviceId)
+          ? this.selectedAudioDevice.deviceId
+          : ''
+      console.log(videoDeviceId, audioDeviceId, ' access web device')
+      this.fillStream(audioDeviceId, videoDeviceId)
+    },
     async init() {
       // 初始化用户信息
       await this.initializeUserInfo()
+
+      // 检查权限状态（新增）
+      await this.checkPermissions()
+
+      // 设置权限变化监听器（新增）
+      this.setupPermissionListener()
 
       fetch('/openavatarchat/initconfig')
         .then((res) => res.json())
@@ -200,6 +273,44 @@ export const useVideoChatStore = defineStore('videoChatStore', {
         .catch(() => {
           message.error('服务端链接失败，请检查是否能正确访问到 OpenAvatarChat 服务端')
         })
+    },
+
+    /**
+     * 设置权限变化监听器（新增方法）
+     */
+    setupPermissionListener() {
+      console.log('🔧 设置权限变化监听器...')
+
+      const handlePermissionChange = (event: PermissionChangeEvent) => {
+        console.log('📡 收到权限变化事件:', event)
+
+        // 更新权限状态
+        if (event.type === 'camera' || event.type === 'both') {
+          this.hasCameraPermission = event.granted
+        }
+        if (event.type === 'microphone' || event.type === 'both') {
+          this.hasMicPermission = event.granted
+        }
+
+        // 如果权限被拒绝，清除权限状态
+        if (!event.granted) {
+          console.log('⚠️ 权限被拒绝，清除权限状态')
+          permissionManager.clearPermissionState()
+        }
+
+        // 如果权限被重新授予，尝试自动获取设备
+        if (event.granted && this.webcamAccessed) {
+          console.log('✅ 权限重新授予，尝试自动获取设备...')
+          this.getDevicesAndStream().catch((error) => {
+            console.error('❌ 自动获取设备失败:', error)
+          })
+        }
+      }
+
+      // 添加监听器
+      permissionListener.addListener(handlePermissionChange)
+
+      console.log('✅ 权限变化监听器设置完成')
     },
 
     /**
