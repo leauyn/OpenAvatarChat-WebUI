@@ -67,35 +67,36 @@ const selectRole = (roleId: string) => {
   .role-cards-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
     width: 100%;
 
     .role-card {
       position: relative;
       cursor: pointer;
       transition: all 0.3s ease;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      border: 2px solid #f8f9fa;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e9ecef;
       background: white;
+      aspect-ratio: 1; // 保持正方形比例
 
       &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        border-color: #e9ecef;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-color: #dee2e6;
       }
 
       &.selected {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(120, 115, 246, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(120, 115, 246, 0.2);
         border: 2px solid #7873f6;
       }
 
       .role-image-container {
         position: relative;
         width: 100%;
-        height: 200px;
+        height: 100%;
         overflow: hidden;
 
         .role-image {
@@ -116,11 +117,11 @@ const selectRole = (roleId: string) => {
             to bottom,
             rgba(0, 0, 0, 0.1) 0%,
             rgba(0, 0, 0, 0.2) 50%,
-            rgba(0, 0, 0, 0.6) 100%
+            rgba(0, 0, 0, 0.7) 100%
           );
           display: flex;
           align-items: flex-end;
-          padding: 20px;
+          padding: 16px;
           opacity: 0;
           transition: opacity 0.3s ease;
 
@@ -130,14 +131,14 @@ const selectRole = (roleId: string) => {
             width: 100%;
 
             .role-name {
-              font-size: 18px;
+              font-size: 16px;
               font-weight: 700;
-              margin: 0 0 6px 0;
+              margin: 0 0 4px 0;
               text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
             }
 
             .role-description {
-              font-size: 13px;
+              font-size: 12px;
               margin: 0;
               opacity: 0.9;
               text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -152,21 +153,21 @@ const selectRole = (roleId: string) => {
 
       .role-badge {
         position: absolute;
-        top: 12px;
-        right: 12px;
-        width: 28px;
-        height: 28px;
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
         background: #7873f6;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 3px 10px rgba(120, 115, 246, 0.4);
+        box-shadow: 0 2px 8px rgba(120, 115, 246, 0.4);
         border: 2px solid white;
 
         .check-icon {
           color: white;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: bold;
         }
       }
@@ -180,10 +181,9 @@ const selectRole = (roleId: string) => {
 
       .role-card {
         border-radius: 10px;
+        aspect-ratio: 1;
 
         .role-image-container {
-          height: 140px;
-
           .role-overlay {
             padding: 12px;
 
@@ -219,10 +219,9 @@ const selectRole = (roleId: string) => {
 
       .role-card {
         border-radius: 8px;
+        aspect-ratio: 1;
 
         .role-image-container {
-          height: 120px;
-
           .role-overlay {
             padding: 10px;
 
@@ -246,6 +245,44 @@ const selectRole = (roleId: string) => {
 
           .check-icon {
             font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    .role-cards-container {
+      gap: 8px;
+
+      .role-card {
+        border-radius: 6px;
+        aspect-ratio: 1;
+
+        .role-image-container {
+          .role-overlay {
+            padding: 8px;
+
+            .role-info {
+              .role-name {
+                font-size: 12px;
+              }
+
+              .role-description {
+                font-size: 9px;
+              }
+            }
+          }
+        }
+
+        .role-badge {
+          width: 16px;
+          height: 16px;
+          top: 4px;
+          right: 4px;
+
+          .check-icon {
+            font-size: 9px;
           }
         }
       }

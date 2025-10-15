@@ -25,20 +25,23 @@ const introImage = ref(introImageSrc)
 <style lang="less" scoped>
 .digital-human-intro {
   width: 100%;
+  margin-bottom: 16px;
 
   .intro-image-container {
     position: relative;
     width: 100%;
-    height: 320px;
-    border-radius: 12px;
+    height: 45vh; // 占据约45%的视口高度
+    min-height: 280px;
+    max-height: 400px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
-    border: 2px solid #e9ecef;
+    border: 1px solid #e9ecef;
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
     }
 
     .intro-image {
@@ -56,32 +59,32 @@ const introImage = ref(introImageSrc)
       bottom: 0;
       background: linear-gradient(
         135deg,
-        rgba(0, 0, 0, 0.3) 0%,
-        rgba(0, 0, 0, 0.1) 50%,
-        rgba(0, 0, 0, 0.5) 100%
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.1) 40%,
+        rgba(0, 0, 0, 0.6) 100%
       );
       display: flex;
-      align-items: flex-start;
-      padding: 24px;
+      align-items: flex-end;
+      padding: 32px;
 
       .intro-content {
         color: white;
-        max-width: 80%;
+        max-width: 85%;
 
         .intro-title {
-          font-size: 28px;
-          font-weight: 700;
-          margin: 0 0 12px 0;
-          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-          line-height: 1.2;
+          font-size: 32px;
+          font-weight: 800;
+          margin: 0 0 16px 0;
+          text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+          line-height: 1.1;
         }
 
         .intro-description {
-          font-size: 16px;
-          line-height: 1.6;
+          font-size: 18px;
+          line-height: 1.5;
           margin: 0;
           opacity: 0.95;
-          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
       }
     }
@@ -89,11 +92,38 @@ const introImage = ref(introImageSrc)
 
   // 响应式设计
   @media (max-width: 768px) {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 
     .intro-image-container {
-      height: 240px;
+      height: 40vh;
+      min-height: 240px;
+      max-height: 320px;
       border-radius: 12px;
+
+      .intro-overlay {
+        padding: 24px;
+
+        .intro-content {
+          .intro-title {
+            font-size: 24px;
+          }
+
+          .intro-description {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 12px;
+
+    .intro-image-container {
+      height: 35vh;
+      min-height: 200px;
+      max-height: 280px;
+      border-radius: 10px;
 
       .intro-overlay {
         padding: 20px;
@@ -111,12 +141,11 @@ const introImage = ref(introImageSrc)
     }
   }
 
-  @media (max-width: 480px) {
-    margin-bottom: 16px;
-
+  @media (max-width: 360px) {
     .intro-image-container {
-      height: 200px;
-      border-radius: 10px;
+      height: 30vh;
+      min-height: 180px;
+      max-height: 240px;
 
       .intro-overlay {
         padding: 16px;
