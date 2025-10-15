@@ -140,3 +140,5 @@ this.checkInterval = window.setInterval(() => {
 - 检查页面是否获得焦点
 - 检查权限监听器是否正确设置
 - 检查控制台错误信息
+
+
