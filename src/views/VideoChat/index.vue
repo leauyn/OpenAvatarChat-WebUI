@@ -63,6 +63,41 @@
         <div v-if="shouldShowChatRecords" class="chat-records-container">
           <ChatRecords ref="chatRecordsInstanceRef" :chatRecords="chatRecords" />
         </div>
+
+        <!-- 数字人服务介绍和角色选择区域 -->
+        <div v-if="showDigitalHumanIntro" class="digital-human-sections">
+          <!-- 顶部导航栏 -->
+          <div class="digital-human-header">
+            <div class="header-left">
+              <div class="back-button">
+                <LeftOutlined class="back-icon" />
+              </div>
+              <span class="header-title">数字人服务介绍</span>
+            </div>
+            <div class="header-right">
+              <div class="header-icon-group">
+                <div class="header-icon">
+                  <VideoCameraOutlined />
+                </div>
+                <div class="header-icon">
+                  <AudioOutlined />
+                </div>
+                <div class="header-icon">
+                  <SoundOutlined />
+                </div>
+                <div class="header-icon">
+                  <SettingOutlined />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主要内容区域 -->
+          <div class="digital-human-content">
+            <DigitalHumanIntro />
+            <DigitalHumanRoleSelection />
+          </div>
+        </div>
       </div>
 
       <!-- 底部组件固定容器，确保高度稳定 -->
@@ -96,12 +131,20 @@ import ActionGroup from '@/components/ActionGroup.vue'
 import ChatBtn from '@/components/ChatBtn.vue'
 import ChatInput from '@/components/ChatInput.vue'
 import ChatRecords from '@/components/ChatRecords.vue'
+import DigitalHumanIntro from '@/components/DigitalHumanIntro.vue'
+import DigitalHumanRoleSelection from '@/components/DigitalHumanRoleSelection.vue'
 import { useVideoChatStore } from '@/store'
 import { useVisionStore } from '@/store/vision'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { Spin } from 'ant-design-vue'
-import { LeftOutlined, SettingOutlined } from '@ant-design/icons-vue'
+import {
+  LeftOutlined,
+  SettingOutlined,
+  VideoCameraOutlined,
+  AudioOutlined,
+  SoundOutlined,
+} from '@ant-design/icons-vue'
 const visionState = useVisionStore()
 const videoChatState = useVideoChatStore()
 const wrapRef = ref<HTMLDivElement>()
@@ -135,6 +178,11 @@ onMounted(() => {
   visionState.localVideoRef = localVideoRef.value
   visionState.remoteVideoRef = remoteVideoRef.value
   visionState.wrapperRef = wrapRef.value
+
+  // 如果会话未开始，确保显示数字人介绍组件
+  if (streamState.value === 'closed') {
+    videoChatState.showDigitalHumanIntro = true
+  }
 })
 const {
   hasCamera,
@@ -142,6 +190,7 @@ const {
   micMuted,
   cameraOff,
   webcamAccessed,
+  showDigitalHumanIntro,
   streamState,
   avatarType,
   volumeMuted,
@@ -166,6 +215,8 @@ const shouldShowChatRecords = computed(() => {
 })
 
 function onStartChat() {
+  // 隐藏数字人介绍组件
+  videoChatState.showDigitalHumanIntro = false
   videoChatState.startWebRTC().then(() => {
     initChatDataChannel()
   })

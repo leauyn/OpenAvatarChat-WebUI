@@ -40,6 +40,7 @@ interface VideoChatState {
   peerConnection: RTCPeerConnection | null
   localStream: MediaStream | null
   webcamAccessed: boolean
+  showDigitalHumanIntro: boolean
   webRTCId: string
 
   avatarType: '' | 'lam'
@@ -95,6 +96,7 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       localStream: null,
       webRTCId: '',
       webcamAccessed: false,
+      showDigitalHumanIntro: true, // 控制数字人介绍组件显示
       avatarType: '',
       avatarWSRoute: '',
       avatarAssetsPath: '',
