@@ -408,6 +408,12 @@
       background: #ffffff;
     }
     
+    // 移动端优化：确保内容区域有足够的空间
+    @media (max-width: 768px) {
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+    
     .digital-human-header {
       display: flex;
       justify-content: space-between;
@@ -492,11 +498,25 @@
       @media (max-width: 768px) {
         padding: 20px;
         gap: 28px; // 响应式间距
+        padding-top: 60px; // 增加顶部间距，将组件向下移动
+        padding-bottom: 50px; // 增加底部间距，确保有足够的底部空间
+        justify-content: flex-start; // 保持顶部对齐
       }
       
       @media (max-width: 480px) {
         padding: 16px;
         gap: 24px; // 响应式间距
+        padding-top: 50px; // 增加顶部间距，将组件向下移动
+        padding-bottom: 40px; // 增加底部间距，确保有足够的底部空间
+        justify-content: flex-start; // 保持顶部对齐
+      }
+      
+      @media (max-width: 360px) {
+        padding: 12px;
+        gap: 20px; // 响应式间距
+        padding-top: 40px; // 增加顶部间距，将组件向下移动
+        padding-bottom: 40px; // 增加底部间距，确保有足够的底部空间
+        justify-content: flex-start; // 保持顶部对齐
       }
     }
   }
