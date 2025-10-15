@@ -25,7 +25,7 @@ const introImage = ref(introImageSrc)
 <style lang="less" scoped>
 .digital-human-intro {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 32px; // 增加底部间距
 
   .intro-image-container {
     position: relative;
@@ -92,7 +92,7 @@ const introImage = ref(introImageSrc)
 
   // 响应式设计
   @media (max-width: 768px) {
-    margin-bottom: 16px;
+    margin-bottom: 28px; // 响应式间距
 
     .intro-image-container {
       height: 40vh;
@@ -117,7 +117,7 @@ const introImage = ref(introImageSrc)
   }
 
   @media (max-width: 480px) {
-    margin-bottom: 12px;
+    margin-bottom: 24px; // 响应式间距
 
     .intro-image-container {
       height: 35vh;
@@ -142,6 +142,8 @@ const introImage = ref(introImageSrc)
   }
 
   @media (max-width: 360px) {
+    margin-bottom: 20px; // 响应式间距
+
     .intro-image-container {
       height: 30vh;
       min-height: 180px;

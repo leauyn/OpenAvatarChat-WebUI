@@ -79,7 +79,7 @@ const selectRole = (roleId: string) => {
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       border: 1px solid #e9ecef;
       background: white;
-      aspect-ratio: 1; // 保持正方形比例
+      height: 280px; // 固定高度，让角色完整显示
 
       &:hover {
         transform: translateY(-3px);
@@ -181,7 +181,7 @@ const selectRole = (roleId: string) => {
 
       .role-card {
         border-radius: 10px;
-        aspect-ratio: 1;
+        height: 240px; // 保持足够高度显示角色
 
         .role-image-container {
           .role-overlay {
@@ -219,7 +219,7 @@ const selectRole = (roleId: string) => {
 
       .role-card {
         border-radius: 8px;
-        aspect-ratio: 1;
+        height: 200px; // 保持足够高度显示角色
 
         .role-image-container {
           .role-overlay {
@@ -257,7 +257,7 @@ const selectRole = (roleId: string) => {
 
       .role-card {
         border-radius: 6px;
-        aspect-ratio: 1;
+        height: 180px; // 保持足够高度显示角色
 
         .role-image-container {
           .role-overlay {
