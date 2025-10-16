@@ -396,7 +396,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 80px; // 为底部按钮留出空间
     background: #ffffff;
     z-index: 5;
     display: flex;
@@ -410,8 +410,17 @@
     
     // 移动端优化：确保内容区域有足够的空间
     @media (max-width: 768px) {
-      min-height: 100vh;
+      min-height: calc(100vh - 80px);
       overflow-y: auto;
+      bottom: 60px; // 移动端为底部按钮留出空间
+    }
+    
+    @media (max-width: 480px) {
+      bottom: 50px; // 小屏幕为底部按钮留出空间
+    }
+    
+    @media (max-width: 360px) {
+      bottom: 40px; // 超小屏幕为底部按钮留出空间
     }
     
     .digital-human-header {

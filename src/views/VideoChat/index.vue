@@ -112,7 +112,7 @@
             @switchToVoice="onSwitchToVoice"
           />
         </template>
-        <template v-else-if="webcamAccessed">
+        <template v-else-if="webcamAccessed || showDigitalHumanIntro">
           <ChatBtn
             @start-chat="onStartChat"
             :audio-source-callback="audioSourceCallback"

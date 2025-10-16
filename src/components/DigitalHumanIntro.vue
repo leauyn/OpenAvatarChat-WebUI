@@ -4,9 +4,9 @@
       <img :src="introImage" alt="数字人服务介绍" class="intro-image" />
       <div class="intro-overlay">
         <div class="intro-content">
-          <h2 class="intro-title">智能数字人服务</h2>
+          <h2 class="intro-title">AI数字人陪伴服务</h2>
           <p class="intro-description">
-            体验前沿AI技术，与智能数字人进行自然对话，获得专业、贴心的服务体验
+            体验前沿AI技术，与智能数字人进行自然对话，获得专业、贴心的 心理咨询服务体验
           </p>
         </div>
       </div>
