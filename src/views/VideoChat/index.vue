@@ -12,7 +12,7 @@
           <div class="left-action">
             <LeftOutlined class="left-icon" />
           </div>
-          <div class="right-actions">
+          <div v-if="!showDigitalHumanIntro && streamState !== 'waiting'" class="right-actions">
             <ActionGroup :isStartupMode="streamState !== 'open'" />
             <div class="setting-action">
               <SettingOutlined class="setting-icon" />
@@ -73,22 +73,6 @@
                 <LeftOutlined class="back-icon" />
               </div>
               <span class="header-title">数字人服务介绍</span>
-            </div>
-            <div class="header-right">
-              <div class="header-icon-group">
-                <div class="header-icon">
-                  <VideoCameraOutlined />
-                </div>
-                <div class="header-icon">
-                  <AudioOutlined />
-                </div>
-                <div class="header-icon">
-                  <SoundOutlined />
-                </div>
-                <div class="header-icon">
-                  <SettingOutlined />
-                </div>
-              </div>
             </div>
           </div>
 
