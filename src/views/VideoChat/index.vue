@@ -232,6 +232,11 @@ function initChatDataChannel() {
         item.message += data.message
         videoChatState.chatRecords.splice(index, 1, item)
         videoChatState.chatRecords = [...videoChatState.chatRecords]
+
+        // 更新会话记录中的消息
+        if (videoChatState.sessionRecordManager) {
+          videoChatState.sessionRecordManager.addMessage(data.role || 'human', item.message)
+        }
       } else {
         videoChatState.chatRecords = [
           ...videoChatState.chatRecords,
@@ -241,6 +246,11 @@ function initChatDataChannel() {
             message: data.message,
           },
         ]
+
+        // 添加新消息到会话记录
+        if (videoChatState.sessionRecordManager) {
+          videoChatState.sessionRecordManager.addMessage(data.role || 'human', data.message)
+        }
       }
     } else if (data.type === 'avatar_end') {
       videoChatState.replying = false

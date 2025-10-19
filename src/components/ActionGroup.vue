@@ -1,11 +1,13 @@
 <template>
   <!-- 摄像头按钮 -->
   <div
-    v-if="hasCamera"
     v-click-outside="() => (cameraListShow = false)"
     class="action-button"
-    :class="{ 'startup-mode': isStartupMode }"
-    @click="handleCameraOff"
+    :class="{
+      'startup-mode': isStartupMode,
+      disabled: !hasCamera,
+    }"
+    @click="hasCamera ? handleCameraOff() : null"
   >
     <Iconfont
       :icon="cameraOff ? CameraOff : CameraOn"
@@ -48,11 +50,13 @@
 
   <!-- 麦克风按钮 -->
   <div
-    v-if="hasMic"
     v-click-outside="() => (micListShow = false)"
     class="action-button"
-    :class="{ 'startup-mode': isStartupMode }"
-    @click="handleMicMuted"
+    :class="{
+      'startup-mode': isStartupMode,
+      disabled: !hasMic,
+    }"
+    @click="hasMic ? handleMicMuted() : null"
   >
     <Iconfont :icon="micMuted ? MicOff : MicOn" :fontSize="iconFontSize" class="action-icon" />
     <div
@@ -369,6 +373,25 @@ const iconFontSize = computed(() => {
         align-items: center;
         justify-content: center;
         top: 0;
+      }
+    }
+
+    // 禁用状态样式
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      .action-icon {
+        opacity: 0.5;
+        cursor: not-allowed;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          color: rgba(255, 255, 255, 0.9);
+          transform: none;
+          border-color: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
       }
     }
   }

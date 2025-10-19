@@ -19,6 +19,7 @@ import { permissionListener, PermissionChangeEvent } from '@/utils/permissionLis
 import { message } from 'ant-design-vue'
 import { defineStore } from 'pinia'
 import { useVisionStore } from './vision'
+import { useSessionRecord } from '@/composables/useSessionRecord'
 
 const track_constraints = {
   video: {
@@ -80,6 +81,9 @@ interface VideoChatState {
   chatDataChannel: RTCDataChannel | null
   replying: boolean
   chatRecords: Array<{ id: string; role: 'human' | 'avatar'; message: string }>
+
+  // 会话记录相关
+  sessionRecordManager: ReturnType<typeof useSessionRecord> | null
 }
 
 export const useVideoChatStore = defineStore('videoChatStore', {
@@ -128,6 +132,9 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       chatDataChannel: null,
       replying: false,
       chatRecords: [],
+
+      // 会话记录相关
+      sessionRecordManager: null,
     }
   },
   getters: {},
@@ -643,15 +650,17 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       this.hasCamera =
         devices.some((device) => device.kind === 'videoinput' && device.deviceId) &&
         this.hasCameraPermission
-      await getStream(
+      // 确保至少请求 audio 或 video 中的一个
+      const audioRequest =
         audioDeviceId && audioDeviceId !== 'default'
           ? { deviceId: { exact: audioDeviceId } }
-          : this.hasMic,
+          : this.hasMic || true // 默认请求音频
+      const videoRequest =
         videoDeviceId && videoDeviceId !== 'default'
           ? { deviceId: { exact: videoDeviceId } }
-          : this.hasCamera,
-        this.trackConstraints
-      )
+          : this.hasCamera || false // 默认不请求视频
+
+      await getStream(audioRequest, videoRequest, this.trackConstraints)
         .then(async (local_stream) => {
           console.log('local_stream', local_stream)
           this.stream = local_stream
@@ -706,6 +715,11 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       if (this.streamState === 'closed') {
         this.chatRecords = []
 
+        // 初始化会话记录管理器
+        if (!this.sessionRecordManager) {
+          this.sessionRecordManager = useSessionRecord()
+        }
+
         // 重新创建视频流以确保应用最新的约束
         const videoDeviceId = this.selectedVideoDevice?.deviceId || ''
         const audioDeviceId = this.selectedAudioDevice?.deviceId || ''
@@ -748,6 +762,11 @@ export const useVideoChatStore = defineStore('videoChatStore', {
             this.webRTCId = webRTCId as string
             this.chatDataChannel = dataChannel as any
 
+            // 开始会话记录
+            if (this.sessionRecordManager) {
+              this.sessionRecordManager.startSession(webRTCId, userId)
+            }
+
             // 连接成功后显示视频
             if (visionState.localVideoRef && this.localStream) {
               visionState.localVideoRef.srcObject = this.localStream
@@ -771,6 +790,11 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       } else if (this.streamState === 'waiting') {
         // waiting 中不允许操作
       } else {
+        // 结束会话记录
+        if (this.sessionRecordManager) {
+          this.sessionRecordManager.endSession()
+        }
+
         stop(this.peerConnection!)
         this.streamState = StreamState.closed
         this.chatRecords = []

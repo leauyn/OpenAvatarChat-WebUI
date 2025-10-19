@@ -37,8 +37,9 @@ const containerWidth = computed(() => {
 watch(
   () => props.streamState,
   () => {
-    console.log(111111)
-    if (props.streamState === 'open') setupAudioContext()
+    if (props.streamState === 'open') {
+      setupAudioContext()
+    }
   },
   { immediate: true }
 )
