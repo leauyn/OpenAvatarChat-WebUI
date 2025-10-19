@@ -16,7 +16,37 @@ onMounted(() => {
     document.body.classList.add('iframe-mode')
     console.log('🔍 检测到在 iframe 中运行，应用 iframe 模式样式')
   }
+
+  // 初始化 VConsole（仅在移动端或开发环境）
+  initVConsole()
 })
+
+// 初始化 VConsole 函数
+function initVConsole() {
+  // 检测是否为移动设备
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+
+  // 在移动端或开发环境初始化 VConsole
+  if (isMobile || import.meta.env.DEV) {
+    // 动态加载 VConsole
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js'
+    script.onload = () => {
+      // @ts-ignore
+      if (window.VConsole) {
+        // @ts-ignore
+        const vConsole = new window.VConsole()
+        console.log('🔧 VConsole 已初始化，支持移动端调试')
+      }
+    }
+    script.onerror = () => {
+      console.warn('⚠️ VConsole 加载失败，将使用原生 console')
+    }
+    document.head.appendChild(script)
+  }
+}
 
 // import dayjs from 'dayjs';
 // import 'dayjs/locale/zh-cn';

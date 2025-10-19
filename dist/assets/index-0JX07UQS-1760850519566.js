@@ -71064,7 +71064,7 @@ const nre = { class: 'chat-input-container' },
       )
     },
   }),
-  fre = '' + new URL('boarding_back-DXpXMemq-1760839113824.png', import.meta.url).href,
+  fre = '' + new URL('boarding_back-DXpXMemq-1760850519566.png', import.meta.url).href,
   pre = { class: 'digital-human-intro' },
   mre = { class: 'intro-image-container' },
   gre = ['src'],
@@ -71099,8 +71099,8 @@ const nre = { class: 'chat-input-container' },
     },
   }),
   vre = di(yre, [['__scopeId', 'data-v-188f04fc']]),
-  _re = '' + new URL('P1-64AzfrJY037WpS69RiUMw-R7EjY1TT-1760839113824.png', import.meta.url).href,
-  xre = '' + new URL('P1OKp7AWZLC4bXw78Ms9ivuw-CkUqKbI9-1760839113824.png', import.meta.url).href,
+  _re = '' + new URL('P1-64AzfrJY037WpS69RiUMw-R7EjY1TT-1760850519566.png', import.meta.url).href,
+  xre = '' + new URL('P1OKp7AWZLC4bXw78Ms9ivuw-CkUqKbI9-1760850519566.png', import.meta.url).href,
   Sre = { class: 'digital-human-role-selection' },
   Are = { class: 'role-cards-container' },
   bre = ['onClick'],
@@ -71474,35 +71474,50 @@ const nre = { class: 'chat-input-container' },
     __name: 'App',
     setup(n) {
       const e = Hg()
-      return (
-        e.init(),
+      ;(e.init(),
         ra(() => {
-          window.self !== window.top &&
+          ;(window.self !== window.top &&
             (document.body.classList.add('iframe-mode'),
-            console.log('🔍 检测到在 iframe 中运行，应用 iframe 模式样式'))
-        }),
-        (t, i) => (
-          dt(),
-          Dl(
-            Ye(ru),
-            { locale: Ye(aie)[Ye(wR)] },
-            {
-              default: Rw(() => [
-                lt('div', Yre, [
-                  Ye(e).webcamAccessed ? Pi('', !0) : (dt(), Dl(nte, { key: 0 })),
-                  Se(Kre),
-                ]),
+            console.log('🔍 检测到在 iframe 中运行，应用 iframe 模式样式')),
+            t())
+        }))
+      function t() {
+        if (
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        ) {
+          const r = document.createElement('script')
+          ;((r.src = 'https://cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js'),
+            (r.onload = () => {
+              window.VConsole &&
+                (new window.VConsole(), console.log('🔧 VConsole 已初始化，支持移动端调试'))
+            }),
+            (r.onerror = () => {
+              console.warn('⚠️ VConsole 加载失败，将使用原生 console')
+            }),
+            document.head.appendChild(r))
+        }
+      }
+      return (i, r) => (
+        dt(),
+        Dl(
+          Ye(ru),
+          { locale: Ye(aie)[Ye(wR)] },
+          {
+            default: Rw(() => [
+              lt('div', Yre, [
+                Ye(e).webcamAccessed ? Pi('', !0) : (dt(), Dl(nte, { key: 0 })),
+                Se(Kre),
               ]),
-              _: 1,
-            },
-            8,
-            ['locale']
-          )
+            ]),
+            _: 1,
+          },
+          8,
+          ['locale']
         )
       )
     },
   }),
-  Jre = di(Zre, [['__scopeId', 'data-v-87a1b29c']])
+  Jre = di(Zre, [['__scopeId', 'data-v-bd595511']])
 var Zp = { exports: {} },
   ese = Zp.exports,
   XT
