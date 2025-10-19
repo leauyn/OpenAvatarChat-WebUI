@@ -86,17 +86,30 @@
 
       <!-- 底部组件固定容器，确保高度稳定 -->
       <div class="bottom-components-container">
-        <template v-if="(!hasMic || micMuted) && streamState === 'open'" class="chat-input-wrapper">
-          <ChatInput
-            :replying="replying"
-            :micEnabled="hasMic && !micMuted"
-            @interrupt="onInterrupt"
-            @send="onSend"
-            @stop="videoChatState.startWebRTC"
-            @switchToVoice="onSwitchToVoice"
-          />
+        <template v-if="streamState === 'open'">
+          <!-- 当会话开启时，根据micMuted状态决定显示哪个组件 -->
+          <template v-if="micMuted">
+            <ChatInput
+              :replying="replying"
+              :micEnabled="hasMic && !micMuted"
+              @interrupt="onInterrupt"
+              @send="onSend"
+              @stop="videoChatState.startWebRTC"
+              @switchToVoice="onSwitchToVoice"
+            />
+          </template>
+          <template v-else>
+            <ChatBtn
+              @start-chat="onStartChat"
+              :audio-source-callback="audioSourceCallback"
+              :streamState="streamState as string"
+              wave-color="#7873F6"
+              @switchToText="onSwitchToText"
+            />
+          </template>
         </template>
         <template v-else-if="webcamAccessed || showDigitalHumanIntro">
+          <!-- 当会话未开启时，显示开始聊天按钮 -->
           <ChatBtn
             @start-chat="onStartChat"
             :audio-source-callback="audioSourceCallback"
@@ -251,13 +264,17 @@ function onSend(message: string) {
 }
 
 function onSwitchToVoice() {
-  // 切换到语音模式：将 micMuted 设置为 false
-  videoChatState.micMuted = false
+  // 切换到语音模式：如果当前是静音状态，则取消静音
+  if (videoChatState.micMuted) {
+    videoChatState.handleMicMuted()
+  }
 }
 
 function onSwitchToText() {
-  // 切换到文本模式：将 micMuted 设置为 true
-  videoChatState.micMuted = true
+  // 切换到文本模式：如果当前不是静音状态，则开启静音
+  if (!videoChatState.micMuted) {
+    videoChatState.handleMicMuted()
+  }
 }
 </script>
 <style lang="less" scoped>
