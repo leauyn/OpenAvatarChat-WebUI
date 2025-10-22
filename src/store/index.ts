@@ -84,6 +84,9 @@ interface VideoChatState {
 
   // 会话记录相关
   sessionRecordManager: ReturnType<typeof useSessionRecord> | null
+
+  // 角色选择相关
+  selectedRole: string
 }
 
 export const useVideoChatStore = defineStore('videoChatStore', {
@@ -135,6 +138,9 @@ export const useVideoChatStore = defineStore('videoChatStore', {
 
       // 会话记录相关
       sessionRecordManager: null,
+
+      // 角色选择相关
+      selectedRole: 'professional', // 默认选择专业顾问
     }
   },
   getters: {},
@@ -841,6 +847,36 @@ export const useVideoChatStore = defineStore('videoChatStore', {
       })
       gaussianAvatar.start()
       return gaussianAvatar
+    },
+
+    /**
+     * 选择数字人角色
+     */
+    async selectRole(roleId: string) {
+      try {
+        this.selectedRole = roleId
+        console.log('🎭 选择角色:', roleId)
+
+        const response = await fetch('/openavatarchat/select-role', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ role: roleId }),
+        })
+
+        if (response.ok) {
+          const result = await response.json()
+          console.log('✅ 角色选择成功:', result.message)
+          return { success: true, message: result.message }
+        } else {
+          console.error('❌ 角色选择失败')
+          return { success: false, message: '角色选择失败' }
+        }
+      } catch (error) {
+        console.error('❌ 角色选择请求失败:', error)
+        return { success: false, message: '网络请求失败' }
+      }
     },
   },
 })

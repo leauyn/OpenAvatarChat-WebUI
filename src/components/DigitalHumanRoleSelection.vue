@@ -27,8 +27,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useVideoChatStore } from '@/store'
 import professionalImage from '@/assets/P1-64AzfrJY037WpS69RiUMw.png'
 import assistantImage from '@/assets/P1OKp7AWZLC4bXw78Ms9ivuw.png'
+
+const videoChatStore = useVideoChatStore()
 
 interface Role {
   id: string
@@ -53,10 +56,21 @@ const roles = ref<Role[]>([
   },
 ])
 
-const selectedRole = ref<string>('')
+const selectedRole = ref<string>(videoChatStore.selectedRole)
 
-const selectRole = (roleId: string) => {
+const selectRole = async (roleId: string) => {
   selectedRole.value = selectedRole.value === roleId ? '' : roleId
+
+  // 如果选择了角色，发送到后端
+  if (selectedRole.value) {
+    const result = await videoChatStore.selectRole(roleId)
+    if (result.success) {
+      console.log('角色选择成功:', result.message)
+      // 可以添加成功提示
+    } else {
+      console.error('角色选择失败:', result.message)
+    }
+  }
 }
 </script>
 
