@@ -687,6 +687,7 @@
       justify-content: center;
       cursor: pointer;
       transition: all 0.3s ease;
+      position: relative;
 
       .setting-icon {
         font-size: 32px;
@@ -744,6 +745,286 @@
           min-height: 32px;
         }
       }
+
+      // 设置菜单样式
+      .settings-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        min-width: 220px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 8px 0;
+        z-index: 1000;
+        animation: settingsMenuSlideIn 0.2s ease-out;
+        overflow: hidden;
+
+        // PC端优化
+        @media (min-width: 1025px) {
+          min-width: 200px;
+          border-radius: 10px;
+          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        @media screen and (max-width: 1024px) and (min-width: 769px) {
+          min-width: 210px;
+          border-radius: 11px;
+        }
+
+        @media screen and (max-width: 768px) {
+          min-width: 200px;
+          border-radius: 10px;
+        }
+
+        @media screen and (max-width: 480px) {
+          min-width: 180px;
+          border-radius: 8px;
+        }
+
+        @media screen and (max-width: 360px) {
+          min-width: 170px;
+          border-radius: 8px;
+        }
+
+        .settings-menu-item {
+          display: flex;
+          align-items: center;
+          padding: 16px 20px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          position: relative;
+
+          &:hover {
+            background: transparent;
+          }
+
+          &:active {
+            background: transparent;
+            transform: scale(0.98);
+          }
+
+          // PC端优化
+          @media (min-width: 1025px) {
+            padding: 14px 18px;
+          }
+
+          @media screen and (max-width: 1024px) and (min-width: 769px) {
+            padding: 15px 19px;
+          }
+
+          @media screen and (max-width: 768px) {
+            padding: 14px 18px;
+          }
+
+          @media screen and (max-width: 480px) {
+            padding: 12px 16px;
+          }
+
+          @media screen and (max-width: 360px) {
+            padding: 10px 14px;
+          }
+
+          .menu-icon {
+            font-size: 18px;
+            color: #666;
+            margin-right: 14px;
+            transition: color 0.2s ease;
+            flex-shrink: 0;
+
+            @media (min-width: 1025px) {
+              font-size: 17px;
+              margin-right: 12px;
+            }
+
+            @media screen and (max-width: 1024px) and (min-width: 769px) {
+              font-size: 17px;
+              margin-right: 13px;
+            }
+
+            @media screen and (max-width: 768px) {
+              font-size: 16px;
+              margin-right: 12px;
+            }
+
+            @media screen and (max-width: 480px) {
+              font-size: 15px;
+              margin-right: 10px;
+            }
+
+            @media screen and (max-width: 360px) {
+              font-size: 14px;
+              margin-right: 10px;
+            }
+          }
+
+          .menu-text {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            flex: 1;
+            transition: color 0.2s ease;
+
+            @media (min-width: 1025px) {
+              font-size: 15px;
+            }
+
+            @media screen and (max-width: 1024px) and (min-width: 769px) {
+              font-size: 15px;
+            }
+
+            @media screen and (max-width: 768px) {
+              font-size: 15px;
+            }
+
+            @media screen and (max-width: 480px) {
+              font-size: 14px;
+            }
+
+            @media screen and (max-width: 360px) {
+              font-size: 13px;
+            }
+          }
+
+          .toggle-switch {
+            width: 44px;
+            height: 24px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+
+            @media (min-width: 1025px) {
+              width: 40px;
+              height: 22px;
+              border-radius: 11px;
+            }
+
+            @media screen and (max-width: 1024px) and (min-width: 769px) {
+              width: 42px;
+              height: 23px;
+              border-radius: 11.5px;
+            }
+
+            @media screen and (max-width: 768px) {
+              width: 40px;
+              height: 22px;
+              border-radius: 11px;
+            }
+
+            @media screen and (max-width: 480px) {
+              width: 36px;
+              height: 20px;
+              border-radius: 10px;
+            }
+
+            @media screen and (max-width: 360px) {
+              width: 34px;
+              height: 19px;
+              border-radius: 9.5px;
+            }
+
+            &.active {
+              background: #7873f6;
+              box-shadow: 0 0 0 2px rgba(120, 115, 246, 0.2);
+            }
+
+            .toggle-slider {
+              width: 20px;
+              height: 20px;
+              background: #fff;
+              border-radius: 50%;
+              position: absolute;
+              top: 2px;
+              left: 2px;
+              transition: all 0.3s ease;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+              @media (min-width: 1025px) {
+                width: 18px;
+                height: 18px;
+                top: 2px;
+                left: 2px;
+              }
+
+              @media screen and (max-width: 1024px) and (min-width: 769px) {
+                width: 19px;
+                height: 19px;
+                top: 2px;
+                left: 2px;
+              }
+
+              @media screen and (max-width: 768px) {
+                width: 18px;
+                height: 18px;
+                top: 2px;
+                left: 2px;
+              }
+
+              @media screen and (max-width: 480px) {
+                width: 16px;
+                height: 16px;
+                top: 2px;
+                left: 2px;
+              }
+
+              @media screen and (max-width: 360px) {
+                width: 15px;
+                height: 15px;
+                top: 2px;
+                left: 2px;
+              }
+            }
+
+            &.active .toggle-slider {
+              transform: translateX(20px);
+
+              @media (min-width: 1025px) {
+                transform: translateX(18px);
+              }
+
+              @media screen and (max-width: 1024px) and (min-width: 769px) {
+                transform: translateX(19px);
+              }
+
+              @media screen and (max-width: 768px) {
+                transform: translateX(18px);
+              }
+
+              @media screen and (max-width: 480px) {
+                transform: translateX(16px);
+              }
+
+              @media screen and (max-width: 360px) {
+                transform: translateX(15px);
+              }
+            }
+          }
+
+          &:hover .menu-icon {
+            color: #666;
+          }
+
+          &:hover .menu-text {
+            color: #333;
+          }
+        }
+      }
     }
+  }
+}
+
+// 设置菜单动画
+@keyframes settingsMenuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

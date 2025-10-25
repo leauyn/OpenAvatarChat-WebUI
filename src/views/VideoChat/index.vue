@@ -14,8 +14,37 @@
           </div>
           <div v-if="!showDigitalHumanIntro && streamState !== 'waiting'" class="right-actions">
             <ActionGroup :isStartupMode="streamState !== 'open'" />
-            <div class="setting-action">
+            <div
+              v-click-outside="() => (settingsMenuVisible = false)"
+              class="setting-action"
+              @click="toggleSettingsMenu"
+            >
               <SettingOutlined class="setting-icon" />
+              <!-- 设置菜单 -->
+              <div v-show="settingsMenuVisible" class="settings-menu">
+                <div class="settings-menu-item" @click="toggleVideoStream">
+                  <VideoCameraOutlined class="menu-icon" />
+                  <span class="menu-text">视频流</span>
+                  <div
+                    class="toggle-switch"
+                    :class="{ active: videoStreamEnabled }"
+                    @click.stop="toggleVideoStream"
+                  >
+                    <div class="toggle-slider"></div>
+                  </div>
+                </div>
+                <div class="settings-menu-item" @click="toggleKnowledgeBase">
+                  <SoundOutlined class="menu-icon" />
+                  <span class="menu-text">知识库</span>
+                  <div
+                    class="toggle-switch"
+                    :class="{ active: knowledgeBaseEnabled }"
+                    @click.stop="toggleKnowledgeBase"
+                  >
+                    <div class="toggle-slider"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,6 +180,11 @@ const remoteVideoContainerRef = ref<HTMLDivElement>()
 const localVideoRef = ref<HTMLVideoElement>()
 const remoteVideoRef = ref<HTMLVideoElement>()
 const remoteAspectRatio = ref('9 / 16')
+
+// 设置菜单相关状态
+const settingsMenuVisible = ref(false)
+const videoStreamEnabled = ref(true)
+const knowledgeBaseEnabled = ref(true)
 const onplayingRemoteVideo = () => {
   if (remoteVideoRef.value) {
     remoteAspectRatio.value = `${remoteVideoRef.value.videoWidth} / ${remoteVideoRef.value.videoHeight}`
@@ -285,6 +319,23 @@ function onSwitchToText() {
   if (!videoChatState.micMuted) {
     videoChatState.handleMicMuted()
   }
+}
+
+// 设置菜单相关方法
+function toggleSettingsMenu() {
+  settingsMenuVisible.value = !settingsMenuVisible.value
+}
+
+function toggleVideoStream() {
+  videoStreamEnabled.value = !videoStreamEnabled.value
+  // TODO: 实现视频流开关逻辑
+  console.log('视频流状态:', videoStreamEnabled.value ? '开启' : '关闭')
+}
+
+function toggleKnowledgeBase() {
+  knowledgeBaseEnabled.value = !knowledgeBaseEnabled.value
+  // TODO: 实现知识库开关逻辑
+  console.log('知识库状态:', knowledgeBaseEnabled.value ? '开启' : '关闭')
 }
 </script>
 <style lang="less" scoped>
